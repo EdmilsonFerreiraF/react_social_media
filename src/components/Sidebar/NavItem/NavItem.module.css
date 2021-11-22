@@ -1,0 +1,9 @@
+.navItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.navItemIcon {
+    margin: 15px;
+}

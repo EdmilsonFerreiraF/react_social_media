@@ -1,0 +1,16 @@
+.typeItem {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.typeItemIcon {
+    font-size: 18px;
+    margin-right: 3px;
+}
+
+.typeItemText {
+    font-size: 14px;
+    font-weight: 500;
+}
