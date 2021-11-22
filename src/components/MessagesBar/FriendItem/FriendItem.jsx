@@ -1,15 +1,11 @@
 import styles from "./FriendItem.module.css"
 
-const FriendItem = (props) => {
+const FriendItem = ({ friend }) => {
     return (
-        <li className={styles.friendItem}>
-            <div className={styles.friendImgContainer}>
-                <img className={styles.friendProfileImg} src={props.img} alt="Friend profile" />
-                <span className={styles.friendOnlineIcon}></span>
-            </div>
-            
-            <span className={styles.friendUsername}>
-                {props.name}
+        <li className={styles.friend}>
+            <img className={styles.friendImg} src={friend.profilePicture} alt="Friend profile" />
+            <span className={styles.friendName}>
+                {friend.username}
             </span>
         </li>
     )

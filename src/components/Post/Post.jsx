@@ -1,19 +1,33 @@
 import { MoreVert } from "@material-ui/icons"
+import { useState } from "react"
+
+import { Users } from '../../dummyData'
 
 import styles from "./Post.module.css"
 
-const Post = () => {
+const Post = ({ post }) => {
+    const [like, setLike] = useState(post.like)
+    const [isLiked, setIsLiked] = useState(false)
+
+    const likeHandler = () => {
+        setLike(isLiked ? like - 1 : like + 1)
+        setIsLiked(!isLiked)
+    }
+    
     return (
         <div className={styles.post}>
             <div className={styles.postContainer}>
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
-                        <img src="assets/person/1.jpeg" className={styles.postProfileImg} alt="Post user profile" />
+                        <img src={Users.filter(user => user.id === post.userId)[0].profilePicture}
+
+                         className={styles.postProfileImg}
+                          alt="Post user profile" />
                         <span className={styles.postUsername}>
-                            Edmilson Ferreira
+                            {Users.filter(user => user.id === post.userId)[0].username}
                         </span>
                         <span className={styles.postDate}>
-                            5 min ago
+                            {post.date}
                         </span>
                     </div>
                     <div className={styles.postOptions}>
@@ -22,20 +36,20 @@ const Post = () => {
                 </div>
                 <div className={styles.postContent}>
                     <span className={styles.postContentText}>
-                        First post
+                        {post?.desc}
                     </span>
-                    <img src="assets/post/1.jpeg" className={styles.postContentImg} alt="Post content" />
+                    <img src={post.photo} className={styles.postContentImg} alt="Post content" />
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
-                        <img src="assets/like.png" className={styles.postReactionItem} alt="Post user profile" />
-                        <img src="assets/heart.png" className={styles.postReactionItem} alt="Post user profile" />
+                        <img src="assets/like.png" className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
+                        <img src="assets/heart.png" className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
                         <span className={styles.postLikeCounter}>
-                            32 people liked it
+                            {like} people liked it
                         </span>
                     </div>
                     <div className={styles.postComments}>
-                        <span className={styles.postCommentCounter}>9 comments</span>
+                        <span className={styles.postCommentCounter}>{post.comment} comments</span>
                     </div>
                 </div>
             </div>

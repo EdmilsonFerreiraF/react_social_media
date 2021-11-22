@@ -1,15 +1,16 @@
 import FriendItem from "../FriendItem/FriendItem"
 
+import { Users } from "../../../dummyData"
+
 import styles from "./FriendList.module.css"
+
 
 const FriendList = () => {
     return (
         <ul className={styles.friendList}>
-            <FriendItem name="Jane Doe" img="/assets/person/2.jpeg" />
-            <FriendItem name="Jane Doe" img="/assets/person/2.jpeg" />
-            <FriendItem name="Jane Doe" img="/assets/person/2.jpeg" />
-            <FriendItem name="Jane Doe" img="/assets/person/2.jpeg" />
-            <FriendItem name="Jane Doe" img="/assets/person/2.jpeg" />
+            {Users.map(friend => (
+                <FriendItem key={friend.id} friend={friend} />
+            ))}
         </ul>
     )
 }
