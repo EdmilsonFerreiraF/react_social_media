@@ -7,8 +7,8 @@ const Post = () => {
         <div className={styles.post}>
             <div className={styles.postContainer}>
                 <div className={styles.postTopbar}>
-                    <div className={styles.postAvatar}>
-                        <img src="assets/person/1.jpeg" className={styles.postAvatarImg} alt="Post user profile" />
+                    <div className={styles.postImg}>
+                        <img src="assets/person/1.jpeg" className={styles.postProfileImg} alt="Post user profile" />
                         <span className={styles.postUsername}>
                             Edmilson Ferreira
                         </span>
@@ -38,9 +38,7 @@ const Post = () => {
                         <span className={styles.postCommentCounter}>9 comments</span>
                     </div>
                 </div>
-
             </div>
-
         </div>
     )
 }
