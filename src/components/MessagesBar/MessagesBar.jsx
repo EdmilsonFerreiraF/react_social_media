@@ -1,4 +1,3 @@
-import { Home } from "@material-ui/icons"
 import FollowingList from "./FollowingList/FollowingList"
 import FriendList from "./FriendList/FriendList"
 import InfoList from "./InfoList/InfoList"
@@ -15,13 +14,10 @@ const MessagesBar = ({ profile }) => {
                         <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today.
                     </span>
                 </div>
-
                 <img className={styles.messagesBarAd} src="assets/ad.png" alt="" />
-
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
-
                 <FriendList />
             </>
         )
