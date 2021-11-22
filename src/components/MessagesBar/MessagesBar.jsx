@@ -1,11 +1,14 @@
+import { Home } from "@material-ui/icons"
+import FollowingList from "./FollowingList/FollowingList"
 import FriendList from "./FriendList/FriendList"
+import InfoList from "./InfoList/InfoList"
 
 import styles from "./MessagesBar.module.css"
 
-const MessagesBar = () => {
-    return (
-        <div className={styles.messagesBarContainer}>
-            <div className={styles.messagesBar}>
+const MessagesBar = ({ profile }) => {
+    const HomeMessagesBar = () => {
+        return (
+            <>
                 <div className={styles.birthdayContainer}>
                     <img className={styles.birthdayImg} src="assets/gift.png" alt="" />
                     <span className={styles.birthdayText}>
@@ -20,8 +23,26 @@ const MessagesBar = () => {
                 </h4>
 
                 <FriendList />
-            </div>
+            </>
+        )
+    }
+
+    const ProfileMessagesBar = () => {
+        return (
+            <>
+                <h4 className={styles.messagesBarTitle}>User information</h4>
+                <InfoList />
+                <h4 className={styles.messagesBarTitle}>User friends</h4>
+                <FollowingList />
+            </>
+        )
+    }
             
+    return (
+        <div className={styles.messagesBarContainer}>
+            <div className={styles.messagesBar}>
+                { profile ? <ProfileMessagesBar /> : <HomeMessagesBar /> }
+            </div>
         </div>
     )
 }

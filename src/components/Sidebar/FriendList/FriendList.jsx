@@ -4,7 +4,6 @@ import { Users } from "../../../dummyData"
 
 import styles from "./FriendList.module.css"
 
-
 const FriendList = () => {
     return (
         <ul className={styles.friendList}>

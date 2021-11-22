@@ -1,0 +1,13 @@
+.messagesBarInfoItem {
+    margin-bottom: 10px;
+}
+
+.messagesBarInfoKey {
+    font-weight: 500;
+    margin-right: 15px;
+    color: #555;
+}
+
+.messagesBarInfoValue {
+    font-weight: 300;
+}
