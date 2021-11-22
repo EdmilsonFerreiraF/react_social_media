@@ -1,8 +1,10 @@
 import styles from "./Profile.module.css"
 
 const Profile = () => {
+    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
+
     return (
-        <img src="assets/person/1.jpeg" alt="User profile" className={styles.profileImg}/>
+        <img src={`${publicFolder}person/1.jpeg`} alt="User profile" className={styles.profileImg}/>
     )
 }
 

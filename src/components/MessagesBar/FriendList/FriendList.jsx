@@ -1,13 +1,11 @@
 import FriendItem from "../FriendItem/FriendItem"
 
-import { Users } from "../../../dummyData"
-
 import styles from "./FriendList.module.css"
 
-const FriendList = () => {
+const FriendList = ({ users }) => {
     return (
         <ul className={styles.friendList}>
-            {Users.map(friend => (
+            {users.map(friend => (
                 <FriendItem key={friend.id} friend={friend} />
             ))}
         </ul>

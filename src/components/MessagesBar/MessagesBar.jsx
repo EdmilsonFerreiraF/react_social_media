@@ -4,7 +4,9 @@ import InfoList from "./InfoList/InfoList"
 
 import styles from "./MessagesBar.module.css"
 
-const MessagesBar = ({ profile }) => {
+const MessagesBar = ({ user }) => {
+    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
+
     const HomeMessagesBar = () => {
         return (
             <>
@@ -18,7 +20,7 @@ const MessagesBar = ({ profile }) => {
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
-                <FriendList />
+                <FriendList users={user} />
             </>
         )
     }
@@ -27,7 +29,7 @@ const MessagesBar = ({ profile }) => {
         return (
             <>
                 <h4 className={styles.messagesBarTitle}>User information</h4>
-                <InfoList />
+                <InfoList user={user} />
                 <h4 className={styles.messagesBarTitle}>User friends</h4>
                 <FollowingList />
             </>
@@ -37,7 +39,7 @@ const MessagesBar = ({ profile }) => {
     return (
         <div className={styles.messagesBarContainer}>
             <div className={styles.messagesBar}>
-                { profile ? <ProfileMessagesBar /> : <HomeMessagesBar /> }
+                { user ? <ProfileMessagesBar /> : <HomeMessagesBar /> }
             </div>
         </div>
     )

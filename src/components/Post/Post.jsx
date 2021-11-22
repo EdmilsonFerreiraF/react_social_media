@@ -1,33 +1,50 @@
 import { MoreVert } from "@material-ui/icons"
-import { useState } from "react"
-
-import { Users } from '../../dummyData'
-
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { format } from 'timeago.js'
+import { Link } from 'react-router-dom'
 import styles from "./Post.module.css"
+import { baseUrl } from "../../constants/baseUrl"
 
 const Post = ({ post }) => {
-    const [like, setLike] = useState(post.like)
+    const [like, setLike] = useState(post.likes.length)
     const [isLiked, setIsLiked] = useState(false)
 
+    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
+
+    const [user, setUser] = useState([])
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const res = await axios.get(`${baseUrl}users?userId=${post.userId}`)
+            console.log('res', res)
+            setUser(res.data)
+            // return res.data
+        }
+
+        fetchUser()
+    }, [post.userId])
+        
     const likeHandler = () => {
         setLike(isLiked ? like - 1 : like + 1)
         setIsLiked(!isLiked)
     }
-    
+
     return (
         <div className={styles.post}>
             <div className={styles.postContainer}>
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
-                        <img src={Users.filter(user => user.id === post.userId)[0].profilePicture}
-
-                         className={styles.postProfileImg}
-                          alt="Post user profile" />
+                        <Link to={`profile/${user.username}`}>
+                            <img src={`${publicFolder + "person/" + user.profilePicture || publicFolder + "person/no_person.jpg"}`}
+                            className={styles.postProfileImg}
+                            alt="Post user profile" />
+                          </Link>
                         <span className={styles.postUsername}>
-                            {Users.filter(user => user.id === post.userId)[0].username}
+                            {user.username}
                         </span>
                         <span className={styles.postDate}>
-                            {post.date}
+                            {format(post.createdAt)}
                         </span>
                     </div>
                     <div className={styles.postOptions}>
@@ -38,12 +55,13 @@ const Post = ({ post }) => {
                     <span className={styles.postContentText}>
                         {post?.desc}
                     </span>
-                    <img src={post.photo} className={styles.postContentImg} alt="Post content" />
+                    {console.log('publicFolder+"post/"+post.image', publicFolder+"post/"+post.image)}
+                    <img src={publicFolder+"post/"+post.image} className={styles.postContentImg} alt="Post content" />
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
-                        <img src="assets/like.png" className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
-                        <img src="assets/heart.png" className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
+                        <img src={`${publicFolder}like.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
+                        <img src={`${publicFolder}heart.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
                         <span className={styles.postLikeCounter}>
                             {like} people liked it
                         </span>
