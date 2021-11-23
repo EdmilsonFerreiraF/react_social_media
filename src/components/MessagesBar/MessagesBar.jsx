@@ -6,6 +6,7 @@ import styles from "./MessagesBar.module.css"
 
 const MessagesBar = ({ user }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
+    const { user } = useContext(AuthContext)
 
     const HomeMessagesBar = () => {
         return (

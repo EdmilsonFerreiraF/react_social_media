@@ -1,8 +1,41 @@
+import { createRef } from 'react'
+import axios from 'axios'
+
 import Input from '../../components/Input/Input'
+import { baseUrl } from '../../constants/baseUrl'
 
 import styles from "./Signup.module.css"
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
+  const username = createRef()
+  const email = createRef()
+  const password = createRef()
+  const passwordAgain = createRef()
+
+  const navigate = useNavigate()
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (passwordAgain.current.value !== password.current.value) {
+        passwordAgain.current.setCustomValidity("Passwords don't match!")
+    } else {
+        const user = {
+            username: username.current.value,
+            email: email.current.value,
+            password: password.current.value,
+        }
+
+        try {
+            await axios.post(`${baseUrl}auth/signup`, user)
+            navigate("/login")
+        } catch(err) {
+            console.log(err)
+        }
+    }
+  }
+
   return (
     <div className={styles.signup}>
         <div className={styles.signupWrapper}>
@@ -15,19 +48,19 @@ const Signup = () => {
                 </span>
             </div>
             <div className={styles.signupRight}>
-                <div className={styles.signupBox}>
-                    <Input type="text" placeholder="Username"/>
-                    <Input type="email" placeholder="Email"/>
-                    <Input type="password" placeholder="Password"/>
-                    <Input type="password" placeholder="Password again"/>
+                <form className={styles.signupBox} onSubmit={handleSubmit}>
+                    <Input type="text" placeholder="Username" required ref={username}/>
+                    <Input type="email" placeholder="Email" required ref={email}/>
+                    <Input type="password" placeholder="Password" required minLength="6" ref={password}/>
+                    <Input type="password" placeholder="Password again" required ref={passwordAgain}/>
                     
-                    <button className={styles.signupButton}>
+                    <button className={styles.signupButton} type="submit">
                         Sign up
                     </button>
                     <button className={styles.signupRegisterButton}>
                         Log into account
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
