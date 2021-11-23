@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 import MainAppBar from '../../components/MainAppBar/MainAppBar'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Feed from '../../components/Feed/Feed'
 import MessagesBar from '../../components/MessagesBar/MessagesBar'
-
-import styles from "./Profile.module.css"
 import { baseUrl } from '../../constants/baseUrl'
 
+import styles from "./Profile.module.css"
+
 const Profile = () => {
-    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
     const [user, setUser] = useState({})
     const username = useParams().username
+
+    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     useEffect(() => {
         const fetchUser = async () => {
             const res = await axios.get(`${baseUrl}users?username=${username}`)
-            console.log('res', res)
+
             setUser(res.data)
-            // return res.data
         }
 
         fetchUser()
