@@ -4,12 +4,12 @@ import Profile from "./Profile/Profile"
 
 import styles from "./Account.module.css"
 
-const Account = () => {
+const Account = ({ user }) => {
     return (
         <div className={styles.account}>
             <Navigation />
             <Social />
-            <Profile />
+            <Profile user={user} />
         </div>
     )
 }

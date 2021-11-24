@@ -1,10 +1,11 @@
 import { MoreVert } from "@material-ui/icons"
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { format } from 'timeago.js'
 import { Link } from 'react-router-dom'
 import styles from "./Post.module.css"
 import { baseUrl } from "../../constants/baseUrl"
+import { AuthContext } from "../../context/AuthContext"
 
 const Post = ({ post }) => {
     const [like, setLike] = useState(post.likes.length)
@@ -13,21 +14,28 @@ const Post = ({ post }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const [user, setUser] = useState([])
+    const { user: currentUser } = useContext(AuthContext)
+
+    useEffect(() => {
+        setIsLiked(post.likes.includes(currentUser._id))
+    }, [currentUser._id, post.likes])
 
     useEffect(() => {
         const fetchUser = async () => {
             const res = await axios.get(`${baseUrl}users?userId=${post.userId}`)
-            console.log('res', res)
+
             setUser(res.data)
-            // return res.data
         }
 
         fetchUser()
     }, [post.userId])
         
     const likeHandler = () => {
-        setLike(isLiked ? like - 1 : like + 1)
-        setIsLiked(!isLiked)
+        try {
+            axios.put(`/posts/${post._id}/like`, { userId: currentUser._id })
+        } catch (err) {
+            setLike(isLiked ? like -1 : like + 1)
+        }
     }
 
     return (
@@ -53,10 +61,9 @@ const Post = ({ post }) => {
                 </div>
                 <div className={styles.postContent}>
                     <span className={styles.postContentText}>
-                        {post?.desc}
+                        {post?.description}
                     </span>
-                    {console.log('publicFolder+"post/"+post.image', publicFolder+"post/"+post.image)}
-                    <img src={publicFolder+"post/"+post.image} className={styles.postContentImg} alt="Post content" />
+                    <img src={user.profilePicture ? publicFolder+"post/"+post.image : publicFolder + "person/no_avatar.jpg"} className={styles.postContentImg} alt="Post content" />
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>

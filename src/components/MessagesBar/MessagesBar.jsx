@@ -1,10 +1,12 @@
+import { useContext } from "react"
+import { AuthContext } from "../../context/AuthContext"
 import FollowingList from "./FollowingList/FollowingList"
 import FriendList from "./FriendList/FriendList"
 import InfoList from "./InfoList/InfoList"
 
 import styles from "./MessagesBar.module.css"
 
-const MessagesBar = ({ user }) => {
+const MessagesBar = () => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
     const { user } = useContext(AuthContext)
 
@@ -21,7 +23,7 @@ const MessagesBar = ({ user }) => {
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
-                <FriendList users={user} />
+                <FriendList user={user} />
             </>
         )
     }
