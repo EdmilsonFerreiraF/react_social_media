@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 
-import Share from '../CreatePost/CreatePost'
+import CreatePost from '../CreatePost/CreatePost'
 import Post from '../Post/Post'
 
 import styles from "./Feed.module.css"
@@ -27,7 +27,7 @@ const Feed = ({ username }) => {
     return (
         <div className={styles.feedContainer}>
             <div className={styles.feed}>
-                <Share />
+                { username === user.username && <CreatePost /> }
                 {posts.map(post => (
                     <Post key={post._id} post={post} />
                 ))}

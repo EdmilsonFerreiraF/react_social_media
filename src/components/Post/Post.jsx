@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import styles from "./Post.module.css"
 import { baseUrl } from "../../constants/baseUrl"
 import { AuthContext } from "../../context/AuthContext"
+import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const Post = ({ post }) => {
     const [like, setLike] = useState(post.likes.length)
@@ -15,7 +16,7 @@ const Post = ({ post }) => {
 
     const [user, setUser] = useState([])
     const { user: currentUser } = useContext(AuthContext)
-
+let getProfilePic
     useEffect(() => {
         setIsLiked(post.likes.includes(currentUser._id))
     }, [currentUser._id, post.likes])
@@ -26,9 +27,36 @@ const Post = ({ post }) => {
 
             setUser(res.data)
         }
+        getProfilePic = async(path, picture, property) => {
+            const storage = getStorage();
+
+            getDownloadURL(ref(storage, path + picture))
+            .then((url) => {
+                if (path === "posts/") {
+                    post.image = url
+
+                } else {
+                    setUser(prevUser => ({...prevUser,
+                        [property]: url}))
+                }
+            })
+            .catch((error) => {
+            // Handle any errors
+            console.log(error)
+            });
+        }
+
+        if (post.image) {
+            getProfilePic("posts/", post.image, "image")
+        }
+        
+        if (user.profilePicture) {
+            getProfilePic("profile/", user.profilePicture, "profilePicture")
+            console.log('profilePicture', post.profilePicture)
+        }
 
         fetchUser()
-    }, [post.userId])
+    }, [])
         
     const likeHandler = () => {
         try {
@@ -44,7 +72,7 @@ const Post = ({ post }) => {
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
-                            <img src={`${publicFolder + "person/" + user.profilePicture || publicFolder + "person/no_person.jpg"}`}
+                            <img src={`${user.profilePicture && user.profilePicture !== "" ? user.profilePicture : publicFolder + "person/no_person.jpg"}`}
                             className={styles.postProfileImg}
                             alt="Post user profile" />
                           </Link>
@@ -63,7 +91,10 @@ const Post = ({ post }) => {
                     <span className={styles.postContentText}>
                         {post?.description}
                     </span>
-                    <img src={user.profilePicture ? publicFolder+"post/"+post.image : publicFolder + "person/no_avatar.jpg"} className={styles.postContentImg} alt="Post content" />
+                    {post.image &&
+                        <img src={post.image} className={styles.postContentImg} alt="Post content" />
+                    }
+                    {console.log('post.image', post.image)}
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
