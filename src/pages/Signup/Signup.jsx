@@ -6,8 +6,11 @@ import { baseUrl } from '../../constants/baseUrl'
 
 import styles from "./Signup.module.css"
 import { useNavigate } from 'react-router-dom'
+import { useUnprotectPage } from '../../hooks/useUnprotectPage'
 
 const Signup = () => {
+    useUnprotectPage()
+
   const username = createRef()
   const email = createRef()
   const password = createRef()
@@ -28,7 +31,7 @@ const Signup = () => {
         }
 
         try {
-            await axios.post(`${baseUrl}auth/signup`, user)
+            await axios.post(`${baseUrl}/user/signup`, user)
             navigate("/login")
         } catch(err) {
             console.log(err)

@@ -9,10 +9,13 @@ import Feed from '../../components/Feed/Feed'
 import MessagesBar from '../../components/MessagesBar/MessagesBar'
 import { baseUrl } from '../../constants/baseUrl'
 import { v4 } from 'uuid'
+import { useProtectPage } from '../../hooks/useProtectPage'
 
 import styles from "./Profile.module.css"
 
 const Profile = () => {
+    useProtectPage()
+
     const [user, setUser] = useState({})
     const username = useParams().username
     const imgId = v4()
@@ -23,7 +26,7 @@ const Profile = () => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`${baseUrl}users?username=${username}`)
+            const res = await axios.get(`${baseUrl}/users?username=${username}`)
 
             setUser(res.data)
 

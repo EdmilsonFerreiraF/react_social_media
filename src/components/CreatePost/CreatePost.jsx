@@ -45,7 +45,7 @@ const CreatePost = () => {
         });
 
         try {
-            await axios.post(`${baseUrl}posts`, newPost)
+            await axios.post(`${baseUrl}/posts`, newPost)
         } catch (err) {
             
         }

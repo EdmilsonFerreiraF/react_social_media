@@ -6,8 +6,11 @@ import { loginCall } from "../../apiCalls"
 import { AuthContext } from "../../context/AuthContext"
 
 import styles from "./Login.module.css"
+import { useUnprotectPage } from '../../hooks/useUnprotectPage'
 
 const Login = () => {
+    useUnprotectPage()
+
     const { user, isFetching, error, dispatch } = useContext(AuthContext)
 
     const email = createRef()
