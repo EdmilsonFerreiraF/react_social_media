@@ -1,4 +1,4 @@
-import { createRef, useContext } from "react"
+import { createRef, useContext, useState } from "react"
 import { CircularProgress } from "@material-ui/core"
 
 import Input from '../../components/Input/Input'
@@ -7,19 +7,29 @@ import { AuthContext } from "../../context/AuthContext"
 
 import styles from "./Login.module.css"
 import { useUnprotectPage } from '../../hooks/useUnprotectPage'
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     useUnprotectPage()
+    const navigate = useNavigate()
 
     const { user, isFetching, error, dispatch } = useContext(AuthContext)
 
-    const email = createRef()
-    const password = createRef()
+    const [email, setEmail] = useState("user_email33@email.com")
+    const [password, setPassword] = useState("user_password")
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value)
+    }
     
     const handleSubmit = e => {
         e.preventDefault()
 
-        loginCall({ email: email.current.value, password: password.current.value }, dispatch)
+        loginCall({ email, password }, dispatch, navigate)
     }
     
   return (
@@ -35,8 +45,8 @@ const Login = () => {
             </div>
             <div className={styles.loginRight}>
                 <form className={styles.loginBox} onSubmit={handleSubmit}>
-                    <Input type="email" placeholder="Email" required ref={email} minLength="6" />
-                    <Input type="password" placeholder="Password" required ref={password} />
+                    <Input type="email" placeholder="Email" required value={email} onChange={handleEmailChange} minLength="6" />
+                    <Input type="password" placeholder="Password" required value={password} onChange={handlePasswordChange} />
                     <button className={styles.loginButton} type="submit" disabled={isFetching}>
                         {isFetching ? <CircularProgress color="white" size="20px" /> : "Log in"}
                     </button>

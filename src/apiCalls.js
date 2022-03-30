@@ -1,13 +1,22 @@
 import axios from 'axios'
 
 import { baseUrl } from './constants/baseUrl'
+import { goToIndex } from './routes/coordinator'
 
-export const loginCall = async (userCredential, dispatch) => {
+export const loginCall = async (userCredential, dispatch, navigate) => {
     dispatch({ type: "LOGIN_START" })
 
     try {
-        const res = await axios.post(`${baseUrl}/user/login`, userCredential)
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+        await axios
+        .post(`${baseUrl}/user/login`, userCredential)
+        .then(res => {
+            localStorage.setItem("token", res.data.token)
+            
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+
+            goToIndex(navigate)
+        })
+        .catch(err => console.log(err))
     } catch (err) {
         dispatch({ type: "LOGIN_FAILED", payload: err })
     }
