@@ -27,7 +27,7 @@ const MessagesBar = () => {
 
         getFriends()
         console.log('friends', friends)
-    }, [user._id])
+    }, [user])
 
     const HomeMessagesBar = () => {
         return (

@@ -16,18 +16,18 @@ const Feed = ({ username }) => {
         const fetchPosts = async () => {
             const res = username
             ? await axios.get(`${baseUrl}/posts/profile/${username}`)
-            : await axios.get(`${baseUrl}/posts/timeline/${user._id}`)
+            : await axios.get(`${baseUrl}/posts/timeline/${user?._id}`)
 
             setPosts(res.data)
         }
 
         fetchPosts()
-    }, [username, user._id])
+    }, [username, user])
     
     return (
         <div className={styles.feedContainer}>
             <div className={styles.feed}>
-                { username === user.username && <CreatePost /> }
+                { username === user?.username && <CreatePost /> }
                 {posts.map(post => (
                     <Post key={post._id} post={post} />
                 ))}

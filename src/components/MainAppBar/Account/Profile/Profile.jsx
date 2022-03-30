@@ -6,14 +6,14 @@ const Profile = ({ user }) => {
     let navigate = useNavigate();
 
     const goToUserProfile = () => {
-        navigate(`/profile${user.username}`)
+        navigate(`/profile${user?.username}`)
     }
 
     return (
         <img src={`${
-            user.profilePicture
-            ? publicFolder + user.profilePicture
-            : user.profilePicture + "person/no_avatar.jpg"
+            user?.profilePicture
+            ? publicFolder + user?.profilePicture
+            : user?.profilePicture + "person/no_avatar.jpg"
         }`} alt="User profile" className={styles.profileImg} onClick={goToUserProfile}/>
     )
 }

@@ -49,12 +49,12 @@ const Profile = () => {
                 });
             }
 
-            console.log('profilePicture', user.profilePicture)
-            getProfilePic("profile/", user.profilePicture, "profilePicture")
+            console.log('profilePicture', user?.profilePicture)
+            getProfilePic("profile/", user?.profilePicture, "profilePicture")
         }
 
-        if (user.coverPicture) {
-            getProfilePic("cover/", user.coverPicture, "coverPicture")
+        if (user?.coverPicture) {
+            getProfilePic("cover/", user?.coverPicture, "coverPicture")
         }
 
         console.log('user', user)
@@ -72,17 +72,17 @@ const Profile = () => {
                         <div className={styles.profileCover}>
                             <img
                             // src={user.coverPicture ? `${publicFolder}person/${user.coverPicture}` : `${publicFolder}person/no_cover.jpg`}
-                            src={user.coverPicture && user.coverPicture !== "" ? user.coverPicture : `${publicFolder}person/no_cover.jpg`}
+                            src={user?.coverPicture && user?.coverPicture !== "" ? user?.coverPicture : `${publicFolder}person/no_cover.jpg`}
                             className={styles.profileCoverImg} alt="Post content" />
-                            {console.log('user',user)}
-                            <img src={user.profilePicture && user.profilePicture !== "" ? user.profilePicture : `${publicFolder}person/no_person.jpg`} className={styles.profileUserImg} alt="Post content" />
+                            {console.log('user?',user)}
+                            <img src={user?.profilePicture && user?.profilePicture !== "" ? user?.profilePicture : `${publicFolder}person/no_person.jpg`} className={styles.profileUserImg} alt="Post content" />
                         </div>
                         <div className={styles.profileInfo}>
                             <h4 className={styles.profileInfoName}>
-                                {user.username}
+                                {user?.username}
                             </h4>
                             <span className={styles.profileInfoDesc}>
-                                {user.description}
+                                {user?.description}
                             </span>
                         </div>
                     </div>

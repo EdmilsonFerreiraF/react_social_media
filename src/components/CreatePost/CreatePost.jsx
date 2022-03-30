@@ -24,7 +24,7 @@ const CreatePost = () => {
         e.preventDefault()
 
         const newPost = {
-            userId: user._id,
+            userId: user?._id,
             description: description,
             image: "posts/" + imgId
         }
@@ -61,7 +61,7 @@ const CreatePost = () => {
     let getProfilePic
     useEffect(() => {
          getProfilePic = async() => {
-            getDownloadURL(ref(storage, '/profile/' + user.profilePicture))
+            getDownloadURL(ref(storage, '/profile/' + user?.profilePicture))
             .then((url) => {
               // `url` is the download URL for 'images/stars.jpg'
           
@@ -110,7 +110,7 @@ const CreatePost = () => {
                     src={profilePicture}
                      alt="" />
                      {console.log('profilePicture', profilePicture)}
-                    <input placeholder={`What's in your mind ${user.username}?`}
+                    <input placeholder={`What's in your mind ${user?.username}?`}
                      className={styles.createPostInput} value={description} onChange={inputHandler} />
         
                 </div>
