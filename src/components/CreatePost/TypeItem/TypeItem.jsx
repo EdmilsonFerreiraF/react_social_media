@@ -18,7 +18,6 @@ const TypeItem = forwardRef((props, ref) => {
              className={styles[props.className]}
             onChange={props.onChange}
              />
-             {console.log("props.className", props.className)}
         </label>
     )
 })

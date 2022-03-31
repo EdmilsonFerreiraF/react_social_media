@@ -10,8 +10,6 @@ const FollowingItem = (props) => {
     
     return (
         <div className={styles.followingItem} onClick={goToFriendProfile}>
-            {console.log('props.name', props.name)}
-
             <img src={props.img} className={styles.followingImg} alt="Post content" />
             <span className={styles.followingName}>
                 {props.name}

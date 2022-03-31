@@ -16,7 +16,6 @@ const Feed = ({ otherUserId }) => {
     useEffect(() => {
         const fetchPosts = async () => {
             if (otherUserId) {
-                console.log('token', token)
                 await axios.get(`${baseUrl}/post/profile/${otherUserId}`, {
                     headers: {
                         Authorization: token
@@ -25,8 +24,6 @@ const Feed = ({ otherUserId }) => {
                 .then(res => setPosts(res.data))
                 .catch(err => console.log(err))
             } else if (user?.id) {
-                console.log('token', token)
-
                 await axios.get(`${baseUrl}/post/timeline/${user?.id}`, {
                     headers: {
                         Authorization: token
@@ -40,8 +37,6 @@ const Feed = ({ otherUserId }) => {
         fetchPosts()
     }, [otherUserId, user, token])
     
-    console.log('otherUserId - feed', otherUserId)
-    console.log('user.otherUserId - feed', user?.otherUserId)
     return (
         <div className={styles.feedContainer}>
             <div className={styles.feed}>

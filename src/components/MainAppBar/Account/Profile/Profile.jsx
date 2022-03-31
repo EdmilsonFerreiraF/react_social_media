@@ -2,13 +2,15 @@ import { useNavigate } from "react-router"
 import styles from "./Profile.module.css"
 import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from 'uuid'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../../../context/AuthContext"
 
-const Profile = ({ user }) => {
+const Profile = () => {
+    const { user, isFetching, error, dispatch } = useContext(AuthContext)
+    
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
     let navigate = useNavigate();
     let [profilePicture, setProfilePicture] = useState("")
-    console.log('user', user)
 
     const goToUserProfile = () => {
         navigate(`/profile/${user?.username}`)

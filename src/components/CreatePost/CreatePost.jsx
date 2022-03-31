@@ -95,10 +95,9 @@ const CreatePost = () => {
 
         getProfilePic()
         // getCoverPic()
-        {console.log('profilePicture', profilePicture)}
         // {console.log('coverPicture', coverPicture)}
 
-    }, [])
+    }, [user?.profilePicture])
     
     return (
         <div className={styles.createPost}>
@@ -113,7 +112,6 @@ const CreatePost = () => {
                     // }`}
                     src={profilePicture}
                      alt="" />
-                     {console.log('profilePicture', profilePicture)}
                     <input placeholder={`What's in your mind ${user?.username}?`}
                      className={styles.createPostInput} value={description} onChange={inputHandler} />
         

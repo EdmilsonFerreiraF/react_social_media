@@ -16,7 +16,9 @@ const Post = ({ post }) => {
 
     const [user, setUser] = useState([])
     const { user: currentUser } = useContext(AuthContext)
-let getProfilePic
+
+    let getProfilePic
+
     useEffect(() => {
         setIsLiked(post.likes.includes(currentUser._id))
     }, [currentUser._id, post.likes])
@@ -27,6 +29,7 @@ let getProfilePic
 
             setUser(res.data)
         }
+
         getProfilePic = async(path, picture, property) => {
             const storage = getStorage();
 
@@ -41,8 +44,8 @@ let getProfilePic
                 }
             })
             .catch((error) => {
-            // Handle any errors
-            console.log(error)
+                // Handle any errors
+                console.log(error)
             });
         }
 

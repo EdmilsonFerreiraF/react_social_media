@@ -47,7 +47,6 @@ const Profile = () => {
                 });
             }
 
-            console.log('profilePicture', user?.profilePicture)
             getProfilePic("profile/", user?.profilePicture, "profilePicture")
         }
 
@@ -55,8 +54,6 @@ const Profile = () => {
             getProfilePic("cover/", user?.coverPicture, "coverPicture")
         }
 
-        console.log('user', user)
-        
         fetchUser()
     }, [])
      
@@ -72,7 +69,6 @@ const Profile = () => {
                             // src={user.coverPicture ? `${publicFolder}person/${user.coverPicture}` : `${publicFolder}person/no_cover.jpg`}
                             src={user?.coverPicture && user?.coverPicture !== "" ? user?.coverPicture : `${publicFolder}person/no_cover.jpg`}
                             className={styles.profileCoverImg} alt="Post content" />
-                            {console.log('user?',user)}
                             <img src={user?.profilePicture && user?.profilePicture !== "" ? user?.profilePicture : `${publicFolder}person/no_person.jpg`} className={styles.profileUserImg} alt="Post content" />
                         </div>
                         <div className={styles.profileInfo}>
@@ -85,8 +81,8 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className={styles.profileRightBottom}>
-                        <Feed username={username} />
-                        <MessagesBar user={user} />
+                        <Feed otherUserId={{ otherUserId: user?.id }} />
+                        <MessagesBar />
                     </div>
                 </div>
             </div>

@@ -4,14 +4,14 @@ import Account from "./Account/Account"
 
 import styles from "./MainAppBar.module.css"
 
-const MainAppBar = ({ user }) => {
+const MainAppBar = () => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     return (
         <div className={styles.mainAppBar}>
             <Logo />
             <SearchBar />
-            <Account user={user} />
+            <Account />
         </div>
     )
 }

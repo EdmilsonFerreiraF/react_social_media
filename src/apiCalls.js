@@ -11,7 +11,6 @@ export const loginCall = async (userCredential, dispatch, navigate) => {
         .post(`${baseUrl}/user/login`, userCredential)
         .then(res => {
             localStorage.setItem("token", res.data.token)
-            console.log('res.data', res.data)
 
             goToIndex(navigate)
         })
