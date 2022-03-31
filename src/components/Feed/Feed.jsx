@@ -8,28 +8,44 @@ import styles from "./Feed.module.css"
 import { baseUrl } from '../../constants/baseUrl'
 import { AuthContext } from '../../context/AuthContext'
 
-const Feed = ({ username }) => {
+const Feed = ({ otherUserId }) => {
     const [posts, setPosts] = useState([])
     const { user } = useContext(AuthContext)
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const res = username
-            ? await axios.get(`${baseUrl}/posts/profile/${username}`)
-            : await axios.get(`${baseUrl}/posts/timeline/${user?._id}`)
+            if (otherUserId) {
+                console.log('token', token)
+                await axios.get(`${baseUrl}/post/profile/${otherUserId}`, {
+                    headers: {
+                        Authorization: token
+                    }
+                })
+                .then(res => setPosts(res.data))
+                .catch(err => console.log(err))
+            } else if (user?.id) {
+                console.log('token', token)
 
-            setPosts(res.data)
+                await axios.get(`${baseUrl}/post/timeline/${user?.id}`, {
+                    headers: {
+                        Authorization: token
+                    }
+                })
+                .then(res => setPosts(res.data))
+                .catch(err => console.log(err))
+            }
         }
 
         fetchPosts()
-    }, [username, user])
+    }, [otherUserId, user, token])
     
-    console.log('username - feed', username)
-    console.log('user.username - feed', user?.username)
+    console.log('otherUserId - feed', otherUserId)
+    console.log('user.otherUserId - feed', user?.otherUserId)
     return (
         <div className={styles.feedContainer}>
             <div className={styles.feed}>
-                { !username && <CreatePost /> }
+                { !otherUserId && <CreatePost /> }
                 {posts.map(post => (
                     <Post key={post._id} post={post} />
                 ))}
