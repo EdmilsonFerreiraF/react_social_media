@@ -28,9 +28,7 @@ const Profile = () => {
         const fetchUser = async () => {
             const res = await axios.get(`${baseUrl}/users?username=${username}`)
 
-            setUser(res.data)
-
-           
+            setUser(res.data)           
         }
 
         if (user.profilePicture) {

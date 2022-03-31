@@ -9,9 +9,9 @@ import styles from "./MessagesBar.module.css"
 import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 
-const MessagesBar = () => {
+const MessagesBar = ({ user }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
-    const { user } = useContext(AuthContext)
+    // const { user } = useContext(AuthContext)
     const [friends, setFriends] = useState([])
 
     useEffect(() => {
