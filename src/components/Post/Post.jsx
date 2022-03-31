@@ -25,7 +25,7 @@ const Post = ({ post }) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`${baseUrl}/users?userId=${post.userId}`)
+            const res = await axios.get(`${baseUrl}/user?id=${post?.userId}`)
 
             setUser(res.data)
         }
@@ -33,9 +33,9 @@ const Post = ({ post }) => {
         getProfilePic = async(path, picture, property) => {
             const storage = getStorage();
 
-            getDownloadURL(ref(storage, path + picture))
+            getDownloadURL(ref(storage, picture))
             .then((url) => {
-                if (path === "posts/") {
+                if (path === "posts") {
                     post.image = url
 
                 } else {
@@ -50,16 +50,15 @@ const Post = ({ post }) => {
         }
 
         if (post.image) {
-            getProfilePic("posts/", post.image, "image")
+            getProfilePic("posts", post.image, "image")
         }
         
         if (user.profilePicture) {
             getProfilePic("profile/", user.profilePicture, "profilePicture")
-            console.log('profilePicture', post.profilePicture)
         }
 
         fetchUser()
-    }, [])
+    }, [user, post])
         
     const likeHandler = () => {
         try {
@@ -97,7 +96,6 @@ const Post = ({ post }) => {
                     {post.image &&
                         <img src={post.image} className={styles.postContentImg} alt="Post content" />
                     }
-                    {console.log('post.image', post.image)}
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
