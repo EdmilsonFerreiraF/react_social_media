@@ -57,8 +57,9 @@ const CreatePost = () => {
 
     const storage = getStorage();
     
-    let profilePicture;
+    let [profilePicture, setProfilePicture] = useState(null)
     let getProfilePic
+
     useEffect(() => {
          getProfilePic = async() => {
             getDownloadURL(ref(storage, '/profile/' + user?.profilePicture))
@@ -74,10 +75,13 @@ const CreatePost = () => {
             //   xhr.open('GET', url);
             //   xhr.send();
           
-              // Or inserted into an <img> element
-              const profileImg = document.getElementById('profileImg');
 
-              profileImg.setAttribute('src', url);
+              // Or inserted into an <img> element
+            //   const profileImg = document.getElementById('profileImg');
+
+            //   profileImg.setAttribute('src', url);
+
+            setProfilePicture(url)
             })
             .catch((error) => {
               // Handle any errors
