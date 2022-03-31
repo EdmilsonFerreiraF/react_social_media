@@ -24,10 +24,12 @@ const Feed = ({ username }) => {
         fetchPosts()
     }, [username, user])
     
+    console.log('username - feed', username)
+    console.log('user.username - feed', user?.username)
     return (
         <div className={styles.feedContainer}>
             <div className={styles.feed}>
-                { username === user?.username && <CreatePost /> }
+                { !username && <CreatePost /> }
                 {posts.map(post => (
                     <Post key={post._id} post={post} />
                 ))}
