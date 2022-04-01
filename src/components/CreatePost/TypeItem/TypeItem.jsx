@@ -11,13 +11,13 @@ const TypeItem = forwardRef((props, ref) => {
                 {props.children}
             </div>
             <span className={styles.typeItemTitle}>
-                Photo or Video
+                {props.title}
             </span>
             <input ref={ref} type={props.inputType} id={props.inputId}
-             accept={props.inputAccept} 
-             className={styles[props.className]}
-            onChange={props.onChange}
-             />
+                accept={props.inputAccept}
+                className={styles[props.className]}
+                onChange={props.onChange}
+            />
         </label>
     )
 })

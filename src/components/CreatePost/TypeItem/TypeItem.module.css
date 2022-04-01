@@ -7,7 +7,9 @@
 
 .typeItemIcon {
     font-size: 18px;
-    margin-right: 3px;
+    align-items: center;
+    margin-right: 10px;
+    display: flex;
 }
 
 .typeItemText {
