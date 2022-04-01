@@ -14,57 +14,78 @@ const Post = ({ post }) => {
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState({})
     const { user: currentUser } = useContext(AuthContext)
 
-    let getProfilePic
+    const [profilePicture, setProfilePicture] = useState("")
+    const [postPicture, setPostPicture] = useState("")
 
     useEffect(() => {
         setIsLiked(post.likes.includes(currentUser._id))
     }, [currentUser._id, post.likes])
-
+    
+    const token = localStorage.getItem
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`${baseUrl}/user?id=${post?.userId}`)
-
-            setUser(res.data)
-        }
-
-        getProfilePic = async(path, picture, property) => {
-            const storage = getStorage();
-
-            getDownloadURL(ref(storage, picture))
-            .then((url) => {
-                if (path === "posts") {
-                    post.image = url
-
-                } else {
-                    setUser(prevUser => ({...prevUser,
-                        [property]: url}))
+            const res = await axios.get(`${baseUrl}/user?id=${post.userId}`, {
+                headers: {
+                    Authorization: token
                 }
             })
+            .then(res => {
+                console.log('user.profilePicture', user.profilePicture)
+                
+                setUser(res.data)
+            })
+        }
+        
+        if (post.userId) {
+            fetchUser()
+        }
+    }, [post.userId])
+
+    console.log('post', post)
+
+    useEffect(() => {
+        const getPostsPic = async(picture) => {
+            const storage = getStorage();
+
+            getDownloadURL(ref(storage, "posts/" + picture))
+            .then((url) => {
+                setPostPicture(url)
+            })
             .catch((error) => {
-                // Handle any errors
                 console.log(error)
             });
         }
 
-        if (post.image) {
-            getProfilePic("posts", post.image, "image")
-        }
-        
-        if (user.profilePicture) {
-            getProfilePic("profile/", user.profilePicture, "profilePicture")
+        getPostsPic(post.image)
+    }, [post.image])
+
+    useEffect(() => {
+        const getProfilePic = async(picture) => {
+            const storage = getStorage();
+
+            getDownloadURL(ref(storage, "profile/" + picture))
+            .then((url) => {
+                setProfilePicture(url)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
         }
 
-        fetchUser()
-    }, [user, post])
+        if (user.profilePicture) {
+            getProfilePic(user.profilePicture)
+
+        }
+    }, [user.profilePicture])
         
     const likeHandler = () => {
         try {
             axios.put(`/posts/${post._id}/like`, { userId: currentUser._id })
         } catch (err) {
-            setLike(isLiked ? like -1 : like + 1)
+            setLike(isLiked ? like - 1 : like + 1)
         }
     }
 
@@ -74,7 +95,8 @@ const Post = ({ post }) => {
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
-                            <img src={`${user.profilePicture && user.profilePicture !== "" ? user.profilePicture : publicFolder + "person/no_person.jpg"}`}
+                            {/* <img src={profilePicture} */}
+                            <img src={`${profilePicture && profilePicture !== "" ? profilePicture : publicFolder + "person/no_person.jpg"}`}
                             className={styles.postProfileImg}
                             alt="Post user profile" />
                           </Link>
@@ -93,8 +115,8 @@ const Post = ({ post }) => {
                     <span className={styles.postContentText}>
                         {post?.description}
                     </span>
-                    {post.image &&
-                        <img src={post.image} className={styles.postContentImg} alt="Post content" />
+                    {postPicture &&
+                        <img src={postPicture} className={styles.postContentImg} alt="Post content" />
                     }
                 </div>
                 <div className={styles.postBotbar}>

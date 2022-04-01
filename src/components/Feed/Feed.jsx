@@ -24,7 +24,7 @@ const Feed = ({ otherUserId }) => {
                 .then(res => setPosts(res.data))
                 .catch(err => console.log(err))
             } else if (user?.id) {
-                await axios.get(`${baseUrl}/post/timeline/${user?.id}`, {
+                await axios.get(`${baseUrl}/post/timeline/${user.id}`, {
                     headers: {
                         Authorization: token
                     }
