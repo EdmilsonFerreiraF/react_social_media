@@ -33,7 +33,6 @@ const CreatePost = () => {
         const storageRef = ref(storage, 'posts/' + imgId);
 
         // Create file metadata including the content type
-        // /** @type {any} */
         const metadata = {
             contentType: 'image',
         };
@@ -57,46 +56,22 @@ const CreatePost = () => {
 
     const storage = getStorage();
     
-    let [profilePicture, setProfilePicture] = useState(null)
-    let getProfilePic
+    let [profilePicture, setProfilePicture] = useState("")
 
     useEffect(() => {
-         getProfilePic = async() => {
-            getDownloadURL(ref(storage, '/profile/' + user?.profilePicture))
+        const getProfilePic = async(picture) => {
+            const storage = getStorage();
+
+            getDownloadURL(ref(storage, "/profile/" + picture))
             .then((url) => {
-              // `url` is the download URL for 'images/stars.jpg'
-          
-              // This can be downloaded directly:
-            //   const xhr = new XMLHttpRequest();
-            //   xhr.responseType = 'blob';
-            //   xhr.onload = (event) => {
-            //     const blob = xhr.response;
-            //   };
-            //   xhr.open('GET', url);
-            //   xhr.send();
-          
-
-              // Or inserted into an <img> element
-            //   const profileImg = document.getElementById('profileImg');
-
-            //   profileImg.setAttribute('src', url);
-
-            setProfilePicture(url)
+                setProfilePicture(url)
             })
             .catch((error) => {
-              // Handle any errors
-              console.log(error)
+                console.log(error)
             });
         }
 
-        // const getCoverPic = async() => {
-        //     coverPicture = await getDownloadURL(ref(storage, "cover/" + user.coverPicture))
-        // }
-
-        getProfilePic()
-        // getCoverPic()
-        // {console.log('coverPicture', coverPicture)}
-
+        getProfilePic(user?.profilePicture)
     }, [user?.profilePicture])
     
     return (
@@ -105,16 +80,12 @@ const CreatePost = () => {
                 <div className={styles.createPostContent}>
                     <img className={styles.profileImg}
                     id="profileImg" 
-                    // src={`${
-                    //     user.profilePicture
-                    //     ? publicFolder + user.profilePicture
-                    //     : user.profilePicture + "person/no_avatar.jpg"
-                    // }`}
-                    src={profilePicture}
+                    src={`${
+                        profilePicture ?? publicFolder + "person/no_avatar.jpg"
+                    }`}
                      alt="" />
                     <input placeholder={`What's in your mind ${user?.username}?`}
                      className={styles.createPostInput} value={description} onChange={inputHandler} />
-        
                 </div>
                 <hr className={styles.createPostDivision}/>
                 <form className={styles.createPostBotbar} onSubmit={submitHandler}>

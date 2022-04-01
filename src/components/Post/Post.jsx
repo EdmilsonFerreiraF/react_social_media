@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom'
 import styles from "./Post.module.css"
 import { baseUrl } from "../../constants/baseUrl"
 import { AuthContext } from "../../context/AuthContext"
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getStorage, getDownloadURL, ref } from "firebase/storage";
 
 const Post = ({ post }) => {
-    const [like, setLike] = useState(post.likes.length)
+    const [likes, setLikes] = useState(post.likes.length)
     const [isLiked, setIsLiked] = useState(false)
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
@@ -21,20 +21,19 @@ const Post = ({ post }) => {
     const [postPicture, setPostPicture] = useState("")
 
     useEffect(() => {
-        setIsLiked(post.likes.includes(currentUser._id))
-    }, [currentUser._id, post.likes])
+        setIsLiked(post.likes.includes(currentUser.id))
+    }, [currentUser.id, post.likes])
     
     const token = localStorage.getItem("token")
+
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`${baseUrl}/user/${post.userId}`, {
+            await axios.get(`${baseUrl}/user/${post.userId}`, {
                 headers: {
                     Authorization: token
                 }
             })
             .then(res => {
-                console.log('user.profilePicture', user.profilePicture)
-                
                 setUser(res.data)
             })
         }
@@ -43,8 +42,6 @@ const Post = ({ post }) => {
             fetchUser()
         }
     }, [post.userId])
-
-    console.log('post', post)
 
     useEffect(() => {
         const getPostsPic = async(picture) => {
@@ -77,15 +74,18 @@ const Post = ({ post }) => {
 
         if (user.profilePicture) {
             getProfilePic(user.profilePicture)
-
         }
     }, [user.profilePicture])
         
     const likeHandler = () => {
         try {
-            axios.put(`/posts/${post._id}/like`, { userId: currentUser._id })
+            axios.put(`${baseUrl}/post/${post.id}/like`, { userId: currentUser.id }, {
+                headers: {
+                    Authorization: token
+                }
+            })
         } catch (err) {
-            setLike(isLiked ? like - 1 : like + 1)
+            setLikes(isLiked ? likes - 1 : likes + 1)
         }
     }
 
@@ -95,8 +95,9 @@ const Post = ({ post }) => {
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
-                            {/* <img src={profilePicture} */}
-                            <img src={`${profilePicture && profilePicture !== "" ? profilePicture : publicFolder + "person/no_person.jpg"}`}
+                            <img src={`${profilePicture ?? 
+                                publicFolder + "person/no_person.jpg"
+                            }`}
                             className={styles.postProfileImg}
                             alt="Post user profile" />
                           </Link>
@@ -121,10 +122,10 @@ const Post = ({ post }) => {
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
-                        <img src={`${publicFolder}like.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
-                        <img src={`${publicFolder}heart.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
+                        <img src={`${publicFolder}/like.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
+                        <img src={`${publicFolder}/heart.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
                         <span className={styles.postLikeCounter}>
-                            {like} people liked it
+                            {likes} people liked it
                         </span>
                     </div>
                     <div className={styles.postComments}>

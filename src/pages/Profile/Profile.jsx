@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getStorage, getDownloadURL, ref } from "firebase/storage";
 
 import MainAppBar from '../../components/MainAppBar/MainAppBar'
 import Sidebar from '../../components/Sidebar/Sidebar'
@@ -22,41 +22,67 @@ const Profile = () => {
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
-    let getProfilePic
+    const [profilePicture, setProfilePicture] = useState("")
+    const [CoverPicture, setCoverPicture] = useState("")
 
+    let getProfilePic
+    const token = localStorage.getItem("token")
+    
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`${baseUrl}/users?username=${username}`)
+            await axios.get(`${baseUrl}/user/${username}`, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(res => {
+                setUser(res.data)
+            })
+        }
+        
+        if (username) {
+            fetchUser()
+        }
+    }, [username])
 
-            setUser(res.data)           
+    useEffect(() => {
+        const getProfilePic = (picture) => {
+            const storage = getStorage();
+            const storageRef = ref(storage, 'posts/' + imgId);
+
+            getDownloadURL(ref(storage, "posts/" + picture))
+            .then((url) => {
+                setProfilePicture(url)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
         }
 
         if (user.profilePicture) {
-            getProfilePic = async(path, picture, property) => {
-                const storage = getStorage();
-                const storageRef = ref(storage, 'posts/' + imgId);
+            getProfilePic(user?.profilePicture)
+        }
+    }, [])
     
-                getDownloadURL(ref(storage, path + picture))
-                .then((url) => {
-                    setUser(prevUser => ({...prevUser,
-                        [property]: url}))
-                })
-                .catch((error) => {
-                // Handle any errors
-                console.log(error)
-                });
-            }
+    useEffect(() => {
+        const getCoverPicture = (picture) => {
+            const storage = getStorage();
+            const storageRef = ref(storage, 'cover/' + imgId);
 
-            getProfilePic("profile/", user?.profilePicture, "profilePicture")
+            getDownloadURL(ref(storage, "cover/" + picture))
+            .then((url) => {
+                setProfilePicture(url)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
         }
 
         if (user?.coverPicture) {
-            getProfilePic("cover/", user?.coverPicture, "coverPicture")
+            getCoverPicture(user?.coverPicture)
         }
-
-        fetchUser()
     }, [])
-     
+
     return (
         <>
             <MainAppBar />
