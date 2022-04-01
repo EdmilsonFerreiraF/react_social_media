@@ -24,10 +24,10 @@ const Post = ({ post }) => {
         setIsLiked(post.likes.includes(currentUser._id))
     }, [currentUser._id, post.likes])
     
-    const token = localStorage.getItem
+    const token = localStorage.getItem("token")
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`${baseUrl}/user?id=${post.userId}`, {
+            const res = await axios.get(`${baseUrl}/user/${post.userId}`, {
                 headers: {
                     Authorization: token
                 }
