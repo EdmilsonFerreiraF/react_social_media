@@ -15,7 +15,7 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .createPostContent {
@@ -26,6 +26,8 @@
 .createPostInput {
     border: none;
     width: 80%;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 .createPostInput:focus {
@@ -44,12 +46,32 @@
 
 
 .createPostButton {
+    padding: 12px 20px;
+    font-size: 15px;
     border: none;
-    padding: 7px;
     border-radius: 5px;
     background-color: green;
     font-weight: 500;
     margin-right: 20px;
     cursor: pointer;
     color: white;
+}
+
+@media (max-width: 500px) {
+    .createPost {
+        margin: 20px 0 12px;
+        height: auto;
+    }
+
+    .createPostBotbar {
+        flex-direction: column;
+    }
+
+    .createPostButton {
+        padding: 10px 18px;
+    }
+
+    .createPostDivision {
+        margin: 20px 20px 10px 20px;
+    }
 }

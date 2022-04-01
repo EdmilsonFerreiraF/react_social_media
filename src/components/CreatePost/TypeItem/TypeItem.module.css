@@ -20,3 +20,9 @@
 .typeItemInputFile {
     display: none;
 }
+
+@media (max-width: 500px) {
+    .typeItem {
+        padding: 10px 0;
+    }
+}
