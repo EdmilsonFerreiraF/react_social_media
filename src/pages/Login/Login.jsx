@@ -1,5 +1,5 @@
 import { createRef, useContext, useState } from "react"
-import { CircularProgress } from "@material-ui/core"
+import CircularProgress from '@mui/material/CircularProgress';
 
 import Input from '../../components/Input/Input'
 import { loginCall } from "../../apiCalls"

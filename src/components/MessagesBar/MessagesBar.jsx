@@ -8,34 +8,16 @@ import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import styles from "./MessagesBar.module.css"
 import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
+import { useRequestData } from "../../hooks/useRequestData"
 
 const MessagesBar = ({ user }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
     // const { user } = useContext(AuthContext)
-    const [friends, setFriends] = useState([])
+    // const [friends, setFriends] = useState([])
 
     const token = localStorage.getItem("token")
 
-    useEffect(() => {
-        const getFriends = async () => {
-            await axios.get(`${baseUrl}/user/${user?.id}/friends`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            .then(res => {
-                setFriends(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        }
-
-        if (user?.id) {
-            console.log('user?.id', user?.id)
-            getFriends()
-        }
-    }, [user, token])
+    const friends = useRequestData(user?.id && `${baseUrl}/user/${user?.id}/friends`, [])
 
     const HomeMessagesBar = () => {
         return (

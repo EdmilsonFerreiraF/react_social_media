@@ -8,7 +8,7 @@ export function useRequestImage(entity, initialState) {
         const getData = async(image) => {
           const storage = getStorage();
 
-          getDownloadURL(ref(storage, `${entity}/${image}`))
+          getDownloadURL(ref(storage, `/${entity}/${image}`))
           .then((url) => {
             console.log('url - useRequestImage', url)
             setData(url)

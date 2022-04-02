@@ -13,11 +13,11 @@ import { useProtectPage } from '../../hooks/useProtectPage'
 
 import styles from "./Profile.module.css"
 import { useRequestImage } from "../../hooks/useRequestImage"
+import { useRequestData } from '../../hooks/useRequestData';
 
 const Profile = () => {
     useProtectPage()
 
-    const [user, setUser] = useState({})
     const username = useParams().username
     const imgId = v4()
 
@@ -25,23 +25,7 @@ const Profile = () => {
 
     const token = localStorage.getItem("token")
     
-    useEffect(() => {
-        const fetchUser = async () => {
-            await axios.get(`${baseUrl}/user/${username}`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            .then(res => {
-                setUser(res.data)
-            })
-        }
-        
-        if (username) {
-            console.log('username', username)
-            fetchUser()
-        }
-    }, [username, token])
+    const user = useRequestData(`${baseUrl}/user/${username}`, [])
 
     const profilePicture = useRequestImage("profile", user?.profilePicture)
     const coverPicture = useRequestImage("cover", user?.coverPicture)

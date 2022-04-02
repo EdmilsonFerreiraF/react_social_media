@@ -16,7 +16,6 @@ const Post = ({ post }) => {
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
-    const [user, setUser] = useState({})
     const { user: currentUser } = useContext(AuthContext)
 
     useEffect(() => {
@@ -25,9 +24,9 @@ const Post = ({ post }) => {
     
     const token = localStorage.getItem("token")
 
-    const friends = useRequestData(`${baseUrl}/user/${post.userId}`, [])
+    const user = useRequestData(`${baseUrl}/user/${post?.userId}`, {})
 
-    const postPicture = useRequestImage("post", post?.image)
+    const postPicture = useRequestImage("posts", post?.image)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
 
     const likeHandler = () => {
@@ -48,7 +47,7 @@ const Post = ({ post }) => {
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
-                            <img src={profilePicture ?? `${publicFolder} + "person/no_person.jpg`}
+                            <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`}
                             className={styles.postProfileImg}
                             alt="Post user profile" />
                           </Link>
@@ -67,7 +66,7 @@ const Post = ({ post }) => {
                     <span className={styles.postContentText}>
                         {post?.description}
                     </span>
-                    <img src={postPicture ?? `${publicFolder} + "post/1.jpeg`} className={styles.postContentImg} alt="Post content" />
+                    <img src={postPicture ?? `${publicFolder}/post/1.jpeg`} className={styles.postContentImg} alt="Post content" />
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>

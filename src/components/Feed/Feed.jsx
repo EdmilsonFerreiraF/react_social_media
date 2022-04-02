@@ -7,38 +7,33 @@ import Post from '../Post/Post'
 import styles from "./Feed.module.css"
 import { baseUrl } from '../../constants/baseUrl'
 import { AuthContext } from '../../context/AuthContext'
+import { useRequestData } from '../../hooks/useRequestData'
 
 const Feed = ({ otherUserId }) => {
-    const [posts, setPosts] = useState([])
+    // const [posts, setPosts] = useState([])
     const { user } = useContext(AuthContext)
+    let posts
     const token = localStorage.getItem("token")
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            if (otherUserId) {
-                await axios.get(`${baseUrl}/post/profile/${otherUserId}`, {
-                    headers: {
-                        Authorization: token
-                    }
-                })
-                .then(res => setPosts(res.data))
-                .catch(err => console.log(err))
-            } else if (user?.id) {
-                await axios.get(`${baseUrl}/post/timeline/${user.id}`, {
-                    headers: {
-                        Authorization: token
-                    }
-                })
-                .then(res => {
-                    console.log('res.data', res.data)
-                    setPosts(res.data)
-                })
-                .catch(err => console.log(err))
-            }
-        }
+    posts = useRequestData(user?.id ? `${baseUrl}/post/timeline/${user.id}` : `${baseUrl}/post/profile/${otherUserId}`, [])
 
-        fetchPosts()
-    }, [otherUserId, user, token])
+    // useEffect(() => {
+    //     const fetchPosts = async () => {
+    //         if (otherUserId) {
+    //             await axios.get(`${baseUrl}/post/profile/${otherUserId}`, {
+    //                 headers: {
+    //                     Authorization: token
+    //                 }
+    //             })
+    //             .then(res => setPosts(res.data))
+    //             .catch(err => console.log(err))
+    //         } else if (user?.id) {
+    //             posts = useRequestData(`${baseUrl}/post/timeline/${user.id}`, [])
+    //         }
+    //     }
+
+    //     fetchPosts()
+    // }, [otherUserId, user, token])
     
     return (
         <div className={styles.feedContainer}>

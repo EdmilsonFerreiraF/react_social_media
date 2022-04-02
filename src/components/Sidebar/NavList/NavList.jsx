@@ -1,4 +1,4 @@
-import { Chat, PlayCircleFilledOutlined, Group, Bookmark, HelpOutline, Event, School, RssFeed, WorkOutline } from "@material-ui/icons"
+import { Chat, PlayCircleFilledOutlined, Group, Bookmark, HelpOutline, Event, School, RssFeed, WorkOutline } from "@mui/icons-material"
 
 import NavItem from "../NavItem/NavItem"
 
