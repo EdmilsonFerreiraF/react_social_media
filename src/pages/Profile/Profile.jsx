@@ -23,7 +23,7 @@ const Profile = () => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const [profilePicture, setProfilePicture] = useState("")
-    const [CoverPicture, setCoverPicture] = useState("")
+    const [coverPicture, setCoverPicture] = useState("")
 
     let getProfilePic
     const token = localStorage.getItem("token")
@@ -41,16 +41,16 @@ const Profile = () => {
         }
         
         if (username) {
+            console.log('username', username)
             fetchUser()
         }
-    }, [username])
+    }, [username, token])
 
     useEffect(() => {
-        const getProfilePic = (picture) => {
+        const getProfilePic = async (picture) => {
             const storage = getStorage();
-            const storageRef = ref(storage, 'posts/' + imgId);
 
-            getDownloadURL(ref(storage, "posts/" + picture))
+            getDownloadURL(ref(storage, "picture/" + picture))
             .then((url) => {
                 setProfilePicture(url)
             })
@@ -59,19 +59,19 @@ const Profile = () => {
             });
         }
 
-        if (user.profilePicture) {
+        if (user?.profilePicture) {
+            console.log('profilePicture', profilePicture)
             getProfilePic(user?.profilePicture)
         }
-    }, [])
+    }, [user?.profilePicture, setProfilePicture, imgId])
     
     useEffect(() => {
-        const getCoverPicture = (picture) => {
+        const getCoverPicture = async (picture) => {
             const storage = getStorage();
-            const storageRef = ref(storage, 'cover/' + imgId);
 
             getDownloadURL(ref(storage, "cover/" + picture))
             .then((url) => {
-                setProfilePicture(url)
+                setCoverPicture(url)
             })
             .catch((error) => {
                 console.log(error)
@@ -81,7 +81,7 @@ const Profile = () => {
         if (user?.coverPicture) {
             getCoverPicture(user?.coverPicture)
         }
-    }, [])
+    }, [user?.coverPicture, setProfilePicture, imgId])
 
     return (
         <>
@@ -93,9 +93,9 @@ const Profile = () => {
                         <div className={styles.profileCover}>
                             <img
                             // src={user.coverPicture ? `${publicFolder}person/${user.coverPicture}` : `${publicFolder}person/no_cover.jpg`}
-                            src={user?.coverPicture && user?.coverPicture !== "" ? user?.coverPicture : `${publicFolder}person/no_cover.jpg`}
+                            src={coverPicture ?? `${publicFolder}/person/no_cover.jpg`}
                             className={styles.profileCoverImg} alt="Post content" />
-                            <img src={user?.profilePicture && user?.profilePicture !== "" ? user?.profilePicture : `${publicFolder}person/no_person.jpg`} className={styles.profileUserImg} alt="Post content" />
+                            <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`} className={styles.profileUserImg} alt="Post content" />
                         </div>
                         <div className={styles.profileInfo}>
                             <h4 className={styles.profileInfoName}>
@@ -107,8 +107,8 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className={styles.profileRightBottom}>
-                        <Feed otherUserId={{ otherUserId: user?.id }} />
-                        <MessagesBar />
+                        <Feed otherUserId={user?.id } />
+                        <MessagesBar user={user} />
                     </div>
                 </div>
             </div>

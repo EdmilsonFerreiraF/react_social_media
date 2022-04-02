@@ -15,11 +15,11 @@ const Home = () => {
     
     return (
         <>
-            {/* <MainAppBar /> */}
+            <MainAppBar />
             <div className={styles.homeContainer}>
-                {/* <Sidebar /> */}
+                <Sidebar />
                 <Feed />
-                {/* <MessagesBar /> */}
+                <MessagesBar />
             </div>
         </>
     )

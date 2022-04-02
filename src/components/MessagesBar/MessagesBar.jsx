@@ -14,30 +14,39 @@ const MessagesBar = ({ user }) => {
     // const { user } = useContext(AuthContext)
     const [friends, setFriends] = useState([])
 
+    const token = localStorage.getItem("token")
+
     useEffect(() => {
         const getFriends = async () => {
-            try {
-                const friendList = await axios.get(`${baseUrl}/users/friends/${user._id}`)
-
-                setFriends(friendList.data)
-            } catch (err) {
+            await axios.get(`${baseUrl}/user/${user?.id}/friends`, {
+                headers: {
+                    Authorization: token
+                }
+            })
+            .then(res => {
+                setFriends(res.data)
+            })
+            .catch(err => {
                 console.log(err)
-            }
+            })
         }
 
-        getFriends()
-    }, [user])
+        if (user?.id) {
+            console.log('user?.id', user?.id)
+            getFriends()
+        }
+    }, [user, token])
 
     const HomeMessagesBar = () => {
         return (
             <>
                 <div className={styles.birthdayContainer}>
-                    <img className={styles.birthdayImg} src="assets/gift.png" alt="" />
+                    <img className={styles.birthdayImg} src={`${publicFolder}/gift.png`} alt="" />
                     <span className={styles.birthdayText}>
                         <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today.
                     </span>
                 </div>
-                <img className={styles.messagesBarAd} src="assets/ad.png" alt="" />
+                <img className={styles.messagesBarAd} src={`${publicFolder}/ad.png`} alt="" />
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
