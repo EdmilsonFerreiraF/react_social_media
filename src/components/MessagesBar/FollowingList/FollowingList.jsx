@@ -7,7 +7,7 @@ const FollowingList = ({ friends }) => {
 
     return (
         <div className={styles.followingList}>
-            {friends.map(friend => <FollowingItem key={friend._id} name={friend.username} img={friends.profilePicture ? friends.profilePicture : `${publicFolder}person/no_cover.jpg`} />
+            {friends.map(friend => <FollowingItem key={friend.id} friend={friend} />
             )}
         </div>
     )
