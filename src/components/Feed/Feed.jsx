@@ -29,7 +29,10 @@ const Feed = ({ otherUserId }) => {
                         Authorization: token
                     }
                 })
-                .then(res => setPosts(res.data))
+                .then(res => {
+                    console.log('res.data', res.data)
+                    setPosts(res.data)
+                })
                 .catch(err => console.log(err))
             }
         }

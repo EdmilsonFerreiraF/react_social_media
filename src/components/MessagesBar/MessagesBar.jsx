@@ -46,7 +46,9 @@ const MessagesBar = ({ user }) => {
                         <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today.
                     </span>
                 </div>
-                <img className={styles.messagesBarAd} src={`${publicFolder}/ad.png`} alt="" />
+                <div className={styles.birthdayAd}>
+                    <img className={styles.messagesBarAd} src={`${publicFolder}/ad.png`} alt="" />
+                </div>
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
