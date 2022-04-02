@@ -9,14 +9,12 @@ import { v4 } from 'uuid'
 import { baseUrl } from "../../constants/baseUrl"
 
 const CreatePost = () => {
-
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const { user } = useContext(AuthContext)
 
     const [ description, setDescription ] = useState("")
     const [ file, setFile ] = useState(null)
-
 
     const imgId = v4()
     
