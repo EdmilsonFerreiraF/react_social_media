@@ -12,6 +12,7 @@ import { v4 } from 'uuid'
 import { useProtectPage } from '../../hooks/useProtectPage'
 
 import styles from "./Profile.module.css"
+import { useRequestImage } from "../../hooks/useRequestImage"
 
 const Profile = () => {
     useProtectPage()
@@ -22,10 +23,6 @@ const Profile = () => {
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
-    const [profilePicture, setProfilePicture] = useState("")
-    const [coverPicture, setCoverPicture] = useState("")
-
-    let getProfilePic
     const token = localStorage.getItem("token")
     
     useEffect(() => {
@@ -46,42 +43,8 @@ const Profile = () => {
         }
     }, [username, token])
 
-    useEffect(() => {
-        const getProfilePic = async (picture) => {
-            const storage = getStorage();
-
-            getDownloadURL(ref(storage, "picture/" + picture))
-            .then((url) => {
-                setProfilePicture(url)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        }
-
-        if (user?.profilePicture) {
-            console.log('profilePicture', profilePicture)
-            getProfilePic(user?.profilePicture)
-        }
-    }, [user?.profilePicture, setProfilePicture, imgId])
-    
-    useEffect(() => {
-        const getCoverPicture = async (picture) => {
-            const storage = getStorage();
-
-            getDownloadURL(ref(storage, "cover/" + picture))
-            .then((url) => {
-                setCoverPicture(url)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        }
-
-        if (user?.coverPicture) {
-            getCoverPicture(user?.coverPicture)
-        }
-    }, [user?.coverPicture, setProfilePicture, imgId])
+    const profilePicture = useRequestImage("profile", user?.profilePicture)
+    const coverPicture = useRequestImage("cover", user?.coverPicture)
 
     return (
         <>
@@ -92,7 +55,6 @@ const Profile = () => {
                     <div className={styles.profileRightTop}>
                         <div className={styles.profileCover}>
                             <img
-                            // src={user.coverPicture ? `${publicFolder}person/${user.coverPicture}` : `${publicFolder}person/no_cover.jpg`}
                             src={coverPicture ?? `${publicFolder}/person/no_cover.jpg`}
                             className={styles.profileCoverImg} alt="Post content" />
                             <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`} className={styles.profileUserImg} alt="Post content" />

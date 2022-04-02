@@ -7,6 +7,7 @@ import axios from "axios"
 import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from 'uuid'
 import { baseUrl } from "../../constants/baseUrl"
+import { useRequestImage } from '../../hooks/useRequestImage'
 
 const CreatePost = () => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
@@ -52,25 +53,7 @@ const CreatePost = () => {
         setDescription(e.target.value)
     }
 
-    const storage = getStorage();
-    
-    let [profilePicture, setProfilePicture] = useState("")
-
-    useEffect(() => {
-        const getProfilePic = async(picture) => {
-            const storage = getStorage();
-
-            getDownloadURL(ref(storage, "/profile/" + picture))
-            .then((url) => {
-                setProfilePicture(url)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        }
-
-        getProfilePic(user?.profilePicture)
-    }, [user?.profilePicture])
+    const profilePicture = useRequestImage("profile", user?.profilePicture)
     
     return (
         <div className={styles.createPost}>
@@ -78,10 +61,10 @@ const CreatePost = () => {
                 <div className={styles.createPostContent}>
                     <img className={styles.profileImg}
                     id="profileImg" 
-                    src={`${
-                        profilePicture ?? publicFolder + "person/no_avatar.jpg"
-                    }`}
-                     alt="" />
+                    src={
+                        profilePicture ?? `${publicFolder}/person/no_avatar.jpg`
+                    }
+                     alt="User profile" />
                     <input placeholder={`What's in your mind ${user?.username}?`}
                      className={styles.createPostInput} value={description} onChange={inputHandler} />
                 </div>

@@ -1,10 +1,7 @@
 import { forwardRef } from "react"
 import styles from "./TypeItem.module.css"
 
-
-
 const TypeItem = forwardRef((props, ref) => {
-
     return (
         <label htmlFor="file" className={styles.typeItem}>
             <div className={styles.typeItemIcon}>

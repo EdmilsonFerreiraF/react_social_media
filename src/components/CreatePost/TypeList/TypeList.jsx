@@ -21,7 +21,7 @@ const TypeList = (props) => {
             <TypeItem ref={description} title="Tag" inputType="text"
             inputId="file" inputAccept=".png, .jpeg, .jpg"
             className="typeItemInputFile"
-             onChange={e => {props.setFile(e.target.files[0]); console.log('e.target.files[0]', e.target.files[0])}}
+             onChange={e => {console.log('e', e.target.value)}}
               inputHandler={props.inputHandler}>
                 <Label htmlColor="blue" />
             </TypeItem>
@@ -29,7 +29,7 @@ const TypeList = (props) => {
             <TypeItem ref={description} title="Location" inputType="text"
             inputId="file" inputAccept=".png, .jpeg, .jpg"
             className="typeItemInputFile"
-             onChange={e => {props.setFile(e.target.files[0]); console.log('e.target.files[0]', e.target.files[0])}}
+             onChange={e => {console.log('e', e.target.value)}}
               inputHandler={props.inputHandler}>
                 <Room htmlColor="green" />
             </TypeItem>
@@ -37,7 +37,7 @@ const TypeList = (props) => {
             <TypeItem ref={description} title="Feelings" inputType="text"
             inputId="file" inputAccept=".png, .jpeg, .jpg"
             className="typeItemInputFile"
-             onChange={e => {props.setFile(e.target.files[0]); console.log('e.target.files[0]', e.target.files[0])}}
+             onChange={e => {console.log('e', e.target.value)}}
               inputHandler={props.inputHandler}>
                 <EmojiEmotions htmlColor="goldenrod" />
             </TypeItem>

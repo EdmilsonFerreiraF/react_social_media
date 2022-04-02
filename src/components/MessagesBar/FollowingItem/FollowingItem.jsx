@@ -4,28 +4,12 @@ import { useContext, useEffect, useState } from 'react'
 
 
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
+import { useRequestImage } from "../../../hooks/useRequestImage";
 
 const FollowingItem = ({ friend }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
-    const [profilePicture, setProfilePicture] = useState("")
 
-    useEffect(() => {
-        const getPostsPic = async(picture) => {
-            const storage = getStorage();
-
-            getDownloadURL(ref(storage, "picture/" + picture))
-            .then((url) => {
-                setProfilePicture(url)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        }
-
-        if (friend?.profilePicture) {
-            getPostsPic(friend?.profilePicture)
-        }
-    }, [friend?.profilePicture])
+    const profilePicture = useRequestImage("profile", friend?.profilePicture)
 
     console.log('friend?.profilePicture', friend?.profilePicture)
     const navigate = useNavigate()

@@ -7,6 +7,7 @@ import styles from "./Post.module.css"
 import { baseUrl } from "../../constants/baseUrl"
 import { AuthContext } from "../../context/AuthContext"
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
+import { useRequestImage } from "../../hooks/useRequestImage"
 
 const Post = ({ post }) => {
     const [likes, setLikes] = useState(post.likes.length)
@@ -16,9 +17,6 @@ const Post = ({ post }) => {
 
     const [user, setUser] = useState({})
     const { user: currentUser } = useContext(AuthContext)
-
-    const [profilePicture, setProfilePicture] = useState("")
-    const [postPicture, setPostPicture] = useState("")
 
     useEffect(() => {
         setIsLiked(post.likes.includes(currentUser.id))
@@ -43,40 +41,9 @@ const Post = ({ post }) => {
         }
     }, [post.userId])
 
-    useEffect(() => {
-        const getPostsPic = async(picture) => {
-            const storage = getStorage();
+    const postPicture = useRequestImage("post", post?.image)
+    const profilePicture = useRequestImage("profile", user?.profilePicture)
 
-            getDownloadURL(ref(storage, "posts/" + picture))
-            .then((url) => {
-                setPostPicture(url)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        }
-
-        getPostsPic(post.image)
-    }, [post.image])
-
-    useEffect(() => {
-        const getProfilePic = async(picture) => {
-            const storage = getStorage();
-
-            getDownloadURL(ref(storage, "profile/" + picture))
-            .then((url) => {
-                setProfilePicture(url)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        }
-
-        if (user.profilePicture) {
-            getProfilePic(user.profilePicture)
-        }
-    }, [user.profilePicture])
-        
     const likeHandler = () => {
         try {
             axios.put(`${baseUrl}/post/${post.id}/like`, { userId: currentUser.id }, {
@@ -95,9 +62,7 @@ const Post = ({ post }) => {
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
-                            <img src={`${profilePicture ?? 
-                                publicFolder + "person/no_person.jpg"
-                            }`}
+                            <img src={profilePicture ?? `${publicFolder} + "person/no_person.jpg`}
                             className={styles.postProfileImg}
                             alt="Post user profile" />
                           </Link>
@@ -116,9 +81,7 @@ const Post = ({ post }) => {
                     <span className={styles.postContentText}>
                         {post?.description}
                     </span>
-                    {postPicture &&
-                        <img src={postPicture} className={styles.postContentImg} alt="Post content" />
-                    }
+                    <img src={postPicture ?? `${publicFolder} + "post/1.jpeg`} className={styles.postContentImg} alt="Post content" />
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
