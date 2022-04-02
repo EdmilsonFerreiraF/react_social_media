@@ -1,4 +1,4 @@
-import { Person, Chat, Notifications } from "@material-ui/icons"
+import { Person, Chat, Notifications } from "@mui/icons-material"
 
 import SocialItem from "./SocialItem/SocialItem"
 

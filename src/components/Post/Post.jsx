@@ -1,4 +1,4 @@
-import { MoreVert } from "@material-ui/icons"
+import { MoreVert } from "@mui/icons-material"
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { format } from 'timeago.js'
@@ -8,6 +8,7 @@ import { baseUrl } from "../../constants/baseUrl"
 import { AuthContext } from "../../context/AuthContext"
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
 import { useRequestImage } from "../../hooks/useRequestImage"
+import { useRequestData } from "../../hooks/useRequestData"
 
 const Post = ({ post }) => {
     const [likes, setLikes] = useState(post.likes.length)
@@ -24,22 +25,7 @@ const Post = ({ post }) => {
     
     const token = localStorage.getItem("token")
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            await axios.get(`${baseUrl}/user/${post.userId}`, {
-                headers: {
-                    Authorization: token
-                }
-            })
-            .then(res => {
-                setUser(res.data)
-            })
-        }
-        
-        if (post.userId) {
-            fetchUser()
-        }
-    }, [post.userId])
+    const friends = useRequestData(`${baseUrl}/user/${post.userId}`, [])
 
     const postPicture = useRequestImage("post", post?.image)
     const profilePicture = useRequestImage("profile", user?.profilePicture)

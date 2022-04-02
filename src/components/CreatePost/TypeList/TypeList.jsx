@@ -1,4 +1,4 @@
-import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons"
+import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
 import { createRef } from "react"
 
 import TypeItem from "../TypeItem/TypeItem"

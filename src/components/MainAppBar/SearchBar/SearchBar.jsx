@@ -1,4 +1,4 @@
-import { Search } from "@material-ui/icons"
+import { Search } from "@mui/icons-material"
 
 import styles from "./SearchBar.module.css"
 
