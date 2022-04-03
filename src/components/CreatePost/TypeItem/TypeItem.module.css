@@ -21,8 +21,10 @@
     display: none;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 535px) {
     .typeItem {
         padding: 10px 0;
+        margin-right: 12px;
+
     }
 }

@@ -58,7 +58,7 @@
     color: white;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 535px) {
     .createPost {
         margin: 20px 0 12px;
         height: auto;
@@ -70,9 +70,20 @@
 
     .createPostButton {
         padding: 10px 18px;
+        font-size: 14px;
     }
 
     .createPostDivision {
         margin: 20px 20px 10px 20px;
+    }
+
+    .profileImg {
+        margin-right: 9px;
+        width: 50px;
+        height: 45px;
+    }
+
+    .createPostInput {
+        font-size: 13px;
     }
 }

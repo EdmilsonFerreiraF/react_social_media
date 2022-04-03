@@ -90,3 +90,25 @@
     border-bottom: 1px dashed gray;
     font-size: 15px;
 }
+
+@media (max-width: 535px) {
+    .postUsername {
+    font-size: 14px;
+    }
+
+    .postDate {
+        font-size: 11px;
+    }
+
+    .postContent {
+        font-size: 15px;
+    }
+
+    .postLikeCounter {
+        font-size: 14px;
+    }
+
+    .postCommentCounter {
+        font-size: 14px;
+    }
+}
