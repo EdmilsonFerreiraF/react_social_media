@@ -7,3 +7,12 @@
 .navItemIcon {
     margin: 15px;
 }
+
+@media (max-width: 535px) {
+    .navItem {
+        font-size: 15px;
+    }
+
+    .navItemIcon {
+        margin: 17px 16px 17px 12px;    }
+}
