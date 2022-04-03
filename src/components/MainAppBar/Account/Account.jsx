@@ -8,79 +8,151 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styles from "./Account.module.css"
 import { styled, useTheme } from '@mui/material/styles';
 import { useState } from "react";
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import Box from '@mui/material/Box';
+import Badge from '@mui/material/Badge';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 const drawerWidth = 240;
 
 const Account = (props) => {
-    const theme = useTheme();
-    const [isOpen, setIsOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
-    const handleDrawer = () => {
-        setIsOpen(prevState => !prevState);
-    };
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    const { window } = props;
-    const [mobileOpen, setMobileOpen] = useState(false);
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
 
-    const drawer = (
-        <Container sx={{ display: { xs: 'none', sm: 'block' }}}>
-            <Navigation />
-            <Social />
-            <Profile />
-        </Container>
-    )
-    const container = window !== undefined ? () => window().document.body : undefined;
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+  const drawer = (
+    <Container sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <Navigation />
+      <Social />
+      <Profile />
+    </Container>
+  )
+  const container = window !== undefined ? () => window().document.body : undefined;
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
 
-    return (
-        <>
-        <Container sx={{ display: { xs: 'none', sm: 'block' }}}>
-            <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawer}
-                edge="end"
-                sx={{
-                    mr: 2,
-                    // ...(isOpen && { display: 'none' }) 
-                }}
-            >
-                <MenuIcon />
-            </IconButton>
+      <Navigation />
+      <Social />
+      <Profile />
+    </Menu>
+  );
 
-            <div className={styles.account}>
-                <Drawer
-                    container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-                <Drawer
-                    variant="permanent"
-                    sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                    open
-                >
-                    {drawer}
-                </Drawer>
-            </div>
-            </Container>
-        </>
-    )
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}><Navigation /></MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <p>Messages</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
+    </Menu>
+  );
+  return (
+    <>
+      <Box sx={{ display: { xs: 'none', md: 'flex' } }} className={styles.account}>
+        <Navigation />
+        <Social />
+        <Profile />
+      </Box>
+      <Box sx={{ display: { xs: 'flex', md: 'none' },
+          flex: 1.4,
+          flexFlow: 'row-reverse'
+     }}>
+        <IconButton
+          size="large"
+          aria-label="show more"
+          aria-controls={mobileMenuId}
+          aria-haspopup="true"
+          onClick={handleMobileMenuOpen}
+          color="inherit"
+        >
+          <MoreIcon />
+        </IconButton>
+      </Box>
+      {renderMobileMenu}
+      {renderMenu}
+    </>
+  )
 }
 
 export default Account
