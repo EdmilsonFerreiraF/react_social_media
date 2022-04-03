@@ -12,33 +12,33 @@ const TypeList = (props) => {
         <ul className={styles.typeList}>
             <TypeItem ref={description} title="Photo or Video" inputType="file"
             inputId="file" inputAccept=".png, .jpeg, .jpg"
-            className="typeItemInputFile"
+            className="typeItemInput"
              onChange={e => {props.setFile(e.target.files[0]); console.log('e.target.files[0]', e.target.files[0])}}
-              inputHandler={props.inputHandler}>
+              >
                 <PermMedia htmlColor="tomato" />
             </TypeItem>
 
             <TypeItem ref={description} title="Tag" inputType="text"
-            inputId="file" inputAccept=".png, .jpeg, .jpg"
-            className="typeItemInputFile"
-             onChange={e => {console.log('e', e.target.value)}}
-              inputHandler={props.inputHandler}>
+            inputId="tag"
+            className="typeItemInput"
+             onChange={props.inputHandler}
+              >
                 <Label htmlColor="blue" />
             </TypeItem>
 
             <TypeItem ref={description} title="Location" inputType="text"
-            inputId="file" inputAccept=".png, .jpeg, .jpg"
-            className="typeItemInputFile"
-             onChange={e => {console.log('e', e.target.value)}}
-              inputHandler={props.inputHandler}>
+            inputId="location"
+            className="typeItemInput"
+             onChange={props.inputHandler}
+              >
                 <Room htmlColor="green" />
             </TypeItem>
 
             <TypeItem ref={description} title="Feelings" inputType="text"
-            inputId="file" inputAccept=".png, .jpeg, .jpg"
-            className="typeItemInputFile"
-             onChange={e => {console.log('e', e.target.value)}}
-              inputHandler={props.inputHandler}>
+            inputId="feelings"
+            className="typeItemInput"
+             onChange={props.inputHandler}
+              >
                 <EmojiEmotions htmlColor="goldenrod" />
             </TypeItem>
         </ul>
