@@ -15,12 +15,13 @@ const FollowingItem = ({ friend }) => {
     const navigate = useNavigate()
     
     const goToFriendProfile = () => {
-        navigate(`/profile/${friend?.name}`)
+        console.log('friend?.username', friend?.username)
+        navigate(`/profile/${friend?.username}`)
     }
     
     return (
         <div className={styles.followingItem} onClick={goToFriendProfile}>
-            <img src={profilePicture ?? `${publicFolder}/person/no_cover.jpg`} className={styles.followingImg} alt="Post content" />
+            <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`} className={styles.followingImg} alt="Friend profile" />
             <span className={styles.followingName}>
                 {friend?.name}
             </span>

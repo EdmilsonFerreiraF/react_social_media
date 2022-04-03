@@ -12,10 +12,10 @@ import { useRequestData } from '../../hooks/useRequestData'
 const Feed = ({ otherUserId }) => {
     // const [posts, setPosts] = useState([])
     const { user } = useContext(AuthContext)
-    let posts
     const token = localStorage.getItem("token")
 
-    posts = useRequestData(user?.id ? `${baseUrl}/post/timeline/${user.id}` : `${baseUrl}/post/profile/${otherUserId}`, [])
+    console.log('otherUserId', otherUserId)
+    const posts = useRequestData(otherUserId ? `${baseUrl}/post/profile/${otherUserId}` : `${baseUrl}/post/timeline/${user?.id}`, [])
 
     // useEffect(() => {
     //     const fetchPosts = async () => {

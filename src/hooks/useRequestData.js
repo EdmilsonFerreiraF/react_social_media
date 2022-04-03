@@ -20,6 +20,7 @@ export function useRequestData(url, initialState) {
             localStorage.removeItem("token")
           }
       });
+      console.log('url', url)
     }
   }, [url]);
 

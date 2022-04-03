@@ -20,13 +20,15 @@ const Profile = () => {
 
     const username = useParams().username
     const imgId = v4()
+    console.log('username', username)
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const token = localStorage.getItem("token")
     
-    const user = useRequestData(`${baseUrl}/user/${username}`, [])
+    const user = useRequestData(`${baseUrl}/user/${username}`, {})
 
+    console.log('user', user)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
     const coverPicture = useRequestImage("cover", user?.coverPicture)
 
@@ -41,7 +43,7 @@ const Profile = () => {
                             <img
                             src={coverPicture ?? `${publicFolder}/person/no_cover.jpg`}
                             className={styles.profileCoverImg} alt="Post content" />
-                            <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`} className={styles.profileUserImg} alt="Post content" />
+                            <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`} className={styles.profileUserImg} alt="User profile" />
                         </div>
                         <div className={styles.profileInfo}>
                             <h4 className={styles.profileInfoName}>
