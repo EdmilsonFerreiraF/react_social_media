@@ -21,10 +21,16 @@
     display: none;
 }
 
+<<<<<<< HEAD
 @media (max-width: 535px) {
     .typeItem {
         padding: 10px 0;
         margin-right: 12px;
 
+=======
+@media (max-width: 500px) {
+    .typeItem {
+        padding: 10px 0;
+>>>>>>> 6ffc4358c249615cfc356efaf8428d58740ed6be
     }
 }
