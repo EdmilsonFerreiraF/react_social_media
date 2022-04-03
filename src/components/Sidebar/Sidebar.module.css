@@ -34,3 +34,14 @@
 .sidebarDivision {
     margin: 20px 0;
 }
+
+@media (max-width: 535px) {
+    .sidebarContainer {
+
+    padding: 20px 10px;
+    }
+
+    .sidebar {
+        flex: 1;
+    }
+}

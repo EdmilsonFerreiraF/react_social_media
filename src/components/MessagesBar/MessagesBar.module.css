@@ -59,3 +59,9 @@
 .followButton:focus {
     outline: none;
 }
+
+@media (max-width: 535px) {
+    .messagesBarContainer {
+        flex: 1;
+    }
+}
