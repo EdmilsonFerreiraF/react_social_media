@@ -1,7 +1,6 @@
-import { forwardRef } from "react"
 import styles from "./TypeItem.module.css"
 
-const TypeItem = forwardRef((props, ref) => {
+const TypeItem = props => {
     return (
         <label htmlFor={props.typeItem} className={styles.typeItem}>
             <div className={styles.typeItemIcon}>
@@ -10,13 +9,13 @@ const TypeItem = forwardRef((props, ref) => {
             <span className={styles.typeItemTitle}>
                 {props.title}
             </span>
-            <input ref={ref} type={props.inputType} id={props.inputId}
+            <input type={props.inputType} id={props.inputId}
                 accept={props.inputType === "file" ?? props.inputAccept}
                 className={styles[props.className]}
                 onChange={props.onChange}
             />
         </label>
     )
-})
+}
 
 export default TypeItem
