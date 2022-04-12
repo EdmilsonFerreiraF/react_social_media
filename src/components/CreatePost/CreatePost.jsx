@@ -8,15 +8,15 @@ import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from 'uuid'
 import { baseUrl } from "../../constants/baseUrl"
 import { useRequestImage } from '../../hooks/useRequestImage'
+import { useForm } from "../../hooks/useForm"
 
 const CreatePost = () => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const { user } = useContext(AuthContext)
 
-    const [ description, setDescription ] = useState("")
-    const [ file, setFile ] = useState(null)
-
+    const { form, onChange } = useForm({ description: '', file: '' })
+    
     const imgId = v4()
     
     const submitHandler = async e => {
@@ -24,7 +24,7 @@ const CreatePost = () => {
 
         const newPost = {
             userId: user?._id,
-            description: description,
+            description: form.description,
             image: "posts/" + imgId
         }
         
@@ -37,20 +37,16 @@ const CreatePost = () => {
         };
 
         // 'file' comes from the Blob or File API
-        uploadBytes(storageRef, file, metadata).then((snapshot) => {
+        uploadBytes(storageRef, form.file, metadata).then((snapshot) => {
             console.log(snapshot)
           console.log('Uploaded a blob or file!');
         });
 
-        try {
-            await axios.post(`${baseUrl}/posts`, newPost)
-        } catch (err) {
-            
-        }
+        await axios.post(`${baseUrl}/posts`, newPost)
     }
 
     const inputHandler = (e) => {
-        setDescription(e.target.value)
+        onChange(e.target.value, e.target.name)
     }
 
     const profilePicture = useRequestImage("profile", user?.profilePicture)
@@ -66,13 +62,13 @@ const CreatePost = () => {
                     }
                      alt="User profile" />
                     <input placeholder={`What's in your mind ${user?.username}?`}
-                     className={styles.createPostInput} value={description} onChange={inputHandler} />
+                     className={styles.createPostInput} value={form.description} onChange={inputHandler} />
                 </div>
                 <hr className={styles.createPostDivision}/>
                 <form className={styles.createPostBotbar} onSubmit={submitHandler}>
-                    <TypeList setFile={setFile} inputHandler={inputHandler} />
+                    <TypeList setFile={onChange} inputHandler={inputHandler} />
 
-                    <button className={styles.createPostButton} type="submit" disabled={(!description || description === "") && !file}>
+                    <button className={styles.createPostButton} type="submit" disabled={(!form.description || form.description === "") && !form.file}>
                         Create
                     </button>
                 </form>

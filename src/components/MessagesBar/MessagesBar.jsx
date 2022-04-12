@@ -1,19 +1,13 @@
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "../../context/AuthContext"
 import FollowingList from "./FollowingList/FollowingList"
 import FriendList from "./FriendList/FriendList"
 import InfoList from "./InfoList/InfoList"
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 import styles from "./MessagesBar.module.css"
-import axios from "axios"
 import { baseUrl } from "../../constants/baseUrl"
 import { useRequestData } from "../../hooks/useRequestData"
 
 const MessagesBar = ({ user }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
-    // const { user } = useContext(AuthContext)
-    // const [friends, setFriends] = useState([])
 
     const token = localStorage.getItem("token")
 

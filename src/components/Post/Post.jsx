@@ -6,20 +6,19 @@ import { Link } from 'react-router-dom'
 import styles from "./Post.module.css"
 import { baseUrl } from "../../constants/baseUrl"
 import { AuthContext } from "../../context/AuthContext"
-import { getStorage, getDownloadURL, ref } from "firebase/storage";
 import { useRequestImage } from "../../hooks/useRequestImage"
 import { useRequestData } from "../../hooks/useRequestData"
+import { useForm } from "../../hooks/useForm"
 
 const Post = ({ post }) => {
-    const [likes, setLikes] = useState(post.likes.length)
-    const [isLiked, setIsLiked] = useState(false)
+    const { form, onChange } = useForm({ likes: post.likes.length, isLiked: false })
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const { user: currentUser } = useContext(AuthContext)
 
     useEffect(() => {
-        setIsLiked(post.likes.includes(currentUser.id))
+        onChange(post.likes.includes(currentUser.id), "likes")
     }, [currentUser.id, post.likes])
     
     const token = localStorage.getItem("token")
@@ -37,7 +36,7 @@ const Post = ({ post }) => {
                 }
             })
         } catch (err) {
-            setLikes(isLiked ? likes - 1 : likes + 1)
+            onChange(form.isLiked ? form.likes - 1 : form.likes + 1, "isLiked")
         }
     }
 
@@ -73,7 +72,7 @@ const Post = ({ post }) => {
                         <img src={`${publicFolder}/like.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
                         <img src={`${publicFolder}/heart.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
                         <span className={styles.postLikeCounter}>
-                            {likes} people liked it
+                            {form.likes} people liked it
                         </span>
                     </div>
                     <div className={styles.postComments}>

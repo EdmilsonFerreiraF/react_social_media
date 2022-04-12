@@ -13,7 +13,7 @@ const TypeList = (props) => {
             <TypeItem ref={description} title="Photo or Video" inputType="file"
             inputId="file" inputAccept=".png, .jpeg, .jpg"
             className="typeItemInput"
-             onChange={e => {props.setFile(e.target.files[0]); console.log('e.target.files[0]', e.target.files[0])}}
+             onChange={e => {props.setFile(e.target.files[0], "file"); console.log('e.target.files[0]', e.target.files[0])}}
               >
                 <PermMedia htmlColor="tomato" />
             </TypeItem>

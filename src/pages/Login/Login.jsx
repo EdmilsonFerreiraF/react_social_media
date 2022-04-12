@@ -1,4 +1,4 @@
-import { createRef, useContext, useState } from "react"
+import { useContext } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 
 import Input from '../../components/Input/Input'
@@ -8,6 +8,7 @@ import { AuthContext } from "../../context/AuthContext"
 import styles from "./Login.module.css"
 import { useUnprotectPage } from '../../hooks/useUnprotectPage'
 import { useNavigate } from "react-router-dom"
+import { useForm } from "../../hooks/useForm"
 
 const Login = () => {
     useUnprotectPage()
@@ -15,21 +16,17 @@ const Login = () => {
 
     const { user, isFetching, error, dispatch } = useContext(AuthContext)
 
-    const [email, setEmail] = useState("user_email33@email.com")
-    const [password, setPassword] = useState("user_password")
+    const { form, onChange } = useForm({ email: 'user_email33@email.com', password: 'user_password' })
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value)
+    const handleInputChange = e => {
+        onChange(e.target.value, e.target.name)
     }
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value)
-    }
-    
     const handleSubmit = e => {
         e.preventDefault()
 
-        loginCall({ email, password }, dispatch, navigate)
+        console.log('email, password', form.email, form.password)
+        loginCall({ email: form.email, password: form.password }, dispatch, navigate)
     }
     
   return (
@@ -45,8 +42,9 @@ const Login = () => {
             </div>
             <div className={styles.loginRight}>
                 <form className={styles.loginBox} onSubmit={handleSubmit}>
-                    <Input type="email" placeholder="Email" required value={email} onChange={handleEmailChange} minLength="6" />
-                    <Input type="password" placeholder="Password" required value={password} onChange={handlePasswordChange} />
+                    <Input name="email" type="email" placeholder="Email" required value={form.email} onChange={handleInputChange} minLength="6" />
+                    <Input name="password" type="password" placeholder="Password" required value={form.password} onChange={handleInputChange} />
+
                     <button className={styles.loginButton} type="submit" disabled={isFetching}>
                         {isFetching ? <CircularProgress color="white" size="20px" /> : "Log in"}
                     </button>
