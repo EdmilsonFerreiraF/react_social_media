@@ -9,6 +9,7 @@ import { AuthContext } from "../../context/AuthContext"
 import { useRequestImage } from "../../hooks/useRequestImage"
 import { useRequestData } from "../../hooks/useRequestData"
 import { useForm } from "../../hooks/useForm"
+import { sendData } from '../../apiCalls'
 
 const Post = ({ post }) => {
     const { form, onChange } = useForm({ likes: post.likes.length, isLiked: false })
@@ -28,22 +29,20 @@ const Post = ({ post }) => {
     const postPicture = useRequestImage("posts", post?.image)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
 
-    const likeHandler = () => {
-        try {
-            axios.put(`${baseUrl}/post/${post.id}/like`, { userId: currentUser.id }, {
-                headers: {
-                    Authorization: token
-                }
-            })
-        } catch (err) {
+    const likeHandler = async () => {
+        const url = `${baseUrl}/post/${post?.id}/like`
+        const data = { userId: currentUser?.id }
+
+        sendData(url, "put", data)
+        .catch(err => {
             onChange(form.isLiked ? form.likes - 1 : form.likes + 1, "isLiked")
-        }
+        })
     }
 
     return (
         <div className={styles.post}>
             <div className={styles.postContainer}>
-                <div className={styles.postTopbar}>
+                {/* <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
                             <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`}
@@ -66,18 +65,18 @@ const Post = ({ post }) => {
                         {post?.description}
                     </span>
                     <img src={postPicture ?? `${publicFolder}/post/1.jpeg`} className={styles.postContentImg} alt="Post content" />
-                </div>
+                </div> */}
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
                         <img src={`${publicFolder}/like.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
                         <img src={`${publicFolder}/heart.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
                         <span className={styles.postLikeCounter}>
-                            {form.likes} people liked it
+                            {post?.likes.length + 1} people liked it
                         </span>
                     </div>
-                    <div className={styles.postComments}>
+                    {/* <div className={styles.postComments}>
                         <span className={styles.postCommentCounter}>{post.comment} comments</span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

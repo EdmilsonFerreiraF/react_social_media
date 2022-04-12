@@ -8,6 +8,7 @@ import styles from "./Signup.module.css"
 import { useNavigate } from 'react-router-dom'
 import { useUnprotectPage } from '../../hooks/useUnprotectPage'
 import { useForm } from "../../hooks/useForm"
+import { sendData } from '../../apiCalls'
 
 const Signup = () => {
     useUnprotectPage()
@@ -37,12 +38,14 @@ const Signup = () => {
                 password: form.password,
             }
 
-            try {
-                await axios.post(`${baseUrl}/user/signup`, user)
-                navigate("/login")
-            } catch (err) {
-                console.log(err)
-            }
+            // await axios.post(`${baseUrl}/user/signup`, user)
+
+            const url = `${baseUrl}/user/signup`
+            const data = user
+    
+            sendData(url, "post", data)
+
+            navigate("/login")
         }
     }
 

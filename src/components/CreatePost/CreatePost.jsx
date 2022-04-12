@@ -8,6 +8,7 @@ import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from 'uuid'
 import { baseUrl } from "../../constants/baseUrl"
 import { useRequestImage } from '../../hooks/useRequestImage'
+import { sendData } from '../../apiCalls'
 import { useForm } from "../../hooks/useForm"
 
 const CreatePost = () => {
@@ -42,7 +43,9 @@ const CreatePost = () => {
           console.log('Uploaded a blob or file!');
         });
 
-        await axios.post(`${baseUrl}/posts`, newPost)
+        const url = `${baseUrl}/posts`
+        
+        sendData(url, "post", newPost)
     }
 
     const inputHandler = (e) => {

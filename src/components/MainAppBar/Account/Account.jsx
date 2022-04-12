@@ -20,27 +20,28 @@ import Menu from '@mui/material/Menu';
 const drawerWidth = 240;
 
 const Account = (props) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMenuOpen = Boolean(anchorEl)
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget)
   };
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+    setMobileMoreAnchorEl(null)
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
+    setAnchorEl(null)
+    handleMobileMenuClose()
   };
 
   const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+    setMobileMoreAnchorEl(event.currentTarget)
   };
+  
   const drawer = (
     <Container sx={{ display: { xs: 'none', sm: 'block' } }}>
       <Navigation />
@@ -48,6 +49,7 @@ const Account = (props) => {
       <Profile />
     </Container>
   )
+
   const container = window !== undefined ? () => window().document.body : undefined;
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
