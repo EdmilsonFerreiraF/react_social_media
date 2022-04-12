@@ -1,13 +1,9 @@
 import Navigation from "./Navigation/Navigation"
 import Social from "./Social/Social"
 import Profile from "./Profile/Profile"
-import Drawer from '@mui/material/Drawer';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import styles from "./Account.module.css"
-import { styled, useTheme } from '@mui/material/styles';
-import { useState } from "react";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -16,30 +12,30 @@ import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useForm } from "../../../hooks/useForm"
 
 const drawerWidth = 240;
 
 const Account = (props) => {
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null)
+  const { form, onChange } = useForm({ anchorEl: null, mobileMoreAnchorEl: null })
 
-  const isMenuOpen = Boolean(anchorEl)
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
+  const isMenuOpen = Boolean(form.anchorEl)
+  const isMobileMenuOpen = Boolean(form.mobileMoreAnchorEl)
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget)
-  };
+    onChange(event.currentTarget, "anchorEl")
+  }
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null)
-  };
+    onChange(null, "mobileMoreAnchorEl")
+  }
 
   const handleMenuClose = () => {
-    setAnchorEl(null)
+    onChange(null, "anchorEl")
     handleMobileMenuClose()
-  };
+  }
 
   const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget)
+    onChange(event.currentTarget, "mobileMoreAnchorEl")
   };
   
   const drawer = (
@@ -54,7 +50,7 @@ const Account = (props) => {
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
+      anchorEl={form.anchorEl}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -80,7 +76,7 @@ const Account = (props) => {
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
+      anchorEl={form.mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
