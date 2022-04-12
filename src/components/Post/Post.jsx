@@ -42,7 +42,7 @@ const Post = ({ post }) => {
     return (
         <div className={styles.post}>
             <div className={styles.postContainer}>
-                {/* <div className={styles.postTopbar}>
+                <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
                             <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`}
@@ -65,7 +65,7 @@ const Post = ({ post }) => {
                         {post?.description}
                     </span>
                     <img src={postPicture ?? `${publicFolder}/post/1.jpeg`} className={styles.postContentImg} alt="Post content" />
-                </div> */}
+                </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
                         <img src={`${publicFolder}/like.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
@@ -74,9 +74,9 @@ const Post = ({ post }) => {
                             {post?.likes.length + 1} people liked it
                         </span>
                     </div>
-                    {/* <div className={styles.postComments}>
+                    <div className={styles.postComments}>
                         <span className={styles.postCommentCounter}>{post.comment} comments</span>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>

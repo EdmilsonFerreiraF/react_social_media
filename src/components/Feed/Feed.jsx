@@ -12,7 +12,8 @@ const Feed = ({ otherUserId }) => {
     const { user } = useContext(AuthContext)
 
     const posts = useRequestData(otherUserId ? `${baseUrl}/post/profile/${otherUserId}` : `${baseUrl}/post/timeline/${user?.id}`, [])
-    
+
+    console.log('posts', posts)
     return (
         <div className={styles.feedContainer}>
             <div className={styles.feed}>

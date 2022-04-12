@@ -1,15 +1,14 @@
 import TypeList from "./TypeList/TypeList"
 import { AuthContext } from "../../context/AuthContext"
+import { createRef, useContext, useEffect, useRef, useState } from "react"
 
 import styles from "./CreatePost.module.css"
-import { createRef, useContext, useEffect, useRef, useState } from "react"
-import axios from "axios"
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { v4 } from 'uuid'
+
 import { baseUrl } from "../../constants/baseUrl"
 import { useRequestImage } from '../../hooks/useRequestImage'
-import { sendData } from '../../apiCalls'
+import { sendData, uploadPostPic } from '../../apiCalls'
 import { useForm } from "../../hooks/useForm"
+import { v4 } from 'uuid'
 
 const CreatePost = () => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
@@ -18,10 +17,13 @@ const CreatePost = () => {
 
     const { form, onChange } = useForm({ description: '', file: '' })
     
-    const imgId = v4()
     
     const submitHandler = async e => {
         e.preventDefault()
+
+        const imgId = v4()
+
+        const url = `${baseUrl}/posts`
 
         const newPost = {
             userId: user?._id,
@@ -29,22 +31,7 @@ const CreatePost = () => {
             image: "posts/" + imgId
         }
         
-        const storage = getStorage();
-        const storageRef = ref(storage, 'posts/' + imgId);
-
-        // Create file metadata including the content type
-        const metadata = {
-            contentType: 'image',
-        };
-
-        // 'file' comes from the Blob or File API
-        uploadBytes(storageRef, form.file, metadata).then((snapshot) => {
-            console.log(snapshot)
-          console.log('Uploaded a blob or file!');
-        });
-
-        const url = `${baseUrl}/posts`
-        
+        uploadPostPic(user, form)
         sendData(url, "post", newPost)
     }
 

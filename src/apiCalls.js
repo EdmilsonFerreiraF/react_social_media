@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from "axios"
+import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 import { baseUrl } from './constants/baseUrl'
 import { goToIndex } from './routes/coordinator'
@@ -33,4 +34,22 @@ export async function sendData(url, method, data) {
           console.log(error.message)
       })
     }
+}
+
+export async function uploadPostPic(user, form, imgId) {
+    
+    const storage = getStorage();
+    const storageRef = ref(storage, 'posts/' + imgId);
+
+    // Create file metadata including the content type
+    const metadata = {
+        contentType: 'image',
+    };
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, form.file, metadata).then((snapshot) => {
+        console.log(snapshot)
+      console.log('Uploaded a blob or file!');
+    });
+
 }
