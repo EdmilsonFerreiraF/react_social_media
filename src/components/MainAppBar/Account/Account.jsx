@@ -21,6 +21,7 @@ const Account = (props) => {
 
   const isMenuOpen = Boolean(form.anchorEl)
   const isMobileMenuOpen = Boolean(form.mobileMoreAnchorEl)
+  
   const handleProfileMenuOpen = (event) => {
     onChange(event.currentTarget, "anchorEl")
   }
@@ -90,10 +91,10 @@ const Account = (props) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Navigation /></MenuItem>
+      <Navigation isMobileMenuOpen={isMobileMenuOpen} handleMenuClose={handleMenuClose} />
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
+          size="medium"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
@@ -104,7 +105,7 @@ const Account = (props) => {
         <p>Profile</p>
       </MenuItem>
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
           </Badge>
@@ -113,7 +114,7 @@ const Account = (props) => {
       </MenuItem>
       <MenuItem>
         <IconButton
-          size="large"
+          size="medium"
           aria-label="show 17 new notifications"
           color="inherit"
         >
@@ -125,6 +126,7 @@ const Account = (props) => {
       </MenuItem>
     </Menu>
   );
+  
   return (
     <>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} className={styles.account}>
