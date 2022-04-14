@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { executeAsync } from "../handlers/exceptions";
 
-export function useRequestData(url, initialState) {
+function useRequest(url, initialState) {
   const [data, setData] = useState(initialState);
 
   useEffect(() => {
@@ -26,3 +27,5 @@ export function useRequestData(url, initialState) {
 
   return data;
 }
+
+export const useRequestData = () => executeAsync(useRequest)
