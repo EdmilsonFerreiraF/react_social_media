@@ -12,15 +12,15 @@ import { useForm } from "../../hooks/useForm"
 import { sendData } from '../../apiCalls'
 
 const Post = ({ post }) => {
-    const { form, onChange } = useForm({ likes: post.likes.length, isLiked: false })
+    const { form, onChange } = useForm({ likes: post?.likes.length, isLiked: false })
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const { user: currentUser } = useContext(AuthContext)
 
     useEffect(() => {
-        onChange(post.likes.includes(currentUser.id), "likes")
-    }, [currentUser.id, post.likes])
+        onChange(post?.likes.includes(currentUser?.id), "likes")
+    }, [currentUser?.id, post?.likes])
     
     const token = localStorage.getItem("token")
 
@@ -53,7 +53,7 @@ const Post = ({ post }) => {
                             {user.username}
                         </span>
                         <span className={styles.postDate}>
-                            {format(post.createdAt)}
+                            {format(post?.createdAt)}
                         </span>
                     </div>
                     <div className={styles.postOptions}>
@@ -75,7 +75,7 @@ const Post = ({ post }) => {
                         </span>
                     </div>
                     <div className={styles.postComments}>
-                        <span className={styles.postCommentCounter}>{post.comment} comments</span>
+                        <span className={styles.postCommentCounter}>{post?.comment} comments</span>
                     </div>
                 </div>
             </div>
