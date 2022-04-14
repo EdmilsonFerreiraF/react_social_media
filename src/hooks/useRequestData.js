@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { executeAsync } from "../handlers/exceptions";
+import { execute } from "../handlers/exceptions";
 
 function useRequest(url, initialState) {
   const [data, setData] = useState(initialState);
@@ -28,4 +28,4 @@ function useRequest(url, initialState) {
   return data;
 }
 
-export const useRequestData = () => executeAsync(useRequest)
+export const useRequestData = () => execute(useRequest)
