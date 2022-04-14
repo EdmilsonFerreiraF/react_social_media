@@ -8,7 +8,7 @@ const TypeList = (props) => {
     return (
         <ul className={styles.typeList}>
             <TypeItem title="Photo or Video" inputType="file"
-            inputId="file" inputAccept=".png, .jpeg, .jpg"
+            inputId="file" inputAccept="image/*"
             className="typeItemInput"
              onChange={e => {props.setFile(e.target.files[0], "file"); console.log('e.target.files[0]', e.target.files[0])}}
               >

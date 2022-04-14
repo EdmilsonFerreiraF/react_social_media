@@ -65,9 +65,6 @@ const Account = (props) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
-
       <Navigation />
       <Social />
       <Profile />
@@ -92,6 +89,7 @@ const Account = (props) => {
       onClose={handleMobileMenuClose}
     >
       <Navigation isMobileMenuOpen={isMobileMenuOpen} handleMenuClose={handleMenuClose} />
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="medium"
@@ -104,6 +102,7 @@ const Account = (props) => {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+
       <MenuItem>
         <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -112,6 +111,7 @@ const Account = (props) => {
         </IconButton>
         <p>Messages</p>
       </MenuItem>
+
       <MenuItem>
         <IconButton
           size="medium"
