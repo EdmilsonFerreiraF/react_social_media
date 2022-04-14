@@ -17,7 +17,6 @@ const CreatePost = () => {
 
     const { form, onChange } = useForm({ description: '', file: '' })
     
-    
     const submitHandler = async e => {
         e.preventDefault()
 

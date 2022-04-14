@@ -18,8 +18,8 @@ const Feed = ({ otherUserId }) => {
         <div className={styles.feedContainer}>
             <div className={styles.feed}>
                 { !otherUserId && <CreatePost /> }
-                {posts.map(post => (
-                    <Post key={post._id} post={post} />
+                {posts.length && posts?.map(post => (
+                    <Post key={post?._id} post={post} />
                 ))}
             </div>
         </div>

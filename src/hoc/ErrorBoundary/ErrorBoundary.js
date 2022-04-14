@@ -1,7 +1,8 @@
 import { Component } from "react";
+import styles from './ErrorBoundary.module.css'
  
 const ErrorView = ({ error, errorInfo }) => (
-  <div>
+  <div className={styles.errorBoundary}>
     <h2>Something went wrong.</h2>
     <details>
       {error && error.toString()}
