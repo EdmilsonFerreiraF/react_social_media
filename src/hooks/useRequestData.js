@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useErrorHandler } from 'react-error-boundary'
+
 
 export function useRequestData(url, initialState) {
   const [data, setData] = useState(initialState);
+  const handleError = useErrorHandler()
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -19,6 +22,7 @@ export function useRequestData(url, initialState) {
           if (error.message.includes("401")) {
             localStorage.removeItem("token")
           }
+          handleError(error)
       });
       console.log('url', url)
     }
