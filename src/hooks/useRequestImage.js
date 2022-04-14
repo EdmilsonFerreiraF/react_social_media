@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
+import { executeAsync } from "../handlers/exceptions";
 
-export function useRequestImage(entity, initialState) {
+export function useRequest(entity, initialState) {
   const [data, setData] = useState(initialState);
 
     useEffect(() => {
@@ -25,3 +26,5 @@ export function useRequestImage(entity, initialState) {
 
   return data;
 }
+
+export const useRequestImage = () => executeAsync(useRequest)
