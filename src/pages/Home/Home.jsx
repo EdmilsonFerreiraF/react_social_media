@@ -6,13 +6,50 @@ import { useProtectPage } from '../../hooks/useProtectPage'
 
 import styles from "./Home.module.css"
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext"
+
+import { useEffect, useState } from 'react'
+
+import { AuthContext } from '../../context/AuthContext'
+
+import axios from 'axios'
+
+import { baseUrl } from '../../constants/baseUrl'
 
 const Home = () => {
     useProtectPage()
 
-    const { user, isFetching, error, dispatch } = useContext(AuthContext)
-    
+    // const { user, isFetching, error, dispatch } = useContext(AuthContext)
+
+  const { user, dispatch } = useContext(AuthContext)
+
+  const token = localStorage.getItem('token')
+
+  useEffect(() => {
+    const getUser = async () => {
+      dispatch({ type: "LOGIN_START" })
+
+       const res = await axios
+        .get(`${baseUrl}/user`, {
+          headers: {
+            Authorization: token
+          }
+        })
+        .then(res => {
+          dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+        })
+        .catch(err => {
+          dispatch({ type: "LOGIN_FAILED", payload: err })
+          console.log(err)
+        })
+
+        return res
+    }
+
+    if (!user && token) {
+      getUser()
+    }
+  }, [user, token])
+
     return (
         <>
             <MainAppBar />

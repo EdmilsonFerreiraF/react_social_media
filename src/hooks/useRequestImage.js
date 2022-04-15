@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
-import { useErrorHandler } from 'react-error-boundary'
 
 export function useRequestImage(entity, initialState) {
   const [data, setData] = useState(initialState);
-  const handleError = useErrorHandler()
 
     useEffect(() => {
         const getData = async(image) => {
@@ -17,7 +15,6 @@ export function useRequestImage(entity, initialState) {
           })
           .catch((error) => {
             console.log('error - useRequestImage', error)
-            handleError(error)
           });
       }
 

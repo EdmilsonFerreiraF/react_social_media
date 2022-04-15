@@ -1,4 +1,3 @@
-
 export function ErrorFallback({error, resetErrorBoundary}) {
   return (
     <div role="alert">
@@ -8,4 +7,3 @@ export function ErrorFallback({error, resetErrorBoundary}) {
     </div>
   )
 }
-

@@ -14,6 +14,10 @@ import { useProtectPage } from '../../hooks/useProtectPage'
 import styles from "./Profile.module.css"
 import { useRequestImage } from "../../hooks/useRequestImage"
 import { useRequestData } from '../../hooks/useRequestData';
+import { useContext } from 'react'
+
+import { AuthContext } from '../../context/AuthContext'
+
 
 const Profile = () => {
     useProtectPage()
@@ -24,14 +28,44 @@ const Profile = () => {
 
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
-    const token = localStorage.getItem("token")
+    const { user: currUser, dispatch } = useContext(AuthContext)
     
-    const user = useRequestData(`${baseUrl}/user/${username}`, {})
+    const token = localStorage.getItem('token')
+  
+    useEffect(() => {
+      const getUser = async () => {
+        dispatch({ type: "LOGIN_START" })
+  
+         const res = await axios
+          .get(`${baseUrl}/user`, {
+            headers: {
+              Authorization: token
+            }
+          })
+          .then(res => {
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+          })
+          .catch(err => {
+            dispatch({ type: "LOGIN_FAILED", payload: err })
+            console.log(err)
+          })
+  
+          return res
+      }
+  
+      if (!currUser && token) {
+        getUser()
+      }
+    }, [currUser, token])
+  
+    const visitedUser = useRequestData(`${baseUrl}/user/${username}`, {})
+
+    const user = currUser ? currUser : visitedUser
 
     console.log('user', user)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
     const coverPicture = useRequestImage("cover", user?.coverPicture)
-
+  
     return (
         <>
             <MainAppBar />
