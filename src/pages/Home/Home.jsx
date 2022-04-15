@@ -14,9 +14,13 @@ import { AuthContext } from '../../context/AuthContext'
 import axios from 'axios'
 
 import { baseUrl } from '../../constants/baseUrl'
+import { useErrorHandler } from 'react-error-boundary'
+
+
 
 const Home = () => {
     useProtectPage()
+    const handleError = useErrorHandler()
 
     // const { user, isFetching, error, dispatch } = useContext(AuthContext)
 
@@ -40,6 +44,8 @@ const Home = () => {
         .catch(err => {
           dispatch({ type: "LOGIN_FAILED", payload: err })
           console.log(err)
+        handleError(err)
+
         })
 
         return res

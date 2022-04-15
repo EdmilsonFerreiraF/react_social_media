@@ -19,9 +19,6 @@ import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { useErrorHandler } from 'react-error-boundary'
 
-
-
-
 const Profile = () => {
     useProtectPage()
     const handleError = useErrorHandler()
