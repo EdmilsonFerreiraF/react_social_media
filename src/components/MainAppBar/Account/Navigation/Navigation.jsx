@@ -8,10 +8,8 @@ import ArticleIcon from '@mui/icons-material/Article';
 
 const Navigation = (props) => {
     const NavigationMenu = (
-                <nav className={styles.navigation}>
-
+        <nav className={styles.navigation}>
             <NavigationItem title="Homepage" />
-
             <NavigationItem title="Timeline" />
         </nav>
     )
@@ -42,13 +40,13 @@ const Navigation = (props) => {
                 </IconButton>
                 <NavigationItem title="Timeline" />
             </MenuItem>
-            </>
+        </>
     )
 
     return (
         props.isMobileMenuOpen ?
-        NavigationMobileMenu :
-        NavigationMenu
+            NavigationMobileMenu :
+            NavigationMenu
     )
 }
 

@@ -42,7 +42,7 @@ const Signup = () => {
 
             const url = `${baseUrl}/user/signup`
             const data = user
-    
+
             sendData(url, "post", data)
 
             navigate("/login")
@@ -62,12 +62,38 @@ const Signup = () => {
                 </div>
                 <div className={styles.signupRight}>
                     <form className={styles.signupBox} onSubmit={handleSubmit}>
-                        <Input name="text" type="text" placeholder="Username" required value={form.username} onChange={handleInputChange} />
-                        <Input name="email" type="email" placeholder="Email" required value={form.email} onChange={handleInputChange} />
-                        <Input name="password" type="password" placeholder="Password" required minLength="6" value={form.password} onChange={handleInputChange} />
-                        <Input name="password" type="password" placeholder="Password again" required value={form.passwordAgain} onChange={handleInputChange} />
+                        <Input
+                            name="text"
+                            type="text"
+                            placeholder="Username"
+                            required
+                            value={form.username}
+                            onChange={handleInputChange} />
+                        <Input
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                            value={form.email}
+                            onChange={handleInputChange} />
+                        <Input
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            required
+                            minLength="6"
+                            value={form.password}
+                            onChange={handleInputChange} />
+                        <Input
+                            name="password"
+                            type="password"
+                            placeholder="Password again"
+                            required
+                            value={form.passwordAgain}
+                            onChange={handleInputChange} />
 
-                        <button className={styles.signupButton} type="submit">
+                        <button className={styles.signupButton}
+                            type="submit">
                             Sign up
                         </button>
                         <button className={styles.signupRegisterButton}>

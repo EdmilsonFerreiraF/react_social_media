@@ -28,37 +28,64 @@ const Login = () => {
         console.log('email, password', form.email, form.password)
         loginCall({ email: form.email, password: form.password }, dispatch, navigate)
     }
-    
-  return (
-    <div className={styles.login}>
-        <div className={styles.loginWrapper}>
-            <div className={styles.loginLeft}>
-                <h3 className={styles.loginLogo}>
-                    Lamasocial
-                </h3>
-                <span className={styles.loginDesc}>
-                    Connect with friends and the world around you on Lamasocial
-                </span>
-            </div>
-            <div className={styles.loginRight}>
-                <form className={styles.loginBox} onSubmit={handleSubmit}>
-                    <Input name="email" type="email" placeholder="Email" required value={form.email} onChange={handleInputChange} minLength="6" />
-                    <Input name="password" type="password" placeholder="Password" required value={form.password} onChange={handleInputChange} />
 
-                    <button className={styles.loginButton} type="submit" disabled={isFetching}>
-                        {isFetching ? <CircularProgress color="white" size="20px" /> : "Log in"}
-                    </button>
-                    <span className={styles.loginForgot}>
-                        Forgot password?
+    return (
+        <div className={styles.login}>
+            <div className={styles.loginWrapper}>
+                <div className={styles.loginLeft}>
+                    <h3 className={styles.loginLogo}>
+                        Lamasocial
+                    </h3>
+                    <span className={styles.loginDesc}>
+                        Connect with friends and the world around you on Lamasocial
                     </span>
-                    <button className={styles.loginRegisterButton}>
-                        {isFetching ? <CircularProgress color="white" size="20px" /> : "Create a new account"}
-                    </button>
-                </form>
+                </div>
+                <div className={styles.loginRight}>
+                    <form className={styles.loginBox}
+                        onSubmit={handleSubmit}>
+                        <Input
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                            value={form.email}
+                            onChange={handleInputChange}
+                            minLength="6" />
+                        <Input
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            required value={form.password}
+                            onChange={handleInputChange} />
+
+                        <button className={styles.loginButton}
+                            type="submit"
+                            disabled={isFetching}>
+                            {isFetching
+                                ?
+                                <CircularProgress
+                                    color="white"
+                                    size="20px" />
+                                :
+                                "Log in"}
+                        </button>
+                        <span className={styles.loginForgot}>
+                            Forgot password?
+                        </span>
+                        <button className={styles.loginRegisterButton}>
+                            {isFetching
+                                ?
+                                <CircularProgress
+                                    color="white"
+                                    size="20px" />
+                                :
+                                "Create a new account"}
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default Login;

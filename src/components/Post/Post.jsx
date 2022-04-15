@@ -21,7 +21,7 @@ const Post = ({ post }) => {
     useEffect(() => {
         onChange(post?.likes.includes(currentUser?.id), "likes")
     }, [currentUser?.id, post?.likes])
-    
+
     const token = localStorage.getItem("token")
 
     const user = useRequestData(`${baseUrl}/user/${post?.userId}`, {})
@@ -34,9 +34,9 @@ const Post = ({ post }) => {
         const data = { userId: currentUser?.id }
 
         sendData(url, "put", data)
-        .catch(err => {
-            onChange(form.isLiked ? form.likes - 1 : form.likes + 1, "isLiked")
-        })
+            .catch(err => {
+                onChange(form.isLiked ? form.likes - 1 : form.likes + 1, "isLiked")
+            })
     }
 
     return (
@@ -45,10 +45,12 @@ const Post = ({ post }) => {
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
                         <Link to={`profile/${user.username}`}>
-                            <img src={profilePicture ?? `${publicFolder}/person/no_person.jpg`}
-                            className={styles.postProfileImg}
-                            alt="Post user profile" />
-                          </Link>
+                            <img src={profilePicture
+                                ??
+                                `${publicFolder}/person/no_person.jpg`}
+                                className={styles.postProfileImg}
+                                alt="Post user profile" />
+                        </Link>
                         <span className={styles.postUsername}>
                             {user.username}
                         </span>
@@ -64,18 +66,28 @@ const Post = ({ post }) => {
                     <span className={styles.postContentText}>
                         {post?.description}
                     </span>
-                    <img src={postPicture ?? `${publicFolder}/post/1.jpeg`} className={styles.postContentImg} alt="Post content" />
+                    <img className={styles.postContentImg}
+                        src={postPicture ?? `${publicFolder}/post/1.jpeg`}
+                        alt="Post content" />
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
-                        <img src={`${publicFolder}/like.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
-                        <img src={`${publicFolder}/heart.png`} className={styles.postReactionItem} onClick={likeHandler} alt="Post user profile" />
+                        <img className={styles.postReactionItem}
+                            src={`${publicFolder}/like.png`}
+                            onClick={likeHandler}
+                            alt="Post user profile" />
+                        <img className={styles.postReactionItem}
+                            src={`${publicFolder}/heart.png`}
+                            onClick={likeHandler}
+                            alt="Post user profile" />
                         <span className={styles.postLikeCounter}>
                             {post?.likes.length + 1} people liked it
                         </span>
                     </div>
                     <div className={styles.postComments}>
-                        <span className={styles.postCommentCounter}>{post?.comment} comments</span>
+                        <span className={styles.postCommentCounter}>
+                            {post?.comment} comments
+                        </span>
                     </div>
                 </div>
             </div>

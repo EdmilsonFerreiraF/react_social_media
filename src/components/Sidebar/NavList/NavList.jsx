@@ -18,9 +18,7 @@ const NavList = () => {
         }}
         >
         <ul className={styles.navList}>
-            <NavItem title="Feed"
-               
-            >
+            <NavItem title="Feed">
                 <RssFeed />
             </NavItem>
             <NavItem title="Chats">

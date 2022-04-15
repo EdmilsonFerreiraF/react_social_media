@@ -1,6 +1,6 @@
 import TypeList from "./TypeList/TypeList"
 import { AuthContext } from "../../context/AuthContext"
-import { createRef, useContext, useEffect, useRef, useState } from "react"
+import { useContext } from "react"
 
 import styles from "./CreatePost.module.css"
 
@@ -16,7 +16,7 @@ const CreatePost = () => {
     const { user } = useContext(AuthContext)
 
     const { form, onChange } = useForm({ description: '', file: '' })
-    
+
     const submitHandler = async e => {
         e.preventDefault()
 
@@ -29,7 +29,7 @@ const CreatePost = () => {
             description: form.description,
             image: "posts/" + imgId
         }
-        
+
         uploadPostPic(user, form)
         sendData(url, "post", newPost)
     }
@@ -39,25 +39,35 @@ const CreatePost = () => {
     }
 
     const profilePicture = useRequestImage("profile", user?.profilePicture)
-    
+
     return (
         <div className={styles.createPost}>
             <div className={styles.createPostContainer}>
                 <div className={styles.createPostContent}>
                     <img className={styles.profileImg}
-                    id="profileImg" 
-                    src={
-                        profilePicture ?? `${publicFolder}/person/no_avatar.jpg`
-                    }
-                     alt="User profile" />
+                        id="profileImg"
+                        src={
+                            profilePicture ?? `${publicFolder}/person/no_avatar.jpg`
+                        }
+                        alt="User profile" />
                     <input placeholder={`What's in your mind ${user?.username}?`}
-                     className={styles.createPostInput} value={form.description} onChange={inputHandler} />
+                        className={styles.createPostInput}
+                        value={form.description}
+                        onChange={inputHandler} />
                 </div>
-                <hr className={styles.createPostDivision}/>
-                <form className={styles.createPostBotbar} onSubmit={submitHandler}>
-                    <TypeList setFile={onChange} inputHandler={inputHandler} />
+                <hr className={styles.createPostDivision} />
+                <form className={styles.createPostBotbar}
+                    onSubmit={submitHandler}>
+                    <TypeList
+                        setFile={onChange}
+                        inputHandler={inputHandler} />
 
-                    <button className={styles.createPostButton} type="submit" disabled={(!form.description || form.description === "") && !form.file}>
+                    <button className={styles.createPostButton}
+                        type="submit"
+                        disabled={
+                            (!form.description || form.description === "") && !form.file
+                        }
+                    >
                         Create
                     </button>
                 </form>

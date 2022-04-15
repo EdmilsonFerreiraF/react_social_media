@@ -21,7 +21,7 @@ const Account = (props) => {
 
   const isMenuOpen = Boolean(form.anchorEl)
   const isMobileMenuOpen = Boolean(form.mobileMoreAnchorEl)
-  
+
   const handleProfileMenuOpen = (event) => {
     onChange(event.currentTarget, "anchorEl")
   }
@@ -38,7 +38,7 @@ const Account = (props) => {
   const handleMobileMenuOpen = (event) => {
     onChange(event.currentTarget, "mobileMoreAnchorEl")
   };
-  
+
   const drawer = (
     <Container sx={{ display: { xs: 'none', sm: 'block' } }}>
       <Navigation />
@@ -88,7 +88,9 @@ const Account = (props) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Navigation isMobileMenuOpen={isMobileMenuOpen} handleMenuClose={handleMenuClose} />
+      <Navigation
+        isMobileMenuOpen={isMobileMenuOpen}
+        handleMenuClose={handleMenuClose} />
 
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -104,8 +106,13 @@ const Account = (props) => {
       </MenuItem>
 
       <MenuItem>
-        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton
+          size="medium"
+          aria-label="show 4 new mails"
+          color="inherit">
+          <Badge
+            badgeContent={4}
+            color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -118,7 +125,9 @@ const Account = (props) => {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge
+            badgeContent={17}
+            color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -126,18 +135,20 @@ const Account = (props) => {
       </MenuItem>
     </Menu>
   );
-  
+
   return (
     <>
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} className={styles.account}>
+      <Box className={styles.account}
+        sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Navigation />
         <Social />
         <Profile />
       </Box>
-      <Box sx={{ display: { xs: 'flex', md: 'none' },
-          flex: 1.4,
-          flexFlow: 'row-reverse'
-     }}>
+      <Box sx={{
+        display: { xs: 'flex', md: 'none' },
+        flex: 1.4,
+        flexFlow: 'row-reverse'
+      }}>
         <IconButton
           size="large"
           aria-label="show more"

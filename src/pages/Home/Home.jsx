@@ -19,10 +19,10 @@ import { useErrorHandler } from 'react-error-boundary'
 
 
 const Home = () => {
-    useProtectPage()
-    const handleError = useErrorHandler()
+  useProtectPage()
+  const handleError = useErrorHandler()
 
-    // const { user, isFetching, error, dispatch } = useContext(AuthContext)
+  // const { user, isFetching, error, dispatch } = useContext(AuthContext)
 
   const { user, dispatch } = useContext(AuthContext)
 
@@ -32,7 +32,7 @@ const Home = () => {
     const getUser = async () => {
       dispatch({ type: "LOGIN_START" })
 
-       const res = await axios
+      const res = await axios
         .get(`${baseUrl}/user`, {
           headers: {
             Authorization: token
@@ -44,11 +44,10 @@ const Home = () => {
         .catch(err => {
           dispatch({ type: "LOGIN_FAILED", payload: err })
           console.log(err)
-        handleError(err)
-
+          handleError(err)
         })
 
-        return res
+      return res
     }
 
     if (!user && token) {
@@ -56,16 +55,16 @@ const Home = () => {
     }
   }, [user, token])
 
-    return (
-        <>
-            <MainAppBar />
-            <div className={styles.homeContainer}>
-                <Sidebar />
-                <Feed />
-                <MessagesBar />
-            </div>
-        </>
-    )
+  return (
+    <>
+      <MainAppBar />
+      <div className={styles.homeContainer}>
+        <Sidebar />
+        <Feed />
+        <MessagesBar />
+      </div>
+    </>
+  )
 }
 
 export default Home

@@ -18,7 +18,10 @@ const Profile = () => {
     const profilePicture = useRequestImage("profile", user?.profilePicture)
 
     return (
-        <img src={profilePicture} alt="User profile" className={styles.profileImg} onClick={goToUserProfile}/>
+        <img className={styles.profileImg}
+            src={profilePicture}
+            alt="User profile"
+            onClick={goToUserProfile}/>
     )
 }
 

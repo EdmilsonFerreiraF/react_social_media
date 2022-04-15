@@ -17,13 +17,17 @@ const MessagesBar = ({ user }) => {
         return (
             <>
                 <div className={styles.birthdayContainer}>
-                    <img className={styles.birthdayImg} src={`${publicFolder}/gift.png`} alt="" />
+                    <img className={styles.birthdayImg}
+                        src={`${publicFolder}/gift.png`}
+                        alt="" />
                     <span className={styles.birthdayText}>
                         <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today.
                     </span>
                 </div>
                 <div className={styles.birthdayAd}>
-                    <img className={styles.messagesBarAd} src={`${publicFolder}/ad.png`} alt="" />
+                    <img className={styles.messagesBarAd}
+                        src={`${publicFolder}/ad.png`}
+                        alt="" />
                 </div>
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
@@ -43,11 +47,11 @@ const MessagesBar = ({ user }) => {
             </>
         )
     }
-            
+
     return (
         <div className={styles.messagesBarContainer}>
             <div className={styles.messagesBar}>
-                { user ? <ProfileMessagesBar /> : <HomeMessagesBar /> }
+                {user ? <ProfileMessagesBar /> : <HomeMessagesBar />}
             </div>
         </div>
     )
