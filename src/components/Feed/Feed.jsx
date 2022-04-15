@@ -11,7 +11,7 @@ import { useRequestData } from '../../hooks/useRequestData'
 const Feed = ({ otherUserId }) => {
     const { user } = useContext(AuthContext)
 
-    const posts = useRequestData(otherUserId ? `${baseUrl}/post/profile/${otherUserId}` : `${baseUrl}/post/timeline/${user?.id}`, [])
+    const posts = useRequestData(otherUserId ? `${baseUrl}/post/profile/${otherUserId}` : user && `${baseUrl}/post/timeline/${user?.id}`, [])
 
     console.log('posts', posts)
     return (
