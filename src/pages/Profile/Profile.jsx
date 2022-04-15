@@ -17,10 +17,14 @@ import { useRequestData } from '../../hooks/useRequestData';
 import { useContext } from 'react'
 
 import { AuthContext } from '../../context/AuthContext'
+import { useErrorHandler } from 'react-error-boundary'
+
+
 
 
 const Profile = () => {
     useProtectPage()
+    const handleError = useErrorHandler()
 
     const username = useParams().username
     const imgId = v4()
@@ -48,6 +52,8 @@ const Profile = () => {
           .catch(err => {
             dispatch({ type: "LOGIN_FAILED", payload: err })
             console.log(err)
+        handleError(err)
+
           })
   
           return res
