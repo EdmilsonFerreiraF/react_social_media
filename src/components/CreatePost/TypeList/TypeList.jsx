@@ -10,7 +10,6 @@ const TypeList = (props) => {
             <TypeItem
                 className="typeItemInput"
                 title="Photo or Video"
-                inputId="file"
                 inputType="file"
                 inputAccept="image/*"
                 onChange={e => {
@@ -25,7 +24,6 @@ const TypeList = (props) => {
             <TypeItem
                 className="typeItemInput"
                 title="Tag"
-                inputId="tag"
                 inputType="text"
                 onChange={props.inputHandler}
             >
@@ -35,7 +33,6 @@ const TypeList = (props) => {
             <TypeItem
                 className="typeItemInput"
                 title="Location"
-                inputId="location"
                 inputType="text"
                 onChange={props.inputHandler}
             >
@@ -45,7 +42,6 @@ const TypeList = (props) => {
             <TypeItem
                 className="typeItemInput"
                 title="Feelings"
-                inputId="feelings"
                 inputType="text"
                 onChange={props.inputHandler}
             >

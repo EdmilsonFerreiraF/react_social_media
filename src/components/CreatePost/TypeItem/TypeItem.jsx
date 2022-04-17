@@ -13,7 +13,7 @@ const TypeItem = props => {
             </span>
             <input className={styles[props.className]}
                 type={props.inputType}
-                id={props.inputId}
+                id={props.inputTitle}
                 accept={props.inputType === "file" ?? props.inputAccept}
                 onChange={props.onChange}
             />

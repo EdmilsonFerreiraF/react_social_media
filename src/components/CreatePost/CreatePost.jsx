@@ -51,13 +51,13 @@ const CreatePost = () => {
                         }
                         alt="User profile" />
                     <input placeholder={`What's in your mind ${user?.username}?`}
-                        className={styles.createPostInput}
-                        value={form.description}
-                        onChange={inputHandler} />
+                            className={styles.createPostInput}
+                            value={form.description}
+                            onChange={inputHandler} />
                 </div>
                 <hr className={styles.createPostDivision} />
                 <form className={styles.createPostBotbar}
-                    onSubmit={submitHandler}>
+                        onSubmit={submitHandler}>
                     <TypeList
                         setFile={onChange}
                         inputHandler={inputHandler} />
