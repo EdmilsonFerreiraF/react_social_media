@@ -56,7 +56,7 @@ const CreatePost = () => {
                             onChange={inputHandler} />
                 </div>
                 <hr className={styles.createPostDivision} />
-                <form className={styles.createPostBotbar}
+                <form aria-labelledby="create-post" className={styles.createPostBotbar}
                         onSubmit={submitHandler}>
                     <TypeList
                         setFile={onChange}

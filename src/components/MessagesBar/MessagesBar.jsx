@@ -15,7 +15,7 @@ const MessagesBar = ({ user }) => {
 
     const HomeMessagesBar = () => {
         return (
-            <>
+            <aside aria-labelledby="messages-bar">
                 <div className={styles.birthdayContainer}>
                     <img className={styles.birthdayImg}
                         src={`${publicFolder}/gift.png`}
@@ -33,7 +33,7 @@ const MessagesBar = ({ user }) => {
                     Online Friends
                 </h4>
                 <FriendList user={user} />
-            </>
+            </aside>
         )
     }
 

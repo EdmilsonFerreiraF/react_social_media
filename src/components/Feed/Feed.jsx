@@ -15,14 +15,14 @@ const Feed = ({ otherUserId }) => {
 
     console.log('posts', posts)
     return (
-        <div className={styles.feedContainer}>
+        <main className={styles.feedContainer}>
             <div className={styles.feed}>
                 { !otherUserId && <CreatePost /> }
                 {posts.length && posts?.map(post => (
                     <Post key={post?._id} post={post} />
                 ))}
             </div>
-        </div>
+        </main>
     )
 }
 

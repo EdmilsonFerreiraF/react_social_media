@@ -5,7 +5,7 @@ import styles from "./Sidebar.module.css"
 
 const Sidebar = () => {
     return (
-        <div className={styles.sidebar}>
+        <aside className={styles.sidebar} aria-labelledby="sidebar">
             <div className={styles.sidebarContainer}>
                 <NavList />
                                 
@@ -15,7 +15,7 @@ const Sidebar = () => {
                 <hr className={styles.sidebarDivision}/>
                 <FriendList />
             </div>
-        </div>
+        </aside>
     )
 }
 

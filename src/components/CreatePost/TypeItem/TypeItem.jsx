@@ -11,7 +11,7 @@ const TypeItem = props => {
             <span className={styles.typeItemTitle}>
                 {props.title}
             </span>
-            <input className={styles[props.className]}
+            <input className={styles.typeItemInput}
                 type={props.inputType}
                 id={props.inputTitle}
                 accept={props.inputType === "file" ?? props.inputAccept}

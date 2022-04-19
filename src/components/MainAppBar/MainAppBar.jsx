@@ -8,11 +8,11 @@ const MainAppBar = () => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     return (
-        <div className={styles.mainAppBar}>
+        <nav className={styles.mainAppBar}>
             <Logo />
             <SearchBar />
             <Account />
-        </div>
+        </nav>
     )
 }
 
