@@ -21,12 +21,19 @@ const Login = () => {
         email: 'user_email33@email.com',
         password: 'user_password',
         formErrors: {
-        email: '',
-        password: ''
-    } })
+            email: '',
+            password: ''
+        },
+        emailValid: false,
+        passwordValid: false,
+        formValid: false
+    })
 
     const handleInputChange = e => {
-        onChange(e.target.value, e.target.name)
+        const name = e.target.name;
+        const value = e.target.value;
+
+        onChange(value, name, () => { validateField(name, value) })
     }
 
     const handleSubmit = e => {
@@ -34,6 +41,29 @@ const Login = () => {
 
         console.log('email, password', form.email, form.password)
         loginCall({ email: form.email, password: form.password }, dispatch, navigate)
+    }
+
+    const validateField = (fieldName, value) => {
+        let fieldValidationErrors = form.formErrors;
+        let emailValid = form.emailValid;
+        let passwordValid = form.passwordValid;
+
+        switch (fieldName) {
+            case 'email':
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+                break;
+            case 'password':
+                passwordValid = value.length >= 6;
+                fieldValidationErrors.password = passwordValid ? '' : ' is too short';
+                break;
+            default:
+                break;
+        }
+
+        onChange(fieldValidationErrors, "formErrors")
+        onChange(emailValid, "emailValid")
+        onChange(passwordValid, "passwordValid")
     }
 
     return (
@@ -74,7 +104,8 @@ const Login = () => {
                                     color="white"
                                     size="20px" />
                                 :
-                                "Log in"}
+                                <button type="submit" className="btn btn-primary" 
+  disabled={!form.formValid}>Sign up</button>}
                         </button>
                         <span className={styles.loginForgot}>
                             Forgot password?
