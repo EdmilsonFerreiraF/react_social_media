@@ -64,6 +64,11 @@ const Login = () => {
         onChange(fieldValidationErrors, "formErrors")
         onChange(emailValid, "emailValid")
         onChange(passwordValid, "passwordValid")
+        onChange(validateForm, "validateForm")
+    }
+
+    const validateForm = () => {
+        onChange(form.emailValid && form.passwordValid, "formValid");
     }
 
     return (
@@ -104,8 +109,9 @@ const Login = () => {
                                     color="white"
                                     size="20px" />
                                 :
-                                <button type="submit" className="btn btn-primary" 
-  disabled={!form.formValid}>Sign up</button>}
+                                <button type="submit" className="btn btn-primary"
+                                    disabled={!form.formValid}>Sign up</button>
+                            }
                         </button>
                         <span className={styles.loginForgot}>
                             Forgot password?
