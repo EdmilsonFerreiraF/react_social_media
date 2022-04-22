@@ -9,6 +9,7 @@ import styles from "./Login.module.css"
 import { useUnprotectPage } from '../../hooks/useUnprotectPage'
 import { useNavigate } from "react-router-dom"
 import { useForm } from "../../hooks/useForm"
+import FormErrors from "../../components/FormErrors/FormErrors";
 
 const Login = () => {
     useUnprotectPage()
@@ -16,7 +17,13 @@ const Login = () => {
 
     const { user, isFetching, error, dispatch } = useContext(AuthContext)
 
-    const { form, onChange } = useForm({ email: 'user_email33@email.com', password: 'user_password' })
+    const { form, onChange } = useForm({
+        email: 'user_email33@email.com',
+        password: 'user_password',
+        formErrors: {
+        email: '',
+        password: ''
+    } })
 
     const handleInputChange = e => {
         onChange(e.target.value, e.target.name)
@@ -81,6 +88,9 @@ const Login = () => {
                                 :
                                 "Create a new account"}
                         </button>
+                        <div className="panel panel-default">
+                            <FormErrors formErrors={form.formErrors} />
+                        </div>
                     </form>
                 </div>
             </div>

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useUnprotectPage } from '../../hooks/useUnprotectPage'
 import { useForm } from "../../hooks/useForm"
 import { sendData } from '../../apiCalls'
+import FormErrors from '../../components/FormErrors/FormErrors'
 
 const Signup = () => {
     useUnprotectPage()
@@ -18,6 +19,12 @@ const Signup = () => {
         email: '',
         password: '',
         passwordAgain: '',
+        formErrors: {
+            username: '',
+            email: '',
+            password: '',
+            passwordAgain: ''
+        }
     })
 
     const navigate = useNavigate()
@@ -100,6 +107,9 @@ const Signup = () => {
                             Log into account
                         </button>
                     </form>
+                    <div className="panel panel-default">
+                        <FormErrors formErrors={form.formErrors} />
+                    </div>
                 </div>
             </div>
         </div>
