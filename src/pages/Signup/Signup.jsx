@@ -30,7 +30,43 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const handleInputChange = e => {
-        onChange(e.target.value, e.target.name)
+        const name = e.target.name;
+        const value = e.target.value;
+
+        onChange(value, name, () => { validateField(name, value) })
+    }
+
+    const validateField = (fieldName, value) => {
+        let fieldValidationErrors = form.formErrors;
+        let usernameValid = form.usernameValid;
+        let emailValid = form.emailValid;
+        let passwordValid = form.passwordValid;
+        let passwordAgainValid = form.passwordAgainValid;
+
+        switch (fieldName) {
+            case 'username':
+                usernameValid = value.match(/^([\w]{5,15})$/i)
+                fieldValidationErrors.username = usernameValid ? '' : ' is invalid';
+                break;
+            case 'email':
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+                break;
+            case 'password':
+                passwordValid = value.length >= 6;
+                fieldValidationErrors.password = passwordValid ? '' : ' is too short';
+                break;
+            case 'passwordAgain':
+                passwordAgainValid = value.length >= 6;
+                fieldValidationErrors.passwordAgain = passwordAgainValid === passwordValid ? '' : ' passwords doesn\'t match';
+                break;
+            default:
+                break;
+        }
+
+        onChange(fieldValidationErrors, "formErrors")
+        onChange(emailValid, "emailValid")
+        onChange(passwordValid, "passwordValid")
     }
 
     const handleSubmit = async (e) => {

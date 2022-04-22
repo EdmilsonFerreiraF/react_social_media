@@ -44,18 +44,18 @@ const Login = () => {
     }
 
     const validateField = (fieldName, value) => {
-        let fieldValidationErrors = form.formErrors;
-        let emailValid = form.emailValid;
-        let passwordValid = form.passwordValid;
+        let fieldValidationErrors = form.formErrors
+        let emailValid = form.emailValid
+        let passwordValid = form.passwordValid
 
         switch (fieldName) {
             case 'email':
-                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+                fieldValidationErrors.email = emailValid ? '' : ' is invalid'
                 break;
             case 'password':
-                passwordValid = value.length >= 6;
-                fieldValidationErrors.password = passwordValid ? '' : ' is too short';
+                passwordValid = value.length >= 6
+                fieldValidationErrors.password = passwordValid ? '' : ' is too short'
                 break;
             default:
                 break;
