@@ -33,7 +33,10 @@ const Login = () => {
         const name = e.target.name;
         const value = e.target.value;
 
-        onChange(value, name, () => { validateField(name, value) })
+        console.log('name', name)
+        console.log('value', value)
+        onChange(value, name)
+        validateField(value, name)
     }
 
     const handleSubmit = e => {
@@ -43,29 +46,37 @@ const Login = () => {
         loginCall({ email: form.email, password: form.password }, dispatch, navigate)
     }
 
-    const validateField = (fieldName, value) => {
-        let fieldValidationErrors = form.formErrors
+    const validateField = (value, name) => {
+        let formErrors = {...form.formErrors}
         let emailValid = form.emailValid
         let passwordValid = form.passwordValid
 
-        switch (fieldName) {
+        switch (name) {
             case 'email':
                 emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-                fieldValidationErrors.email = emailValid ? '' : ' is invalid'
-                break;
+                formErrors.email = emailValid ? '' : ' is invalid'
+                console.log(!!emailValid, "emailValid")
+                onChange(!!emailValid, "emailValid")
+                break
             case 'password':
                 passwordValid = value.length >= 6
-                fieldValidationErrors.password = passwordValid ? '' : ' is too short'
-                break;
+                formErrors.password = passwordValid ? '' : ' is too short'
+                console.log(passwordValid, "passwordValid")
+                onChange(passwordValid, "passwordValid")
+                break
             default:
-                break;
+                break
         }
 
-        onChange(fieldValidationErrors, "formErrors")
-        onChange(emailValid, "emailValid")
-        onChange(passwordValid, "passwordValid")
-        onChange(validateForm, "validateForm")
+        onChange(formErrors, "formErrors")
+        console.log('formErrors', formErrors)
+        console.log(`${name}Valid`, value)
+        validateForm()
     }
+
+    console.log('emailValid', form.emailValid)
+    console.log('passwordValid', form.passwordValid)
+    console.log('formValid', form.formValid)
 
     const validateForm = () => {
         onChange(form.emailValid && form.passwordValid, "formValid");
@@ -91,26 +102,26 @@ const Login = () => {
                             placeholder="Email"
                             required
                             value={form.email}
-                            onChange={handleInputChange}
+                            handleInputChange={handleInputChange}
                             minLength="6" />
                         <Input
                             name="password"
                             type="password"
                             placeholder="Password"
-                            required value={form.password}
-                            onChange={handleInputChange} />
+                            required
+                            value={form.password}
+                            handleInputChange={handleInputChange} />
 
                         <button className={styles.loginButton}
                             type="submit"
-                            disabled={isFetching}>
+                            disabled={isFetching && !form.formValid}>
                             {isFetching
                                 ?
                                 <CircularProgress
                                     color="white"
                                     size="20px" />
                                 :
-                                <button type="submit" className="btn btn-primary"
-                                    disabled={!form.formValid}>Sign up</button>
+                                "Login"
                             }
                         </button>
                         <span className={styles.loginForgot}>
