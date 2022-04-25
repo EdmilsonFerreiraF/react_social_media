@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from 'react-router-dom';
 
-import { goToLogin } from '../routes/coordinator';
+import { goToLogin } from 'routes/coordinator';
 
 export const useProtectPage = () => {
     const navigate = useNavigate()

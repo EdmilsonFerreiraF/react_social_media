@@ -4,9 +4,9 @@ import CreatePost from '../CreatePost/CreatePost'
 import Post from '../Post/Post'
 
 import styles from "./Feed.module.css"
-import { baseUrl } from '../../constants/baseUrl'
-import { AuthContext } from '../../context/AuthContext'
-import { useRequestData } from '../../hooks/useRequestData'
+import { baseUrl } from 'constants/baseUrl'
+import { AuthContext } from 'context/AuthContext'
+import { useRequestData } from 'hooks/useRequestData'
 
 const Feed = ({ otherUserId }) => {
     const { user } = useContext(AuthContext)

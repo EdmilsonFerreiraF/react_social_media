@@ -1,19 +1,19 @@
-import MainAppBar from '../../components/MainAppBar/MainAppBar'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import Feed from '../../components/Feed/Feed'
-import MessagesBar from '../../components/MessagesBar/MessagesBar'
-import { useProtectPage } from '../../hooks/useProtectPage'
+import MainAppBar from 'components/MainAppBar/MainAppBar'
+import Sidebar from 'components/Sidebar/Sidebar'
+import Feed from 'components/Feed/Feed'
+import MessagesBar from 'components/MessagesBar/MessagesBar'
+import { useProtectPage } from 'hooks/useProtectPage'
 
 import styles from "./Home.module.css"
 import { useContext } from "react";
 
 import { useEffect, useState } from 'react'
 
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from 'context/AuthContext'
 
 import axios from 'axios'
 
-import { baseUrl } from '../../constants/baseUrl'
+import { baseUrl } from 'constants/baseUrl'
 import { useErrorHandler } from 'react-error-boundary'
 
 

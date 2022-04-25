@@ -1,15 +1,15 @@
 import { useCallback, useContext, useEffect } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 
-import Input from '../../components/Input/Input'
-import { loginCall } from "../../apiCalls"
-import { AuthContext } from "../../context/AuthContext"
+import Input from 'components/Input/Input'
+import { loginCall } from "apiCalls"
+import { AuthContext } from "context/AuthContext"
 
 import styles from "./Login.module.css"
-import { useUnprotectPage } from '../../hooks/useUnprotectPage'
+import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useNavigate } from "react-router-dom"
-import { useForm } from "../../hooks/useForm"
-import FormErrors from "../../components/FormErrors/FormErrors";
+import { useForm } from "hooks/useForm"
+import FormErrors from "components/FormErrors/FormErrors";
 
 const Login = () => {
     useUnprotectPage()

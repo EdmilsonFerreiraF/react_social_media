@@ -3,20 +3,20 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { getStorage, getDownloadURL, ref } from "firebase/storage";
 
-import MainAppBar from '../../components/MainAppBar/MainAppBar'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import Feed from '../../components/Feed/Feed'
-import MessagesBar from '../../components/MessagesBar/MessagesBar'
-import { baseUrl } from '../../constants/baseUrl'
+import MainAppBar from 'components/MainAppBar/MainAppBar'
+import Sidebar from 'components/Sidebar/Sidebar'
+import Feed from 'components/Feed/Feed'
+import MessagesBar from 'components/MessagesBar/MessagesBar'
+import { baseUrl } from 'constants/baseUrl'
 import { v4 } from 'uuid'
-import { useProtectPage } from '../../hooks/useProtectPage'
+import { useProtectPage } from 'hooks/useProtectPage'
 
 import styles from "./Profile.module.css"
-import { useRequestImage } from "../../hooks/useRequestImage"
-import { useRequestData } from '../../hooks/useRequestData';
+import { useRequestImage } from "hooks/useRequestImage"
+import { useRequestData } from 'hooks/useRequestData';
 import { useContext } from 'react'
 
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from 'context/AuthContext'
 import { useErrorHandler } from 'react-error-boundary'
 
 const Profile = () => {

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router"
 import styles from "./FollowingItem.module.css"
 
-import { useRequestImage } from "../../../hooks/useRequestImage";
+import { useRequestImage } from "hooks/useRequestImage";
 
 const FollowingItem = ({ friend }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER

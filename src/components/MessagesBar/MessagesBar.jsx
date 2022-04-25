@@ -3,8 +3,8 @@ import FriendList from "./FriendList/FriendList"
 import InfoList from "./InfoList/InfoList"
 
 import styles from "./MessagesBar.module.css"
-import { baseUrl } from "../../constants/baseUrl"
-import { useRequestData } from "../../hooks/useRequestData"
+import { baseUrl } from "constants/baseUrl"
+import { useRequestData } from "hooks/useRequestData"
 
 const MessagesBar = ({ user }) => {
     const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER

@@ -1,6 +1,6 @@
 import FriendItem from "../FriendItem/FriendItem"
 
-import { Users } from "../../../dummyData"
+import { Users } from "dummyData"
 
 import styles from "./FriendList.module.css"
 

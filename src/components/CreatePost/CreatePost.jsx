@@ -1,13 +1,13 @@
 import TypeList from "./TypeList/TypeList"
-import { AuthContext } from "../../context/AuthContext"
+import { AuthContext } from "context/AuthContext"
 import { useContext } from "react"
 
 import styles from "./CreatePost.module.css"
 
-import { baseUrl } from "../../constants/baseUrl"
-import { useRequestImage } from '../../hooks/useRequestImage'
-import { sendData, uploadPostPic } from '../../apiCalls'
-import { useForm } from "../../hooks/useForm"
+import { baseUrl } from "constants/baseUrl"
+import { useRequestImage } from 'hooks/useRequestImage'
+import { sendData, uploadPostPic } from 'apiCalls'
+import { useForm } from "hooks/useForm"
 import { v4 } from 'uuid'
 
 const CreatePost = () => {

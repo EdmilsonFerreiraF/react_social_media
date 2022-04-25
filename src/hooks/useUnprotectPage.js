@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { goToIndex } from '../routes/coordinator';
+import { goToIndex } from 'routes/coordinator';
 
 export const useUnprotectPage = () => {
     const navigate = useNavigate()

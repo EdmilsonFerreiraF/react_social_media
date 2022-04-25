@@ -1,15 +1,15 @@
 import { createRef } from 'react'
 import axios from 'axios'
 
-import Input from '../../components/Input/Input'
-import { baseUrl } from '../../constants/baseUrl'
+import Input from 'components/Input/Input'
+import { baseUrl } from 'constants/baseUrl'
 
 import styles from "./Signup.module.css"
 import { useNavigate } from 'react-router-dom'
-import { useUnprotectPage } from '../../hooks/useUnprotectPage'
-import { useForm } from "../../hooks/useForm"
-import { sendData } from '../../apiCalls'
-import FormErrors from '../../components/FormErrors/FormErrors'
+import { useUnprotectPage } from 'hooks/useUnprotectPage'
+import { useForm } from "hooks/useForm"
+import { sendData } from 'apiCalls'
+import FormErrors from 'components/FormErrors/FormErrors'
 
 const Signup = () => {
     useUnprotectPage()

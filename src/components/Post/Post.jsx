@@ -4,12 +4,12 @@ import axios from 'axios'
 import { format } from 'timeago.js'
 import { Link } from 'react-router-dom'
 import styles from "./Post.module.css"
-import { baseUrl } from "../../constants/baseUrl"
-import { AuthContext } from "../../context/AuthContext"
-import { useRequestImage } from "../../hooks/useRequestImage"
-import { useRequestData } from "../../hooks/useRequestData"
-import { useForm } from "../../hooks/useForm"
-import { sendData } from '../../apiCalls'
+import { baseUrl } from "constants/baseUrl"
+import { AuthContext } from "context/AuthContext"
+import { useRequestImage } from "hooks/useRequestImage"
+import { useRequestData } from "hooks/useRequestData"
+import { useForm } from "hooks/useForm"
+import { sendData } from 'apiCalls'
 
 const Post = ({ post }) => {
     const { form, onChange } = useForm({ likes: post?.likes.length, isLiked: false })

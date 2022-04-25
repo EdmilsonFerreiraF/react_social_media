@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router"
 import { useContext } from "react";
 
-import { AuthContext } from "../../../../context/AuthContext"
-import { useRequestImage } from "../../../../hooks/useRequestImage";
+import { AuthContext } from "context/AuthContext"
+import { useRequestImage } from "hooks/useRequestImage";
 
 import styles from "./Profile.module.css"
 

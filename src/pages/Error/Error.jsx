@@ -1,4 +1,4 @@
-import { goToIndex } from '../../routes/coordinator'
+import { goToIndex } from 'routes/coordinator'
 import styles from './Error.module.css'
 
 const Error = () => {

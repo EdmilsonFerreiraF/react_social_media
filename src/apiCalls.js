@@ -1,8 +1,8 @@
 import axios from "axios"
 import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-import { baseUrl } from './constants/baseUrl'
-import { goToIndex } from './routes/coordinator'
+import { baseUrl } from 'constants/baseUrl'
+import { goToIndex } from 'routes/coordinator'
 
 export const loginCall = async (userCredential, dispatch, navigate) => {
     dispatch({ type: "LOGIN_START" })
