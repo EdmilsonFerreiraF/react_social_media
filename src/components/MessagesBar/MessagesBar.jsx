@@ -5,10 +5,10 @@ import InfoList from "./InfoList/InfoList"
 import styles from "./MessagesBar.module.css"
 import { baseUrl } from "constants/baseUrl"
 import { useRequestData } from "hooks/useRequestData"
+import giftImg from 'img/gift.png'
+import adImg from 'img/ad.png'
 
 const MessagesBar = ({ user }) => {
-    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
-
     const token = localStorage.getItem("token")
 
     const friends = useRequestData(user?.id && `${baseUrl}/user/${user?.id}/friends`, [])
@@ -18,7 +18,7 @@ const MessagesBar = ({ user }) => {
             <aside aria-labelledby="messages-bar">
                 <div className={styles.birthdayContainer}>
                     <img className={styles.birthdayImg}
-                        src={`${publicFolder}/gift.png`}
+                        src={giftImg}
                         alt="" />
                     <span className={styles.birthdayText}>
                         <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today.
@@ -26,7 +26,7 @@ const MessagesBar = ({ user }) => {
                 </div>
                 <div className={styles.birthdayAd}>
                     <img className={styles.messagesBarAd}
-                        src={`${publicFolder}/ad.png`}
+                        src={adImg}
                         alt="" />
                 </div>
                 <h4 className={styles.messagesBarTitle}>

@@ -18,6 +18,8 @@ import { useContext } from 'react'
 
 import { AuthContext } from 'context/AuthContext'
 import { useErrorHandler } from 'react-error-boundary'
+import noCoverImg from 'img/person/no_cover.jpg'
+import noProfileImg from 'img/person/no_person.jpg'
 
 const Profile = () => {
   useProtectPage()
@@ -25,9 +27,6 @@ const Profile = () => {
 
   const username = useParams().username
   const imgId = v4()
-  console.log('username', username)
-
-  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
   const { user: currUser, dispatch } = useContext(AuthContext)
 
@@ -80,13 +79,13 @@ const Profile = () => {
               <img
                 src={coverPicture
                   ??
-                  `${publicFolder}/person/no_cover.jpg`}
+                  noCoverImg}
                 className={styles.profileCoverImg}
                 alt="Post content" />
               <img className={styles.profileUserImg}
                 src={profilePicture
                   ??
-                  `${publicFolder}/person/no_person.jpg`}
+                  noProfileImg}
                 alt="User profile" />
             </div>
             <div className={styles.profileInfo}>

@@ -5,8 +5,6 @@ import Account from "./Account/Account"
 import styles from "./MainAppBar.module.css"
 
 const MainAppBar = () => {
-    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
-
     return (
         <nav className={styles.mainAppBar}>
             <Logo />

@@ -9,10 +9,9 @@ import { useRequestImage } from 'hooks/useRequestImage'
 import { sendData, uploadPostPic } from 'apiCalls'
 import { useForm } from "hooks/useForm"
 import { v4 } from 'uuid'
+import noProfilePicture from 'img/person/no_person.jpg'
 
 const CreatePost = () => {
-    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
-
     const { user } = useContext(AuthContext)
 
     const { form, onChange } = useForm({ description: '', file: '' })
@@ -47,7 +46,7 @@ const CreatePost = () => {
                     <img className={styles.profileImg}
                         id="profileImg"
                         src={
-                            profilePicture ?? `${publicFolder}/person/no_avatar.jpg`
+                            profilePicture ?? noProfilePicture
                         }
                         alt="User profile" />
                     <input placeholder={`What's in your mind ${user?.username}?`}

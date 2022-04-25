@@ -10,11 +10,13 @@ import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from "hooks/useRequestData"
 import { useForm } from "hooks/useForm"
 import { sendData } from 'apiCalls'
+import noProfilePicture from 'img/person/no_person.jpg'
+import noPostPicture from 'img/post/1.jpeg'
+import likeImg from 'img/like.png'
+import heartImg from 'img/heart.png'
 
 const Post = ({ post }) => {
     const { form, onChange } = useForm({ likes: post?.likes.length, isLiked: false })
-
-    const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER
 
     const { user: currentUser } = useContext(AuthContext)
 
@@ -47,7 +49,7 @@ const Post = ({ post }) => {
                         <Link to={`profile/${user.username}`}>
                             <img src={profilePicture
                                 ??
-                                `${publicFolder}/person/no_person.jpg`}
+                                noProfilePicture}
                                 className={styles.postProfileImg}
                                 alt="Post user profile" />
                         </Link>
@@ -67,17 +69,17 @@ const Post = ({ post }) => {
                         {post?.description}
                     </span>
                     <img className={styles.postContentImg}
-                        src={postPicture ?? `${publicFolder}/post/1.jpeg`}
+                        src={postPicture ?? noPostPicture}
                         alt="Post content" />
                 </div>
                 <div className={styles.postBotbar}>
                     <div className={styles.postReactionList}>
                         <img className={styles.postReactionItem}
-                            src={`${publicFolder}/like.png`}
+                            src={likeImg}
                             onClick={likeHandler}
                             alt="Post user profile" />
                         <img className={styles.postReactionItem}
-                            src={`${publicFolder}/heart.png`}
+                            src={heartImg}
                             onClick={likeHandler}
                             alt="Post user profile" />
                         <span className={styles.postLikeCounter}>
