@@ -33,7 +33,8 @@ const Signup = () => {
         const name = e.target.name;
         const value = e.target.value;
 
-        onChange(value, name, () => { validateField(name, value) })
+        onChange(value, name)
+        validateField(name, value)
     }
 
     const validateField = (fieldName, value) => {
@@ -50,7 +51,7 @@ const Signup = () => {
                 break;
             case 'email':
                 emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+                fieldValidationErrors.email = emailValid.length ? '' : ' is invalid';
                 break;
             case 'password':
                 passwordValid = value.length >= 6;

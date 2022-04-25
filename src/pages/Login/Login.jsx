@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useCallback, useContext, useEffect } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 
 import Input from '../../components/Input/Input'
@@ -33,8 +33,6 @@ const Login = () => {
         const name = e.target.name;
         const value = e.target.value;
 
-        console.log('name', name)
-        console.log('value', value)
         onChange(value, name)
         validateField(value, name)
     }
@@ -42,41 +40,57 @@ const Login = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-        console.log('email, password', form.email, form.password)
         loginCall({ email: form.email, password: form.password }, dispatch, navigate)
     }
 
+    let formErrors =  {
+        email: '',
+        password: ''
+    }
+    let emailValid = false
+    let passwordValid = false
+
+    
+    useCallback(() => {
+       onChange(formErrors, "formErrors") 
+       onChange(emailValid, "emailValid") 
+       onChange(passwordValid, "passwordValid") 
+
+       console.log(formErrors, 'formErrors')
+console.log(emailValid, 'emailValid')
+console.log(passwordValid, 'passwordValid')
+    }, [formErrors,
+        emailValid,
+        passwordValid])
+
     const validateField = (value, name) => {
-        let formErrors = {...form.formErrors}
-        let emailValid = form.emailValid
-        let passwordValid = form.passwordValid
+
 
         switch (name) {
             case 'email':
                 emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
                 formErrors.email = emailValid ? '' : ' is invalid'
-                console.log(!!emailValid, "emailValid")
-                onChange(!!emailValid, "emailValid")
+
+                // onChange(!!emailValid, "emailValid")
                 break
             case 'password':
                 passwordValid = value.length >= 6
                 formErrors.password = passwordValid ? '' : ' is too short'
-                console.log(passwordValid, "passwordValid")
-                onChange(passwordValid, "passwordValid")
+                // onChange(passwordValid, "passwordValid")
                 break
             default:
                 break
         }
 
-        onChange(formErrors, "formErrors")
-        console.log('formErrors', formErrors)
-        console.log(`${name}Valid`, value)
-        validateForm()
+        // onChange(formErrors, "formErrors")
+        // onChange({
+        //     email: ' is invalid',
+        //     password: ' is too short',
+        // }, "formErrors")
+        // console.log('formErrors', formErrors)
+        // console.log(`${name}Valid`, value)
+        // validateForm()
     }
-
-    console.log('emailValid', form.emailValid)
-    console.log('passwordValid', form.passwordValid)
-    console.log('formValid', form.formValid)
 
     const validateForm = () => {
         onChange(form.emailValid && form.passwordValid, "formValid");
@@ -114,7 +128,7 @@ const Login = () => {
 
                         <button className={styles.loginButton}
                             type="submit"
-                            disabled={isFetching && !form.formValid}>
+                            disabled={isFetching || !form.formValid}>
                             {isFetching
                                 ?
                                 <CircularProgress
