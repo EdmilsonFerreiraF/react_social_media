@@ -170,6 +170,7 @@ const Signup = () => {
                 <div className={styles.signupRight}>
                     <form className={styles.signupBox} onSubmit={handleSubmit}>
                         <Input
+                            className={form.formErrors.username.length ? 'input--invalid' : ''}
                             name="username"
                             type="text"
                             placeholder="Username"
@@ -177,6 +178,7 @@ const Signup = () => {
                             value={form.username}
                             handleInputChange={handleInputChange} />
                         <Input
+                            className={form.formErrors.email.length ? 'input--invalid' : ''}
                             name="email"
                             type="email"
                             placeholder="Email"
@@ -184,6 +186,7 @@ const Signup = () => {
                             value={form.email}
                             handleInputChange={handleInputChange} />
                         <Input
+                            className={form.formErrors.password.length ? 'input--invalid' : ''}
                             name="password"
                             type="password"
                             placeholder="Password"
@@ -192,6 +195,7 @@ const Signup = () => {
                             value={form.password}
                             handleInputChange={handleInputChange} />
                         <Input
+                            className={form.formErrors.passwordAgain.length ? 'input--invalid' : ''}
                             name="passwordAgain"
                             type="password"
                             placeholder="Password again"
