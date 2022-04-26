@@ -38,7 +38,6 @@
 }
 
 .signupBox {
-    height: 400px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -68,6 +67,7 @@
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .signupForgot {
