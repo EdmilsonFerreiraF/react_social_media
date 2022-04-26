@@ -87,3 +87,25 @@
     font-weight: 500;
     cursor: pointer;
 }
+
+@media (max-width: 1100px) {
+    .signupWrapper {
+        flex-direction: column;
+        max-width: 500px;
+    }
+    
+    .signupLeft {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 550px) {
+    .signupWrapper {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .signupLeft {
+        margin-bottom: 20px;
+    }
+}
