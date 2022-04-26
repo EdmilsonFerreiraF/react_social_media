@@ -34,102 +34,52 @@ const Login = () => {
         const name = e.target.name;
         const value = e.target.value;
 
-        // validateField(value, name)
         onChange(value, name)
     }
 
     const handleSubmit = e => {
         e.preventDefault()
 
+        
         loginCall({ email: form.email, password: form.password }, dispatch, navigate)
     }
 
-
-
     useEffect(() => {
-        let formErrors = {
-            email: '',
-            password: ''
-        }
         let emailValid
 
         emailValid = form.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-        console.log('emailValid', emailValid)
 
-        // if (emailValid) {
         onChange(!!emailValid, "emailValid")
-        // }
         console.log('form.emailValid', form.emailValid)
     }, [form.email])
 
     useEffect(() => {
-
         let passwordValid
 
         passwordValid = form.password.length >= 6
 
-        // if (passwordValid) {
         onChange(passwordValid, "passwordValid")
-        // }
-
-    }, [
-        form.password])
+    }, [form.password])
 
     useEffect(() => {
         let formErrors = {
             email: '',
             password: ''
         }
-        console.log('form.emailValid', form.emailValid)
-        console.log(form.formErrors, "formErrors")
-        // validateForm()
+
         formErrors.email = form.emailValid ? '' : ' is invalid'
         formErrors.password = form.passwordValid ? '' : ' is too short'
-        onChange(formErrors, "formErrors")
 
-        console.log(formErrors, 'formErrors')
+        onChange(formErrors, "formErrors")
     }, [form.emailValid, form.passwordValid])
-
-    console.log(form.emailValid, 'form.emailValid')
-    console.log(form.passwordValid, 'form.passwordValid')
-    const validateField = (value, name) => {
-        let formErrors = {
-            email: '',
-            password: ''
-        }
-        let emailValid = false
-        let passwordValid = false
-
-        switch (name) {
-            case 'email':
-                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-                formErrors.email = emailValid ? '' : ' is invalid'
-
-                onChange(!!emailValid, "emailValid")
-                break
-            case 'password':
-                passwordValid = value.length >= 6
-                formErrors.password = passwordValid ? '' : ' is too short'
-                onChange(passwordValid, "passwordValid")
-                break
-            default:
-                break
-        }
-
-        console.log('form.emailValid', form.emailValid)
-        onChange(formErrors, "formErrors")
-        validateForm()
-    }
 
     const handleRegisterButton = () => {
         goToSignup(navigate)
     }
 
-    console.log(form.formErrors, "formErrors")
-
-    const validateForm = () => {
-        onChange(form.emailValid && form.passwordValid, "formValid");
-    }
+    // const validateForm = () => {
+    //     onChange(form.emailValid && form.passwordValid, "formValid");
+    // }
 
     return (
         <div className={styles.login}>

@@ -1,4 +1,4 @@
-import { createRef } from 'react'
+import { createRef, useEffect } from 'react'
 import axios from 'axios'
 
 import Input from 'components/Input/Input'
@@ -19,6 +19,10 @@ const Signup = () => {
         email: '',
         password: '',
         passwordAgain: '',
+        usernameValid: false,
+        emailValid: false,
+        passwordValid: false,
+        passwordAgainValid: false,
         formErrors: {
             username: '',
             email: '',
@@ -34,7 +38,6 @@ const Signup = () => {
         const value = e.target.value;
 
         onChange(value, name)
-        validateField(name, value)
     }
 
     const validateField = (fieldName, value) => {
@@ -69,6 +72,66 @@ const Signup = () => {
         onChange(emailValid, "emailValid")
         onChange(passwordValid, "passwordValid")
     }
+
+    useEffect(() => {
+        let username = form.username;
+        let usernameValid;
+
+        usernameValid = username.match(/^([\w]{5,15})$/i)
+        onChange(usernameValid, "usernameValid")
+
+        console.log('form.emailValid', form.emailValid)
+    }, [form.username])
+
+    useEffect(() => {
+        let email = form.email;
+        let emailValid
+
+        emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+
+        onChange(emailValid, "emailValid")
+    }, [form.email])
+
+    useEffect(() => {
+        let password = form.password;
+        let passwordValid
+
+        passwordValid = password.length >= 6;
+
+        onChange(passwordValid, "passwordValid")
+    }, [form.password])
+
+    useEffect(() => {
+        let password = form.password;
+        let passwordAgain = form.passwordAgain;
+        let passwordAgainValid
+
+        passwordAgainValid = passwordAgain === password
+
+        onChange(passwordAgainValid, "passwordAgainValid")
+    }, [form.passwordAgain, form.passwordAgain])
+
+    useEffect(() => {
+        let usernameValid = form.usernameValid
+        let emailValid = form.emailValid
+        let passwordValid = form.passwordValid
+        let passwordAgainValid = form.passwordAgainValid
+
+        let formErrors = form.formErrors;
+
+        formErrors.username = usernameValid ? '' : ' is invalid';
+        formErrors.email = emailValid ? '' : ' is invalid';
+        formErrors.password = passwordValid ? '' : ' is too short';
+        formErrors.passwordAgain = passwordAgainValid === passwordValid ? '' : ' passwords don\'t match';
+
+        onChange(formErrors, "formErrors")
+    }, [
+        form.usernameValid,
+        form.emailValid,
+        form.passwordValid,
+        form.passwordAgainValid,
+        form.formErrors
+    ])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -107,19 +170,19 @@ const Signup = () => {
                 <div className={styles.signupRight}>
                     <form className={styles.signupBox} onSubmit={handleSubmit}>
                         <Input
-                            name="text"
+                            name="username"
                             type="text"
                             placeholder="Username"
                             required
                             value={form.username}
-                            onChange={handleInputChange} />
+                            handleInputChange={handleInputChange} />
                         <Input
                             name="email"
                             type="email"
                             placeholder="Email"
                             required
                             value={form.email}
-                            onChange={handleInputChange} />
+                            handleInputChange={handleInputChange} />
                         <Input
                             name="password"
                             type="password"
@@ -127,15 +190,17 @@ const Signup = () => {
                             required
                             minLength="6"
                             value={form.password}
-                            onChange={handleInputChange} />
+                            handleInputChange={handleInputChange} />
                         <Input
-                            name="password"
+                            name="passwordAgain"
                             type="password"
                             placeholder="Password again"
                             required
                             value={form.passwordAgain}
-                            onChange={handleInputChange} />
-
+                            handleInputChange={handleInputChange} />
+                        <div className="panel panel-default">
+                            <FormErrors formErrors={form.formErrors} />
+                        </div>
                         <button className={styles.signupButton}
                             type="submit">
                             Sign up
@@ -144,9 +209,6 @@ const Signup = () => {
                             Log into account
                         </button>
                     </form>
-                    <div className="panel panel-default">
-                        <FormErrors formErrors={form.formErrors} />
-                    </div>
                 </div>
             </div>
         </div>
