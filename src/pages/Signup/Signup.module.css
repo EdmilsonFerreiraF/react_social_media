@@ -108,4 +108,16 @@
     .signupLeft {
         margin-bottom: 20px;
     }
+
+    .signupLogo {
+        font-size: 44px;
+    }
+
+    .signupDesc {
+        font-size: 20px;
+    }
+
+    .signupButton, .signupRegisterButton {
+        font-size: 18px;
+    }
 }
