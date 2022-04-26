@@ -10,6 +10,7 @@ import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useNavigate } from "react-router-dom"
 import { useForm } from "hooks/useForm"
 import FormErrors from "components/FormErrors/FormErrors";
+import { goToSignup } from "routes/coordinator";
 
 const Login = () => {
     useUnprotectPage()
@@ -120,6 +121,10 @@ const Login = () => {
         validateForm()
     }
 
+    const handleRegisterButton = () => {
+        goToSignup(navigate)
+    }
+
     console.log(form.formErrors, "formErrors")
 
     const validateForm = () => {
@@ -177,7 +182,7 @@ const Login = () => {
                         <span className={styles.loginForgot}>
                             Forgot password?
                         </span>
-                        <button className={styles.loginRegisterButton}>
+                        <button onClick={handleRegisterButton} className={styles.loginRegisterButton}>
                             {isFetching
                                 ?
                                 <CircularProgress
