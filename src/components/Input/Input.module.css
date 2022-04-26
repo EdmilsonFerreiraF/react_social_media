@@ -5,3 +5,11 @@
     font-size: 18px;
     padding-left: 20px;
 }
+
+.input--invalid {
+    border: 1px solid #b30000;
+}
+
+.input--invalid:focus-visible {
+    outline: #b30000 auto 1px;
+}

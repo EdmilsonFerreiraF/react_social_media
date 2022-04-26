@@ -3,7 +3,7 @@ import styles from "./Input.module.css"
 
 const Input = props => {
     return (
-      <input className={styles.input}
+      <input className={`${styles.input} ${styles[props.className] ?? ''}`}
             type={props.type}
             name={props.name}
             onChange={props.handleInputChange}

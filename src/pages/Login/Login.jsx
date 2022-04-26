@@ -142,20 +142,26 @@ const Login = () => {
                         onSubmit={handleSubmit}>
                         <Input
                             name="email"
+                            className={form.formErrors.email.length ? 'input--invalid' : ''}
                             type="email"
                             placeholder="Email"
                             required
                             value={form.email}
                             handleInputChange={handleInputChange}
-                            minLength="6" />
+                            minLength="6"
+                            />
                         <Input
+                            className={form.formErrors.password.length ? 'input--invalid' : ''}
                             name="password"
                             type="password"
                             placeholder="Password"
                             required
                             value={form.password}
-                            handleInputChange={handleInputChange} />
-
+                            handleInputChange={handleInputChange}
+                            />
+                        <div className="panel panel-default">
+                            <FormErrors formErrors={form.formErrors} />
+                        </div>
                         <button className={styles.loginButton}
                             type="submit"
                             disabled={isFetching}>
@@ -180,9 +186,6 @@ const Login = () => {
                                 :
                                 "Create a new account"}
                         </button>
-                        <div className="panel panel-default">
-                            <FormErrors formErrors={form.formErrors} />
-                        </div>
                     </form>
                 </div>
             </div>
