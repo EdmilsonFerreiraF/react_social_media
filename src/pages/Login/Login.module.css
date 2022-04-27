@@ -9,7 +9,6 @@
 
 .loginWrapper {
     width: 70%;
-    height: 70%;
     display: flex;
     justify-content: space-between;
 }
@@ -38,7 +37,6 @@
 }
 
 .loginBox {
-    height: 300px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -82,6 +80,7 @@
 .loginForgot {
     text-align: center;
     color: #1775ee;
+    margin: 15px 0 15px 0;
 }
 
 .loginRegisterButton {
@@ -116,7 +115,7 @@
     }
     
     .loginLeft {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .loginLogo {
