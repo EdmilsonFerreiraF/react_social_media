@@ -31,13 +31,6 @@ const Signup = () => {
         }
     })
 
-    const formValidation = {
-        usernameValid: form.usernameValid,
-        emailValid: form.emailValid,
-        passwordValid: form.passwordValid,
-        passwordAgainValid: form.passwordAgainValid,
-    }
-
     const navigate = useNavigate()
 
     const handleInputChange = e => {
@@ -78,6 +71,13 @@ const Signup = () => {
     }, [form.passwordAgain, form.passwordAgain])
 
     useEffect(() => {
+        const formValidation = {
+            usernameValid: form.usernameValid,
+            emailValid: form.emailValid,
+            passwordValid: form.passwordValid,
+            passwordAgainValid: form.passwordAgainValid,
+        }
+
         let formErrors = form.formErrors;
 
         formErrors.username = formValidation.usernameValid ? '' : ' is invalid';
@@ -87,7 +87,10 @@ const Signup = () => {
 
         onChange(formErrors, "formErrors")
     }, [
-        formValidation,
+        form.usernameValid,
+        form.emailValid,
+        form.passwordValid,
+        form.passwordAgainValid,
         form.formErrors
     ])
 

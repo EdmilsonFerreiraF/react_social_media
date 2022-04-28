@@ -28,7 +28,7 @@ const Post = ({ post }) => {
 
     const user = useRequestData(`${baseUrl}/user/${post?.userId}`, {})
 
-    const postPicture = useRequestImage("posts", post?.image)
+    const postPicture = useRequestImage("post", post?.image)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
 
     const likeHandler = async () => {

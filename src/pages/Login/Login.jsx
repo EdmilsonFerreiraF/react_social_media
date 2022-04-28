@@ -67,11 +67,11 @@ const Login = () => {
             password: ''
         }
 
-        formErrors.email = formValidation.emailValid ? '' : ' is invalid'
-        formErrors.password = formValidation.passwordValid ? '' : ' is too short'
+        formErrors.email = form.emailValid ? '' : ' is invalid'
+        formErrors.password = form.passwordValid ? '' : ' is too short'
 
         onChange(formErrors, "formErrors")
-    }, [formValidation])
+    }, [form.emailValid, form.passwordValid])
 
     const handleRegisterButton = () => {
         goToSignup(navigate)

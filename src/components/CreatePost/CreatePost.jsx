@@ -26,7 +26,7 @@ const CreatePost = () => {
         const newPost = {
             userId: user?._id,
             description: form.description,
-            image: "post/" + imgId
+            image: imgId
         }
 
         uploadPostPic(user, form)
