@@ -11,16 +11,30 @@ import { useRequestData } from 'hooks/useRequestData'
 const Feed = ({ otherUserId }) => {
     const { user } = useContext(AuthContext)
 
-    const posts = useRequestData(otherUserId ? `${baseUrl}/post/profile/${otherUserId}` : user && `${baseUrl}/post/timeline/${user?.id}`, [])
+    const getPosts = useRequestData(
+        otherUserId
+        ?
+        `${baseUrl}/post/profile/${otherUserId}`
+        :
+        user &&
+        `${baseUrl}/post/timeline/${user?.id}`, []
+    )
 
-    console.log('posts', posts)
+    const posts = getPosts.length
+        ?
+        getPosts.map(post => (
+            <Post key={post?._id} post={post} />
+        ))
+        :
+        null
+
+    const createPost = !otherUserId && <CreatePost />
+
     return (
         <main className={styles.feedContainer}>
             <div className={styles.feed}>
-                { !otherUserId && <CreatePost /> }
-                {posts.length && posts?.map(post => (
-                    <Post key={post?._id} post={post} />
-                ))}
+                {createPost}
+                {posts}
             </div>
         </main>
     )
