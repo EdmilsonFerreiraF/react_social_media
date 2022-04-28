@@ -47,7 +47,6 @@
 
 .postContent {
     margin: 20px 0;
-    cursor: pointer;
 }
 
 .postContentImg {
@@ -57,6 +56,7 @@
     object-fit: contain;
     border: 1px solid #e5e5e5;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .postBotbar {
@@ -93,7 +93,7 @@
 
 @media (max-width: 535px) {
     .postUsername {
-    font-size: 14px;
+        font-size: 14px;
     }
 
     .postDate {

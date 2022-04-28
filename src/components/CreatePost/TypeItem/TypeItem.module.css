@@ -5,6 +5,10 @@
     cursor: pointer;
 }
 
+.typeItemTitle {
+    cursor: pointer;
+}
+
 .typeItemIcon {
     font-size: 18px;
     align-items: center;

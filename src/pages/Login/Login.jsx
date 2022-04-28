@@ -30,6 +30,11 @@ const Login = () => {
         formValid: false
     })
 
+    const formValidation = {
+        emailValid: false,
+        passwordValid: false
+    }
+
     const handleInputChange = e => {
         const name = e.target.name;
         const value = e.target.value;
@@ -45,18 +50,14 @@ const Login = () => {
     }
 
     useEffect(() => {
-        let emailValid
-
-        emailValid = form.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+        let emailValid = form.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
 
         onChange(!!emailValid, "emailValid")
         console.log('form.emailValid', form.emailValid)
     }, [form.email])
 
     useEffect(() => {
-        let passwordValid
-
-        passwordValid = form.password.length >= 6
+        let passwordValid = form.password.length >= 6
 
         onChange(passwordValid, "passwordValid")
     }, [form.password])
@@ -67,19 +68,15 @@ const Login = () => {
             password: ''
         }
 
-        formErrors.email = form.emailValid ? '' : ' is invalid'
-        formErrors.password = form.passwordValid ? '' : ' is too short'
+        formErrors.email = formValidation.emailValid ? '' : ' is invalid'
+        formErrors.password = formValidation.passwordValid ? '' : ' is too short'
 
         onChange(formErrors, "formErrors")
-    }, [form.emailValid, form.passwordValid])
+    }, [formValidation])
 
     const handleRegisterButton = () => {
         goToSignup(navigate)
     }
-
-    // const validateForm = () => {
-    //     onChange(form.emailValid && form.passwordValid, "formValid");
-    // }
 
     return (
         <div className={styles.login}>

@@ -31,6 +31,13 @@ const Signup = () => {
         }
     })
 
+    const formValidation = {
+        usernameValid: form.usernameValid,
+        emailValid: form.emailValid,
+        passwordValid: form.passwordValid,
+        passwordAgainValid: form.passwordAgainValid,
+    }
+
     const navigate = useNavigate()
 
     const handleInputChange = e => {
@@ -40,44 +47,9 @@ const Signup = () => {
         onChange(value, name)
     }
 
-    const validateField = (fieldName, value) => {
-        let fieldValidationErrors = form.formErrors;
-        let usernameValid = form.usernameValid;
-        let emailValid = form.emailValid;
-        let passwordValid = form.passwordValid;
-        let passwordAgainValid = form.passwordAgainValid;
-
-        switch (fieldName) {
-            case 'username':
-                usernameValid = value.match(/^([\w]{5,15})$/i)
-                fieldValidationErrors.username = usernameValid ? '' : ' is invalid';
-                break;
-            case 'email':
-                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.email = emailValid.length ? '' : ' is invalid';
-                break;
-            case 'password':
-                passwordValid = value.length >= 6;
-                fieldValidationErrors.password = passwordValid ? '' : ' is too short';
-                break;
-            case 'passwordAgain':
-                passwordAgainValid = value.length >= 6;
-                fieldValidationErrors.passwordAgain = passwordAgainValid === passwordValid ? '' : ' passwords doesn\'t match';
-                break;
-            default:
-                break;
-        }
-
-        onChange(fieldValidationErrors, "formErrors")
-        onChange(emailValid, "emailValid")
-        onChange(passwordValid, "passwordValid")
-    }
-
     useEffect(() => {
         let username = form.username;
-        let usernameValid;
-
-        usernameValid = username.match(/^([\w]{5,15})$/i)
+        let usernameValid = username.match(/^([\w]{5,15})$/i)
         onChange(usernameValid, "usernameValid")
 
         console.log('form.emailValid', form.emailValid)
@@ -85,18 +57,14 @@ const Signup = () => {
 
     useEffect(() => {
         let email = form.email;
-        let emailValid
-
-        emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        let emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
 
         onChange(emailValid, "emailValid")
     }, [form.email])
 
     useEffect(() => {
         let password = form.password;
-        let passwordValid
-
-        passwordValid = password.length >= 6;
+        let passwordValid = password.length >= 6;
 
         onChange(passwordValid, "passwordValid")
     }, [form.password])
@@ -104,32 +72,22 @@ const Signup = () => {
     useEffect(() => {
         let password = form.password;
         let passwordAgain = form.passwordAgain;
-        let passwordAgainValid
-
-        passwordAgainValid = passwordAgain === password
+        let passwordAgainValid = passwordAgain === password
 
         onChange(passwordAgainValid, "passwordAgainValid")
     }, [form.passwordAgain, form.passwordAgain])
 
     useEffect(() => {
-        let usernameValid = form.usernameValid
-        let emailValid = form.emailValid
-        let passwordValid = form.passwordValid
-        let passwordAgainValid = form.passwordAgainValid
-
         let formErrors = form.formErrors;
 
-        formErrors.username = usernameValid ? '' : ' is invalid';
-        formErrors.email = emailValid ? '' : ' is invalid';
-        formErrors.password = passwordValid ? '' : ' is too short';
-        formErrors.passwordAgain = passwordAgainValid === passwordValid ? '' : ' passwords don\'t match';
+        formErrors.username = formValidation.usernameValid ? '' : ' is invalid';
+        formErrors.email = formValidation.emailValid ? '' : ' is invalid';
+        formErrors.password = formValidation.passwordValid ? '' : ' is too short';
+        formErrors.passwordAgain = formValidation.passwordAgainValid === formValidation.passwordValid ? '' : ' passwords don\'t match';
 
         onChange(formErrors, "formErrors")
     }, [
-        form.usernameValid,
-        form.emailValid,
-        form.passwordValid,
-        form.passwordAgainValid,
+        formValidation,
         form.formErrors
     ])
 
@@ -151,13 +109,9 @@ const Signup = () => {
             }
 
             const url = `${baseUrl}/user/signup`
-
             const data = user
 
-            // await axios.post(url, user)
-
             signup(url, data)
-            // navigate("/login")
         }
     }
 
