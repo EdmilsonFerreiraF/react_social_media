@@ -119,7 +119,6 @@ const Login = () => {
                             {isFetching
                                 ?
                                 <CircularProgress
-                                    color="white"
                                     size="20px" />
                                 :
                                 "Login"
@@ -132,8 +131,7 @@ const Login = () => {
                             {isFetching
                                 ?
                                 <CircularProgress
-                                    color="white"
-                                    size="20px" />
+                                    size="20" />
                                 :
                                 "Create a new account"}
                         </button>
