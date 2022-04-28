@@ -44,7 +44,6 @@ const Login = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-
         
         loginCall({ email: form.email, password: form.password }, dispatch, navigate)
     }

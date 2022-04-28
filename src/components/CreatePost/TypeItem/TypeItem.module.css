@@ -7,13 +7,14 @@
 
 .typeItemTitle {
     cursor: pointer;
+    display: flex;
 }
 
 .typeItemIcon {
     font-size: 18px;
     align-items: center;
-    margin-right: 10px;
     display: flex;
+    margin: 0 5px 0 10px;
 }
 
 .typeItemText {

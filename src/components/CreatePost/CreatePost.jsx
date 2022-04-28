@@ -21,12 +21,12 @@ const CreatePost = () => {
 
         const imgId = v4()
 
-        const url = `${baseUrl}/posts`
+        const url = `${baseUrl}/post`
 
         const newPost = {
             userId: user?._id,
             description: form.description,
-            image: "posts/" + imgId
+            image: "post/" + imgId
         }
 
         uploadPostPic(user, form)
@@ -50,6 +50,7 @@ const CreatePost = () => {
                         }
                         alt="User profile" />
                     <input placeholder={`What's in your mind ${user?.username}?`}
+                            name="description"
                             className={styles.createPostInput}
                             value={form.description}
                             onChange={inputHandler} />
