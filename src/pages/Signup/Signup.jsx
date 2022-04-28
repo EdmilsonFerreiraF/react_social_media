@@ -133,6 +133,10 @@ const Signup = () => {
         form.formErrors
     ])
 
+    const handleLoginButton = () => {
+        navigate("/login")
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -151,7 +155,6 @@ const Signup = () => {
             const data = user
 
             sendData(url, "post", data)
-
             navigate("/login")
         }
     }
@@ -209,7 +212,7 @@ const Signup = () => {
                             type="submit">
                             Sign up
                         </button>
-                        <button className={styles.signupRegisterButton}>
+                        <button onClick={handleLoginButton} className={styles.signupRegisterButton}>
                             Log into account
                         </button>
                     </form>

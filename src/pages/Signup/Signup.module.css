@@ -12,6 +12,7 @@
     height: 70%;
     display: flex;
     justify-content: space-between;
+    max-width: 1100px;
 }
 
 .signupLeft {
