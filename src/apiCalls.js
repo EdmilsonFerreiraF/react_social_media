@@ -21,23 +21,34 @@ export const loginCall = async (userCredential, dispatch, navigate) => {
     }
 }
 
+export async function signup(url, data) {
+    debugger
+
+    if (url) { 
+      await axios.post(url, data).catch((error) => {
+          console.log(error.message)
+      })
+    }
+}
+
 export async function sendData(url, method, data) {
     const token = localStorage.getItem("token")
+    debugger
 
     console.log('url', url)
     if (url) { 
-      await axios[method](url, data,{
+      await axios[method](url, data, {
           headers: {
             Authorization: token
           }
       }).catch((error) => {
+
           console.log(error.message)
       })
     }
 }
 
 export async function uploadPostPic(user, form, imgId) {
-    
     const storage = getStorage();
     const storageRef = ref(storage, 'posts/' + imgId);
 

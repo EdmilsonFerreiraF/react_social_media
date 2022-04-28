@@ -8,21 +8,21 @@ import styles from "./Signup.module.css"
 import { useNavigate } from 'react-router-dom'
 import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useForm } from "hooks/useForm"
-import { sendData } from 'apiCalls'
+import { sendData, signup } from 'apiCalls'
 import FormErrors from 'components/FormErrors/FormErrors'
 
 const Signup = () => {
     useUnprotectPage()
 
     const { form, onChange } = useForm({
-        username: '',
-        email: '',
-        password: '',
-        passwordAgain: '',
-        usernameValid: false,
-        emailValid: false,
-        passwordValid: false,
-        passwordAgainValid: false,
+        username: 'user_username40',
+        email: 'user_email40@email.com',
+        password: 'user_password',
+        passwordAgain: 'user_password',
+        usernameValid: true,
+        emailValid: true,
+        passwordValid: true,
+        passwordAgainValid: true,
         formErrors: {
             username: '',
             email: '',
@@ -147,15 +147,17 @@ const Signup = () => {
                 username: form.username,
                 email: form.email,
                 password: form.password,
+                isAdmin: false
             }
 
-            // await axios.post(`${baseUrl}/user/signup`, user)
-
             const url = `${baseUrl}/user/signup`
+
             const data = user
 
-            sendData(url, "post", data)
-            navigate("/login")
+            // await axios.post(url, user)
+
+            signup(url, data)
+            // navigate("/login")
         }
     }
 
