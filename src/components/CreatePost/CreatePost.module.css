@@ -58,7 +58,7 @@
     color: white;
 }
 
-@media (max-width: 535px) {
+@media (max-width: 600px) {
     .createPost {
         margin: 20px 0 12px;
         height: auto;

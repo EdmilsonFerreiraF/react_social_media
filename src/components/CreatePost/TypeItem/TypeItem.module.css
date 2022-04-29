@@ -26,7 +26,7 @@
     display: none;
 }
 
-@media (max-width: 535px) {
+@media (max-width: 600px) {
     .typeItem {
         padding: 10px 0;
         margin-right: 12px;
