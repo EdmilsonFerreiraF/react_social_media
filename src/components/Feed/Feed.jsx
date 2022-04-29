@@ -26,7 +26,13 @@ const Feed = ({ otherUserId }) => {
             <Post key={post?._id} post={post} />
         ))
         :
-        null
+        (
+            <div className={styles.noPosts}>
+                <p className={styles.noPostText}>
+                    No posts created yet
+                </p>
+            </div>
+        )
 
     const createPost = !otherUserId && <CreatePost />
 

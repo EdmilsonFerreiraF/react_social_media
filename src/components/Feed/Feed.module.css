@@ -5,3 +5,16 @@
 .feed {
     padding: 20px;
 }
+
+.noPosts {
+    font-size: 16px;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 550px) {
+    .noPosts {
+        font-size: 14px;
+    }
+}
