@@ -16,20 +16,21 @@ const CreatePost = () => {
 
     const { form, onChange } = useForm({ description: '', file: '' })
 
+    const generateImgId = () => {
+        return v4()
+    }
+
     const submitHandler = async e => {
         e.preventDefault()
-
-        const imgId = v4()
 
         const url = `${baseUrl}/post`
 
         const newPost = {
-            userId: user?._id,
             description: form.description,
-            image: imgId
+            image: generateImgId()
         }
 
-        uploadPostPic(user, form)
+        uploadPostPic(form.file, newPost.image)
         sendData(url, "post", newPost)
     }
 

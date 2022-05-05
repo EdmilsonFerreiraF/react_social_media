@@ -45,9 +45,9 @@ export async function sendData(url, method, data) {
     }
 }
 
-export async function uploadPostPic(user, form, imgId) {
+export async function uploadPostPic(image, imgId) {
     const storage = getStorage();
-    const storageRef = ref(storage, 'posts/' + imgId);
+    const storageRef = ref(storage, 'post/' + imgId);
 
     // Create file metadata including the content type
     const metadata = {
@@ -55,7 +55,7 @@ export async function uploadPostPic(user, form, imgId) {
     };
 
     // 'file' comes from the Blob or File API
-    uploadBytes(storageRef, form.file, metadata).then((snapshot) => {
+    uploadBytes(storageRef, image, metadata).then((snapshot) => {
         console.log(snapshot)
       console.log('Uploaded a blob or file!');
     });
