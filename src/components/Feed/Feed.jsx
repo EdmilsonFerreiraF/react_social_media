@@ -12,12 +12,13 @@ const Feed = ({ otherUserId }) => {
     const { user } = useContext(AuthContext)
 
     const getPosts = useRequestData(
-        otherUserId
+        (otherUserId
         ?
         `${baseUrl}/post/profile/${otherUserId}`
         :
         user &&
-        `${baseUrl}/post/timeline/${user?.id}`, []
+        `${baseUrl}/post/timeline/${user?.id}`)
+        , []
     )
 
     const posts = getPosts.length

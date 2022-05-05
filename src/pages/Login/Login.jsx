@@ -119,7 +119,7 @@ const Login = () => {
                             {isFetching
                                 ?
                                 <CircularProgress
-                                    size="20px" />
+                                    size="20" />
                                 :
                                 "Login"
                             }

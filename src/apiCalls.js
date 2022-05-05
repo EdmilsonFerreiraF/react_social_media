@@ -23,15 +23,16 @@ export const loginCall = async (userCredential, dispatch, navigate) => {
 
 export async function signup(url, data) {
     if (url) { 
-      await axios.post(url, data).catch((error) => {
-          console.log(error.message)
-      })
+      await axios.post(url, data)
+            .catch((error) => {
+                console.log(error.message)
+            })
     }
 }
 
 export async function sendData(url, method, data) {
     const token = localStorage.getItem("token")
-    console.log('url', url)
+    
     if (url) { 
       await axios[method](url, data, {
           headers: {
