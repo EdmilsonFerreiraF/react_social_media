@@ -49,7 +49,7 @@ const CreatePost = () => {
                             profilePicture ?? noProfilePicture
                         }
                         alt="User profile" />
-                    <input placeholder={`What's in your mind ${user?.username}?`}
+                    <textarea placeholder={`What's in your mind ${user?.username}?`}
                             name="description"
                             className={styles.createPostInput}
                             value={form.description}
