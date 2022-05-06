@@ -49,6 +49,11 @@
     margin: 20px 0;
 }
 
+.postReadMore, .postReadLess {
+    font-weight: 500;
+    cursor: pointer;
+}
+
 .postContentImg {
     margin-top: 20px;
     width: 100%;

@@ -16,7 +16,7 @@ import likeImg from 'img/like.png'
 import heartImg from 'img/heart.png'
 
 const Post = ({ post }) => {
-    const { form, onChange } = useForm({ likes: post?.likes.length, isLiked: false })
+    const { form, onChange } = useForm({ likes: post?.likes.length, isLiked: false, readMore: false })
 
     const { user: currentUser } = useContext(AuthContext)
 
@@ -30,6 +30,10 @@ const Post = ({ post }) => {
 
     const postPicture = useRequestImage("post", post?.image)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
+
+    const handleReadMore = () => {
+        onChange(!form.readMore, "readMore")
+    }
 
     const likeHandler = async () => {
         const url = `${baseUrl}/post/${post?.id}/like`
@@ -66,8 +70,18 @@ const Post = ({ post }) => {
                 </div>
                 <div className={styles.postContent}>
                     <span className={styles.postContentText}>
-                        {post?.description}
+                        {!form.readMore ?
+                            <>
+                                <>{post?.description.slice(0, 150)}<span className={styles.postReadMore} onClick={handleReadMore}>... read more</span></>
+                            </>
+                            :
+                            <>
+                                <>{post?.description}<span className={styles.postReadLess} onClick={handleReadMore}>read less</span></>
+                            </>
+                        }
                     </span>
+
+
                     <img className={styles.postContentImg}
                         src={postPicture ?? noPostPicture}
                         alt="Post content" />
