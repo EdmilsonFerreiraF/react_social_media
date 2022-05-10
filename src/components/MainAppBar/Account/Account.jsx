@@ -13,17 +13,24 @@ import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useForm } from "hooks/useForm"
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "context/AuthContext";
+import { goToProfile } from "routes/coordinator";
 
 const drawerWidth = 240;
 
 const Account = (props) => {
   const { form, onChange } = useForm({ anchorEl: null, mobileMoreAnchorEl: null })
+  const { user } = useContext(AuthContext)
 
   const isMenuOpen = Boolean(form.anchorEl)
   const isMobileMenuOpen = Boolean(form.mobileMoreAnchorEl)
+  const navigate = useNavigate()
 
-  const handleProfileMenuOpen = (event) => {
-    onChange(event.currentTarget, "anchorEl")
+  const handleProfileClick = (event) => {
+    // onChange(event.currentTarget, "anchorEl")
+    goToProfile(navigate, user?.username)
   }
 
   const handleMobileMenuClose = () => {
@@ -92,7 +99,7 @@ const Account = (props) => {
         isMobileMenuOpen={isMobileMenuOpen}
         handleMenuClose={handleMenuClose} />
 
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={handleProfileClick}>
         <IconButton
           size="medium"
           aria-label="account of current user"
