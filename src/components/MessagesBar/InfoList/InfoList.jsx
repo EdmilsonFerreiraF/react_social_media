@@ -13,11 +13,11 @@ const InfoList = ({ user }) => {
                 text={user?.from} />
             <InfoItem
                 title="Relationship"
-                text={user?.relationship === 1
+                text={user?.relationship === 0
                     ?
                     "Single"
                     :
-                    user?.relationship === 2 ? "Married" : "-"} />
+                    user?.relationship === 1 ? "Married" : "-"} />
         </div>
     )
 }

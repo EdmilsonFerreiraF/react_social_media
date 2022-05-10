@@ -10,11 +10,12 @@ import { sendData, uploadPostPic } from 'apiCalls'
 import { useForm } from "hooks/useForm"
 import { v4 } from 'uuid'
 import noProfilePicture from 'img/person/no_person.jpg'
+import { ClickAwayListener } from "@mui/material"
 
 const CreatePost = () => {
     const { user } = useContext(AuthContext)
 
-    const { form, onChange } = useForm({ description: '', file: '' })
+    const { form, onChange } = useForm({ description: '', file: '', isActive: false })
 
     const generateImgId = () => {
         return v4()
@@ -38,6 +39,13 @@ const CreatePost = () => {
         onChange(e.target.value, e.target.name)
     }
 
+    const activeCreationHandler = (e) => {
+        onChange(!form.isActive, "isActive")
+    }
+    const handleClickAway = () => {
+        onChange(false, "isActive")
+      };
+    
     const profilePicture = useRequestImage("profile", user?.profilePicture)
 
     return (
@@ -50,11 +58,16 @@ const CreatePost = () => {
                             profilePicture ?? noProfilePicture
                         }
                         alt="User profile" />
-                    <textarea placeholder={`What's in your mind ${user?.username}?`}
+                        <ClickAwayListener onClickAway={handleClickAway}>
+
+                    <textarea placeholder={form.isActive ? "" : `What's in your mind ${user?.username}?`}
                             name="description"
-                            className={styles.createPostInput}
+                            rows={form.isActive ? "4" : "1"}
+                            onFocus={activeCreationHandler}
+                            className={`${styles.createPostInput} ${form.isActive ? styles.activePostContent : ""}`}
                             value={form.description}
                             onChange={inputHandler} />
+                            </ClickAwayListener>
                 </div>
                 <hr className={styles.createPostDivision} />
                 <form aria-labelledby="create-post" className={styles.createPostBotbar}

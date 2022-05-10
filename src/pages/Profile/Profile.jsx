@@ -99,7 +99,7 @@ const Profile = () => {
           </div>
           <div className={styles.profileRightBottom}>
             <Feed otherUserId={user?.id} />
-            <MessagesBar user={user} />
+            <MessagesBar visitedUser={visitedUser} />
           </div>
         </div>
       </div>
