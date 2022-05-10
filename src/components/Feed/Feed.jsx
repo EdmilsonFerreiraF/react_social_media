@@ -10,6 +10,7 @@ import { useRequestData } from 'hooks/useRequestData'
 
 const Feed = ({ otherUserId }) => {
     const { user } = useContext(AuthContext)
+    console.log('user - Feed', user)
 
     const getPosts = useRequestData(
         (otherUserId

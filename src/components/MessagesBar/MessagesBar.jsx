@@ -13,6 +13,7 @@ const MessagesBar = ({ user }) => {
 
     const friends = useRequestData(user?.id && `${baseUrl}/user/${user?.id}/friends`, [])
 
+    console.log('friends - MessageBar', friends)
     const HomeMessagesBar = () => {
         return (
             <aside aria-labelledby="messages-bar">
@@ -32,7 +33,7 @@ const MessagesBar = ({ user }) => {
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
-                <FriendList user={user} />
+                <FriendList friends={friends} />
             </aside>
         )
     }

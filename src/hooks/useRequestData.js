@@ -9,6 +9,7 @@ export function useRequestData(url, initialState) {
   useEffect(() => {
     const token = localStorage.getItem("token")
     if (url) {
+      console.log('url - useRequestData', url)
       axios.get(url, {
         headers: {
           Authorization: token

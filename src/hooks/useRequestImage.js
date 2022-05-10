@@ -22,6 +22,7 @@ export function useRequestImage(entity, initialState) {
       }
 
       if (initialState) {
+        console.log('initialState - useRequestImage', initialState)
         getData(initialState)
       }
     }, [initialState, entity])

@@ -15,8 +15,7 @@ import axios from 'axios'
 
 import { baseUrl } from 'constants/baseUrl'
 import { useErrorHandler } from 'react-error-boundary'
-
-
+import { v4 } from 'uuid'
 
 const Home = () => {
   useProtectPage()
@@ -27,7 +26,12 @@ const Home = () => {
   const { user, dispatch } = useContext(AuthContext)
 
   const token = localStorage.getItem('token')
-
+  const generateIds = () => {
+    for (let i = 0; i < 20; i++) {
+        console.log(v4())
+    }
+}
+generateIds()
   useEffect(() => {
     const getUser = async () => {
       dispatch({ type: "LOGIN_START" })
@@ -55,6 +59,7 @@ const Home = () => {
     }
   }, [user, token])
 
+  console.log('user - Home', user)
   return (
     <>
       <MainAppBar />

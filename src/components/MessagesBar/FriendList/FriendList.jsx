@@ -4,10 +4,10 @@ import { Users } from "dummyData"
 
 import styles from "./FriendList.module.css"
 
-const FriendList = ({ user }) => {
+const FriendList = ({ friends }) => {
     return (
         <ul className={styles.friendList}>
-            {Users.map(friend => (
+            {friends.map(friend => (
                 <FriendItem
                     key={friend.id}
                     friend={friend} />
