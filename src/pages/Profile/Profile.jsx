@@ -30,39 +30,9 @@ const Profile = () => {
 
   const { user: currUser, dispatch } = useContext(AuthContext)
 
-  const token = localStorage.getItem('token')
-
-  useEffect(() => {
-    const getUser = async () => {
-      dispatch({ type: "LOGIN_START" })
-
-      const res = await axios
-        .get(`${baseUrl}/user`, {
-          headers: {
-            Authorization: token
-          }
-        })
-        .then(res => {
-          dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
-        })
-        .catch(err => {
-          dispatch({ type: "LOGIN_FAILED", payload: err })
-          console.log(err)
-          handleError(err)
-
-        })
-
-      return res
-    }
-
-    if (!currUser && token) {
-      getUser()
-    }
-  }, [currUser, token])
-
   const visitedUser = useRequestData(`${baseUrl}/user/${username}`, {})
 
-  const user = currUser ? currUser : visitedUser
+  const user = currUser?.username === username ?? visitedUser
 
   console.log('user', user)
   const profilePicture = useRequestImage("profile", user?.profilePicture)
@@ -99,9 +69,9 @@ const Profile = () => {
           </div>
           <div className={styles.profileRightBottom}>
             <Feed otherUserId={user?.id} />
-            <MessagesBar user={user} />
           </div>
         </div>
+        <MessagesBar user={user} />
       </div>
     </>
   )

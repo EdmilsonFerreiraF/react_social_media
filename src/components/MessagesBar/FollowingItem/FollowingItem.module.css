@@ -6,8 +6,8 @@
 }
 
 .followingImg {
-    width: 100px;
-    height: 100px;
+    max-width: 100px;
+    width: 100%;
     object-fit: cover;
     border-radius: 5px;
 }
