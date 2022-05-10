@@ -10,7 +10,7 @@ const FriendItem = ({ friend }) => {
                 src={profilePicture}
                 alt="Friend profile" />
             <span className={styles.friendName}>
-                {friend.username}
+                {friend?.username}
             </span>
         </li>
     )

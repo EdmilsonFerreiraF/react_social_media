@@ -5,11 +5,13 @@ import { Users } from "dummyData"
 import styles from "./FriendList.module.css"
 
 const FriendList = ({ friends }) => {
+    console.log('friends - FriendList', friends)
+
     return (
         <ul className={styles.friendList}>
             {friends.map(friend => (
                 <FriendItem
-                    key={friend.id}
+                    key={friend?.id}
                     friend={friend} />
             ))}
         </ul>

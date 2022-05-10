@@ -11,9 +11,8 @@ import adImg from 'img/ad.png'
 const MessagesBar = ({ user }) => {
     const token = localStorage.getItem("token")
 
-    const friends = useRequestData(user?.id && `${baseUrl}/user/${user?.id}/friends`, [])
+    const friends = useRequestData(user && `${baseUrl}/user/${user?.id}/friends`, [])
 
-    console.log('friends - MessageBar', friends)
     const HomeMessagesBar = () => {
         return (
             <aside aria-labelledby="messages-bar">
