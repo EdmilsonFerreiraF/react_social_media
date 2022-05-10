@@ -1,5 +1,4 @@
 import FollowingList from "./FollowingList/FollowingList"
-import FriendList from "./FriendList/FriendList"
 import InfoList from "./InfoList/InfoList"
 
 import styles from "./MessagesBar.module.css"
@@ -7,11 +6,17 @@ import { baseUrl } from "constants/baseUrl"
 import { useRequestData } from "hooks/useRequestData"
 import giftImg from 'img/gift.png'
 import adImg from 'img/ad.png'
+import { useContext } from "react"
+import { AuthContext } from "context/AuthContext"
 
-const MessagesBar = ({ user }) => {
+const MessagesBar = ({ visitedUser }) => {
     const token = localStorage.getItem("token")
 
-    const friends = useRequestData(user && `${baseUrl}/user/${user?.id}/friends`, [])
+    const { user: currentUser } = useContext(AuthContext)
+
+    const user = visitedUser ?? currentUser
+
+    const friends = useRequestData(user && `${baseUrl}/user/${user.id}/friends`, [])
 
     const HomeMessagesBar = () => {
         return (
@@ -32,7 +37,7 @@ const MessagesBar = ({ user }) => {
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
-                <FriendList friends={friends} />
+                <FollowingList friends={friends} />
             </aside>
         )
     }

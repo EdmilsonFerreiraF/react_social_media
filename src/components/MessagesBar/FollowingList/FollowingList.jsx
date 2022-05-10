@@ -5,9 +5,11 @@ import styles from "./FollowingList.module.css"
 const FollowingList = ({ friends }) => {
     return (
         <div className={styles.followingList}>
-            {friends.map(friend => <FollowingItem
-                                    key={friend.id}
-                                    friend={friend} />
+            {friends.map(friend => (
+                <FollowingItem
+                    key={friend?.id}
+                    friend={friend} />
+            )
             )}
         </div>
     )
