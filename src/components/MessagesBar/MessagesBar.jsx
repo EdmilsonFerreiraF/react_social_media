@@ -9,12 +9,8 @@ import adImg from 'img/ad.png'
 import { useContext } from "react"
 import { AuthContext } from "context/AuthContext"
 
-const MessagesBar = ({ visitedUser }) => {
+const MessagesBar = ({ user }) => {
     const token = localStorage.getItem("token")
-
-    const { user: currentUser } = useContext(AuthContext)
-
-    const user = visitedUser ?? currentUser
 
     const friends = useRequestData(user && `${baseUrl}/user/${user.id}/friends`, [])
 
