@@ -6,8 +6,7 @@
 }
 
 .friendImg {
-    width: 32px;
-    height: 32px;
+    width: 31px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;

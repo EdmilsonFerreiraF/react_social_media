@@ -6,8 +6,15 @@
 }
 
 .followingImg {
-    max-width: 100px;
-    width: 100%;
+    max-width: 65px;
+    height: 100px;
     object-fit: cover;
     border-radius: 5px;
+}
+
+@media (max-width: 660px) {
+    .followingImg {
+        max-width: 55px;
+        height: 90px;
+    }
 }
