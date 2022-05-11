@@ -32,9 +32,38 @@ const Profile = () => {
 
   const visitedUser = useRequestData(`${baseUrl}/user/${username}`, {})
 
-  const user = currUser?.username === username ?? visitedUser
+  console.log('visitedUser - Profile', visitedUser)
+  console.log('currUser - Profile', currUser)
+  const token = localStorage.getItem('token')
 
-  console.log('user', user)
+  useEffect(() => {
+    const getUser = async () => {
+      dispatch({ type: "LOGIN_START" })
+
+      const res = await axios
+        .get(`${baseUrl}/user`, {
+          headers: {
+            Authorization: token
+          }
+        })
+        .then(res => {
+          dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+        })
+        .catch(err => {
+          dispatch({ type: "LOGIN_FAILED", payload: err })
+          console.log(err)
+          handleError(err)
+        })
+
+      return res
+    }
+
+    if (!currUser && token) {
+      getUser()
+    }
+  }, [currUser, token])
+  const user = visitedUser ?? currUser
+  
   const profilePicture = useRequestImage("profile", user?.profilePicture)
   const coverPicture = useRequestImage("cover", user?.coverPicture)
 

@@ -9,11 +9,15 @@ import adImg from 'img/ad.png'
 import { useContext } from "react"
 import { AuthContext } from "context/AuthContext"
 
-const MessagesBar = ({ user }) => {
+const MessagesBar = ({ user: visitedUser }) => {
     const token = localStorage.getItem("token")
+    const { user: currUser, dispatch } = useContext(AuthContext)
 
-    const friends = useRequestData(user && `${baseUrl}/user/${user.id}/friends`, [])
+    const user = visitedUser ?? currUser
 
+    const friends = useRequestData(user && user.id && `${baseUrl}/user/${user.id}/friends`, [])
+
+    console.log('friends - MessagesBar', friends)
     const HomeMessagesBar = () => {
         return (
             <aside aria-labelledby="messages-bar">

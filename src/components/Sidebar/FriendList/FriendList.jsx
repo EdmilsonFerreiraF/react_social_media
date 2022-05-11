@@ -14,9 +14,8 @@ import { useRequestData } from "hooks/useRequestData"
 const FriendList = () => {
     const { user } = useContext(AuthContext)
 
-    const url = `${baseUrl}/user/${user?.id}/friends`
-    console.log('user.id', user?.id)
-    const friends = useRequestData(user && url, [])
+    // const url = `${baseUrl}/user/${user.id}/friends`
+    const friends = useRequestData(user && user.id && `${baseUrl}/user/${user.id}/friends`, [])
 
     console.log('friends', friends)
     

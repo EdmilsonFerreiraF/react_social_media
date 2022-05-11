@@ -28,7 +28,7 @@ const Post = ({ post }) => {
 
     const user = useRequestData(`${baseUrl}/user/${post?.userId}`, {})
 
-    const postPicture = useRequestImage("post", post?.postImage)
+    const postPicture = useRequestImage("post", post?.image)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
 
     const handleReadMore = () => {
@@ -80,8 +80,7 @@ const Post = ({ post }) => {
                             </>
                         }
                     </span>
-
-
+                    
                     <img className={styles.postContentImg}
                         src={postPicture ?? noPostPicture}
                         alt="Post content" />
