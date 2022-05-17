@@ -5,7 +5,7 @@ const Logo = () => {
     return (
         <div className={styles.logoContainer}>
             <Link to="/" style={{textDecoration: "none"}}>
-                <span className={styles.logo}>Lamasocial</span>
+                <span className={styles.logo} data-testid="logo">Lamasocial</span>
             </Link>
         </div>
     )
