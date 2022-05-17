@@ -9,6 +9,8 @@ const Input = props => {
             onChange={props.handleInputChange}
             value={props.value}
             placeholder={props.placeholder}
+            aria-invalid={props.invalid}
+            aria-errormessage={props.errorIndex}
       />
   );
 }
