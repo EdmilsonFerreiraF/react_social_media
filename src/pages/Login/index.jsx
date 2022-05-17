@@ -100,6 +100,8 @@ const Login = () => {
                             value={form.email}
                             handleInputChange={handleInputChange}
                             minLength="6"
+                            invalid={!!form.formErrors.email.length}
+                            errorIndex="error1"
                             />
                         <Input
                             className={form.formErrors.password.length ? 'input--invalid' : ''}
@@ -109,6 +111,8 @@ const Login = () => {
                             required
                             value={form.password}
                             handleInputChange={handleInputChange}
+                            invalid={!!form.formErrors.password.length}
+                            errorIndex="error2"
                             />
                         <div className="panel panel-default">
                             <FormErrors formErrors={form.formErrors} />
