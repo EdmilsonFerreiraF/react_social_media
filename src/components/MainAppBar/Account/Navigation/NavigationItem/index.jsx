@@ -1,10 +1,10 @@
 import styles from "./style.module.css"
 
-const NavigationItem = (props) => {
+const NavigationItem = ({ title, href }) => {
     return (
-        <span className={styles.navigationItem}>
-            {props.title}
-        </span>
+        <div className={styles.navigationItem} href={href} role="link">
+            {title}
+        </div>
     )
 }
 
