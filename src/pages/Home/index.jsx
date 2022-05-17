@@ -16,48 +16,17 @@ import axios from 'axios'
 import { baseUrl } from 'constants/baseUrl'
 import { useErrorHandler } from 'react-error-boundary'
 import { v4 } from 'uuid'
+import { useGetUser } from 'apiCalls'
 
 const Home = () => {
   useProtectPage()
   const handleError = useErrorHandler()
 
-  // const { user, isFetching, error, dispatch } = useContext(AuthContext)
-
   const { user, dispatch } = useContext(AuthContext)
 
   const token = localStorage.getItem('token')
-  const generateIds = () => {
-    for (let i = 0; i < 20; i++) {
-        console.log(v4())
-    }
-}
-generateIds()
-  useEffect(() => {
-    const getUser = async () => {
-      dispatch({ type: "LOGIN_START" })
 
-      const res = await axios
-        .get(`${baseUrl}/user`, {
-          headers: {
-            Authorization: token
-          }
-        })
-        .then(res => {
-          dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
-        })
-        .catch(err => {
-          dispatch({ type: "LOGIN_FAILED", payload: err })
-          console.log(err)
-          handleError(err)
-        })
-
-      return res
-    }
-
-    if (!user && token) {
-      getUser()
-    }
-  }, [user, token])
+  useGetUser(user, token, dispatch, handleError)
 
   console.log('user - Home', user)
   return (
