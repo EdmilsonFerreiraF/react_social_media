@@ -84,13 +84,14 @@ const Login = () => {
                     <h3 className={styles.loginLogo} role="img">
                         Lamasocial
                     </h3>
-                    <span className={styles.loginDesc}>
+                    <h2 className={styles.loginDesc}>
                         Connect with friends and the world around you on Lamasocial
-                    </span>
+                    </h2>
                 </div>
                 <div className={styles.loginRight}>
                     <form className={styles.loginBox}
                         onSubmit={handleSubmit}>
+                        <label className={styles.fieldLabel} htmlFor="email">Email address:</label>
                         <Input
                             name="email"
                             className={form.formErrors.email.length ? 'input--invalid' : ''}
@@ -103,6 +104,7 @@ const Login = () => {
                             invalid={!!form.formErrors.email.length}
                             errorIndex="error1"
                             />
+                        <label className={styles.fieldLabel} htmlFor="password">Password:</label>
                         <Input
                             className={form.formErrors.password.length ? 'input--invalid' : ''}
                             name="password"
