@@ -7,7 +7,7 @@ const SearchBar = () => {
         <div className={styles.searchBarContainer}>
             <div className={styles.searchBar}>
                 <Search className={styles.searchBarIcon}/>
-                <input type="text" placeholder="Search for friends, posts or videos" className={styles.searchBarInput}/>
+                <input type="text" role="searchbox" placeholder="Search for friends, posts or videos" className={styles.searchBarInput}/>
             </div>
         </div>
     )
