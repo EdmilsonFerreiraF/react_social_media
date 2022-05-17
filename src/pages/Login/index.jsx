@@ -81,7 +81,7 @@ const Login = () => {
         <div className={styles.login}>
             <div className={styles.loginWrapper}>
                 <div className={styles.loginLeft}>
-                    <h3 className={styles.loginLogo}>
+                    <h3 className={styles.loginLogo} role="img">
                         Lamasocial
                     </h3>
                     <span className={styles.loginDesc}>
