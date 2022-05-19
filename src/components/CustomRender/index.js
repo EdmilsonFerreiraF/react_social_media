@@ -7,7 +7,9 @@ import { AuthContextProvider } from "context/AuthContext";
 const Wrapper = ({ children }) => {
   return (
     <AuthContextProvider>
-      <MemoryRouter>{children}</MemoryRouter>
+      <MemoryRouter>
+        {children}
+      </MemoryRouter>
     </AuthContextProvider>
   );
 };
