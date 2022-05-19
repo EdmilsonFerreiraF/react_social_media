@@ -88,10 +88,10 @@ const Profile = () => {
                 alt="User profile" />
             </div>
             <div className={styles.profileInfo}>
-              <h4 className={styles.profileInfoName}>
+              <h4 datatest-id="user profile name" className={styles.profileInfoName}>
                 {user?.username}
               </h4>
-              <span className={styles.profileInfoDesc}>
+              <span datatest-id="user profile description" className={styles.profileInfoDesc}>
                 {user?.description}
               </span>
             </div>

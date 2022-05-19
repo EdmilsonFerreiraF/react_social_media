@@ -18,7 +18,7 @@ const FollowingItem = ({ friend }) => {
             <img className={styles.followingImg}
                 src={profilePicture ?? noProfilePicture}
                 alt="Friend profile" />
-            <span className={styles.followingName}>
+            <span data-testid="online friend name" className={styles.followingName}>
                 {friend?.name}
             </span>
         </div>

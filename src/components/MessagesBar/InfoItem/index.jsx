@@ -3,10 +3,10 @@ import styles from "./style.module.css"
 const InfoItem = (props) => {
     return (
         <div className={styles.messagesBarInfoItem}>
-            <span className={styles.messagesBarInfoKey}>
+            <span data-testid="info name" className={styles.messagesBarInfoKey}>
                 {props.title}:
             </span>
-            <span className={styles.messagesBarInfoValue}>
+            <span data-testid="info value" className={styles.messagesBarInfoValue}>
                 {props.text}
             </span>
         </div>

@@ -9,7 +9,7 @@ const FriendItem = ({ friend }) => {
             <img className={styles.friendImg}
                 src={profilePicture}
                 alt="Friend profile" />
-            <span className={styles.friendName}>
+            <span data-testid="friend name" className={styles.friendName}>
                 {friend?.username}
             </span>
         </li>

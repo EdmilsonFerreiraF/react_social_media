@@ -67,7 +67,7 @@ const Signup = () => {
         let passwordAgain = form.passwordAgain;
         let passwordAgainValid = passwordAgain === password
 
-        onChange(passwordAgainValid, "passwordAgainValid")
+        onChange(passwordAgainValid, "passwords are not equal")
     }, [form.passwordAgain, form.passwordAgain])
 
     useEffect(() => {
@@ -122,7 +122,7 @@ const Signup = () => {
         <div className={styles.signup}>
             <div className={styles.signupWrapper}>
                 <div className={styles.signupLeft}>
-                    <h3 className={styles.signupLogo}>
+                    <h3 className={styles.signupLogo} role="img">
                         Lamasocial
                     </h3>
                     <span className={styles.signupDesc}>
@@ -131,6 +131,8 @@ const Signup = () => {
                 </div>
                 <div className={styles.signupRight}>
                     <form className={styles.signupBox} onSubmit={handleSubmit}>
+                        <label className={styles.fieldLabel} htmlFor="email">Username</label>
+
                         <Input
                             className={form.formErrors.username.length ? 'input--invalid' : ''}
                             name="username"
@@ -138,7 +140,13 @@ const Signup = () => {
                             placeholder="Username"
                             required
                             value={form.username}
+                            invalid={!!form.formErrors.email.length}
+
+                            errorIndex="error1"
+
                             handleInputChange={handleInputChange} />
+                        <label className={styles.fieldLabel} htmlFor="email">Email</label>
+
                         <Input
                             className={form.formErrors.email.length ? 'input--invalid' : ''}
                             name="email"
@@ -146,7 +154,13 @@ const Signup = () => {
                             placeholder="Email"
                             required
                             value={form.email}
+                            invalid={!!form.formErrors.email.length}
+
+                            errorIndex="error2"
+
                             handleInputChange={handleInputChange} />
+                        <label className={styles.fieldLabel} htmlFor="email">Password</label>
+
                         <Input
                             className={form.formErrors.password.length ? 'input--invalid' : ''}
                             name="password"
@@ -155,7 +169,13 @@ const Signup = () => {
                             required
                             minLength="6"
                             value={form.password}
+                            invalid={!!form.formErrors.email.length}
+
+                            errorIndex="error3"
+
                             handleInputChange={handleInputChange} />
+                        <label className={styles.fieldLabel} htmlFor="email">Password again</label>
+
                         <Input
                             className={form.formErrors.passwordAgain.length ? 'input--invalid' : ''}
                             name="passwordAgain"
@@ -163,6 +183,10 @@ const Signup = () => {
                             placeholder="Password again"
                             required
                             value={form.passwordAgain}
+                            invalid={!!form.formErrors.email.length}
+
+                            errorIndex="error4"
+
                             handleInputChange={handleInputChange} />
                         <div className="panel panel-default">
                             <FormErrors formErrors={form.formErrors} />

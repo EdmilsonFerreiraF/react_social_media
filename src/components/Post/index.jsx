@@ -57,19 +57,19 @@ const Post = ({ post }) => {
                                 className={styles.postProfileImg}
                                 alt="Post user profile" />
                         </Link>
-                        <span className={styles.postUsername}>
+                        <span datatest-id="post username" className={styles.postUsername}>
                             {user.username}
                         </span>
-                        <span className={styles.postDate}>
+                        <span datatest-id="post date" className={styles.postDate}>
                             {format(post?.createdAt)}
                         </span>
                     </div>
-                    <div className={styles.postOptions}>
+                    <div datatest-id="post options" className={styles.postOptions}>
                         <MoreVert />
                     </div>
                 </div>
                 <div className={styles.postContent}>
-                    <span className={styles.postContentText}>
+                    <span datatest-id="post content text" className={styles.postContentText}>
                         {!form.readMore ?
                             <>
                                 <>{post?.description.slice(0, 150)}<span className={styles.postReadMore} onClick={handleReadMore}>... read more</span></>
@@ -81,7 +81,7 @@ const Post = ({ post }) => {
                         }
                     </span>
                     
-                    <img className={styles.postContentImg}
+                    <img datatest-id="post content image" className={styles.postContentImg}
                         src={postPicture ?? noPostPicture}
                         alt="Post content" />
                 </div>
@@ -95,11 +95,11 @@ const Post = ({ post }) => {
                             src={heartImg}
                             onClick={likeHandler}
                             alt="Post user profile" />
-                        <span className={styles.postLikeCounter}>
+                        <span datatest-id="post likes" className={styles.postLikeCounter}>
                             {post?.likes.length + 1} people liked it
                         </span>
                     </div>
-                    <div className={styles.postComments}>
+                    <div datatest-id="post comments" className={styles.postComments}>
                         <span className={styles.postCommentCounter}>
                             {post?.comment} comments
                         </span>

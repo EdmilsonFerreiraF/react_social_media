@@ -24,7 +24,7 @@ const MessagesBar = ({ user: visitedUser }) => {
                 <div className={styles.birthdayContainer}>
                     <img className={styles.birthdayImg}
                         src={giftImg}
-                        alt="" />
+                        alt="Birthday gift" />
                     <span className={styles.birthdayText}>
                         <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today.
                     </span>
@@ -32,7 +32,7 @@ const MessagesBar = ({ user: visitedUser }) => {
                 <div className={styles.birthdayAd}>
                     <img className={styles.messagesBarAd}
                         src={adImg}
-                        alt="" />
+                        alt="Ad" />
                 </div>
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
