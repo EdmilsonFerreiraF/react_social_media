@@ -17,6 +17,7 @@ const TypeItem = props => {
                     id={props.title}
                     accept={props.inputType === "file" ?? props.inputAccept}
                     onChange={props.onChange}
+                    data-testid="typeItem input"
             />
         </div>
     )
