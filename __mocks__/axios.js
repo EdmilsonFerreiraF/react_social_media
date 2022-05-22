@@ -29,12 +29,16 @@ const friendUser = {
 
 const get = jest.fn().mockImplementation((url) => {
 
-  if (url.includes(`user/user_username33`)){
-      return Promise.resolve({ data: user });
-    } else if (url.includes(`user`)) {    
+    if (url.includes(`user/user_username33`)) {
+        return Promise.resolve({ data: user });
+    } else if (url.includes(`user`)) {
         return Promise.resolve({ data: friendUser });
-  }
-      throw new Error(`UNMATCHED URL: ${url}`);
+    } else if (url.includes("/post/profile/" ||
+        "/post/timeline/")) {
+        return Promise.resolve({ data: friendUser });
+    }
+    
+    throw new Error(`UNMATCHED URL: ${url}`);
 })
 
 export default get
