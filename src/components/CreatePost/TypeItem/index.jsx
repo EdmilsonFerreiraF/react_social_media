@@ -2,7 +2,7 @@ import styles from "./style.module.css"
 
 const TypeItem = props => {
     return (
-        <div className={styles.typeItem}>
+        <li className={styles.typeItem}>
             <label className={styles.typeItemTitle}
                     htmlFor={props.title}
             >
@@ -19,7 +19,7 @@ const TypeItem = props => {
                     onChange={props.onChange}
                     data-testid="typeItem input"
             />
-        </div>
+        </li>
     )
 }
 

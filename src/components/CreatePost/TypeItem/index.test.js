@@ -4,15 +4,17 @@
 
 import * as React from "react"
 
+import { PermMedia } from "@mui/icons-material";
+import userEvent from "@testing-library/user-event";
+import { axe, toHaveNoViolations } from 'jest-axe'
+import '@testing-library/jest-dom'
+
 import {
   render,
   screen
 } from "components/customRender";
 import TypeItem from '.';
-import { PermMedia } from "@mui/icons-material";
-import userEvent from "@testing-library/user-event";
-import { axe, toHaveNoViolations } from 'jest-axe'
-import '@testing-library/jest-dom'
+
 expect.extend(toHaveNoViolations)
 
 describe('TypeItem', () => {
