@@ -6,7 +6,7 @@ const ErrorFallback = ({error, resetErrorBoundary}) => {
     <div role="alert" className={styles.errorFallback}>
       <p className={styles.error}>Something went wrong:</p>
       <img className={styles.errorImage} src={errorImg} alt="Broken robot error" />
-      <pre className={styles.errorMessage}>{error.message}</pre>
+      <pre data-testid="error message" className={styles.errorMessage}>{error.message}</pre>
       <button className={styles.tryAgainBtn} onClick={resetErrorBoundary}>Try again</button>
     </div>
   )
