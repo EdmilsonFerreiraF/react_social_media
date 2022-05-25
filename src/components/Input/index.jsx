@@ -12,6 +12,7 @@ const Input = props => {
             placeholder={props.placeholder}
             aria-invalid={props.invalid}
             aria-errormessage={props.errorIndex}
+            data-testid="input"
       />
   );
 }
