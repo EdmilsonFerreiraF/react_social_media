@@ -7,7 +7,7 @@ const FormErrors = ({ formErrors }) => {
             {Object.keys(formErrors).map((fieldName, i) => {
                 if (formErrors[fieldName].length > 0) {
                     return (
-                        <p className={styles.errorItem} key={i} id={`error${i + 1}`}>{fieldName} {formErrors[fieldName]}</p>
+                        <p className={styles.errorItem} data-testId="error line" key={i} id={`error${i + 1}`}>{fieldName} {formErrors[fieldName]}</p>
                     )
                 } else {
                     return '';
