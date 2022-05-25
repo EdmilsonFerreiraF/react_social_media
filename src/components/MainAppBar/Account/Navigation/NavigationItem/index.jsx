@@ -2,9 +2,9 @@ import styles from "./style.module.css"
 
 const NavigationItem = ({ title, href }) => {
     return (
-        <div className={styles.navigationItem} href={href} role="link">
+        <a className={styles.navigationItem} href={href} data-testid="link">
             {title}
-        </div>
+        </a>
     )
 }
 
