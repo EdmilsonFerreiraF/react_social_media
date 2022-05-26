@@ -46,7 +46,7 @@ const Post = ({ post }) => {
     }
 
     return (
-        <div className={styles.post}>
+        <div data-testid="post" className={styles.post}>
             <div className={styles.postContainer}>
                 <div className={styles.postTopbar}>
                     <div className={styles.postImg}>
@@ -57,19 +57,19 @@ const Post = ({ post }) => {
                                 className={styles.postProfileImg}
                                 alt="Post user profile" />
                         </Link>
-                        <span datatest-id="post username" className={styles.postUsername}>
+                        <span data-testid="post username" className={styles.postUsername}>
                             {user.username}
                         </span>
-                        <span datatest-id="post date" className={styles.postDate}>
+                        <span data-testid="post date" className={styles.postDate}>
                             {format(post?.createdAt)}
                         </span>
                     </div>
-                    <div datatest-id="post options" className={styles.postOptions}>
+                    <div data-testid="post options" className={styles.postOptions}>
                         <MoreVert />
                     </div>
                 </div>
                 <div className={styles.postContent}>
-                    <span datatest-id="post content text" className={styles.postContentText}>
+                    <span data-testid="post content text" className={styles.postContentText}>
                         {!form.readMore ?
                             <>
                                 <>{post?.description.slice(0, 150)}<span className={styles.postReadMore} onClick={handleReadMore}>... read more</span></>
@@ -81,7 +81,7 @@ const Post = ({ post }) => {
                         }
                     </span>
                     
-                    <img datatest-id="post content image" className={styles.postContentImg}
+                    <img data-testid="post content image" className={styles.postContentImg}
                         src={postPicture ?? noPostPicture}
                         alt="Post content" />
                 </div>
@@ -90,16 +90,16 @@ const Post = ({ post }) => {
                         <img className={styles.postReactionItem}
                             src={likeImg}
                             onClick={likeHandler}
-                            alt="Post user profile" />
+                            alt="Post like reaction" />
                         <img className={styles.postReactionItem}
                             src={heartImg}
                             onClick={likeHandler}
-                            alt="Post user profile" />
-                        <span datatest-id="post likes" className={styles.postLikeCounter}>
+                            alt="Post heart reaction" />
+                        <span data-testid="post likes" className={styles.postLikeCounter}>
                             {post?.likes.length + 1} people liked it
                         </span>
                     </div>
-                    <div datatest-id="post comments" className={styles.postComments}>
+                    <div data-testid="post comments" className={styles.postComments}>
                         <span className={styles.postCommentCounter}>
                             {post?.comment} comments
                         </span>
