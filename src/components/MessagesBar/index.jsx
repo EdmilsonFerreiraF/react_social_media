@@ -20,7 +20,7 @@ const MessagesBar = ({ user: visitedUser }) => {
     console.log('friends - MessagesBar', friends)
     const HomeMessagesBar = () => {
         return (
-            <aside aria-labelledby="messages-bar">
+            <aside data-testid="homeMessagesBar" aria-labelledby="messages-bar">
                 <div className={styles.birthdayContainer}>
                     <img className={styles.birthdayImg}
                         src={giftImg}
@@ -44,19 +44,19 @@ const MessagesBar = ({ user: visitedUser }) => {
 
     const ProfileMessagesBar = () => {
         return (
-            <>
+            <div data-testid="profileMessagesBar">
                 <h4 className={styles.messagesBarTitle}>User information</h4>
                 <InfoList user={user} />
                 <h4 className={styles.messagesBarTitle}>User friends</h4>
                 <FollowingList friends={friends} />
-            </>
+            </div>
         )
     }
 
     return (
         <div className={styles.messagesBarContainer}>
             <div className={styles.messagesBar}>
-                {user ? <ProfileMessagesBar /> : <HomeMessagesBar />}
+                {visitedUser ? <ProfileMessagesBar /> : <HomeMessagesBar />}
             </div>
         </div>
     )
