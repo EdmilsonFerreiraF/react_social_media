@@ -7,7 +7,7 @@ import styles from "./style.module.css"
 
 const NavList = () => {
     return (
-        <Container
+        <Container data-testid="navList"
         sx={{
             padding: 0,
             '@media (min-width: 600px)': {
