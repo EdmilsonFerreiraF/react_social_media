@@ -13,16 +13,21 @@ const Navigation = (props) => {
     const { user, dispatch } = useContext(AuthContext)
 
     const NavigationMenu = (
-        <nav className={styles.navigation}>
-            <NavigationItem title="Homepage" href="/" />
-            <NavigationItem title="Timeline" href={`/${user?.username}`} />
+        <nav data-testid="navigation menu" className={styles.navigation}>
+            <NavigationItem dataTestId="homepageLink" title="Homepage" href="/" />
+            <NavigationItem dataTestId="timelineLink" title="Timeline" href={`/${user?.username}`} />
         </nav>
     )
 
     const NavigationMobileMenu = (
-        <>
-            <MenuItem onClick={props.handleProfileMenuOpen}>
+        <div data-testid="navigation mobile menu">
+            <MenuItem
+                data-testid="navigationMenuItem"
+                onClick={props.handleProfileMenuOpen}
+                
+                >
                 <IconButton
+                    data-testid="navigationIconButton"
                     size="medium"
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
@@ -31,10 +36,15 @@ const Navigation = (props) => {
                 >
                     <HomeIcon />
                 </IconButton>
-                <NavigationItem title="Homepage" />
+                <NavigationItem dataTestId="mobileHomepageLink" title="Homepage" />
             </MenuItem>
-            <MenuItem onClick={props.handleProfileMenuOpen}>
+            <MenuItem
+                data-testid="navigationMenuItem"
+                onClick={props.handleProfileMenuOpen}
+                
+                >
                 <IconButton
+                    data-testid="navigationIconButton"
                     size="medium"
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
@@ -43,9 +53,9 @@ const Navigation = (props) => {
                 >
                     <ArticleIcon />
                 </IconButton>
-                <NavigationItem title="Timeline" />
+                <NavigationItem dataTestId="mobileTimelineLink" title="Timeline" />
             </MenuItem>
-        </>
+        </div>
     )
 
     return (
