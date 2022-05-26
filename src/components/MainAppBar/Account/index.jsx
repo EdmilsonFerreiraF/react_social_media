@@ -71,6 +71,7 @@ const Account = (props) => {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      data-testid="accountdesktopmenu"
     >
       <Navigation />
       <Social />
@@ -94,6 +95,7 @@ const Account = (props) => {
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
+      data-testid="accountmobilemenu"
     >
       <Navigation
         isMobileMenuOpen={isMobileMenuOpen}
@@ -145,13 +147,13 @@ const Account = (props) => {
 
   return (
     <>
-      <Box className={styles.account}
+      <Box data-testid="accountmenubox" className={styles.account}
         sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Navigation />
         <Social />
         <Profile />
       </Box>
-      <Box sx={{
+      <Box data-testid="accountmenubox" sx={{
         display: { xs: 'flex', md: 'none' },
         flex: 1.4,
         flexFlow: 'row-reverse'
