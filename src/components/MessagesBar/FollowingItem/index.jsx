@@ -19,7 +19,7 @@ const FollowingItem = ({ friend }) => {
                 src={profilePicture ?? noProfilePicture}
                 alt="Friend profile" />
             <span data-testid="online friend name" className={styles.followingName}>
-                {friend?.name}
+                {friend?.username}
             </span>
         </div>
     )
