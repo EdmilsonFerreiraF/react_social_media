@@ -7,11 +7,11 @@ const FriendItem = ({ friend }) => {
     console.log('friend?.profilePicture - FriendItem', friend?.profilePicture)
 
     return (
-        <li className={styles.friend}>
+        <li data-testid="friendItem" className={styles.friend}>
             <img className={styles.friendImg}
             src={profilePicture}
             alt="Friend profile" />
-            <span className={styles.friendName}>
+            <span data-testid="sidebarFriendName" className={styles.friendName}>
                 {friend?.username}
             </span>
         </li>
