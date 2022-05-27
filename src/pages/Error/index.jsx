@@ -1,10 +1,13 @@
 import { goToIndex } from 'routes/coordinator'
 import styles from './style.module.css'
 import error404Img from 'img/error404.png'
+import { useNavigate } from 'react-router-dom'
 
 const Error = () => {
+  const navigate = useNavigate()
+
   const handleBackToHome = () => {
-      goToIndex()
+    goToIndex(navigate)
   }
 
   return (
