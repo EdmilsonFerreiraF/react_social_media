@@ -5,7 +5,7 @@ import styles from "./style.module.css"
 
 const Sidebar = () => {
     return (
-        <aside className={styles.sidebar} aria-labelledby="sidebar">
+        <aside data-testid="sidebar" className={styles.sidebar} aria-labelledby="sidebar">
             <div className={styles.sidebarContainer}>
                 <NavList />
                                 
