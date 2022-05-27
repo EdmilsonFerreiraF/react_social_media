@@ -19,21 +19,13 @@ const Login = () => {
     const { user, isFetching, error, dispatch } = useContext(AuthContext)
 
     const { form, onChange } = useForm({
-        email: 'user_email33@email.com',
-        password: 'user_password',
+        email: '',
+        password: '',
         formErrors: {
             email: '',
             password: ''
-        },
-        emailValid: false,
-        passwordValid: false,
-        formValid: false
+        }
     })
-
-    const formValidation = {
-        emailValid: false,
-        passwordValid: false
-    }
 
     const handleInputChange = e => {
         const name = e.target.name;
@@ -44,34 +36,33 @@ const Login = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        
+
         loginCall({ email: form.email, password: form.password }, dispatch, navigate)
     }
 
-    useEffect(() => {
+    const validateFields = () => {
         let emailValid = form.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-
-        onChange(!!emailValid, "emailValid")
-        console.log('form.emailValid', form.emailValid)
-    }, [form.email])
-
-    useEffect(() => {
         let passwordValid = form.password.length >= 6
 
-        onChange(passwordValid, "passwordValid")
-    }, [form.password])
+        return {
+            emailValid,
+            passwordValid
+        }
+    }
 
     useEffect(() => {
+        const validFields = validateFields();
+
         let formErrors = {
             email: '',
             password: ''
         }
 
-        formErrors.email = form.emailValid ? '' : ' is invalid'
-        formErrors.password = form.passwordValid ? '' : ' is too short'
+        formErrors.email = form.email === '' || validFields.emailValid ? '' : ' is invalid'
+        formErrors.password = form.password === '' || validFields.passwordValid ? '' : ' is too short'
 
         onChange(formErrors, "formErrors")
-    }, [form.emailValid, form.passwordValid])
+    }, [form.email, form.password])
 
     const handleRegisterButton = () => {
         goToSignup(navigate)
@@ -81,7 +72,7 @@ const Login = () => {
         <div className={styles.login}>
             <div className={styles.loginWrapper}>
                 <div className={styles.loginLeft}>
-                    <h3 className={styles.loginLogo} role="img">
+                    <h3 data-testid="loginLogo" className={styles.loginLogo}>
                         Lamasocial
                     </h3>
                     <h2 className={styles.loginDesc}>
@@ -102,8 +93,7 @@ const Login = () => {
                             handleInputChange={handleInputChange}
                             minLength="6"
                             invalid={!!form.formErrors.email.length}
-                            errorIndex="error1"
-                            />
+                        />
                         <label className={styles.fieldLabel} htmlFor="password">Password:</label>
                         <Input
                             className={form.formErrors.password.length ? 'input--invalid' : ''}
@@ -114,8 +104,7 @@ const Login = () => {
                             value={form.password}
                             handleInputChange={handleInputChange}
                             invalid={!!form.formErrors.password.length}
-                            errorIndex="error2"
-                            />
+                        />
                         <div className="panel panel-default">
                             <FormErrors formErrors={form.formErrors} />
                         </div>
