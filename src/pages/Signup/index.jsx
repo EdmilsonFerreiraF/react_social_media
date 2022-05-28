@@ -15,14 +15,10 @@ const Signup = () => {
     useUnprotectPage()
 
     const { form, onChange } = useForm({
-        username: 'user_username40',
-        email: 'user_email40@email.com',
-        password: 'user_password',
-        passwordAgain: 'user_password',
-        usernameValid: true,
-        emailValid: true,
-        passwordValid: true,
-        passwordAgainValid: true,
+        username: '',
+        email: '',
+        password: '',
+        passwordAgain: '',
         formErrors: {
             username: '',
             email: '',
@@ -33,6 +29,20 @@ const Signup = () => {
 
     const navigate = useNavigate()
 
+    const validateFields = () => {
+        let usernameValid = form.username.match(/^([\w]{5,15})$/i)
+        let emailValid = form.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        let passwordValid = form.password.length > 8
+        let passwordAgainValid = form.passwordAgain === form.password
+
+        return {
+            usernameValid,
+            emailValid,
+            passwordValid,
+            passwordAgainValid,
+        }
+    }
+
     const handleInputChange = e => {
         const name = e.target.name;
         const value = e.target.value;
@@ -41,58 +51,76 @@ const Signup = () => {
     }
 
     useEffect(() => {
-        let username = form.username;
-        let usernameValid = username.match(/^([\w]{5,15})$/i)
-        onChange(usernameValid, "usernameValid")
+        const validFields = validateFields()
 
-        console.log('form.emailValid', form.emailValid)
-    }, [form.username])
-
-    useEffect(() => {
-        let email = form.email;
-        let emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-
-        onChange(emailValid, "emailValid")
-    }, [form.email])
-
-    useEffect(() => {
-        let password = form.password;
-        let passwordValid = password.length >= 6;
-
-        onChange(passwordValid, "passwordValid")
-    }, [form.password])
-
-    useEffect(() => {
-        let password = form.password;
-        let passwordAgain = form.passwordAgain;
-        let passwordAgainValid = passwordAgain === password
-
-        onChange(passwordAgainValid, "passwords are not equal")
-    }, [form.passwordAgain, form.passwordAgain])
-
-    useEffect(() => {
-        const formValidation = {
-            usernameValid: form.usernameValid,
-            emailValid: form.emailValid,
-            passwordValid: form.passwordValid,
-            passwordAgainValid: form.passwordAgainValid,
+        const formErrors = {
+            username: '',
+            email: '',
+            password: '',
+            passwordAgain: '',
         }
 
-        let formErrors = form.formErrors;
-
-        formErrors.username = formValidation.usernameValid ? '' : ' is invalid';
-        formErrors.email = formValidation.emailValid ? '' : ' is invalid';
-        formErrors.password = formValidation.passwordValid ? '' : ' is too short';
-        formErrors.passwordAgain = formValidation.passwordAgainValid === formValidation.passwordValid ? '' : ' passwords don\'t match';
+        formErrors.username = form.username === '' || validFields.usernameValid ? '' : ' is invalid';
+        formErrors.email = form.email === '' || validFields.emailValid ? '' : ' is invalid';
+        formErrors.password = form.password === '' || validFields.passwordValid ? '' : ' is too short';
+        formErrors.passwordAgain = form.passwordAgain === '' || validFields.passwordAgainValid ? '' : ' passwords don\'t match';
 
         onChange(formErrors, "formErrors")
-    }, [
-        form.usernameValid,
-        form.emailValid,
-        form.passwordValid,
-        form.passwordAgainValid,
-        form.formErrors
-    ])
+    }, [form.username, form.email, form.password, form.passwordAgain])
+
+    // useEffect(() => {
+    //     let username = form.username;
+    //     let usernameValid = username.match(/^([\w]{5,15})$/i)
+    //     onChange(usernameValid, "usernameValid")
+
+    //     console.log('form.emailValid', form.emailValid)
+    // }, [form.username])
+
+    // useEffect(() => {
+    //     let email = form.email;
+    //     let emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+
+    //     onChange(emailValid, "emailValid")
+    // }, [form.email])
+
+    // useEffect(() => {
+    //     let password = form.password;
+    //     let passwordValid = password.length >= 6;
+
+    //     onChange(passwordValid, "passwordValid")
+    // }, [form.password])
+
+    // useEffect(() => {
+    //     let password = form.password;
+    //     let passwordAgain = form.passwordAgain;
+    //     let passwordAgainValid = passwordAgain === password
+
+    //     onChange(passwordAgainValid, "passwords are not equal")
+    // }, [form.passwordAgain, form.passwordAgain])
+
+    // useEffect(() => {
+    //     const formValidation = {
+    //         usernameValid: form.usernameValid,
+    //         emailValid: form.emailValid,
+    //         passwordValid: form.passwordValid,
+    //         passwordAgainValid: form.passwordAgainValid,
+    //     }
+
+    //     let formErrors = form.formErrors;
+
+    //     formErrors.username = formValidation.usernameValid ? '' : ' is invalid';
+    //     formErrors.email = formValidation.emailValid ? '' : ' is invalid';
+    //     formErrors.password = formValidation.passwordValid ? '' : ' is too short';
+    //     formErrors.passwordAgain = formValidation.passwordAgainValid === formValidation.passwordValid ? '' : ' passwords don\'t match';
+
+    //     onChange(formErrors, "formErrors")
+    // }, [
+    //     form.usernameValid,
+    //     form.emailValid,
+    //     form.passwordValid,
+    //     form.passwordAgainValid,
+    //     form.formErrors
+    // ])
 
     const handleLoginButton = () => {
         navigate("/login")
@@ -101,30 +129,26 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (form.passwordAgain !== form.password) {
-            form.passwordAgain.setCustomValidity("Passwords don't match!")
-        } else {
-            const user = {
-                username: form.username,
-                email: form.email,
-                password: form.password,
-                isAdmin: false
-            }
-
-            const url = `${baseUrl}/user/signup`
-            const data = user
-
-            signup(url, data)
+        const user = {
+            username: form.username,
+            email: form.email,
+            password: form.password,
+            isAdmin: false
         }
+
+        const url = `${baseUrl}/user/signup`
+        const data = user
+
+        signup(url, data)
     }
 
     return (
         <div className={styles.signup}>
             <div className={styles.signupWrapper}>
                 <div className={styles.signupLeft}>
-                    <h3 className={styles.signupLogo} role="img">
+                    <div data-testid="signuplogo" className={styles.signupLogo}>
                         Lamasocial
-                    </h3>
+                    </div>
                     <span className={styles.signupDesc}>
                         Connect with friends and the world around you on Lamasocial
                     </span>
