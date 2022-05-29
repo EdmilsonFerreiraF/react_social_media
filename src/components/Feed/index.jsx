@@ -39,7 +39,7 @@ const Feed = ({ otherUserId }) => {
     const createPost = !otherUserId && <CreatePost />
 
     return (
-        <main className={styles.feedContainer}>
+        <main data-testid="feed" className={styles.feedContainer}>
             <div className={styles.feed}>
                 {createPost}
                 {posts}
