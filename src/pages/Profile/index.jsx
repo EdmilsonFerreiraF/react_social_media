@@ -80,7 +80,7 @@ const Profile = () => {
                   ??
                   noCoverImg}
                 className={styles.profileCoverImg}
-                alt="Post content" />
+                alt="User cover" />
               <img className={styles.profileUserImg}
                 src={profilePicture
                   ??
@@ -88,10 +88,10 @@ const Profile = () => {
                 alt="User profile" />
             </div>
             <div className={styles.profileInfo}>
-              <h4 datatest-id="user profile name" className={styles.profileInfoName}>
+              <h4 data-testid="user profile username" className={styles.profileInfoName}>
                 {user?.username}
               </h4>
-              <span datatest-id="user profile description" className={styles.profileInfoDesc}>
+              <span data-testid="user profile description" className={styles.profileInfoDesc}>
                 {user?.description}
               </span>
             </div>
