@@ -10,10 +10,10 @@ import AuthReducer from "./AuthReducer"
 
 const INITIAL_STATE = {
     user: {
-        _id: "6198494ec6ece6cbe6cdae4e",
-        username: "user_username",
-        email: "user1_email@email.com",
-        profilePicture: "1.jpeg",
+        id: "",
+        username: "",
+        email: "",
+        profilePicture: "",
         coverPicture: "",
         isAdmin: false,
         followers: [],
@@ -26,7 +26,7 @@ const INITIAL_STATE = {
 export const AuthContext = createContext({})
 
 export const AuthContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(AuthReducer, {})
+    const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE)
 
     return (
         <AuthContext.Provider
