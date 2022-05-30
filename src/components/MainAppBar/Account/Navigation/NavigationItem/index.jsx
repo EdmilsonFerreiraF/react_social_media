@@ -1,10 +1,13 @@
 import styles from "./style.module.css"
 
-const NavigationItem = ({ title, href, dataTestId }) => {
+const NavigationItem = ({ title, href, dataTestId, handleClick }) => {
     return (
-        <a className={styles.navigationItem} href={href} data-testid={dataTestId}>
+        <div className={styles.navigationItem}
+            onClick={handleClick}
+            data-testid={dataTestId}
+        >
             {title}
-        </a>
+        </div>
     )
 }
 

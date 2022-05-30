@@ -8,14 +8,37 @@ import ArticleIcon from '@mui/icons-material/Article';
 import { useContext } from "react";
 
 import { AuthContext } from 'context/AuthContext'
+import { useNavigate } from "react-router-dom";
+import { goToIndex, goToProfile } from "routes/coordinator";
 
 const Navigation = (props) => {
     const { user, dispatch } = useContext(AuthContext)
+    const navigation = useNavigate()
+
+    const handleHomepageClick = () => {
+        goToIndex(navigation)
+    }
+
+
+    const handleTimelineClick = () => {
+        goToProfile(navigation, user?.username)
+    }
 
     const NavigationMenu = (
-        <nav data-testid="navigation menu" className={styles.navigation}>
-            <NavigationItem dataTestId="homepageLink" title="Homepage" href="/" />
-            <NavigationItem dataTestId="timelineLink" title="Timeline" href={`/${user?.username}`} />
+        <nav
+            data-testid="navigation menu"
+            className={styles.navigation}
+        >
+            <NavigationItem
+                handleClick={handleHomepageClick}
+                dataTestId="homepageLink"
+                title="Homepage"
+            />
+            <NavigationItem
+                handleClick={handleTimelineClick}
+                dataTestId="timelineLink"
+                title="Timeline"
+            />
         </nav>
     )
 
@@ -24,8 +47,7 @@ const Navigation = (props) => {
             <MenuItem
                 data-testid="navigationMenuItem"
                 onClick={props.handleProfileMenuOpen}
-                
-                >
+            >
                 <IconButton
                     data-testid="navigationIconButton"
                     size="medium"
@@ -36,13 +58,16 @@ const Navigation = (props) => {
                 >
                     <HomeIcon />
                 </IconButton>
-                <NavigationItem dataTestId="mobileHomepageLink" title="Homepage" />
+                <NavigationItem
+                    dataTestId="mobileHomepageLink"
+                    title="Homepage"
+                />
             </MenuItem>
             <MenuItem
                 data-testid="navigationMenuItem"
                 onClick={props.handleProfileMenuOpen}
-                
-                >
+
+            >
                 <IconButton
                     data-testid="navigationIconButton"
                     size="medium"
@@ -53,7 +78,10 @@ const Navigation = (props) => {
                 >
                     <ArticleIcon />
                 </IconButton>
-                <NavigationItem dataTestId="mobileTimelineLink" title="Timeline" />
+                <NavigationItem
+                    dataTestId="mobileTimelineLink"
+                    title="Timeline"
+                />
             </MenuItem>
         </div>
     )
