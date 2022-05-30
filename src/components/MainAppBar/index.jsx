@@ -6,7 +6,7 @@ import styles from "./style.module.css"
 
 const MainAppBar = () => {
     return (
-        <nav className={styles.mainAppBar}>
+        <nav data-testid="mainappbar" aria-label="navigation" className={styles.mainAppBar}>
             <Logo />
             <SearchBar />
             <Account />
