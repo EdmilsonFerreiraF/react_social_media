@@ -1,5 +1,4 @@
-import { createRef, useEffect } from 'react'
-import axios from 'axios'
+import { useEffect } from 'react'
 
 import Input from 'components/Input'
 import { baseUrl } from 'constants/baseUrl'
@@ -8,7 +7,7 @@ import styles from "./style.module.css"
 import { useNavigate } from 'react-router-dom'
 import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useForm } from "hooks/useForm"
-import { sendData, signup } from 'apiCalls'
+import { signup } from 'apiCalls'
 import FormErrors from 'components/FormErrors'
 
 const Signup = () => {
@@ -68,60 +67,6 @@ const Signup = () => {
         onChange(formErrors, "formErrors")
     }, [form.username, form.email, form.password, form.passwordAgain])
 
-    // useEffect(() => {
-    //     let username = form.username;
-    //     let usernameValid = username.match(/^([\w]{5,15})$/i)
-    //     onChange(usernameValid, "usernameValid")
-
-    //     console.log('form.emailValid', form.emailValid)
-    // }, [form.username])
-
-    // useEffect(() => {
-    //     let email = form.email;
-    //     let emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-
-    //     onChange(emailValid, "emailValid")
-    // }, [form.email])
-
-    // useEffect(() => {
-    //     let password = form.password;
-    //     let passwordValid = password.length >= 6;
-
-    //     onChange(passwordValid, "passwordValid")
-    // }, [form.password])
-
-    // useEffect(() => {
-    //     let password = form.password;
-    //     let passwordAgain = form.passwordAgain;
-    //     let passwordAgainValid = passwordAgain === password
-
-    //     onChange(passwordAgainValid, "passwords are not equal")
-    // }, [form.passwordAgain, form.passwordAgain])
-
-    // useEffect(() => {
-    //     const formValidation = {
-    //         usernameValid: form.usernameValid,
-    //         emailValid: form.emailValid,
-    //         passwordValid: form.passwordValid,
-    //         passwordAgainValid: form.passwordAgainValid,
-    //     }
-
-    //     let formErrors = form.formErrors;
-
-    //     formErrors.username = formValidation.usernameValid ? '' : ' is invalid';
-    //     formErrors.email = formValidation.emailValid ? '' : ' is invalid';
-    //     formErrors.password = formValidation.passwordValid ? '' : ' is too short';
-    //     formErrors.passwordAgain = formValidation.passwordAgainValid === formValidation.passwordValid ? '' : ' passwords don\'t match';
-
-    //     onChange(formErrors, "formErrors")
-    // }, [
-    //     form.usernameValid,
-    //     form.emailValid,
-    //     form.passwordValid,
-    //     form.passwordAgainValid,
-    //     form.formErrors
-    // ])
-
     const handleLoginButton = () => {
         navigate("/login")
     }
@@ -165,9 +110,7 @@ const Signup = () => {
                             required
                             value={form.username}
                             invalid={!!form.formErrors.email.length}
-
                             errorIndex="error1"
-
                             handleInputChange={handleInputChange} />
                         <label className={styles.fieldLabel} htmlFor="email">Email</label>
 
@@ -179,9 +122,7 @@ const Signup = () => {
                             required
                             value={form.email}
                             invalid={!!form.formErrors.email.length}
-
                             errorIndex="error2"
-
                             handleInputChange={handleInputChange} />
                         <label className={styles.fieldLabel} htmlFor="email">Password</label>
 
@@ -194,9 +135,7 @@ const Signup = () => {
                             minLength="6"
                             value={form.password}
                             invalid={!!form.formErrors.email.length}
-
                             errorIndex="error3"
-
                             handleInputChange={handleInputChange} />
                         <label className={styles.fieldLabel} htmlFor="email">Password again</label>
 
@@ -208,9 +147,7 @@ const Signup = () => {
                             required
                             value={form.passwordAgain}
                             invalid={!!form.formErrors.email.length}
-
                             errorIndex="error4"
-
                             handleInputChange={handleInputChange} />
                         <div className="panel panel-default">
                             <FormErrors formErrors={form.formErrors} />
