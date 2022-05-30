@@ -52,14 +52,21 @@ const Login = () => {
 
     useEffect(() => {
         const validFields = validateFields();
-
+        
+        const isEmailValid = form.email === '' ||
+        validFields.emailValid ?
+        '' : ' is invalid'
+        const isPasswordValid = form.password === '' ||
+        validFields.passwordValid ?
+        '' : ' is too short'
+        
         let formErrors = {
             email: '',
             password: ''
         }
 
-        formErrors.email = form.email === '' || validFields.emailValid ? '' : ' is invalid'
-        formErrors.password = form.password === '' || validFields.passwordValid ? '' : ' is too short'
+        formErrors.email = isEmailValid
+        formErrors.password = isPasswordValid
 
         onChange(formErrors, "formErrors")
     }, [form.email, form.password])
