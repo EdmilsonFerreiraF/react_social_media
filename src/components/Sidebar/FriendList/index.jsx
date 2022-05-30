@@ -15,17 +15,16 @@ const FriendList = () => {
     const { user } = useContext(AuthContext)
 
     // const url = `${baseUrl}/user/${user.id}/friends`
-    const friends = useRequestData(user && user.id && `${baseUrl}/user/${user.id}/friends`, [])
+    const friends = useRequestData(`${baseUrl}/user/${user?.id}/friends`, [])
 
     console.log('friends', friends)
     
     return (
-        <ul className={styles.friendList}>
-            {friends.map(friend => (
-                <FriendItem
+        <ul className={styles.friendList} data-testid="friendList">
+            {friends.map(friend => <FriendItem
                     key={friend?.id}
                     friend={friend} />
-            ))}
+            )}
         </ul>
     )
 }
