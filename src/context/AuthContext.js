@@ -2,12 +2,6 @@ import { createContext, useReducer } from "react"
 
 import AuthReducer from "./AuthReducer"
 
-// const INITIAL_STATE = {
-//     user: null,
-//     isFetching: false,
-//     error: false
-// }
-
 const INITIAL_STATE = {
     user: {
         id: "",
@@ -35,8 +29,8 @@ export const AuthContextProvider = ({ children }) => {
                 isFetching: state.isFetching,
                 error: state.error,
                 dispatch
-        }}>
-        {children}
+            }}>
+            {children}
         </AuthContext.Provider>
     )
 }

@@ -1,3 +1,3 @@
 module.exports = new Proxy({}, {
-    get: (target, key) => key,
-  });
+  get: (target, key) => key,
+});

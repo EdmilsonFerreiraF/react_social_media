@@ -9,8 +9,7 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 
 import {
   render,
-  screen,
-  waitForElementToBeRemoved
+  screen
 } from "components/customRender";
 import Login from 'pages/Login';
 

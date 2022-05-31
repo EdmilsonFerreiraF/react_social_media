@@ -4,24 +4,24 @@
 
 import * as React from "react"
 import { axe, toHaveNoViolations } from 'jest-axe';
+import '@testing-library/jest-dom'
 
 import {
   render,
   screen,
 } from "components/customRender";
-import '@testing-library/jest-dom'
 
 import Profile from '.';
 
 expect.extend(toHaveNoViolations)
 
-describe('FormErrors', () => {
-  test('Should show error message when email is invalid', async () => {
+describe('Profile', () => {
+  test('Should show user profile image', async () => {
     render(
       <Profile />
     )
 
-    expect(screen.getByAltText(/Your profile/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/My profile/i)).toBeInTheDocument();
   })
 
   test('Should be an acessible component', async () => {

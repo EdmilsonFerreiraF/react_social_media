@@ -2,15 +2,13 @@
  * @jest-environment jsdom
  */
 import * as React from "react"
+import '@testing-library/jest-dom'
+import { axe, toHaveNoViolations } from 'jest-axe';
 
 import {
   render,
   screen,
 } from "components/customRender";
-import Home from 'pages/Home';
-import '@testing-library/jest-dom'
-import { Route } from 'react-router-dom';
-import { axe, toHaveNoViolations } from 'jest-axe';
 import MessagesBar from ".";
 
 expect.extend(toHaveNoViolations)

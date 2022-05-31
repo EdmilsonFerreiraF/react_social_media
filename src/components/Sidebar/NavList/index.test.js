@@ -3,14 +3,15 @@
  */
 
 import * as React from "react"
+import '@testing-library/jest-dom'
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
   render,
   screen
 } from "components/customRender";
 import NavList from ".";
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+
 expect.extend(toHaveNoViolations)
 
 describe('NavList', () => {
@@ -22,6 +23,7 @@ describe('NavList', () => {
     expect(screen.getByText(/Feed/i)).toBeInTheDocument();
     expect(screen.getByTestId(/FeedIcon/i)).toBeInTheDocument();
   })
+  
   test('Should have Chats NavItem', async () => {
     render(
       <NavList />

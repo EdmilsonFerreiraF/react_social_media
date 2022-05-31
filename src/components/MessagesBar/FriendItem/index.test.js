@@ -3,16 +3,16 @@
  */
 
 import * as React from "react"
+import { axe, toHaveNoViolations } from 'jest-axe';
+import '@testing-library/jest-dom'
+import { initializeApp } from "firebase/app";
+import dotenv from 'dotenv'
 
 import {
   render,
   screen,
 } from "components/customRender";
-import '@testing-library/jest-dom'
 import FriendItem from '.';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import { initializeApp } from "firebase/app";
-import dotenv from 'dotenv'
 
 dotenv.config()
 

@@ -2,17 +2,17 @@
  * @jest-environment jsdom
  */
 import * as React from "react"
+import '@testing-library/jest-dom'
+import { axe, toHaveNoViolations } from 'jest-axe';
+import dotenv from 'dotenv'
+import { initializeApp } from "firebase/app";
+import userEvent from "@testing-library/user-event";
 
 import {
   render,
   screen,
 } from "components/customRender";
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
 import Post from ".";
-import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app";
-import userEvent from "@testing-library/user-event";
 
 dotenv.config()
 

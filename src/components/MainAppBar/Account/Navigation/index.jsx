@@ -1,24 +1,22 @@
-import NavigationItem from "./NavigationItem"
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import HomeIcon from '@mui/icons-material/Home';
+import ArticleIcon from '@mui/icons-material/Article';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 
-import HomeIcon from '@mui/icons-material/Home';
-import styles from "./style.module.css"
-import ArticleIcon from '@mui/icons-material/Article';
-import { useContext } from "react";
-
 import { AuthContext } from 'context/AuthContext'
-import { useNavigate } from "react-router-dom";
 import { goToIndex, goToProfile } from "routes/coordinator";
+import NavigationItem from "./NavigationItem"
+import styles from "./style.module.css"
 
 const Navigation = (props) => {
-    const { user, dispatch } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const navigation = useNavigate()
 
     const handleHomepageClick = () => {
         goToIndex(navigation)
     }
-
 
     const handleTimelineClick = () => {
         goToProfile(navigation, user?.username)

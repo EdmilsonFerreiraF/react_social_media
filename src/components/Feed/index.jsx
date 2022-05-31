@@ -10,22 +10,22 @@ import { useRequestData } from 'hooks/useRequestData'
 
 const Feed = ({ otherUserId }) => {
     const { user } = useContext(AuthContext)
-    console.log('user - Feed', user)
 
     const getPosts = useRequestData(
         (otherUserId
-        ?
-        `${baseUrl}/post/profile/${otherUserId}`
-        :
-        user &&
-        `${baseUrl}/post/timeline/${user?.id}`)
+            ?
+            `${baseUrl}/post/profile/${otherUserId}`
+            :
+            user &&
+            `${baseUrl}/post/timeline/${user?.id}`)
         , []
     )
 
     const posts = getPosts.length
         ?
         getPosts.map(post => (
-            <Post key={post?._id} post={post} />
+            <Post key={post?._id}
+                post={post} />
         ))
         :
         (
@@ -39,7 +39,8 @@ const Feed = ({ otherUserId }) => {
     const createPost = !otherUserId && <CreatePost />
 
     return (
-        <main data-testid="feed" className={styles.feedContainer}>
+        <main data-testid="feed"
+            className={styles.feedContainer}>
             <div className={styles.feed}>
                 {createPost}
                 {posts}

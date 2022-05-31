@@ -4,17 +4,19 @@
 
 import * as React from "react"
 import '@testing-library/jest-dom'
+import userEvent from "@testing-library/user-event";
 import { axe, toHaveNoViolations } from 'jest-axe';
 
 import {
   render,
   screen,
+  waitForElementToBeRemoved
 } from "components/customRender";
 import Navigation from '.';
 
 expect.extend(toHaveNoViolations)
 
-describe('FormErrors', () => {
+describe('Navigation', () => {
   test('Should show homepage link when screen is large', async () => {
     render(
       <Navigation />
@@ -77,6 +79,32 @@ describe('FormErrors', () => {
     )
 
     expect(screen.getByTestId(/mobileTimelineLink/i)).toBeInTheDocument();
+  })
+
+  test('Should go to homepage page when it is clicked', async () => {
+    render(
+      <Navigation />
+    )
+
+    userEvent.click(screen.getByRole('link', { name: /homepage/i }));
+     expect(
+      screen.getByRole("progressbar")
+    ).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByRole("progressbar"), {timeout: 2000});
+    expect(screen.getByText(/Online friends/i)).toBeInTheDocument();
+  })
+
+  test('Should go to timeline page when it is clicked', async () => {
+    render(
+      <Navigation />
+    )
+
+    userEvent.click(screen.getByRole('link', { name: /timeline/i }));
+     expect(
+      screen.getByRole("progressbar")
+    ).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByRole("progressbar"), {timeout: 2000});
+    expect(screen.getByText(/Online friends/i)).toBeInTheDocument();
   })
 
   test('Should be an acessible component', async () => {

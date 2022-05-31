@@ -3,14 +3,14 @@
  */
 
 import * as React from "react"
+import '@testing-library/jest-dom'
+import { axe, toHaveNoViolations } from 'jest-axe';
+
 import {
   render,
   screen,
 } from "components/customRender";
-import '@testing-library/jest-dom'
-
 import Logo from '.';
-import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations)
 

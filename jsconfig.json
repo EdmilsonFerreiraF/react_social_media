@@ -1,7 +1,13 @@
 {
-    "compilerOptions": {
-      "baseUrl": "src"
-    },
-    "include": ["src", "__mocks__"],
-    "exclude": ["node_modules", "dist"]
-  }
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": [
+    "src",
+    "__mocks__"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

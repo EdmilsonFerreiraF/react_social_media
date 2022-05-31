@@ -3,17 +3,17 @@
  */
 
 import * as React from "react"
+import '@testing-library/jest-dom'
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { initializeApp } from "firebase/app";
+import dotenv from 'dotenv'
 
+import FollowingList from '.';
 import {
   render,
   screen,
 } from "components/customRender";
-import '@testing-library/jest-dom'
-import FollowingList from '.';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import { initializeApp } from "firebase/app";
 
-import dotenv from 'dotenv'
 
 dotenv.config()
 

@@ -58,7 +58,6 @@ const friends = [
     },
 ]
 
-
 const userPosts = [
     {
         id: 0,
@@ -98,7 +97,7 @@ const post = jest.fn().mockImplementation((url) => {
         return Promise.resolve();
     }
 })
-    
+
 const get = jest.fn().mockImplementation((url, _) => {
     console.log('jest mock url', url)
     if (url.includes(`user/user_username2`)) {

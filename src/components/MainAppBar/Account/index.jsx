@@ -1,27 +1,29 @@
 import Navigation from "./Navigation"
 import Social from "./Social"
 import Profile from "./Profile"
-import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import styles from "./style.module.css"
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+
 import { useForm } from "hooks/useForm"
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "context/AuthContext";
 import { goToProfile } from "routes/coordinator";
 
-const drawerWidth = 240;
+const Account = () => {
+  const { form, onChange } = useForm({
+    anchorEl: null,
+    mobileMoreAnchorEl: null
+  })
 
-const Account = (props) => {
-  const { form, onChange } = useForm({ anchorEl: null, mobileMoreAnchorEl: null })
   const { user } = useContext(AuthContext)
 
   const isMenuOpen = Boolean(form.anchorEl)
@@ -29,7 +31,6 @@ const Account = (props) => {
   const navigate = useNavigate()
 
   const handleProfileClick = (event) => {
-    // onChange(event.currentTarget, "anchorEl")
     goToProfile(navigate, user?.username)
   }
 
@@ -46,15 +47,6 @@ const Account = (props) => {
     onChange(event.currentTarget, "mobileMoreAnchorEl")
   };
 
-  const drawer = (
-    <Container sx={{ display: { xs: 'none', sm: 'block' } }}>
-      <Navigation />
-      <Social />
-      <Profile />
-    </Container>
-  )
-
-  const container = window !== undefined ? () => window().document.body : undefined;
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -146,18 +138,19 @@ const Account = (props) => {
   );
 
   return (
-    <>
+    <div data-testid="account">
       <Box data-testid="accountmenubox" className={styles.account}
         sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Navigation />
         <Social />
         <Profile />
       </Box>
-      <Box data-testid="accountmenubox" sx={{
-        display: { xs: 'flex', md: 'none' },
-        flex: 1.4,
-        flexFlow: 'row-reverse'
-      }}>
+      <Box data-testid="accountmenubox"
+        sx={{
+          display: { xs: 'flex', md: 'none' },
+          flex: 1.4,
+          flexFlow: 'row-reverse'
+        }}>
         <IconButton
           size="large"
           aria-label="show more"
@@ -171,7 +164,7 @@ const Account = (props) => {
       </Box>
       {renderMobileMenu}
       {renderMenu}
-    </>
+    </div>
   )
 }
 

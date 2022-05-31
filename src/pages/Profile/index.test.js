@@ -3,6 +3,7 @@
  */
 
 import * as React from "react"
+import { useParams } from "react-router-dom";
 import '@testing-library/jest-dom'
 import { axe, toHaveNoViolations } from 'jest-axe';
 import dotenv from 'dotenv'
@@ -14,7 +15,6 @@ import {
   waitForElementToBeRemoved
 }
   from "components/customRender";
-import { useParams } from "react-router-dom";
 import Profile from ".";
 
 dotenv.config()

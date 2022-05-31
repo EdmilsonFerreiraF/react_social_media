@@ -3,20 +3,18 @@
  */
 
 import * as React from "react"
+import { axe, toHaveNoViolations } from 'jest-axe'
+import '@testing-library/jest-dom'
 
 import {
   render,
   screen
 } from "components/customRender";
-import TypeItem from '.';
-import { PermMedia } from "@mui/icons-material";
-import userEvent from "@testing-library/user-event";
 import TypeList from ".";
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+
 expect.extend(toHaveNoViolations)
 
-describe('Header', () => {
+describe('TypeList', () => {
   test('Should have Photo or Video TypeItem', async () => {
     render(
       <TypeList />

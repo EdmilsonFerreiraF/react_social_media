@@ -6,7 +6,9 @@ import styles from "./style.module.css"
 
 const Social = () => {
     return (
-        <div data-testid="social" className={styles.social}>
+        <div data-testid="social"
+            role="menu"
+            className={styles.social}>
             <SocialItem badge={1}>
                 <Person />
             </SocialItem>

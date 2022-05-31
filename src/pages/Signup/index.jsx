@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Input from 'components/Input'
+import FormErrors from 'components/FormErrors'
 import { baseUrl } from 'constants/baseUrl'
-
-import styles from "./style.module.css"
-import { useNavigate } from 'react-router-dom'
 import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useForm } from "hooks/useForm"
 import { signup } from 'apiCalls'
-import FormErrors from 'components/FormErrors'
+import styles from "./style.module.css"
 
 const Signup = () => {
     useUnprotectPage()
@@ -29,9 +28,12 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const validateFields = () => {
-        let usernameValid = form.username.match(/^([\w]{5,15})$/i)
-        let emailValid = form.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        let passwordValid = form.password.length > 8
+        let usernameValid = form.username
+            .match(/^([\w]{5,15})$/i)
+        let emailValid = form.email
+            .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        let passwordValid = form.password
+            .length > 8
         let passwordAgainValid = form.passwordAgain === form.password
 
         return {
@@ -59,10 +61,14 @@ const Signup = () => {
             passwordAgain: '',
         }
 
-        formErrors.username = form.username === '' || validFields.usernameValid ? '' : ' is invalid';
-        formErrors.email = form.email === '' || validFields.emailValid ? '' : ' is invalid';
-        formErrors.password = form.password === '' || validFields.passwordValid ? '' : ' is too short';
-        formErrors.passwordAgain = form.passwordAgain === '' || validFields.passwordAgainValid ? '' : ' passwords don\'t match';
+        formErrors.username = form.username === '' ||
+            validFields.usernameValid ? '' : ' is invalid';
+        formErrors.email = form.email === '' ||
+            validFields.emailValid ? '' : ' is invalid';
+        formErrors.password = form.password === '' ||
+            validFields.passwordValid ? '' : ' is too short';
+        formErrors.passwordAgain = form.passwordAgain === '' ||
+            validFields.passwordAgainValid ? '' : ' passwords don\'t match';
 
         onChange(formErrors, "formErrors")
     }, [form.username, form.email, form.password, form.passwordAgain])
@@ -91,7 +97,8 @@ const Signup = () => {
         <div className={styles.signup}>
             <div className={styles.signupWrapper}>
                 <div className={styles.signupLeft}>
-                    <div data-testid="signuplogo" className={styles.signupLogo}>
+                    <div data-testid="signuplogo"
+                        className={styles.signupLogo}>
                         Lamasocial
                     </div>
                     <span className={styles.signupDesc}>
@@ -99,11 +106,18 @@ const Signup = () => {
                     </span>
                 </div>
                 <div className={styles.signupRight}>
-                    <form className={styles.signupBox} onSubmit={handleSubmit}>
-                        <label className={styles.fieldLabel} htmlFor="email">Username</label>
+                    <form className={styles.signupBox}
+                        onSubmit={handleSubmit}>
+                        <label className={styles.fieldLabel}
+                            htmlFor="email">
+                            Username
+                        </label>
 
                         <Input
-                            className={form.formErrors.username.length ? 'input--invalid' : ''}
+                            className={form.formErrors.username.length ?
+                                'input--invalid'
+                                :
+                                ''}
                             name="username"
                             type="text"
                             placeholder="Username"
@@ -112,10 +126,16 @@ const Signup = () => {
                             invalid={!!form.formErrors.email.length}
                             errorIndex="error1"
                             handleInputChange={handleInputChange} />
-                        <label className={styles.fieldLabel} htmlFor="email">Email</label>
+                        <label className={styles.fieldLabel}
+                            htmlFor="email">
+                            Email
+                        </label>
 
                         <Input
-                            className={form.formErrors.email.length ? 'input--invalid' : ''}
+                            className={form.formErrors.email.length ?
+                                'input--invalid'
+                                :
+                                ''}
                             name="email"
                             type="email"
                             placeholder="Email"
@@ -124,10 +144,16 @@ const Signup = () => {
                             invalid={!!form.formErrors.email.length}
                             errorIndex="error2"
                             handleInputChange={handleInputChange} />
-                        <label className={styles.fieldLabel} htmlFor="email">Password</label>
+                        <label className={styles.fieldLabel}
+                            htmlFor="email">
+                            Password
+                        </label>
 
                         <Input
-                            className={form.formErrors.password.length ? 'input--invalid' : ''}
+                            className={form.formErrors.password.length
+                                ? 'input--invalid'
+                                :
+                                ''}
                             name="password"
                             type="password"
                             placeholder="Password"
@@ -137,10 +163,16 @@ const Signup = () => {
                             invalid={!!form.formErrors.email.length}
                             errorIndex="error3"
                             handleInputChange={handleInputChange} />
-                        <label className={styles.fieldLabel} htmlFor="email">Password again</label>
+                        <label className={styles.fieldLabel}
+                            htmlFor="email">
+                            Password again
+                        </label>
 
                         <Input
-                            className={form.formErrors.passwordAgain.length ? 'input--invalid' : ''}
+                            className={form.formErrors.passwordAgain.length
+                                ? 'input--invalid'
+                                :
+                                ''}
                             name="passwordAgain"
                             type="password"
                             placeholder="Password again"
@@ -156,7 +188,8 @@ const Signup = () => {
                             type="submit">
                             Sign up
                         </button>
-                        <button onClick={handleLoginButton} className={styles.signupRegisterButton}>
+                        <button onClick={handleLoginButton}
+                            className={styles.signupRegisterButton}>
                             Log into account
                         </button>
                     </form>

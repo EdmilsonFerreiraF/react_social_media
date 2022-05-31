@@ -4,18 +4,17 @@
 
 import * as React from "react"
 
+import '@testing-library/jest-dom'
+import { axe, toHaveNoViolations } from 'jest-axe';
+import dotenv from 'dotenv'
+import { initializeApp } from "firebase/app";
+
 import {
   render,
   screen,
   waitFor
 } from "components/customRender";
-import '@testing-library/jest-dom'
 import FriendList from '.';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app";
-import { AuthContext } from "context/AuthContext";
-import { useGetUser } from "apiCalls";
 
 dotenv.config()
 

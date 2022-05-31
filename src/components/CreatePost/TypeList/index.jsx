@@ -1,7 +1,6 @@
 import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
 
 import TypeItem from "../TypeItem"
-
 import styles from "./style.module.css"
 
 const TypeList = (props) => {
@@ -13,9 +12,7 @@ const TypeList = (props) => {
                 inputType="file"
                 inputAccept="image/*"
                 onChange={e => {
-                    props.setFile(e.target.files[0], "file");
-                    
-                    console.log('e.target.files[0]', e.target.files[0])
+                    props.setFile(e.target.files[0], "file")
                 }}
             >
                 <PermMedia htmlColor="tomato" />

@@ -2,15 +2,14 @@
  * @jest-environment jsdom
  */
 import * as React from "react"
-
 import {
   render,
   screen,
 } from "components/customRender";
 import '@testing-library/jest-dom'
+import { axe, toHaveNoViolations } from 'jest-axe';
 
 import Social from '.';
-import { axe, toHaveNoViolations } from 'jest-axe';
 
 expect.extend(toHaveNoViolations)
 

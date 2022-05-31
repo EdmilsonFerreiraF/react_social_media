@@ -17,7 +17,11 @@ const InfoList = ({ user }) => {
                     ?
                     "Single"
                     :
-                    user?.relationship === 1 ? "Married" : "-"} />
+                    user?.relationship === 1
+                    ? "Married"
+                    :
+                    "-"
+                } />
         </div>
     )
 }

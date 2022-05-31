@@ -6,26 +6,23 @@ export function useRequestImage(entity, initialState) {
   const [data, setData] = useState(initialState);
   const handleError = useErrorHandler()
 
-    useEffect(() => {
-        const getData = async(image) => {
-          const storage = getStorage();
+  useEffect(() => {
+    const getData = async (image) => {
+      const storage = getStorage();
 
-          getDownloadURL(ref(storage, `/${entity}/${image}`))
-          .then((url) => {
-            console.log('url - useRequestImage', url)
-            setData(url)
-          })
-          .catch((error) => {
-            console.log('error - useRequestImage', error)
-            handleError(error)
-          });
-      }
+      getDownloadURL(ref(storage, `/${entity}/${image}`))
+        .then((url) => {
+          setData(url)
+        })
+        .catch((error) => {
+          handleError(error)
+        });
+    }
 
-      if (initialState) {
-        console.log('initialState - useRequestImage', initialState)
-        getData(initialState)
-      }
-    }, [initialState, entity])
+    if (initialState) {
+      getData(initialState)
+    }
+  }, [initialState, entity])
 
   return data;
 }

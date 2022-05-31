@@ -1,23 +1,24 @@
+import { useContext } from "react"
+
 import FollowingList from "./FollowingList"
 import InfoList from "./InfoList"
-
 import styles from "./style.module.css"
 import { baseUrl } from "constants/baseUrl"
 import { useRequestData } from "hooks/useRequestData"
+import { AuthContext } from "context/AuthContext"
 import giftImg from 'img/gift.png'
 import adImg from 'img/ad.png'
-import { useContext } from "react"
-import { AuthContext } from "context/AuthContext"
 
 const MessagesBar = ({ user: visitedUser }) => {
-    const token = localStorage.getItem("token")
-    const { user: currUser, dispatch } = useContext(AuthContext)
+    const { user: currUser } = useContext(AuthContext)
 
     const user = visitedUser ?? currUser
 
-    const friends = useRequestData(user && user.id && `${baseUrl}/user/${user.id}/friends`, [])
+    const friends = useRequestData(
+        user && user.id && `${baseUrl}/user/${user.id}/friends`,
+        []
+    )
 
-    console.log('friends - MessagesBar', friends)
     const HomeMessagesBar = () => {
         return (
             <aside data-testid="homeMessagesBar" aria-labelledby="messages-bar">
@@ -26,7 +27,9 @@ const MessagesBar = ({ user: visitedUser }) => {
                         src={giftImg}
                         alt="Birthday gift" />
                     <span className={styles.birthdayText}>
-                        <b>Pola Foster</b> and <b>3 other friends</b> have a birthday today.
+                        <b>Pola Foster</b>
+                        and <b>3 other friends</b>
+                        have a birthday today.
                     </span>
                 </div>
                 <div className={styles.birthdayAd}>
@@ -37,7 +40,9 @@ const MessagesBar = ({ user: visitedUser }) => {
                 <h4 className={styles.messagesBarTitle}>
                     Online Friends
                 </h4>
-                <FollowingList friends={friends} />
+                <FollowingList
+                    friends={friends}
+                />
             </aside>
         )
     }
@@ -56,7 +61,12 @@ const MessagesBar = ({ user: visitedUser }) => {
     return (
         <div className={styles.messagesBarContainer}>
             <div className={styles.messagesBar}>
-                {visitedUser ? <ProfileMessagesBar /> : <HomeMessagesBar />}
+                {visitedUser
+                    ?
+                    <ProfileMessagesBar />
+                    :
+                    <HomeMessagesBar />
+                }
             </div>
         </div>
     )

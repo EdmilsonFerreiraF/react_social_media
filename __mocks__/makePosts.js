@@ -1,8 +1,7 @@
 const makePosts = (n) => {
-    // returns n number of todo items
-    // default is 15
     const num = n || 15;
     const posts = [];
+
     for (let i = 0; i < num; i++) {
         posts.push({
             id: i,
@@ -12,6 +11,7 @@ const makePosts = (n) => {
             likes: 0,
         });
     }
+    
     return posts;
 };
 

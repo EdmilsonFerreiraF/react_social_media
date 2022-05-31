@@ -1,6 +1,10 @@
 import styles from "./style.module.css"
 
-const NavigationItem = ({ title, href, dataTestId, handleClick }) => {
+const NavigationItem = ({
+    title,
+    dataTestId,
+    handleClick
+}) => {
     return (
         <div className={styles.navigationItem}
             onClick={handleClick}

@@ -3,19 +3,19 @@
  */
 
 import * as React from "react"
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { axe, toHaveNoViolations } from 'jest-axe';
 import userEvent from '@testing-library/user-event';
 import { render as renderRTL } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
-import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 import {
   render,
   screen,
   waitFor
 } from "components/customRender";
-import MainAppBar from '.';
 import Login from "pages/Login";
+import MainAppBar from '.';
 
 expect.extend(toHaveNoViolations)
 

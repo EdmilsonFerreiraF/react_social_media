@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from 'App';
-import { AuthContextProvider } from "context/AuthContext"
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route
+  BrowserRouter as Router
 } from 'react-router-dom'
-import ErrorFallback from 'components/ErrorFallback'
-
 import { ErrorBoundary } from 'react-error-boundary'
 
-import Error from 'pages/Error'
+import App from 'App';
+import { AuthContextProvider } from "context/AuthContext"
+import ErrorFallback from 'components/ErrorFallback'
 
 ReactDOM.render(
   <React.StrictMode>

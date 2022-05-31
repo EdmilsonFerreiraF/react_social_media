@@ -2,24 +2,16 @@
  * @jest-environment jsdom
  */
 
-import App from 'App';
-
 import * as React from "react"
-
+import { axe } from 'jest-axe';
+import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 
 import {
   render,
-  screen,
-  waitForElementToBeRemoved
+  screen
 } from "components/customRender";
-// import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
-import '@testing-library/jest-dom'
-import Home from 'pages/Home';
-import axios from 'axios';
 import CreatePost from '.';
-import { axe } from 'jest-axe';
-import '@testing-library/jest-dom'
 
 describe('CreatePost', () => {
   test('Should have user profile image', async () => {
@@ -27,7 +19,7 @@ describe('CreatePost', () => {
       <CreatePost />
     )
 
-    expect(screen.getByAltText(/User profile/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/CreatePost user profile/i)).toBeInTheDocument();
   })
   test('Should have description field', async () => {
     render(

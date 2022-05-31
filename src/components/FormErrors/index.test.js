@@ -2,10 +2,7 @@
  * @jest-environment jsdom
  */
 
-import App from 'App';
-
 import * as React from "react"
-
 import { axe, toHaveNoViolations } from 'jest-axe';
 import '@testing-library/jest-dom'
 

@@ -1,11 +1,15 @@
+import { useEffect } from "react";
 import axios from "axios"
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 import { baseUrl } from 'constants/baseUrl'
 import { goToIndex } from 'routes/coordinator'
-import { useEffect } from "react";
 
-export const loginCall = async (userCredential, dispatch, navigate) => {
+export const loginCall = async (
+    userCredential,
+    dispatch,
+    navigate
+) => {
     dispatch({ type: "LOGIN_START" })
 
     try {
@@ -22,7 +26,12 @@ export const loginCall = async (userCredential, dispatch, navigate) => {
     }
 }
 
-export const useGetUser = (user, token, dispatch, handleError) => {
+export const useGetUser = (
+    user,
+    token,
+    dispatch,
+    handleError
+) => {
     useEffect(() => {
         const getUser = async () => {
             dispatch({ type: "LOGIN_START" })
@@ -38,19 +47,22 @@ export const useGetUser = (user, token, dispatch, handleError) => {
                 })
                 .catch(err => {
                     dispatch({ type: "LOGIN_FAILED", payload: err })
-                    console.log(err)
                     handleError(err)
                 })
 
             return res
-    }
+        }
+
         if (!user && token) {
             getUser()
         }
     }, [user, token])
 }
 
-export async function signup(url, data) {
+export async function signup(
+    url,
+    data
+) {
     if (url) {
         await axios.post(url, data)
             .catch((error) => {
@@ -59,7 +71,11 @@ export async function signup(url, data) {
     }
 }
 
-export async function sendData(url, method, data) {
+export async function sendData(
+    url,
+    method,
+    data
+) {
     const token = localStorage.getItem("token")
 
     if (url) {
@@ -88,5 +104,4 @@ export async function uploadPostPic(image, imgId) {
         console.log(snapshot)
         console.log('Uploaded a blob or file!');
     });
-
 }

@@ -4,6 +4,7 @@
 
 import * as React from "react"
 import { axe, toHaveNoViolations } from 'jest-axe';
+import userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom'
 
 import {
@@ -11,7 +12,6 @@ import {
   screen,
 } from "components/customRender";
 import Input from '.';
-import userEvent from "@testing-library/user-event";
 
 expect.extend(toHaveNoViolations)
 
@@ -84,7 +84,6 @@ describe('Input', () => {
       />)
 
     const results = await axe(container);
-
     expect(results).toHaveNoViolations();
   })
 })

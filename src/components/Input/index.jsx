@@ -2,7 +2,9 @@ import styles from "./style.module.css"
 
 const Input = props => {
   return (
-    <input className={`${styles.input} ${styles[props.className] ?? '' }`}
+    <input className={
+      `${styles.input} ${styles[props.className] ?? ''}`
+    }
       id={props.name.toLowerCase()}
       type={props.type}
       name={props.name}

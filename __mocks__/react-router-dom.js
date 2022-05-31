@@ -1,4 +1,4 @@
 module.exports = {
-    ...jest.requireActual("react-router-dom"),
-    useParams: jest.fn(),
-  };
+  ...jest.requireActual("react-router-dom"),
+  useParams: jest.fn(),
+};

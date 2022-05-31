@@ -1,5 +1,4 @@
 import FollowingItem from "../FollowingItem"
-
 import styles from "./style.module.css"
 
 const FollowingList = ({ friends }) => {
@@ -8,9 +7,9 @@ const FollowingList = ({ friends }) => {
             {friends.map(friend => (
                 <FollowingItem
                     key={friend?.id}
-                    friend={friend} />
-            )
-            )}
+                    friend={friend}
+                />
+            ))}
         </div>
     )
 }

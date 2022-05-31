@@ -20,7 +20,7 @@ const Profile = () => {
     return (
         <img className={styles.profileImg}
             src={profilePicture}
-            alt="Your profile"
+            alt="My profile"
             onClick={goToUserProfile}/>
     )
 }

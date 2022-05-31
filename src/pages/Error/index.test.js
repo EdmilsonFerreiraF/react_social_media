@@ -4,22 +4,21 @@
 
 import {
   Routes,
-  Route
+  Route,
+  MemoryRouter
 } from 'react-router-dom'
 import * as React from "react"
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom'
-import Error from '.';
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved
-} from "components/customRender";
-
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { render as renderRTL } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+
+import {
+  render,
+  screen
+} from "components/customRender";
 import Profile from 'components/MainAppBar/Account/Profile';
+import Error from '.';
 
 expect.extend(toHaveNoViolations)
 

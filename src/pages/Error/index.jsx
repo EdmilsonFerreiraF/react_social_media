@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router-dom'
+
 import { goToIndex } from 'routes/coordinator'
 import styles from './style.module.css'
 import error404Img from 'img/error404.png'
-import { useNavigate } from 'react-router-dom'
 
 const Error = () => {
   const navigate = useNavigate()
@@ -11,10 +12,23 @@ const Error = () => {
   }
 
   return (
-    <div role="alert" className={styles.errorPage}>
-      <p className={styles.error}>This page did not exists</p>
-      <img className={styles.errorImage} src={error404Img} alt="Broken robot 404 error" />
-      <button className={styles.backToHomeBtn} onClick={handleBackToHome}>Back to home</button>
+    <div
+      role="alert"
+      className={styles.errorPage}
+    >
+      <p className={styles.error}
+      >
+        This page did not exists
+      </p>
+      <img className={styles.errorImage}
+        src={error404Img}
+        alt="Broken robot 404 error"
+      />
+      <button className={styles.backToHomeBtn}
+        onClick={handleBackToHome}
+      >
+        Back to home
+      </button>
     </div>
   )
 }

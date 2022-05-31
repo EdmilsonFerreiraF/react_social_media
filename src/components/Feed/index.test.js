@@ -2,24 +2,19 @@
  * @jest-environment jsdom
  */
 
-import React, {useContext} from "react"
+import React from "react"
+import axios from 'axios';
+import dotenv from 'dotenv'
+import { axe, toHaveNoViolations } from 'jest-axe';
+import { initializeApp } from "firebase/app";
 
 import {
   render,
   screen,
-  waitFor,
   waitForElementToBeRemoved
 } from "components/customRender";
 import '@testing-library/jest-dom'
-import axios from 'axios';
 import Feed from '.';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import { useGetUser } from 'apiCalls';
-import { AuthContext, AuthContextProvider } from 'context/AuthContext';
-
-import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app";
-import { useParams } from "react-router-dom";
 
 dotenv.config()
 
@@ -39,28 +34,6 @@ initializeApp(firebaseConfig);
 
 describe('Header', () => {
   test('Should other user profile when user is not current user', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
-    // AuthContext.mockReturnValue({ username: "user_username2" })
-    // jest.mock("context/AuthContext", () => ({
-    //   __esModule: true,
-    //   default: React.createContext()
-    // }));
-    // const CustomWrapper = async () => {
-    //   // const handleError = jest.fn()
-
-    //   // const { user, dispatch } = useContext(AuthContext)
-
-    //   // const token = 'data'
-
-    //   // useGetUser(user, token, dispatch, handleError)
-
-    //   return (
-    //     <div>
-    //       <Feed />
-    //     </div>  
-    //   )
-    // }
-
     const otherUserId = {
       _id: "6198494ec6ece6cbe6cdae4e",
       username: "user_username2",
@@ -83,23 +56,6 @@ describe('Header', () => {
   })
 
   test('Should show user posts when user is current user', async () => {
-    // const CustomWrapper = () => {
-    //   // const handleError = jest.fn()
-
-    //   // const { user, dispatch } = React.useContext(AuthContext)
-
-    //   // const token = 'data'
-    //   // useGetUser(user, token, dispatch, handleError)
-
-    //   return (
-    //     <div>
-    //       <AuthContextProvider>
-    //         <Feed />
-    //       </AuthContextProvider>
-    //     </div>
-    //   )
-    // }
-
     render(
       <Feed />
     )
@@ -113,23 +69,6 @@ describe('Header', () => {
   })
 
   test('Should show createPost when user is current user', async () => {
-    // const CustomWrapper = () => {
-    //   // const handleError = jest.fn()
-
-    //   // const { user, dispatch } = React.useContext(AuthContext)
-
-    //   // const token = 'data'
-    //   // useGetUser(user, token, dispatch, handleError)
-
-    //   return (
-    //     <div>
-    //       <AuthContextProvider>
-    //         <Feed />
-    //       </AuthContextProvider>
-    //     </div>
-    //   )
-    // }
-
     render(
       <Feed />
     )
