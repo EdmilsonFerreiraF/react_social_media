@@ -1,13 +1,13 @@
 import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
 
-import TypeItem from "../TypeItem"
+import ElementItem from "../ElementItem"
 import styles from "./style.module.css"
 
 const TypeList = (props) => {
     return (
         <ul className={styles.typeList}>
-            <TypeItem
-                className="typeItemInput"
+            <ElementItem
+                className="elementItemInput"
                 title="Photo or Video"
                 inputType="file"
                 inputAccept="image/*"
@@ -16,34 +16,34 @@ const TypeList = (props) => {
                 }}
             >
                 <PermMedia htmlColor="tomato" />
-            </TypeItem>
+            </ElementItem>
 
-            <TypeItem
-                className="typeItemInput"
+            <ElementItem
+                className="elementItemInput"
                 title="Tag"
                 inputType="text"
                 onChange={props.inputHandler}
             >
                 <Label htmlColor="blue" />
-            </TypeItem>
+            </ElementItem>
 
-            <TypeItem
-                className="typeItemInput"
+            <ElementItem
+                className="elementItemInput"
                 title="Location"
                 inputType="text"
                 onChange={props.inputHandler}
             >
                 <Room htmlColor="green" />
-            </TypeItem>
+            </ElementItem>
 
-            <TypeItem
-                className="typeItemInput"
+            <ElementItem
+                className="elementItemInput"
                 title="Feelings"
                 inputType="text"
                 onChange={props.inputHandler}
             >
                 <EmojiEmotions htmlColor="goldenrod" />
-            </TypeItem>
+            </ElementItem>
         </ul>
     )
 }

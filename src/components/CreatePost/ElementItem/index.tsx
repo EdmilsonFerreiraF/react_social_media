@@ -11,18 +11,18 @@ type Props = {
     children: JSX.Element,
 }
 
-const TypeItem = (props: Props): JSX.Element => {
+const ElementItem = (props: Props): JSX.Element => {
     return (
-        <li className={styles.typeItem}>
-            <label className={styles.typeItemTitle}
+        <li className={styles.elementItem}>
+            <label className={styles.elementItemTitle}
                 htmlFor={props.title}
             >
                 {props.title}
-                <div className={styles.typeItemIcon}>
+                <div className={styles.elementItemIcon}>
                     {props.children}
                 </div>
             </label>
-            <input className={styles.typeItemInput}
+            <input className={styles.elementItemInput}
                 name={props.title}
                 type={props.inputType}
                 id={props.title}
@@ -30,10 +30,10 @@ const TypeItem = (props: Props): JSX.Element => {
                     props.inputAccept
                 }
                 onChange={props.onChange}
-                data-testid="typeItem input"
+                data-testid="elementItem input"
             />
         </li>
     )
 }
 
-export default TypeItem
+export default ElementItem

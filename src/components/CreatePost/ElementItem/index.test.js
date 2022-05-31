@@ -12,15 +12,15 @@ import {
   render,
   screen
 } from "components/customRender";
-import TypeItem from '.';
+import ElementItem from '.';
 
 expect.extend(toHaveNoViolations)
 
-describe('TypeItem', () => {
+describe('ElementItem', () => {
   test('Should have a title', async () => {
     render(
-      <TypeItem
-        className="typeItemInput"
+      <ElementItem
+        className="elementItemInput"
         title="Photo or Video"
       />
     )
@@ -30,14 +30,14 @@ describe('TypeItem', () => {
 
   test('Should have an input', async () => {
     render(
-      <TypeItem
-        className="typeItemInput"
+      <ElementItem
+        className="elementItemInput"
         title="Photo or Video"
         inputType="file"
       />
     )
 
-    expect(screen.getByTestId("typeItem input")).toBeInTheDocument();
+    expect(screen.getByTestId("elementItem input")).toBeInTheDocument();
   })
 
 
@@ -45,32 +45,32 @@ describe('TypeItem', () => {
     const onChangeHandler = jest.fn();
 
     render(
-      <TypeItem
-        className="typeItemInput"
+      <ElementItem
+        className="elementItemInput"
         title="Photo or Video"
         inputType="text"
         onChange={onChangeHandler}
       />
     )
 
-    const input = screen.getByTestId("typeItem input")
+    const input = screen.getByTestId("elementItem input")
     userEvent.type(input, "abc")
     expect(onChangeHandler).toHaveBeenCalled();
-    expect(screen.getByTestId("typeItem input")).toHaveDisplayValue("abc");
+    expect(screen.getByTestId("elementItem input")).toHaveDisplayValue("abc");
   })
 
   test('Should have an icon', async () => {
     const onChangeHandler = jest.fn();
 
     render(
-      <TypeItem
-        className="typeItemInput"
+      <ElementItem
+        className="elementItemInput"
         title="Photo or Video"
         inputType="text"
         onChange={onChangeHandler}
       >
         <PermMedia htmlColor="tomato" />
-      </TypeItem>
+      </ElementItem>
     )
 
     screen.debug()
@@ -82,14 +82,14 @@ describe('TypeItem', () => {
     const onChangeHandler = jest.fn();
 
     const { container } = render(
-      <TypeItem
-        className="typeItemInput"
+      <ElementItem
+        className="elementItemInput"
         title="Photo or Video"
         inputType="text"
         onChange={onChangeHandler}
       >
         <PermMedia htmlColor="tomato" />
-      </TypeItem>
+      </ElementItem>
     )
 
     const results = await axe(container);

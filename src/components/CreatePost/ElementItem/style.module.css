@@ -1,33 +1,33 @@
-.typeItem {
+.elementItem {
     display: flex;
     align-items: center;
     margin-right: 15px;
     cursor: pointer;
 }
 
-.typeItemTitle {
+.elementItemTitle {
     cursor: pointer;
     display: flex;
 }
 
-.typeItemIcon {
+.elementItemIcon {
     font-size: 18px;
     align-items: center;
     display: flex;
     margin: 0 5px 0 10px;
 }
 
-.typeItemText {
+.elementItemText {
     font-size: 14px;
     font-weight: 500;
 }
 
-.typeItemInput {
+.elementItemInput {
     display: none;
 }
 
 @media (max-width: 600px) {
-    .typeItem {
+    .elementItem {
         padding: 10px 0;
         margin-right: 12px;
 

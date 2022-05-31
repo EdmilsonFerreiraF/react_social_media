@@ -15,7 +15,7 @@ import TypeList from ".";
 expect.extend(toHaveNoViolations)
 
 describe('TypeList', () => {
-  test('Should have Photo or Video TypeItem', async () => {
+  test('Should have Photo or Video ElementItem', async () => {
     render(
       <TypeList />
     )
@@ -24,7 +24,7 @@ describe('TypeList', () => {
     expect(screen.getByTestId(/PermMediaIcon/i)).toBeInTheDocument();
   })
 
-  test('Should have Tag TypeItem', async () => {
+  test('Should have Tag ElementItem', async () => {
     render(
       <TypeList />
     )
@@ -33,7 +33,7 @@ describe('TypeList', () => {
     expect(screen.getByTestId(/LabelIcon/i)).toBeInTheDocument();
   })
 
-  test('Should have Location TypeItem', async () => {
+  test('Should have Location ElementItem', async () => {
     render(
       <TypeList />
     )
@@ -42,7 +42,7 @@ describe('TypeList', () => {
     expect(screen.getByTestId(/RoomIcon/i)).toBeInTheDocument();
   })
 
-  test('Should have Feelings TypeItem', async () => {
+  test('Should have Feelings ElementItem', async () => {
     render(
       <TypeList />
     )
@@ -51,12 +51,12 @@ describe('TypeList', () => {
     expect(screen.getByTestId(/EmojiEmotionsIcon/i)).toBeInTheDocument();
   })
 
-  test('Should have TypeItem input', async () => {
+  test('Should have ElementItem input', async () => {
     render(
       <TypeList />
     )
 
-    expect(screen.getAllByTestId(/typeItem input/i)).toHaveLength(4)
+    expect(screen.getAllByTestId(/elementItem input/i)).toHaveLength(4)
   })
 
   test('Should be an acessible component', async () => {

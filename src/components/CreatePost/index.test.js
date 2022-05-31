@@ -28,14 +28,14 @@ describe('CreatePost', () => {
 
     expect(screen.getByPlaceholderText(/What's in your mind/i)).toBeInTheDocument();
   })
-  test('Should have Photo or Video TypeItem', async () => {
+  test('Should have Photo or Video ElementItem', async () => {
     render(
       <CreatePost />
     )
 
     expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument();
   })
-  test('Should have Tag TypeItem', async () => {
+  test('Should have Tag ElementItem', async () => {
     render(
       <CreatePost />
     )
@@ -43,14 +43,14 @@ describe('CreatePost', () => {
 
     expect(screen.getByText(/Tag/i)).toBeInTheDocument();
   })
-  test('Should have Location TypeItem', async () => {
+  test('Should have Location ElementItem', async () => {
     render(
       <CreatePost />
     )
 
     expect(screen.getByText(/Location/i)).toBeInTheDocument();
   })
-  test('Should have Feelings TypeItem', async () => {
+  test('Should have Feelings ElementItem', async () => {
     render(
       <CreatePost />
     )
@@ -80,7 +80,7 @@ describe('CreatePost', () => {
     )
 
     const file = new File(['hello'], 'hello.png', { type: 'image/png' })
-    const input = screen.getAllByTestId(/typeItem input/i)
+    const input = screen.getAllByTestId(/elementItem input/i)
 
     userEvent.upload(input[0], file)
 
@@ -102,7 +102,7 @@ describe('CreatePost', () => {
     expect(postDescription).toHaveDisplayValue("post_description")
 
     const file = new File(['hello'], 'hello.png', { type: 'image/png' })
-    const input = screen.getAllByTestId(/typeItem input/i)
+    const input = screen.getAllByTestId(/elementItem input/i)
 
     screen.debug(input)
     userEvent.upload(input[0], file)

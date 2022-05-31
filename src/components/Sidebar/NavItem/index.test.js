@@ -20,7 +20,7 @@ describe('NavItem', () => {
     render(
       <ul>
         <NavItem
-          className="typeItemInput"
+          className="elementItemInput"
           title="Feed"
         />
       </ul>
@@ -33,7 +33,7 @@ describe('NavItem', () => {
     render(
       <ul>
         <NavItem
-          className="typeItemInput"
+          className="elementItemInput"
           title="Feed"
         >
           <Feed />
@@ -48,7 +48,7 @@ describe('NavItem', () => {
     const { container } = render(
       <ul>
         <NavItem
-          className="typeItemInput"
+          className="elementItemInput"
           title="Feed"
         >
           <Feed />
