@@ -1,9 +1,15 @@
+import React, { FormEvent } from "react"
 import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
 
 import ElementItem from "../ElementItem"
 import styles from "./style.module.css"
 
-const ElementList = (props) => {
+type Props = {
+    setFile: (file: FileList[0], inputType: string) => void,
+    inputHandler: (e: React.FormEvent<HTMLInputElement>) => void
+}
+
+const ElementList = (props: Props): JSX.Element => {
     return (
         <ul className={styles.elementList}>
             <ElementItem
@@ -11,8 +17,11 @@ const ElementList = (props) => {
                 title="Photo or Video"
                 inputType="file"
                 inputAccept="image/*"
-                onChange={e => {
-                    props.setFile(e.target.files[0], "file")
+                onChange={(e: FormEvent) => {
+                    const target = e.target as HTMLInputElement;
+                    const file: File = (target.files as FileList)[0];
+
+                    props.setFile(file, "file")
                 }}
             >
                 <PermMedia htmlColor="tomato" />

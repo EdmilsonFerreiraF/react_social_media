@@ -6,7 +6,7 @@ type Props = {
     className: string,
     title: string,
     inputType: string,
-    inputAccept: string,
+    inputAccept?: string,
     onChange: (e: React.FormEvent<HTMLInputElement>) => void,
     children: JSX.Element,
 }
