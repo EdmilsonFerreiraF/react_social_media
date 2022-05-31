@@ -3,9 +3,9 @@ import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
 import ElementItem from "../ElementItem"
 import styles from "./style.module.css"
 
-const TypeList = (props) => {
+const ElementList = (props) => {
     return (
-        <ul className={styles.typeList}>
+        <ul className={styles.elementList}>
             <ElementItem
                 className="elementItemInput"
                 title="Photo or Video"
@@ -48,4 +48,4 @@ const TypeList = (props) => {
     )
 }
 
-export default TypeList
+export default ElementList

@@ -1,4 +1,4 @@
-.typeList {
+.elementList {
     display: flex;
     padding: 0 0 0 22px;
 }
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 600px) {
-    .typeList {
+    .elementList {
         width: 100%;
         flex-wrap: wrap;
         margin: 0 0 15px 8px;

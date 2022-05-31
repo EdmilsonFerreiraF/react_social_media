@@ -10,14 +10,14 @@ import {
   render,
   screen
 } from "components/customRender";
-import TypeList from ".";
+import ElementList from ".";
 
 expect.extend(toHaveNoViolations)
 
-describe('TypeList', () => {
+describe('ElementList', () => {
   test('Should have Photo or Video ElementItem', async () => {
     render(
-      <TypeList />
+      <ElementList />
     )
 
     expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('TypeList', () => {
 
   test('Should have Tag ElementItem', async () => {
     render(
-      <TypeList />
+      <ElementList />
     )
 
     expect(screen.getByText(/Tag/i)).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe('TypeList', () => {
 
   test('Should have Location ElementItem', async () => {
     render(
-      <TypeList />
+      <ElementList />
     )
 
     expect(screen.getByText(/Location/i)).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('TypeList', () => {
 
   test('Should have Feelings ElementItem', async () => {
     render(
-      <TypeList />
+      <ElementList />
     )
 
     expect(screen.getByText(/Feelings/i)).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('TypeList', () => {
 
   test('Should have ElementItem input', async () => {
     render(
-      <TypeList />
+      <ElementList />
     )
 
     expect(screen.getAllByTestId(/elementItem input/i)).toHaveLength(4)
@@ -61,7 +61,7 @@ describe('TypeList', () => {
 
   test('Should be an acessible component', async () => {
     const { container } = render(
-      <TypeList />
+      <ElementList />
     )
 
     const results = await axe(container);

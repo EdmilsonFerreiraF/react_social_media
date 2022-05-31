@@ -7,7 +7,7 @@ import { AuthContext } from "context/AuthContext"
 import { useRequestImage } from 'hooks/useRequestImage'
 import { useForm } from "hooks/useForm"
 import { sendData, uploadPostPic } from 'apiCalls'
-import TypeList from "./TypeList"
+import ElementList from "./ElementList"
 import styles from "./style.module.css"
 import noProfilePicture from 'img/person/no_person.jpg'
 
@@ -81,7 +81,7 @@ const CreatePost = () => {
                 <form aria-labelledby="create-post"
                     className={styles.createPostBotbar}
                     onSubmit={submitHandler}>
-                    <TypeList
+                    <ElementList
                         setFile={onChange}
                         inputHandler={inputHandler} />
 
