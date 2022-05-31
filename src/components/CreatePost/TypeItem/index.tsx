@@ -1,6 +1,17 @@
+import React from "react"
+
 import styles from "./style.module.css"
 
-const TypeItem = props => {
+type Props = {
+    className: string,
+    title: string,
+    inputType: string,
+    inputAccept: string,
+    onChange: (e: React.FormEvent<HTMLInputElement>) => void,
+    children: JSX.Element,
+}
+
+const TypeItem = (props: Props): JSX.Element => {
     return (
         <li className={styles.typeItem}>
             <label className={styles.typeItemTitle}
@@ -16,7 +27,6 @@ const TypeItem = props => {
                 type={props.inputType}
                 id={props.title}
                 accept={
-                    props.inputType === "file" ??
                     props.inputAccept
                 }
                 onChange={props.onChange}
