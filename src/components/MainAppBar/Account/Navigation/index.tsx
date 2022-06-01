@@ -1,17 +1,23 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import HomeIcon from '@mui/icons-material/Home';
-import ArticleIcon from '@mui/icons-material/Article';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
+import React from 'react'
+import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
+import HomeIcon from '@mui/icons-material/Home'
+import ArticleIcon from '@mui/icons-material/Article'
+import MenuItem from '@mui/material/MenuItem'
+import IconButton from '@mui/material/IconButton'
 
-import { AuthContext } from 'context/AuthContext'
-import { goToIndex, goToProfile } from "routes/coordinator";
+import { AuthContext, AuthContextInterface } from 'context/AuthContext'
+import { goToIndex, goToProfile } from "routes/coordinator"
 import NavigationItem from "./NavigationItem"
 import styles from "./style.module.css"
 
-const Navigation = (props) => {
-    const { user } = useContext(AuthContext)
+type IProps = {
+    handleProfileMenuOpen: string
+    isMobileMenuOpen: string
+}
+
+const Navigation = (props: IProps) => {
+    const { user } = useContext(AuthContext) as AuthContextInterface
     const navigation = useNavigate()
 
     const handleHomepageClick = () => {
@@ -42,6 +48,7 @@ const Navigation = (props) => {
 
     const NavigationMobileMenu = (
         <div data-testid="navigation mobile menu">
+             {/* @ts-ignore */}
             <MenuItem
                 data-testid="navigationMenuItem"
                 onClick={props.handleProfileMenuOpen}
@@ -61,6 +68,7 @@ const Navigation = (props) => {
                     title="Homepage"
                 />
             </MenuItem>
+            {/* @ts-ignore */}
             <MenuItem
                 data-testid="navigationMenuItem"
                 onClick={props.handleProfileMenuOpen}

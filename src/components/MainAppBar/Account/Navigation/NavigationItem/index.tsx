@@ -4,7 +4,7 @@ import styles from "./style.module.css"
 type IProps = {
     title: string
     dataTestId: string
-    handleClick: MouseEventHandler<HTMLDivElement>
+    handleClick?: MouseEventHandler<HTMLDivElement>
 }
 
 const NavigationItem = ({
