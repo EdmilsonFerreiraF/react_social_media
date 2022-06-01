@@ -20,7 +20,7 @@ interface AuthContextInterface {
     dispatch: React.DispatchWithoutAction
 }
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
     user: {
         id: "",
         username: "",
