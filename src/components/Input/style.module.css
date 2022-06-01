@@ -7,11 +7,11 @@
     margin: 0 0 10px 0;
 }
 
-.input--invalid {
+.inputInvalid {
     border: 1px solid #b30000;
 }
 
-.input--invalid:focus-visible {
+.inputInvalid:focus-visible {
     outline: #b30000 auto 1px;
 }
 

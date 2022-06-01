@@ -115,7 +115,7 @@ const Signup = () => {
 
                         <Input
                             className={form.formErrors.username.length ?
-                                'input--invalid'
+                                'inputInvalid'
                                 :
                                 ''}
                             name="username"
@@ -133,7 +133,7 @@ const Signup = () => {
 
                         <Input
                             className={form.formErrors.email.length ?
-                                'input--invalid'
+                                'inputInvalid'
                                 :
                                 ''}
                             name="email"
@@ -151,7 +151,7 @@ const Signup = () => {
 
                         <Input
                             className={form.formErrors.password.length
-                                ? 'input--invalid'
+                                ? 'inputInvalid'
                                 :
                                 ''}
                             name="password"
@@ -170,7 +170,7 @@ const Signup = () => {
 
                         <Input
                             className={form.formErrors.passwordAgain.length
-                                ? 'input--invalid'
+                                ? 'inputInvalid'
                                 :
                                 ''}
                             name="passwordAgain"

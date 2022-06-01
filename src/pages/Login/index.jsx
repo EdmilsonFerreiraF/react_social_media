@@ -101,7 +101,7 @@ const Login = () => {
                         <Input
                             name="email"
                             className={form.formErrors.email.length ?
-                                'input--invalid'
+                                'inputInvalid'
                                 :
                                 ''}
                             type="email"
@@ -118,7 +118,7 @@ const Login = () => {
                         </label>
                         <Input
                             className={form.formErrors.password.length ?
-                                'input--invalid'
+                                'inputInvalid'
                                 :
                                 ''}
                             name="password"
