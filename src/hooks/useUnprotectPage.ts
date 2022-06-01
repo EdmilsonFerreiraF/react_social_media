@@ -1,16 +1,16 @@
-import { useEffect } from "react"
+import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { goToLogin } from 'routes/coordinator';
+import { goToIndex } from 'routes/coordinator';
 
-export const useProtectPage = () => {
+export const useUnprotectPage = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
         const token = window.localStorage.getItem("token")
 
-        if (!token) {
-            goToLogin(navigate)
+        if (token) {
+            goToIndex(navigate)
         }
     }, [navigate])
 }
