@@ -1,15 +1,19 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 
 import CreatePost from '../CreatePost'
-import Post from '../Post'
+import Post, { IPost } from '../Post'
 
 import styles from "./style.module.css"
 import { baseUrl } from 'constants/baseUrl'
-import { AuthContext } from 'context/AuthContext'
+import { AuthContext, AuthContextInterface } from 'context/AuthContext'
 import { useRequestData } from 'hooks/useRequestData'
 
-const Feed = ({ otherUserId }) => {
-    const { user } = useContext(AuthContext)
+type Props = {
+    otherUserId: string
+}
+
+const Feed = ({ otherUserId }: Props) => {
+    const { user } = useContext(AuthContext) as AuthContextInterface
 
     const getPosts = useRequestData(
         (otherUserId
@@ -23,14 +27,14 @@ const Feed = ({ otherUserId }) => {
 
     const posts = getPosts.length
         ?
-        getPosts.map(post => (
+        getPosts.map((post: IPost) => (
             <Post key={post?._id}
                 post={post} />
         ))
         :
         (
             <div className={styles.noPosts}>
-                <p className={styles.noPostText}>
+                <p>
                     No posts created yet
                 </p>
             </div>
