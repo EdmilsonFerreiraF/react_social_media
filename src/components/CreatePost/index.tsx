@@ -1,9 +1,9 @@
-import { useContext } from "react"
+import React, { FormEvent, useContext } from "react"
 import { v4 } from 'uuid'
 import { ClickAwayListener } from "@mui/material"
 
 import { baseUrl } from "constants/baseUrl"
-import { AuthContext } from "context/AuthContext"
+import { AuthContext, AuthContextInterface } from "context/AuthContext"
 import { useRequestImage } from 'hooks/useRequestImage'
 import { useForm } from "hooks/useForm"
 import { sendData, uploadPostPic } from 'apiCalls'
@@ -12,7 +12,7 @@ import styles from "./style.module.css"
 import noProfilePicture from 'img/person/no_person.jpg'
 
 const CreatePost = () => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext) as AuthContextInterface
 
     const { form, onChange } = useForm({
         description: '',
@@ -24,7 +24,7 @@ const CreatePost = () => {
         return v4()
     }
 
-    const submitHandler = async e => {
+    const submitHandler = async (e: React.SyntheticEvent) => {
         e.preventDefault()
 
         const url = `${baseUrl}/post`
@@ -38,14 +38,18 @@ const CreatePost = () => {
         sendData(url, "post", newPost)
     }
 
-    const inputHandler = (e) => {
-        onChange(e.target.value, e.target.name)
+    const inputHandler = (e: FormEvent) => {
+        const target = e.target as HTMLInputElement;
+        const value: string = target.value
+        const name: string = target.name
+
+        onChange(value, name)
     }
 
-    const activeCreationHandler = (e) => {
+    const activeCreationHandler = () => {
         onChange(!form.isActive, "isActive")
     }
-    
+
     const handleClickAway = () => {
         onChange(false, "isActive")
     };
@@ -68,7 +72,7 @@ const CreatePost = () => {
                             "" :
                             `What's in your mind ${user?.username}?`}
                             name="description"
-                            rows={form.isActive ? "4" : "1"}
+                            rows={form.isActive ? 4 : 1}
                             onFocus={activeCreationHandler}
                             className={
                                 `${styles.createPostInput} ${form.isActive ?
