@@ -1,10 +1,16 @@
+import React from 'react'
 import styles from './style.module.css'
 import errorImg from 'img/error.png'
+
+type Props = {
+  error: any,
+  resetErrorBoundary: () => void
+}
 
 const ErrorFallback = ({
   error,
   resetErrorBoundary
-}) => {
+}: Props): JSX.Element => {
   return (
     <div role="alert" className={styles.errorFallback}>
       <p className={styles.error}>
