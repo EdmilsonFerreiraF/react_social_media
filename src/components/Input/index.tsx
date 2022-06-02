@@ -10,6 +10,7 @@ type IProps = {
   value: string;
   placeholder: string;
   invalid: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
+  required: boolean
 }
 
 const Input = (props: IProps): JSX.Element => {

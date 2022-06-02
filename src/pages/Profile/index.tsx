@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useErrorHandler } from 'react-error-boundary'
 import axios from 'axios'
@@ -11,7 +11,7 @@ import { baseUrl } from 'constants/baseUrl'
 import { useProtectPage } from 'hooks/useProtectPage'
 import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from 'hooks/useRequestData';
-import { AuthContext } from 'context/AuthContext'
+import { AuthContext, AuthContextInterface } from 'context/AuthContext'
 import styles from "./style.module.css"
 import noCoverImg from 'img/person/no_cover.jpg'
 import noProfileImg from 'img/person/no_person.jpg'
@@ -22,7 +22,7 @@ const Profile = () => {
 
   const username = useParams().username
 
-  const { user: currUser, dispatch } = useContext(AuthContext)
+  const { user: currUser, dispatch } = useContext(AuthContext) as AuthContextInterface
   const visitedUser = useRequestData(`${baseUrl}/user/${username}`, {})
 
   const token = localStorage.getItem('token')
@@ -34,14 +34,14 @@ const Profile = () => {
       const res = await axios
         .get(`${baseUrl}/user`, {
           headers: {
-            Authorization: token
+            Authorization: token as string
           }
         })
         .then(res => {
           dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
         })
         .catch(err => {
-          dispatch({ type: "LOGIN_FAILED", payload: err })
+          dispatch({ type: "LOGIN_FAILURE", payload: err })
           console.log(err)
           handleError(err)
         })
@@ -65,7 +65,7 @@ const Profile = () => {
       <div className={styles.profile}>
         <Sidebar />
         <div className={styles.profileRight}>
-          <div className={styles.profileRightTop}>
+          <div>
             <div className={styles.profileCover}>
               <img
                 src={coverPicture

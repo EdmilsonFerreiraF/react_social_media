@@ -1,6 +1,6 @@
 import React, { createContext, ReducerWithoutAction, useReducer } from "react"
 
-import AuthReducer from "./AuthReducer"
+import AuthReducer, { ACTIONTYPE } from "./AuthReducer"
 
 interface User {
     id: string,
@@ -17,7 +17,7 @@ export interface AuthContextInterface {
     user: User,
     isFetching: boolean,
     error: boolean,
-    dispatch: React.DispatchWithoutAction
+    dispatch: (type: ACTIONTYPE) => void
 }
 
 export const INITIAL_STATE = {
