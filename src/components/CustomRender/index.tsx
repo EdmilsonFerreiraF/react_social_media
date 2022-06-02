@@ -1,10 +1,10 @@
-import React from "react";
-import { render } from "@testing-library/react";
+import React, {FC, ReactElement} from "react";
+import { render, RenderOptions } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 
 import { AuthContextProvider } from "context/AuthContext";
 
-const Wrapper = ({ children }) => {
+const Wrapper: FC<{children: React.ReactNode}> = ({ children }) => {
   return (
     <AuthContextProvider>
       <MemoryRouter>
@@ -14,11 +14,12 @@ const Wrapper = ({ children }) => {
   );
 };
 
-const customRender = (ui, options) =>
+const customRender = (
+  ui: ReactElement,
+  options?: Omit<RenderOptions, 'wrapper'>,
+) =>
   render(ui, { wrapper: Wrapper, ...options });
 
-// re-export everything
 export * from "@testing-library/react";
 
-// override render method
 export { customRender as render };
