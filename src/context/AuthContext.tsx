@@ -13,7 +13,7 @@ interface User {
     followings: []
 }
 
-interface AuthContextInterface {
+export interface AuthContextInterface {
     user: User,
     isFetching: boolean,
     error: boolean,

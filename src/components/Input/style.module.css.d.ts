@@ -1,2 +1,2 @@
-export const formErrors: string
-export const errorItem: string
+export const input: string
+export const inputInvalid: string
