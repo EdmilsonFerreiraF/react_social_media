@@ -1,13 +1,9 @@
-import Navigation from "./Navigation"
-import Social from "./Social"
-import Profile from "./Profile"
+import React, { FormEvent, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
-import styles from "./style.module.css"
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
@@ -15,8 +11,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 import { useForm } from "hooks/useForm"
-import { AuthContext } from "context/AuthContext";
+import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { goToProfile } from "routes/coordinator";
+import Navigation from "./Navigation"
+import Social from "./Social"
+import Profile from "./Profile"
+import styles from "./style.module.css"
 
 const Account = () => {
   const { form, onChange } = useForm({
@@ -24,13 +24,13 @@ const Account = () => {
     mobileMoreAnchorEl: null
   })
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext) as AuthContextInterface
 
   const isMenuOpen = Boolean(form.anchorEl)
   const isMobileMenuOpen = Boolean(form.mobileMoreAnchorEl)
   const navigate = useNavigate()
 
-  const handleProfileClick = (event) => {
+  const handleProfileClick = () => {
     goToProfile(navigate, user?.username)
   }
 
@@ -43,8 +43,8 @@ const Account = () => {
     handleMobileMenuClose()
   }
 
-  const handleMobileMenuOpen = (event) => {
-    onChange(event.currentTarget, "mobileMoreAnchorEl")
+  const handleMobileMenuOpen = (e: FormEvent) => {
+    onChange(e.currentTarget, "mobileMoreAnchorEl")
   };
 
   const menuId = 'primary-search-account-menu';
@@ -91,7 +91,7 @@ const Account = () => {
     >
       <Navigation
         isMobileMenuOpen={isMobileMenuOpen}
-        handleMenuClose={handleMenuClose} />
+        handleProfileMenuOpen={handleMenuClose} />
 
       <MenuItem onClick={handleProfileClick}>
         <IconButton

@@ -12,8 +12,8 @@ import NavigationItem from "./NavigationItem"
 import styles from "./style.module.css"
 
 type IProps = {
-    handleProfileMenuOpen: string
-    isMobileMenuOpen: string
+    handleProfileMenuOpen?: () => void,
+    isMobileMenuOpen?: boolean
 }
 
 const Navigation = (props: IProps) => {
