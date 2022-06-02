@@ -1,7 +1,19 @@
+import React from "react";
+
 import styles from "./style.module.css"
 import { useRequestImage } from "hooks/useRequestImage";
 
-const FriendItem = ({ friend }) => {
+export type Friend = {
+    id: string,
+    userId: string,
+    username: string,
+    description: string,
+    image: string,
+    likes: string,
+    profilePicture: string
+}
+
+const FriendItem = ({ friend }: { friend: Friend }) => {
     const profilePicture = useRequestImage("profile", friend?.profilePicture)
 
     return (
@@ -12,7 +24,7 @@ const FriendItem = ({ friend }) => {
             />
             <span
                 data-testid="friend name"
-                className={styles.friendName}>
+                >
                 {friend?.username}
             </span>
         </li>
