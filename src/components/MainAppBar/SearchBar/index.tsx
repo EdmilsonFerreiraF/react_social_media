@@ -1,3 +1,4 @@
+import React from "react"
 import { Search } from "@mui/icons-material"
 
 import styles from "./style.module.css"
