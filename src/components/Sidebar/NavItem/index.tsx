@@ -1,12 +1,19 @@
+import React from "react"
+
 import styles from "./style.module.css"
 
-const NavItem = (props) => {
+type IProps = {
+    children: JSX.Element
+    title: string
+}
+
+const NavItem = (props: IProps) => {
     return (
         <li className={styles.navItem}>
             <div className={styles.navItemIcon}>
                 {props.children}
             </div>
-            <span className={styles.navItemText}>
+            <span>
                 {props.title}
             </span>
         </li>
