@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react"
+import React, { FormEvent, useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import CircularProgress from '@mui/material/CircularProgress';
 
 import Input from 'components/Input'
 import FormErrors from "components/FormErrors";
-import { AuthContext } from "context/AuthContext"
+import { AuthContext, AuthContextInterface } from "context/AuthContext"
 import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useForm } from "hooks/useForm"
 import { goToSignup } from "routes/coordinator";
@@ -15,7 +15,7 @@ const Login = () => {
     useUnprotectPage()
     const navigate = useNavigate()
 
-    const { isFetching, dispatch } = useContext(AuthContext)
+    const { isFetching, dispatch } = useContext(AuthContext) as AuthContextInterface
 
     const { form, onChange } = useForm({
         email: '',
@@ -26,14 +26,16 @@ const Login = () => {
         }
     })
 
-    const handleInputChange = e => {
-        const name = e.target.name;
-        const value = e.target.value;
+    const handleInputChange = (e: FormEvent) => {
+        const target = e.target as HTMLInputElement
+        
+        const name: string = target.name;
+        const value: string = target.value;
 
         onChange(value, name)
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
 
         loginCall({
@@ -109,7 +111,6 @@ const Login = () => {
                             required
                             value={form.email}
                             handleInputChange={handleInputChange}
-                            minLength="6"
                             invalid={!!form.formErrors.email.length}
                         />
                         <label className={styles.fieldLabel}
