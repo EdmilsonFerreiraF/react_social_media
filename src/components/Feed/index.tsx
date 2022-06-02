@@ -9,7 +9,7 @@ import { AuthContext, AuthContextInterface } from 'context/AuthContext'
 import { useRequestData } from 'hooks/useRequestData'
 
 type Props = {
-    otherUserId: string
+    otherUserId?: string
 }
 
 const Feed = ({ otherUserId }: Props) => {

@@ -10,7 +10,7 @@ import giftImg from 'img/gift.png'
 import adImg from 'img/ad.png'
 
 {/* @ts-ignore */}
-const MessagesBar = ({ user: visitedUser }) => {
+const MessagesBar = ({ user: visitedUser }: { user?: User}) => {
     const { user: currUser } = useContext(AuthContext) as AuthContextInterface
 
     const user = visitedUser ?? currUser
