@@ -1,7 +1,9 @@
-import InfoItem from "../InfoItem"
+import React from "react"
 
+import InfoItem from "../InfoItem"
 import styles from "./style.module.css"
 
+{/* @ts-ignore */}
 const InfoList = ({ user }) => {
     return (
         <div className={styles.messagesBarInfo}>
