@@ -1,4 +1,6 @@
-import FriendList from "./FriendList"
+import React from "react"
+
+import FriendList from "components/MessagesBar/FriendList"
 import NavList from "./NavList"
 import styles from "./style.module.css"
 
