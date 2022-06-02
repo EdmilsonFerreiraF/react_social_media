@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { FormEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Input from 'components/Input'
@@ -44,9 +44,11 @@ const Signup = () => {
         }
     }
 
-    const handleInputChange = e => {
-        const name = e.target.name;
-        const value = e.target.value;
+    const handleInputChange = (e: FormEvent) => {
+        const target = e.target as HTMLInputElement
+        
+        const name = target.name;
+        const value = target.value;
 
         onChange(value, name)
     }
@@ -77,7 +79,7 @@ const Signup = () => {
         navigate("/login")
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
         const user = {
@@ -124,7 +126,6 @@ const Signup = () => {
                             required
                             value={form.username}
                             invalid={!!form.formErrors.email.length}
-                            errorIndex="error1"
                             handleInputChange={handleInputChange} />
                         <label className={styles.fieldLabel}
                             htmlFor="email">
@@ -142,7 +143,6 @@ const Signup = () => {
                             required
                             value={form.email}
                             invalid={!!form.formErrors.email.length}
-                            errorIndex="error2"
                             handleInputChange={handleInputChange} />
                         <label className={styles.fieldLabel}
                             htmlFor="email">
@@ -158,10 +158,8 @@ const Signup = () => {
                             type="password"
                             placeholder="Password"
                             required
-                            minLength="6"
                             value={form.password}
                             invalid={!!form.formErrors.email.length}
-                            errorIndex="error3"
                             handleInputChange={handleInputChange} />
                         <label className={styles.fieldLabel}
                             htmlFor="email">
@@ -179,7 +177,6 @@ const Signup = () => {
                             required
                             value={form.passwordAgain}
                             invalid={!!form.formErrors.email.length}
-                            errorIndex="error4"
                             handleInputChange={handleInputChange} />
                         <div className="panel panel-default">
                             <FormErrors formErrors={form.formErrors} />
