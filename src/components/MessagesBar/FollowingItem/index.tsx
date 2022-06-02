@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router"
 
+import { useRequestImage } from "hooks/useRequestImage";
 import styles from "./style.module.css"
 import noProfilePicture from 'img/person/no_person.jpg'
-import { useRequestImage } from "hooks/useRequestImage";
+import React from "react";
 
+{/* @ts-ignore */}
 const FollowingItem = ({ friend }) => {
     const profilePicture = useRequestImage("profile", friend?.profilePicture)
 
@@ -25,7 +27,6 @@ const FollowingItem = ({ friend }) => {
             />
             <span
                 data-testid="online friend name"
-                className={styles.followingName}
             >
                 {friend?.username}
             </span>
