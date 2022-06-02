@@ -1,7 +1,10 @@
+import React from "react"
+
 import styles from "./style.module.css"
 import { useRequestImage } from 'hooks/useRequestImage'
+import { User } from "context/AuthContext"
 
-const FriendItem = ({ friend }) => {
+const FriendItem = ({ friend }: { friend: User }) => {
     const profilePicture = useRequestImage("profile", friend?.profilePicture)
 
     return (
@@ -11,7 +14,7 @@ const FriendItem = ({ friend }) => {
                 src={profilePicture}
                 alt="Friend profile" />
             <span data-testid="sidebarFriendName"
-                className={styles.friendName}>
+            >
                 {friend?.username}
             </span>
         </li>

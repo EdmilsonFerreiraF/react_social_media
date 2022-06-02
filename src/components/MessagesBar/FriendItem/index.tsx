@@ -1,19 +1,10 @@
 import React from "react";
 
 import styles from "./style.module.css"
-import { useRequestImage } from "hooks/useRequestImage";
+import { useRequestImage } from "hooks/useRequestImage"
+import { User } from "context/AuthContext"
 
-export type Friend = {
-    id: string,
-    userId: string,
-    username: string,
-    description: string,
-    image: string,
-    likes: string,
-    profilePicture: string
-}
-
-const FriendItem = ({ friend }: { friend: Friend }) => {
+const FriendItem = ({ friend }: { friend: User }) => {
     const profilePicture = useRequestImage("profile", friend?.profilePicture)
 
     return (
