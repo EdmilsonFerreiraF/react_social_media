@@ -1,13 +1,13 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 
 import styles from "./style.module.css"
 import { baseUrl } from "constants/baseUrl"
-import { AuthContext } from "context/AuthContext"
+import { AuthContext, AuthContextInterface, User } from "context/AuthContext"
 import { useRequestData } from "hooks/useRequestData"
 import FriendItem from "../FriendItem"
 
 const FriendList = () => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext) as AuthContextInterface
 
     const friends = useRequestData(`${baseUrl}/user/${user?.id}/friends`, [])
 
@@ -15,7 +15,7 @@ const FriendList = () => {
 
     return (
         <ul className={styles.friendList} data-testid="friendList">
-            {friends.map(friend => <FriendItem
+            {friends.map((friend: User) => <FriendItem
                 key={friend?.id}
                 friend={friend}
             />
