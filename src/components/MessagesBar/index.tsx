@@ -1,16 +1,17 @@
-import { useContext } from "react"
+import React, { useContext } from "react"
 
+import { baseUrl } from "constants/baseUrl"
+import { useRequestData } from "hooks/useRequestData"
+import { AuthContext, AuthContextInterface } from "context/AuthContext"
 import FollowingList from "./FollowingList"
 import InfoList from "./InfoList"
 import styles from "./style.module.css"
-import { baseUrl } from "constants/baseUrl"
-import { useRequestData } from "hooks/useRequestData"
-import { AuthContext } from "context/AuthContext"
 import giftImg from 'img/gift.png'
 import adImg from 'img/ad.png'
 
+{/* @ts-ignore */}
 const MessagesBar = ({ user: visitedUser }) => {
-    const { user: currUser } = useContext(AuthContext)
+    const { user: currUser } = useContext(AuthContext) as AuthContextInterface
 
     const user = visitedUser ?? currUser
 
