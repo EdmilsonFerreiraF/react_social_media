@@ -6,7 +6,7 @@ import { baseUrl } from 'constants/baseUrl'
 import { goToIndex } from 'routes/coordinator'
 import { NavigateFunction } from "react-router-dom";
 import { ACTIONTYPE } from "context/AuthReducer";
-import { INITIAL_STATE } from "context/AuthContext";
+import { INITIAL_STATE, User } from "context/AuthContext";
 
 export const loginCall = async (
     userCredential: { email: string, password: string },
@@ -30,7 +30,7 @@ export const loginCall = async (
 }
 
 export const useGetUser = (
-    user: typeof INITIAL_STATE["user"],
+    user: User,
     token: string,
     dispatch: React.Dispatch<ACTIONTYPE>,
     handleError: (givenError?: any) => void

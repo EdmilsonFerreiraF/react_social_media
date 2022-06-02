@@ -48,7 +48,6 @@ const Navigation = (props: IProps) => {
 
     const NavigationMobileMenu = (
         <div data-testid="navigation mobile menu">
-             {/* @ts-ignore */}
             <MenuItem
                 data-testid="navigationMenuItem"
                 onClick={props.handleProfileMenuOpen}
@@ -68,7 +67,6 @@ const Navigation = (props: IProps) => {
                     title="Homepage"
                 />
             </MenuItem>
-            {/* @ts-ignore */}
             <MenuItem
                 data-testid="navigationMenuItem"
                 onClick={props.handleProfileMenuOpen}

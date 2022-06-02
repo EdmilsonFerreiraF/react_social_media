@@ -2,15 +2,20 @@ import React, { createContext, ReducerWithoutAction, useReducer } from "react"
 
 import AuthReducer, { ACTIONTYPE } from "./AuthReducer"
 
-interface User {
+export interface User {
     id: string,
     username: string,
     email: string,
-    profilePicture: string,
-    coverPicture: string,
+    password: string,
     isAdmin: boolean,
-    followers: [],
-    followings: []
+    profilePicture?: string,
+    coverPicture?: string,
+    followers?: [],
+    following?: [],
+    description?: string,
+    city?: string,
+    from?: string,
+    relationship?: Number
 }
 
 export interface AuthContextInterface {

@@ -2,14 +2,13 @@ import React, { useContext } from "react"
 
 import { baseUrl } from "constants/baseUrl"
 import { useRequestData } from "hooks/useRequestData"
-import { AuthContext, AuthContextInterface } from "context/AuthContext"
+import { AuthContext, AuthContextInterface, User } from "context/AuthContext"
 import FollowingList from "./FollowingList"
 import InfoList from "./InfoList"
 import styles from "./style.module.css"
 import giftImg from 'img/gift.png'
 import adImg from 'img/ad.png'
 
-{/* @ts-ignore */}
 const MessagesBar = ({ user: visitedUser }: { user?: User}) => {
     const { user: currUser } = useContext(AuthContext) as AuthContextInterface
 

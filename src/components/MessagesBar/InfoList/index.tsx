@@ -1,18 +1,18 @@
+import { User } from "context/AuthContext"
 import React from "react"
 
 import InfoItem from "../InfoItem"
 import styles from "./style.module.css"
 
-{/* @ts-ignore */}
-const InfoList = ({ user }) => {
+const InfoList = ({ user }: { user: User }) => {
     return (
         <div className={styles.messagesBarInfo}>
             <InfoItem
                 title="City"
-                text={user?.city} />
+                text={user?.city as string} />
             <InfoItem
                 title="From"
-                text={user?.from} />
+                text={user?.from as string} />
             <InfoItem
                 title="Relationship"
                 text={user?.relationship === 0
