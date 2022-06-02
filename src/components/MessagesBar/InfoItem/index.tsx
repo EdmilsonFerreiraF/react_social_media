@@ -1,6 +1,13 @@
+import React from "react"
+
 import styles from "./style.module.css"
 
-const InfoItem = (props) => {
+type IProps = {
+    title: string
+    text: string
+}
+
+const InfoItem = (props: IProps) => {
     return (
         <div className={styles.messagesBarInfoItem}>
             <span
