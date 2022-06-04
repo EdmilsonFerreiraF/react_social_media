@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import styles from "./style.module.css"
 import { baseUrl } from "constants/baseUrl"
-import { AuthContext, AuthContextInterface } from "context/AuthContext"
+import { AuthContext, AuthContextInterface, User } from "context/AuthContext"
 import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from "hooks/useRequestData"
 import { useForm } from "hooks/useForm"
@@ -23,7 +23,7 @@ export interface IPost {
     userId: string;
     description: string;
     image: string;
-    likes: string;
+    likes: User["id"][];
     createdAt: Date;
     comment: number;
 }

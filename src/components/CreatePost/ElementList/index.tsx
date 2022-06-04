@@ -5,8 +5,8 @@ import ElementItem from "../ElementItem"
 import styles from "./style.module.css"
 
 type Props = {
-    setFile: (file: FileList[0], inputType: string) => void,
-    inputHandler: (e: React.FormEvent<HTMLInputElement>) => void
+    setFile?: (file: FileList[0], inputType: string) => void,
+    inputHandler?: (e: React.FormEvent<HTMLInputElement>) => void
 }
 
 const ElementList = (props: Props): JSX.Element => {
@@ -21,7 +21,7 @@ const ElementList = (props: Props): JSX.Element => {
                     const target = e.target as HTMLInputElement;
                     const file: File = (target.files as FileList)[0];
 
-                    props.setFile(file, "file")
+                    props.setFile && props.setFile(file, "file")
                 }}
             >
                 <PermMedia htmlColor="tomato" />

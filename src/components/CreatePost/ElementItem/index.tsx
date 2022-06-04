@@ -5,10 +5,10 @@ import styles from "./style.module.css"
 type Props = {
     className: string,
     title: string,
-    inputType: string,
+    inputType?: string,
     inputAccept?: string,
-    onChange: (e: React.FormEvent<HTMLInputElement>) => void,
-    children: JSX.Element,
+    onChange?: (e: React.FormEvent<HTMLInputElement>) => void,
+    children?: JSX.Element,
 }
 
 const ElementItem = (props: Props): JSX.Element => {

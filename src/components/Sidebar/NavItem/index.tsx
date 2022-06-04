@@ -3,7 +3,7 @@ import React from "react"
 import styles from "./style.module.css"
 
 type IProps = {
-    children: JSX.Element
+    children?: JSX.Element
     title: string
 }
 

@@ -15,5 +15,5 @@
     "baseUrl": "src", 
     // "outDir": "./",
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["src/**/index.tsx", "src/**/*.test.tsx", "src/global.d.ts"],
 }
