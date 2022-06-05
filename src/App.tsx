@@ -3,8 +3,9 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-import { initializeApp } from "firebase/app";
 import CircularProgress from '@mui/material/CircularProgress';
+
+import { initializeApp } from "firebase/app"
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,

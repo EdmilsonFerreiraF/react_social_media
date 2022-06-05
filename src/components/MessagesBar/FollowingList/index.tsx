@@ -1,9 +1,9 @@
+import { User } from "context/AuthContext"
 import React from "react"
 import FollowingItem from "../FollowingItem"
-import { Friend } from "../FriendItem"
 import styles from "./style.module.css"
 
-const FollowingList = ({ friends }: { friends: Friend[] }) => {
+const FollowingList = ({ friends }: { friends: User[] }) => {
     return (
         <div className={styles.followingList}>
             {friends.map(friend => (

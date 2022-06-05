@@ -28,6 +28,8 @@ export function useRequestData(url: string, initialState: any) {
         setData(initialState)
       }
     }
+
+    return
   }, [url])
 
   return data

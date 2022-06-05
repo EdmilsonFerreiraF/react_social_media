@@ -4,9 +4,9 @@ import { useRequestImage } from "hooks/useRequestImage";
 import styles from "./style.module.css"
 import noProfilePicture from 'img/person/no_person.jpg'
 import React from "react";
-import { Friend } from "../FriendItem";
+import { User } from "context/AuthContext";
 
-const FollowingItem = ({ friend }: { friend: Friend }) => {
+const FollowingItem = ({ friend }: { friend: User }) => {
     const profilePicture = useRequestImage("profile", friend?.profilePicture)
 
     const navigate = useNavigate()

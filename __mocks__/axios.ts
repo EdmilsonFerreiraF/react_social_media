@@ -96,6 +96,8 @@ const post = jest.fn().mockImplementation((url) => {
     if (url.includes(`/user/signup`)) {
         return Promise.resolve();
     }
+    
+    return Promise.resolve();
 })
 
 const get = jest.fn().mockImplementation((url, _) => {

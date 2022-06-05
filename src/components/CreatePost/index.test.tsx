@@ -3,7 +3,7 @@
  */
 
 import * as React from "react"
-import { axe } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
 
@@ -12,6 +12,8 @@ import {
   screen
 } from "components/CustomRender";
 import CreatePost from '.';
+
+expect.extend(toHaveNoViolations)
 
 describe('CreatePost', () => {
   test('Should have user profile image', async () => {
