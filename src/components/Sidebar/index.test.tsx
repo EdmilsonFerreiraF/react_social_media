@@ -52,7 +52,7 @@ describe('Sidebar', () => {
       <Sidebar />
     )
 
-    expect(screen.getByTestId(/friendList/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/messagesBarFriendLIst/i)).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {

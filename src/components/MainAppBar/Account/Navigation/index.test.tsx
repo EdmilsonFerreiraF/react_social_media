@@ -86,7 +86,7 @@ describe('Navigation', () => {
       <Navigation />
     )
 
-    userEvent.click(screen.getByRole('link', { name: /homepage/i }));
+    userEvent.click(screen.getByTestId(/homepageLink/i));
      expect(
       screen.getByRole("progressbar")
     ).toBeInTheDocument();
@@ -99,10 +99,8 @@ describe('Navigation', () => {
       <Navigation />
     )
 
-    userEvent.click(screen.getByRole('link', { name: /timeline/i }));
-     expect(
-      screen.getByRole("progressbar")
-    ).toBeInTheDocument();
+    userEvent.click(screen.getByTestId(/timelineLink/i));
+
     await waitForElementToBeRemoved(() => screen.queryByRole("progressbar"), {timeout: 2000});
     expect(screen.getByText(/Online friends/i)).toBeInTheDocument();
   })

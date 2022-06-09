@@ -6,13 +6,13 @@ import styles from "./style.module.css"
 
 const FriendList = ({ friends }:  { friends?: User[] }) => {
     return (
-        <ul className={styles.friendList}>
-            {friends?.map(friend => (
+        <ul className={styles.friendList} data-testid="messagesBarFriendLIst">
+            {friends && friends.length ? friends.map(friend => (
                 <FriendItem
                     key={friend?.id}
                     friend={friend}
                 />
-            ))}
+            )): []}
         </ul>
     )
 }
