@@ -3,7 +3,7 @@
  */
 
 import * as React from "react"
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import '@testing-library/jest-dom'
 import { axe, toHaveNoViolations } from 'jest-axe';
 import dotenv from 'dotenv'
@@ -35,7 +35,7 @@ initializeApp(firebaseConfig);
 
 describe('Profile', () => {
   test('Should show MainAppBar when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -45,7 +45,7 @@ describe('Profile', () => {
   });
 
   test('Should show Sidebar when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -55,7 +55,7 @@ describe('Profile', () => {
   });
 
   test('Should show Feed when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -65,7 +65,7 @@ describe('Profile', () => {
   });
 
   test('Should show CreatePost when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -75,18 +75,18 @@ describe('Profile', () => {
   });
 
   test('Should show Post when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
     );
 
     await waitForElementToBeRemoved(() => screen.queryByText(/No posts created yet/i));
-    expect(screen.getAllByTestId(/post/i)).toHaveLength(17)
+    expect(screen.getAllByTestId(/post/i)).toHaveLength(16)
   });
 
   test('Should show Profile MessagesBar when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -96,7 +96,7 @@ describe('Profile', () => {
   });
 
   test('Should show user Cover Image when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -106,7 +106,7 @@ describe('Profile', () => {
   });
 
   test('Should show user profile image when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -116,7 +116,7 @@ describe('Profile', () => {
   });
 
   test('Should show user profile username when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />
@@ -126,7 +126,7 @@ describe('Profile', () => {
   });
 
   test('Should show user profile description when render', async () => {
-    // useParams.mockReturnValue({ username: "user_username2" })
+    useParams()
 
     render(
       <Profile />

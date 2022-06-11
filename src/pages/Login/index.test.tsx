@@ -11,7 +11,7 @@ import {
   render,
   screen
 } from "components/CustomRender";
-import Login from 'pages/Login';
+import Login from '.';
 
 expect.extend(toHaveNoViolations)
 

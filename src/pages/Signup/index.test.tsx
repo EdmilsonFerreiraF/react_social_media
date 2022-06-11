@@ -12,7 +12,7 @@ import {
   screen,
   waitFor
 } from "components/CustomRender";
-import Signup from 'pages/Signup';
+import Signup from '.';
 
 expect.extend(toHaveNoViolations)
 
