@@ -6,13 +6,15 @@ import * as React from "react"
 import '@testing-library/jest-dom'
 import userEvent from "@testing-library/user-event";
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { render as renderRTL } from '@testing-library/react';
 
 import {
   render,
-  screen,
-  waitForElementToBeRemoved
+  screen
 } from "components/CustomRender";
 import Navigation from '.';
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+import Profile from "../Profile";
 
 expect.extend(toHaveNoViolations)
 
@@ -82,27 +84,50 @@ describe('Navigation', () => {
   })
 
   test('Should go to homepage page when it is clicked', async () => {
-    render(
-      <Navigation />
+    renderRTL(
+      <MemoryRouter initialEntries={["/profile/*"]}>
+        <Routes>
+          <Route
+            path="/profile/*"
+            element={
+              <Navigation />
+            } />
+          <Route
+            path="/"
+            element={
+              <Profile />
+            } />
+        </Routes>
+      </MemoryRouter>
     )
 
     userEvent.click(screen.getByTestId(/homepageLink/i));
-     expect(
-      screen.getByRole("progressbar")
-    ).toBeInTheDocument();
-    await waitForElementToBeRemoved(() => screen.queryByRole("progressbar"), {timeout: 2000});
-    expect(screen.getByText(/Online friends/i)).toBeInTheDocument();
+
+    expect(screen.getByAltText(/My profile/i)).toBeInTheDocument();
   })
 
   test('Should go to timeline page when it is clicked', async () => {
-    render(
-      <Navigation />
+    renderRTL(
+      <MemoryRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Navigation />
+            } />
+          <Route
+            path="/profile/*"
+            element={
+              <Profile />
+            }
+          />
+        </Routes>
+      </MemoryRouter>
     )
 
     userEvent.click(screen.getByTestId(/timelineLink/i));
 
-    await waitForElementToBeRemoved(() => screen.queryByRole("progressbar"), {timeout: 2000});
-    expect(screen.getByText(/Online friends/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/My profile/i)).toBeInTheDocument();
   })
 
   test('Should be an acessible component', async () => {
