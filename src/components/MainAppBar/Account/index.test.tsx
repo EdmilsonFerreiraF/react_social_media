@@ -8,8 +8,7 @@ import { axe, toHaveNoViolations } from 'jest-axe';
 
 import {
   render,
-  screen,
-
+  screen
 } from "components/CustomRender";
 import Account from '.';
 
@@ -20,13 +19,15 @@ describe('Account', () => {
     Object.defineProperty(window, 'innerWidth', {
       writable: true,
       configurable: true,
-      value: 150,
+      value: 150
     });
 
-    window.dispatchEvent(new Event('resize'));
+    window.dispatchEvent(new Event('resize'))
+
     render(
       <Account />
     )
+
     expect(window.innerWidth).toBe(150);
     expect(screen.getAllByTestId(/accountmenubox/i)).toHaveLength(2)
   })
@@ -39,9 +40,11 @@ describe('Account', () => {
     });
 
     window.dispatchEvent(new Event('resize'));
+
     render(
       <Account />
     )
+
     expect(window.innerWidth).toBe(150);
     
     expect(screen.getByTestId(/accountmobilemenu/i)).toBeInTheDocument();
@@ -65,10 +68,7 @@ describe('Account', () => {
 
   test('Should be an acessible component', async () => {
     const { container } = render(
-      <div role="menu">
-
         <Account />
-        </div>
     )
 
     const results = await axe(container);

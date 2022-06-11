@@ -24,9 +24,7 @@ describe('FormErrors', () => {
 
   test('Should be an acessible component', async () => {
     const { container } = render(
-      <div role="menu" id="primary-search-account-menu">
         <Social />
-      </div>
     )
 
     const results = await axe(container);
