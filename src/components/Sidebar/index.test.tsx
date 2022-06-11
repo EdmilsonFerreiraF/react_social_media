@@ -47,12 +47,20 @@ describe('Sidebar', () => {
     expect(screen.getByText(/Show more/i)).toBeInTheDocument()
   })
 
+  test('Should show Show More divison when render', async () => {
+    render(
+      <Sidebar />
+    )
+
+    expect(screen.getByTestId(/showMoreDivision/i)).toBeInTheDocument()
+  })
+
   test('Should show FriendList when render', async () => {
     render(
       <Sidebar />
     )
 
-    expect(screen.getByTestId(/messagesBarFriendLIst/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/friendList/i)).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {

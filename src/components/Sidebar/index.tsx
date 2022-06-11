@@ -18,7 +18,7 @@ const Sidebar = () => {
                 <button className={styles.sidebarButton}>
                     Show more
                 </button>
-                <hr className={styles.sidebarDivision} />
+                <hr data-testid="showMoreDivision" className={styles.sidebarDivision} />
                 <FriendList />
             </div>
         </aside>
