@@ -82,14 +82,16 @@ describe('ElementItem', () => {
     const onChangeHandler = jest.fn();
 
     const { container } = render(
-      <ElementItem
-        className="elementItemInput"
-        title="Photo or Video"
-        inputType="text"
-        onChange={onChangeHandler}
-      >
-        <PermMedia htmlColor="tomato" />
-      </ElementItem>
+      <ul>
+        <ElementItem
+          className="elementItemInput"
+          title="Photo or Video"
+          inputType="text"
+          onChange={onChangeHandler}
+        >
+          <PermMedia htmlColor="tomato" />
+        </ElementItem>
+      </ul>
     )
 
     const results = await axe(container);
