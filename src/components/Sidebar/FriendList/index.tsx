@@ -9,17 +9,17 @@ import FriendItem from "../FriendItem"
 const FriendList = () => {
     const { user } = useContext(AuthContext) as AuthContextInterface
 
-    const friends = useRequestData(`${baseUrl}/user/${user?.id}/friends`, [])
+    const friends = useRequestData(user && user.id && `${baseUrl}/user/${user.id}/friends`, [])
 
     console.log('friends', friends)
 
     return (
         <ul className={styles.friendList} data-testid="friendList">
-            {friends.map((friend: User) => <FriendItem
+            {friends.length ? friends.map((friend: User) => <FriendItem
                 key={friend?.id}
                 friend={friend}
             />
-            )}
+            ) : null}
         </ul>
     )
 }
