@@ -27,11 +27,11 @@ export interface AuthContextInterface {
 
 export const INITIAL_STATE = {
     user: {
-        id: "",
-        username: "",
-        email: "",
-        profilePicture: "",
-        coverPicture: "",
+        id: null,
+        username: null,
+        email: null,
+        profilePicture: null,
+        coverPicture: null,
         isAdmin: false,
         followers: [],
         followings: []
