@@ -36,29 +36,28 @@ export const useGetUser = (
     handleError: (givenError?: any) => void
 ) => {
     useEffect(() => {
-        const getUser = async () => {
-            dispatch({ type: "LOGIN_START" })
+        (async () => {
+            if (!user?.id && token) {
+                dispatch({ type: "LOGIN_START" })
 
-            const res = await axios
-                .get(`${baseUrl}/user`, {
-                    headers: {
-                        Authorization: token
-                    }
-                })
-                .then(res => {
-                    dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
-                })
-                .catch(err => {
-                    dispatch({ type: "LOGIN_FAILURE", payload: err })
-                    handleError(err)
-                })
+                const res = await axios
+                    .get(`${baseUrl}/user`, {
+                        headers: {
+                            Authorization: token
+                        }
+                    })
+                    .then(res => {
+                        dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+                    })
+                    .catch(err => {
+                        dispatch({ type: "LOGIN_FAILURE", payload: err })
+                        
+                        handleError(err)
+                    })
 
-            return res
-        }
-
-        if (!user?.id && token) {
-            getUser()
-        }
+                return res
+            }
+        })()
     }, [user, token])
 }
 
@@ -93,9 +92,12 @@ export async function sendData(
     }
 }
 
-export async function uploadPostPic(image: Blob | Uint8Array | ArrayBuffer, imgId: string) {
-    const storage = getStorage();
-    const storageRef = ref(storage, 'post/' + imgId);
+export async function uploadPostPic(
+    image: Blob | Uint8Array | ArrayBuffer,
+    imgId: string
+) {
+    const storage = getStorage()
+    const storageRef = ref(storage, 'post/' + imgId)
 
     const metadata = {
         contentType: 'image',
@@ -103,6 +105,6 @@ export async function uploadPostPic(image: Blob | Uint8Array | ArrayBuffer, imgI
 
     uploadBytes(storageRef, image, metadata)
         .then(() => {
-            console.log('Uploaded a blob or file!');
-        });
+            console.log('Uploaded a blob or file!')
+        })
 }

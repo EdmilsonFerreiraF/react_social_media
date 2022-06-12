@@ -42,7 +42,6 @@ const ElementItem = (props: Props): JSX.Element => {
                 accept={
                     props.inputAccept
                 }
-                // value={form.email}
                 handleInputChange={props.onChange as ChangeEventHandler<HTMLInputElement>}
             />
         </li>
