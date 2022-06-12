@@ -1,6 +1,0 @@
-{
-    "rules": {
-      "testing-library/no-debugging-utils": "warn",
-      "testing-library/no-node-access": "warn"
-    }
-  }

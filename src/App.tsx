@@ -3,7 +3,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress'
 
 import { initializeApp } from "firebase/app"
 import dotenv from 'dotenv'
@@ -20,7 +20,7 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
 
 const ErrorPage = lazy(() => import('pages/Error'))
 const HomePage = lazy(() => import('pages/Home'))

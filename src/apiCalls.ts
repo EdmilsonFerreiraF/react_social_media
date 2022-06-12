@@ -56,7 +56,7 @@ export const useGetUser = (
             return res
         }
 
-        if (!user && token) {
+        if (!user?.id && token) {
             getUser()
         }
     }, [user, token])
