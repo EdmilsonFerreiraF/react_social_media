@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useErrorHandler } from 'react-error-boundary'
 
-export function useRequestData(url: string, initialState: any) {
+export function useRequestData(url: string | null, initialState: any) {
   const [data, setData] = useState(initialState)
   const handleError = useErrorHandler()
 

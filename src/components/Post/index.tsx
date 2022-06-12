@@ -37,7 +37,9 @@ const Post = ({ post }: { post: IPost }) => {
         onChange(post?.likes.includes(currentUser?.id), "likes")
     }, [currentUser?.id, post?.likes])
 
-    const user = useRequestData(`${baseUrl}/user/${post?.userId}`, {})
+    const otherUser = useRequestData(post && post.userId && `${baseUrl}/user/${post.userId}`, {})
+
+    const user = post && post.userId === currentUser.id ? currentUser : otherUser
 
     const postPicture = useRequestImage("post", post?.image)
     const profilePicture = useRequestImage("profile", user?.profilePicture)
@@ -56,6 +58,7 @@ const Post = ({ post }: { post: IPost }) => {
             })
     }
 
+    console.log('post', post)
     return (
         <div data-testid="post"
             className={styles.post}>

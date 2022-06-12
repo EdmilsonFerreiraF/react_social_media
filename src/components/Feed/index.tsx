@@ -20,8 +20,8 @@ const Feed = ({ otherUserId }: Props) => {
             ?
             `${baseUrl}/post/profile/${otherUserId}`
             :
-            user &&
-            `${baseUrl}/post/timeline/${user?.id}`)
+            user && user.id &&
+            `${baseUrl}/post/timeline/${user.id}`)
         , []
     )
 

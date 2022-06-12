@@ -14,10 +14,9 @@ const MessagesBar = ({ user: visitedUser }: { user?: User}) => {
 
     const user = visitedUser ?? currUser
 
-    console.log('user', user)
-    console.log('user.id', user.id)
     const friends = useRequestData(
-        (user && user.id !== '' && `${baseUrl}/user/${user.id}/friends`) as string,
+        user && user.id &&
+        `${baseUrl}/user/${user.id}/friends`,
         []
     )
 
