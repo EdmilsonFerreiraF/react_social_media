@@ -7,10 +7,11 @@ type IProps = {
   name: string;
   type: string;
   handleInputChange: ChangeEventHandler<HTMLInputElement>;
-  value: string;
+  value?: string;
   placeholder: string;
-  invalid: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
-  required: boolean
+  invalid?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
+  required: boolean;
+  accept?: string | undefined
 }
 
 const Input = (props: IProps): JSX.Element => {
@@ -28,6 +29,7 @@ const Input = (props: IProps): JSX.Element => {
       placeholder={props.placeholder}
       aria-invalid={props.invalid}
       data-testid="input"
+      accept={props.accept}
     />
   )
 }

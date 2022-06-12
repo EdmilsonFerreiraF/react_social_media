@@ -15,18 +15,18 @@ export const loginCall = async (
 ) => {
     dispatch({ type: "LOGIN_START" })
 
-    try {
-        await axios
-            .post(`${baseUrl}/user/login`, userCredential)
-            .then(res => {
-                localStorage.setItem("token", res.data.token)
+    await axios
+        .post(`${baseUrl}/user/login`, userCredential)
+        .then(res => {
+            localStorage.setItem("token", res.data.token)
 
-                goToIndex(navigate)
-            })
-            .catch(err => console.log(err))
-    } catch (err: any) {
-        dispatch({ type: "LOGIN_FAILURE", payload: err })
-    }
+            goToIndex(navigate)
+        })
+        .catch(err => {
+            console.log(err)
+
+            dispatch({ type: "LOGIN_FAILURE", payload: err })
+        })
 }
 
 export const useGetUser = (

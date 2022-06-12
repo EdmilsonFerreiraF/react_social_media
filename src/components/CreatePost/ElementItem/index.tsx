@@ -1,4 +1,5 @@
-import React from "react"
+import Input from "components/Input"
+import React, { ChangeEventHandler } from "react"
 
 import styles from "./style.module.css"
 
@@ -31,6 +32,18 @@ const ElementItem = (props: Props): JSX.Element => {
                 }
                 onChange={props.onChange}
                 data-testid="elementItem input"
+            />
+
+            <Input className={styles.elementItemInput}
+                name={props.title}
+                type={props.inputType as string}
+                placeholder="Email"
+                required
+                accept={
+                    props.inputAccept
+                }
+                // value={form.email}
+                handleInputChange={props.onChange as ChangeEventHandler<HTMLInputElement>}
             />
         </li>
     )
