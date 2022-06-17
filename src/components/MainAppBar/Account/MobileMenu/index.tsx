@@ -38,7 +38,7 @@ const MobileMenu = (props: Props) => {
                 horizontal: 'right',
             }}
             open={isMobileMenuOpen}
-            onClose={props.handleMenuOpening(
+            onClose={() => props.handleMenuOpening(
                 null,
                 "mobileMoreAnchorEl"
             ) as (

@@ -29,7 +29,7 @@ const TabletMenu = (props: Props) => {
                 horizontal: 'right',
             }}
             open={props.isMenuOpen}
-            onClose={props.handleMenuOpening(
+            onClose={() => props.handleMenuOpening(
                 null,
                 "anchorEl",
                 true
