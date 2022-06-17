@@ -12,7 +12,7 @@ import Social from "./Social"
 import Profile from "./Profile"
 import styles from "./style.module.css"
 import MobileMenu from "./MobileMenu";
-import { Menu } from "@mui/material";
+import TabletMenu from "./TabletMenu";
 
 const Account = () => {
   const { form, onChange } = useForm({
@@ -44,29 +44,6 @@ const Account = () => {
   };
 
   const tabletMenuId = 'primary-search-account-menu';
-  const tabletMenu = (
-    <Menu
-      anchorEl={form.anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={tabletMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-      data-testid="accountdesktopmenu"
-    >
-      <Navigation />
-      <Social />
-      <Profile />
-    </Menu>
-  );
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
   return (
@@ -102,7 +79,12 @@ const Account = () => {
         handleMobileMenuClose={handleMobileMenuClose}
         handleMenuClose={handleMenuClose}
         handleProfileClick={handleProfileClick} />
-     {tabletMenu}
+      <TabletMenu
+        anchorEl={form.anchorEl}
+        tabletMenuId={tabletMenuId}
+        isMenuOpen={isMenuOpen}
+        handleMenuClose={handleMenuClose}
+      />
     </div>
   )
 }
