@@ -8,7 +8,8 @@ type Props = {
     title: string,
     inputType?: string,
     inputAccept?: string,
-    onChange?: (e: React.FormEvent<HTMLInputElement>) => void,
+    onChange?: (e: React.FormEvent<HTMLInputElement>)
+    => void,
     children?: JSX.Element,
 }
 
@@ -23,18 +24,8 @@ const ElementItem = (props: Props): JSX.Element => {
                     {props.children}
                 </div>
             </label>
-            <input className={styles.elementItemInput}
-                name={props.title}
-                type={props.inputType}
-                id={props.title}
-                accept={
-                    props.inputAccept
-                }
-                onChange={props.onChange}
-                data-testid="elementItem input"
-            />
-
-            <Input className={styles.elementItemInput}
+            
+            <Input className="elementItemInput"
                 name={props.title}
                 type={props.inputType as string}
                 placeholder="Email"
@@ -42,7 +33,8 @@ const ElementItem = (props: Props): JSX.Element => {
                 accept={
                     props.inputAccept
                 }
-                handleInputChange={props.onChange as ChangeEventHandler<HTMLInputElement>}
+                handleInputChange={props.onChange as
+                    ChangeEventHandler<HTMLInputElement>}
             />
         </li>
     )

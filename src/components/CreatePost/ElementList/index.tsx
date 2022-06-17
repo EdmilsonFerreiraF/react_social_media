@@ -1,58 +1,65 @@
-import React, { FormEvent } from "react"
-import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material"
+import React from "react"
+import {
+    PermMedia,
+    Label,
+    Room,
+    EmojiEmotions
+} from "@mui/icons-material"
 
 import ElementItem from "../ElementItem"
 import styles from "./style.module.css"
 
 type Props = {
-    setFile?: (file: FileList[0], inputType: string) => void,
-    inputHandler?: (e: React.FormEvent<HTMLInputElement>) => void
+    inputFileHandler?: (
+        (e: React.FormEvent<HTMLInputElement>)
+            => void
+    ),
+    inputHandler?: (
+        e: React.FormEvent<HTMLInputElement>)
+        => void
 }
 
+type Element = [
+    string,
+    string,
+    string | null,
+    JSX.Element
+]
+
 const ElementList = (props: Props): JSX.Element => {
+    const elementList: Element[] = [
+        ["Photo or Video", "file", "image/*",
+            <PermMedia htmlColor="tomato" />
+        ],
+        ["Tag", "text", null,
+            <Label htmlColor="blue" />
+        ],
+        ["Location", "text", null,
+            <Room htmlColor="green" />
+        ],
+        ["Feelings", "text", null,
+            <EmojiEmotions htmlColor="goldenrod" />
+        ]
+    ]
+
     return (
         <ul className={styles.elementList}>
-            <ElementItem
-                className="elementItemInput"
-                title="Photo or Video"
-                inputType="file"
-                inputAccept="image/*"
-                onChange={(e: FormEvent) => {
-                    const target = e.target as HTMLInputElement;
-                    const file: File = (target.files as FileList)[0];
-
-                    props.setFile && props.setFile(file, "file")
-                }}
-            >
-                <PermMedia htmlColor="tomato" />
-            </ElementItem>
-
-            <ElementItem
-                className="elementItemInput"
-                title="Tag"
-                inputType="text"
-                onChange={props.inputHandler}
-            >
-                <Label htmlColor="blue" />
-            </ElementItem>
-
-            <ElementItem
-                className="elementItemInput"
-                title="Location"
-                inputType="text"
-                onChange={props.inputHandler}
-            >
-                <Room htmlColor="green" />
-            </ElementItem>
-
-            <ElementItem
-                className="elementItemInput"
-                title="Feelings"
-                inputType="text"
-                onChange={props.inputHandler}
-            >
-                <EmojiEmotions htmlColor="goldenrod" />
-            </ElementItem>
+            {elementList.map((element: Element) => (
+                <ElementItem
+                    className="elementItemInput"
+                    title={element[0]}
+                    inputType={element[1]}
+                    inputAccept={element[2] as string}
+                    onChange={
+                        element[1] === "text" ?
+                            props.inputHandler :
+                            props.inputFileHandler
+                    }
+                >
+                    {element[3]}
+                </ElementItem>
+            )
+            )}
         </ul>
     )
 }
