@@ -20,15 +20,15 @@ const Content = (props: Props) => {
         AuthContextInterface
 
     const { form, onChange } = useForm({
-        isActive: false
+        isInputActive: false
     })
 
     const activeCreationHandler = () => {
-        onChange(!form.isActive, "isActive")
+        onChange(!form.isInputActive, "isInputActive")
     }
 
     const handleClickAway = () => {
-        onChange(false, "isActive")
+        onChange(false, "isInputActive")
     };
 
     const profilePicture = useRequestImage(
@@ -37,7 +37,7 @@ const Content = (props: Props) => {
     )
 
     return (
-        <div className={styles.createPostContent}>
+        <div className={styles.content}>
             <img className={styles.profileImg}
                 id="profileImg"
                 src={
@@ -47,15 +47,15 @@ const Content = (props: Props) => {
             <ClickAwayListener onClickAway={
                 handleClickAway
             }>
-                <textarea placeholder={form.isActive ?
+                <textarea placeholder={form.isInputActive ?
                     "" :
                     `What's in your mind ${user?.username}?`}
                     name="description"
-                    rows={form.isActive ? 4 : 1}
+                    rows={form.isInputActive ? 4 : 1}
                     onFocus={activeCreationHandler}
                     className={
-                        `${styles.createPostInput} ${form.isActive ?
-                            styles.activePostContent :
+                        `${styles.descriptionInput} ${form.isInputActive ?
+                            styles.activeInput :
                             ""
                         }`}
                     value={form.description}

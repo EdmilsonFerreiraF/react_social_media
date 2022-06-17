@@ -7,22 +7,34 @@
     cursor: pointer;
 }
 
-.createPostContent {
+.content {
     display: flex;
     align-items: center;
 }
 
-.activePostContent {
+.activeInput {
     margin: 20px 0 0;
 }
 
-.createPostInput {
+.descriptionInput {
     border: none;
     width: 80%;
     font-size: 15px;
     font-weight: 300;
 }
 
-.createPostInput:focus {
+.descriptionInput:focus {
     outline: none;
+}
+
+@media (max-width: 600px) {
+    .profileImg {
+        margin-right: 9px;
+        width: 50px;
+        height: 45px;
+    }
+
+    .descriptionInput {
+        font-size: 13px;
+    }
 }

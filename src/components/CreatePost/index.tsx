@@ -4,9 +4,9 @@ import { v4 } from 'uuid'
 import { baseUrl } from "constants/baseUrl"
 import { useForm } from "hooks/useForm"
 import { sendData, uploadPostPic } from 'apiCalls'
-import ElementList from "./ElementList"
 import styles from "./style.module.css"
 import Content from "./Content"
+import BotBar from "./BotBar"
 
 const CreatePost = () => {
     const { form, onChange } = useForm({
@@ -50,28 +50,14 @@ const CreatePost = () => {
 
     return (
         <form data-testid="createPost"
-            className={styles.createPost}>
+            className={styles.createPost}
+            onSubmit={submitHandler}
+            >
             <div className={styles.createPostContainer}>
                <Content inputHandler={inputHandler} />
                 <hr className={styles.createPostDivision} />
-                <div aria-labelledby="create-post"
-                    className={styles.createPostBotbar}
-                    onSubmit={submitHandler}>
-                    <ElementList
-                        inputFileHandler={inputFileHandler}
-                        inputHandler={inputHandler} />
-
-                    <button className={styles.createPostButton}
-                        type="submit"
-                        disabled={
-                            (!form.description ||
-                                form.description === "") &&
-                            !form.file
-                        }
-                    >
-                        Create
-                    </button>
-                </div>
+                <BotBar form={form} inputHandler={inputHandler}
+                inputFileHandler={inputFileHandler} />
             </div>
         </form>
     )

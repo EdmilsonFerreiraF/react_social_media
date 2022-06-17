@@ -1,4 +1,4 @@
 export const profileImg: string
-export const createPostContent: string
-export const activePostContent: string
-export const createPostInput: string
+export const content: string
+export const activeInput: string
+export const descriptionInput: string
