@@ -1,14 +1,8 @@
 import React, { FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Box from '@mui/material/Box';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 
 import { useForm } from "hooks/useForm"
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
@@ -17,6 +11,8 @@ import Navigation from "./Navigation"
 import Social from "./Social"
 import Profile from "./Profile"
 import styles from "./style.module.css"
+import MobileMenu from "./MobileMenu";
+import { Menu } from "@mui/material";
 
 const Account = () => {
   const { form, onChange } = useForm({
@@ -47,15 +43,15 @@ const Account = () => {
     onChange(e.currentTarget, "mobileMoreAnchorEl")
   };
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
+  const tabletMenuId = 'primary-search-account-menu';
+  const tabletMenu = (
     <Menu
       anchorEl={form.anchorEl}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
       }}
-      id={menuId}
+      id={tabletMenuId}
       keepMounted
       transformOrigin={{
         vertical: 'top',
@@ -72,70 +68,6 @@ const Account = () => {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={form.mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-      data-testid="accountmobilemenu"
-    >
-      <Navigation
-        isMobileMenuOpen={isMobileMenuOpen}
-        handleProfileMenuOpen={handleMenuClose} />
-
-      <MenuItem onClick={handleProfileClick}>
-        <IconButton
-          size="medium"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-
-      <MenuItem>
-        <IconButton
-          size="medium"
-          aria-label="show 4 new mails"
-          color="inherit">
-          <Badge
-            badgeContent={4}
-            color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-
-      <MenuItem>
-        <IconButton
-          size="medium"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge
-            badgeContent={17}
-            color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <div data-testid="account">
@@ -162,8 +94,15 @@ const Account = () => {
           <MoreIcon />
         </IconButton>
       </Box>
-      {renderMobileMenu}
-      {renderMenu}
+
+      <MobileMenu
+        mobileMoreAnchorEl={form.mobileMoreAnchorEl}
+        mobileMenuId={mobileMenuId}
+        isMobileMenuOpen={isMobileMenuOpen}
+        handleMobileMenuClose={handleMobileMenuClose}
+        handleMenuClose={handleMenuClose}
+        handleProfileClick={handleProfileClick} />
+     {tabletMenu}
     </div>
   )
 }
