@@ -3,10 +3,6 @@
     margin: 5px 10px 20px;
 }
 
-.errorItem {
-    margin-bottom: 2px;
-}
-
 @media (max-width: 540px) {
     .formErrors {
         font-size: 15px;
