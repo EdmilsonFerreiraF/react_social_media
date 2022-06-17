@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FormEvent } from 'react'
 import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
@@ -8,16 +8,22 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Navigation from "../Navigation"
 
-type IProps = {
-    mobileMoreAnchorEl: Element,
-    mobileMenuId: string,
-    isMobileMenuOpen: boolean,
-    handleMobileMenuClose: () => void,
-    handleMenuClose: () => void,
-    handleProfileClick: () => void,
+export type handleMenuOpening = (
+    value: null | FormEvent,
+    anchor: string,
+    closeMobileMenu?: boolean)
+    => void
+
+type Props = {
+    mobileMoreAnchorEl: Element
+    mobileMenuId: string
+    handleMenuOpening: handleMenuOpening
+    handleProfileClick: () => void
 }
 
-const MobileMenu = (props: IProps) => {
+const MobileMenu = (props: Props) => {
+    const isMobileMenuOpen = Boolean(props.mobileMoreAnchorEl)
+
     return (
         <Menu
             anchorEl={props.mobileMoreAnchorEl}
@@ -31,13 +37,25 @@ const MobileMenu = (props: IProps) => {
                 vertical: 'top',
                 horizontal: 'right',
             }}
-            open={props.isMobileMenuOpen}
-            onClose={props.handleMobileMenuClose}
+            open={isMobileMenuOpen}
+            onClose={props.handleMenuOpening(
+                null,
+                "mobileMoreAnchorEl"
+            ) as (
+                (
+                    event: {}, reason: "backdropClick" |
+                        "escapeKeyDown"
+                ) => void) | undefined
+            }
             data-testid="accountmobilemenu"
         >
             <Navigation
-                isMobileMenuOpen={props.isMobileMenuOpen}
-                handleProfileMenuOpen={props.handleMenuClose} />
+                isMobileMenuOpen={
+                    isMobileMenuOpen
+                }
+                handleProfileMenuOpen={
+                    props.handleMenuOpening
+                } />
 
             <MenuItem onClick={props.handleProfileClick}>
                 <IconButton

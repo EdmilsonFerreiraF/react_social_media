@@ -23,7 +23,6 @@ const Account = () => {
   const { user } = useContext(AuthContext) as AuthContextInterface
 
   const isMenuOpen = Boolean(form.anchorEl)
-  const isMobileMenuOpen = Boolean(form.mobileMoreAnchorEl)
   const navigate = useNavigate()
 
   const handleProfileClick = () => {
@@ -34,14 +33,25 @@ const Account = () => {
     onChange(null, "mobileMoreAnchorEl")
   }
 
-  const handleMenuClose = () => {
-    onChange(null, "anchorEl")
-    handleMobileMenuClose()
-  }
+  // const handleMenuClose = () => {
+  //   onChange(null, "anchorEl")
+  //   handleMobileMenuClose()
+  // }
 
-  const handleMobileMenuOpen = (e: FormEvent) => {
-    onChange(e.currentTarget, "mobileMoreAnchorEl")
-  };
+  // const handleMobileMenuOpen = (e: FormEvent) => {
+  //   onChange(e.currentTarget, "mobileMoreAnchorEl")
+  // };
+
+  const handleMenuOpening = (value: null | FormEvent,
+    anchor: string,
+    closeMobileMenu: boolean = false
+  ) => {
+    onChange(value, anchor)
+
+    if (closeMobileMenu) {
+      handleMobileMenuClose()
+    }
+  }
 
   const tabletMenuId = 'primary-search-account-menu';
   const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -65,7 +75,12 @@ const Account = () => {
           aria-label="show more"
           aria-controls={mobileMenuId}
           aria-haspopup="true"
-          onClick={handleMobileMenuOpen}
+          onClick={
+            e => handleMenuOpening(
+              e,
+              "mobileMoreAnchorEl"
+            )
+          }
           color="inherit"
         >
           <MoreIcon />
@@ -75,15 +90,14 @@ const Account = () => {
       <MobileMenu
         mobileMoreAnchorEl={form.mobileMoreAnchorEl}
         mobileMenuId={mobileMenuId}
-        isMobileMenuOpen={isMobileMenuOpen}
-        handleMobileMenuClose={handleMobileMenuClose}
-        handleMenuClose={handleMenuClose}
+        handleMenuOpening={handleMenuOpening}
         handleProfileClick={handleProfileClick} />
       <TabletMenu
         anchorEl={form.anchorEl}
         tabletMenuId={tabletMenuId}
         isMenuOpen={isMenuOpen}
-        handleMenuClose={handleMenuClose}
+        handleMenuOpening={handleMenuOpening}
+        handleProfileClick={handleProfileClick}
       />
     </div>
   )

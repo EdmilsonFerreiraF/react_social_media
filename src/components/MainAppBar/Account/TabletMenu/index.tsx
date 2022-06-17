@@ -4,15 +4,17 @@ import Menu from '@mui/material/Menu';
 import Navigation from "../Navigation"
 import Social from "../Social"
 import Profile from "../Profile"
+import { handleMenuOpening } from "../MobileMenu";
 
-type IProps = {
+type Props = {
     anchorEl: Element
     tabletMenuId: string
     isMenuOpen: boolean
-    handleMenuClose: () => void
+    handleMenuOpening: handleMenuOpening
+    handleProfileClick: () => void
 }
 
-const TabletMenu = (props: IProps) => {
+const TabletMenu = (props: Props) => {
     return (
         <Menu
             anchorEl={props.anchorEl}
@@ -27,7 +29,15 @@ const TabletMenu = (props: IProps) => {
                 horizontal: 'right',
             }}
             open={props.isMenuOpen}
-            onClose={props.handleMenuClose}
+            onClose={props.handleMenuOpening(
+                null,
+                "anchorEl",
+                true
+                ) as ((
+                    event: {}, reason: "backdropClick" |
+                        "escapeKeyDown") => void
+                ) | undefined
+            }
             data-testid="accountdesktopmenu"
         >
             <Navigation />
