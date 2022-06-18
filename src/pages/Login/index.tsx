@@ -1,4 +1,7 @@
-import React, { FormEvent, useContext, useEffect } from "react"
+import React, {
+    FormEvent,
+    useContext,
+} from "react"
 import { useNavigate } from "react-router-dom"
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -28,11 +31,11 @@ const Login = () => {
 
     const handleInputChange = (e: FormEvent) => {
         const target = e.target as HTMLInputElement
-
-        const name: string = target.name;
-        const value: string = target.value;
+        const name: string = target.name
+        const value: string = target.value
 
         onChange(value, name)
+        validateFields(value, name)
     }
 
     const handleSubmit = (e: FormEvent) => {
@@ -47,37 +50,32 @@ const Login = () => {
         )
     }
 
-    const validateFields = () => {
-        let emailValid = form.email
+    const validateFields = (value: any, name: any) => {
+        let emailValid = value
             .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-        let passwordValid = form.password.length >= 6
+        let passwordValid = value.length >= 6
+        let isEmailValid = ''
+        let isPasswordValid = ''
 
-        return {
-            emailValid,
-            passwordValid
-        }
-    }
-
-    useEffect(() => {
-        const validFields = validateFields();
-
-        const isEmailValid = form.email === '' ||
-            validFields.emailValid ?
-            '' : ' is invalid'
-        const isPasswordValid = form.password === '' ||
-            validFields.passwordValid ?
-            '' : ' is too short'
-
-        let formErrors = {
-            email: '',
-            password: ''
+        if (name === "email") {
+            isEmailValid = value === '' ||
+                emailValid ?
+                '' : ' is invalid'
         }
 
-        formErrors.email = isEmailValid
-        formErrors.password = isPasswordValid
+        if (name === "password") {
+            isPasswordValid = value === '' ||
+                passwordValid ?
+                '' : ' is too short'
+        }
+
+        const formErrors = {
+            email: isEmailValid,
+            password: isPasswordValid
+        }
 
         onChange(formErrors, "formErrors")
-    }, [form.email, form.password])
+    }
 
     const handleRegisterButton = () => {
         goToSignup(navigate)
