@@ -6,9 +6,9 @@ import styles from "./style.module.css"
 
 const Social = () => {
     const socialItems = [
-        <Person />,
-        <Chat />,
-        <Notifications />
+        [0, <Person />],
+        [1, <Chat />],
+        [2, <Notifications />]
     ]
 
     return (
@@ -16,9 +16,11 @@ const Social = () => {
             role="menu"
             className={styles.social}
         >
-            {socialItems.map((icon, idx) => (
-                <SocialItem badge={idx + 1}>
-                    {icon}
+            {socialItems.map((item, idx) => (
+                <SocialItem
+                key={item[0] as number}
+                badge={idx + 1}>
+                    {item[1] as JSX.Element}
                 </SocialItem>
             ))}
         </div>

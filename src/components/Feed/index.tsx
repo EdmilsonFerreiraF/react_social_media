@@ -16,19 +16,17 @@ const Feed = ({ otherUserId }: Props) => {
     const { user } = useContext(AuthContext) as AuthContextInterface
 
     const getPosts = useRequestData(
-        (otherUserId
-            ?
-            `${baseUrl}/post/profile/${otherUserId}`
+        (user && user.id && !otherUserId ?
+            `${baseUrl}/post/timeline/${user.id}`
             :
-            user && user.id &&
-            `${baseUrl}/post/timeline/${user.id}`)
+            `${baseUrl}/post/profile/${otherUserId}`)
         , []
     )
 
     const posts = getPosts.length
         ?
         getPosts.map((post: IPost) => (
-            <Post key={post?._id}
+            <Post key={post?.id}
                 post={post} />
         ))
         :

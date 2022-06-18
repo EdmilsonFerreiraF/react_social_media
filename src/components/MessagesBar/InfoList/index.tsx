@@ -6,9 +6,9 @@ import styles from "./style.module.css"
 
 const InfoList = ({ user }: { user: User }) => {
     const infoItems = [
-        ["City", user?.city as string],
-        ["From", user?.from as string],
-        ["Relationship", user?.relationship === 0
+        [0, "City", user?.city as string],
+        [1, "From", user?.from as string],
+        [2, "Relationship", user?.relationship === 0
             ?
             "Single"
             :
@@ -21,8 +21,9 @@ const InfoList = ({ user }: { user: User }) => {
         <div className={styles.messagesBarInfo}>
             {infoItems.map((infoItem: any) => (
                 <InfoItem
-                    title={infoItem[0]}
-                    text={infoItem[1]} />
+                key={infoItem[0]}
+                    title={infoItem[1]}
+                    text={infoItem[2]} />
             ))
             }
         </div>

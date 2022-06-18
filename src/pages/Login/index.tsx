@@ -86,20 +86,20 @@ const Login = () => {
     const hasError = (entity: any) => form.formErrors[entity].length
 
     const inputControls = [
-        [hasError("email") ? 'inputInvalid' : '',
+        [0, hasError("email") ? 'inputInvalid' : '',
             "email",
             "email",
             "Email",
-        form.email,
-        !!hasError("email"),
+            form.email,
+            !!hasError("email"),
             handleInputChange
         ],
-        [hasError("password") ? 'inputInvalid' : '',
+        [1, hasError("password") ? 'inputInvalid' : '',
             "password",
             "password",
             "Password",
-        form.password,
-        !!hasError("password"),
+            form.password,
+            !!hasError("password"),
             handleInputChange,
         ]
     ]
@@ -120,26 +120,24 @@ const Login = () => {
                     <form className={styles.loginBox}
                         onSubmit={handleSubmit}>
                         {
-                            inputControls.map((navItem: any) => {
-                                return (
-                                    <>
-                                        <label className={styles.fieldLabel}
-                                            htmlFor={navItem[2]}>
-                                            {navItem[1]}
-                                        </label>
+                            inputControls.map((navItem: any) => (
+                                <div key={navItem[0]}>
+                                    <label className={styles.fieldLabel}
+                                        htmlFor={navItem[3]}>
+                                        {navItem[2]}
+                                    </label>
 
-                                        <Input
-                                            className={navItem[0]}
-                                            name={navItem[1]}
-                                            type={navItem[2]}
-                                            placeholder={navItem[3]}
-                                            required
-                                            value={navItem[4]}
-                                            invalid={navItem[5]}
-                                            handleInputChange={navItem[6]} />
-                                    </>
-                                )
-                            })
+                                    <Input
+                                        className={navItem[1]}
+                                        name={navItem[2]}
+                                        type={navItem[3]}
+                                        placeholder={navItem[4]}
+                                        required
+                                        value={navItem[5]}
+                                        invalid={navItem[6]}
+                                        handleInputChange={navItem[7]} />
+                                </div>
+                            ))
                         }
 
                         <div className="panel panel-default">

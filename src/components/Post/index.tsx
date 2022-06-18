@@ -11,7 +11,6 @@ import {
 import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from "hooks/useRequestData"
 import { useForm } from "hooks/useForm"
-import { sendData } from 'apiCalls'
 
 import noProfilePicture from 'img/person/no_person.jpg'
 import noPostPicture from 'img/post/1.jpeg'

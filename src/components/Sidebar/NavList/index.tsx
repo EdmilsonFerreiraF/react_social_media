@@ -17,15 +17,15 @@ import styles from "./style.module.css"
 
 const NavList = () => {
     const navList = [
-        ["Feed", <RssFeed />],
-        ["Chats", <Chat />],
-        ["Videos", <PlayCircleFilledOutlined />],
-        ["Groups", <Group />],
-        ["Bookmarks", <Bookmark />],
-        ["Questions", <HelpOutline />],
-        ["Jobs", <WorkOutline />],
-        ["Events", <Event />],
-        ["Courses", <School />]
+        [0, "Feed", <RssFeed />],
+        [1, "Chats", <Chat />],
+        [2, "Videos", <PlayCircleFilledOutlined />],
+        [3, "Groups", <Group />],
+        [4, "Bookmarks", <Bookmark />],
+        [5, "Questions", <HelpOutline />],
+        [6, "Jobs", <WorkOutline />],
+        [7, "Events", <Event />],
+        [8, "Courses", <School />]
     ]
 
     return (
@@ -48,8 +48,10 @@ const NavList = () => {
                 {
                     navList.map((navItem: any) => {
                         return (
-                            <NavItem title={navItem[0]}>
-                                {navItem[1]}
+                            <NavItem
+                            key={navItem[0]}
+                            title={navItem[1]}>
+                                {navItem[2]}
                             </NavItem>
                         )
                     })
