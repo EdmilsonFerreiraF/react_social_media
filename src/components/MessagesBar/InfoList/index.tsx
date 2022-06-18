@@ -1,29 +1,30 @@
-import { User } from "context/AuthContext"
 import React from "react"
 
+import { User } from "context/AuthContext"
 import InfoItem from "../InfoItem"
 import styles from "./style.module.css"
 
 const InfoList = ({ user }: { user: User }) => {
+    const infoItems = [
+        ["City", user?.city as string],
+        ["From", user?.from as string],
+        ["Relationship", user?.relationship === 0
+            ?
+            "Single"
+            :
+            user?.relationship === 1
+                ? "Married" : "-"
+        ]
+    ]
+
     return (
         <div className={styles.messagesBarInfo}>
-            <InfoItem
-                title="City"
-                text={user?.city as string} />
-            <InfoItem
-                title="From"
-                text={user?.from as string} />
-            <InfoItem
-                title="Relationship"
-                text={user?.relationship === 0
-                    ?
-                    "Single"
-                    :
-                    user?.relationship === 1
-                    ? "Married"
-                    :
-                    "-"
-                } />
+            {infoItems.map((infoItem: any) => (
+                <InfoItem
+                    title={infoItem[0]}
+                    text={infoItem[1]} />
+            ))
+            }
         </div>
     )
 }
