@@ -6,9 +6,9 @@ import {
 import CircularProgress from '@mui/material/CircularProgress'
 
 import { initializeApp } from "firebase/app"
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 
-dotenv.config()
+// dotenv.config()
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -28,44 +28,26 @@ const SignupPage = lazy(() => import('pages/Signup'))
 const LoginPage = lazy(() => import('pages/Login'))
 const ProfilePage = lazy(() => import('pages/Profile'))
 
+const routeList: any = [
+  ["*", <ErrorPage />],
+  ["/", <HomePage />],
+  ["/signup", <SignupPage />],
+  ["/login", <LoginPage />],
+  ["/profile/:username", <ProfilePage />],
+]
+
 const App = () => {
   return (
     <Routes>
-      <Route
-        path="*"
-        element={
-          <Suspense fallback={<CircularProgress />}>
-            <ErrorPage />
-          </Suspense>}
-      />
-      <Route
-        path="/"
-        element={
-          <Suspense fallback={<CircularProgress />}>
-            <HomePage />
-          </Suspense>}
-      />
-      <Route
-        path="/signup"
-        element={
-          <Suspense fallback={<CircularProgress />}>
-            <SignupPage />
-          </Suspense>}
-      />
-      <Route
-        path="/login"
-        element={
-          <Suspense fallback={<CircularProgress />}>
-            <LoginPage />
-          </Suspense>}
-      />
-      <Route
-        path="/profile/:username"
-        element={
-          <Suspense fallback={<CircularProgress />}>
-            <ProfilePage />
-          </Suspense>}
-      />
+      {routeList.map((route: any) => (
+        <Route
+          path={route[0]}
+          element={
+            <Suspense fallback={<CircularProgress />}>
+              {route[1]}
+            </Suspense>}
+        />
+      ))}
     </Routes>
   );
 }
