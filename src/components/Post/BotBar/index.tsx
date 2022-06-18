@@ -4,7 +4,13 @@ import styles from "./style.module.css"
 import likeImg from 'img/like.png'
 import heartImg from 'img/heart.png'
 
-const BotBar = (props: any) => {
+type Props = {
+    likeHandler: () => Promise<void>
+    likes: number
+    comments: number
+}
+
+const BotBar = (props: Props) => {
     return (
         <div className={styles.postBotbar}>
             <div className={styles.postReactionList}>
@@ -24,7 +30,7 @@ const BotBar = (props: any) => {
             <div data-testid="post comments"
                 className={styles.postComments}>
                 <span className={styles.postCommentCounter}>
-                    {props.comment} comments
+                    {props.comments} comments
                 </span>
             </div>
         </div>
