@@ -44,7 +44,7 @@ const Post = ({ post }: { post: IPost }) => {
         onChange(
             post?.likes.includes(currentUser?.id),
             "likes"
-            )
+        )
     }, [currentUser?.id, post?.likes])
 
     const otherUser = useRequestData(post &&
@@ -65,17 +65,6 @@ const Post = ({ post }: { post: IPost }) => {
         onChange(!form.readMore, "readMore")
     }
 
-    const likeHandler = async () => {
-        const url = `${baseUrl}/post/${post?.id}/like`
-        const data = { userId: currentUser?.id }
-
-        sendData(url, "put", data)
-            .catch(() => {
-                onChange(form.isLiked ? form.likes - 1 :
-                    form.likes + 1, "isLiked")
-            })
-    }
-
     return (
         <div data-testid="post"
             className={styles.post}>
@@ -91,9 +80,10 @@ const Post = ({ post }: { post: IPost }) => {
                     noPostPicture={noPostPicture}
                     description={post?.description}
                 />
-                <BotBar comments={post?.comment}
-                    likes={post?.likes.length + 1}
-                    likeHandler={likeHandler} />
+                <BotBar userId={currentUser?.id}
+                    postId={post?.id}
+                    comments={post?.comment}
+                    likes={post?.likes.length + 1} />
             </div>
         </div>
     )
