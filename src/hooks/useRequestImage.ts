@@ -16,7 +16,7 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 }
 
-const app = initializeApp(firebaseConfig)
+initializeApp(firebaseConfig)
 
 export function useRequestImage(entity: "profile" | "cover" | "post", initialState: any) {
   const [data, setData] = useState(initialState)
@@ -24,9 +24,9 @@ export function useRequestImage(entity: "profile" | "cover" | "post", initialSta
 
   useEffect(() => {
     const getData = async (image: string) => {
-      const storage = getStorage(app, "gs://social-media-dc8fb.appspot.com")
+      const storage = getStorage(undefined, "gs://social-media-dc8fb.appspot.com")
 
-      getDownloadURL(ref(storage, `/${entity}/${image}`))
+      await getDownloadURL(ref(storage, `/${entity}/${image}`))
         .then((url) => {
           setData(url)
         })
