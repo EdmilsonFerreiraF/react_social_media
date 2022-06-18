@@ -46,7 +46,7 @@ const Signup = () => {
 
     const handleInputChange = (e: FormEvent) => {
         const target = e.target as HTMLInputElement
-        
+
         const name = target.name;
         const value = target.value;
 
@@ -95,6 +95,42 @@ const Signup = () => {
         signup(url, data)
     }
 
+    const hasError = (entity: any) => form.formErrors[entity].length
+
+    const inputControls = [
+        [hasError("username") ? 'inputInvalid' : '',
+            "username",
+            "text",
+            "Username",
+        form.username,
+        !!hasError("username"),
+            handleInputChange],
+        [hasError("email") ? 'inputInvalid' : '',
+            "email",
+            "email",
+            "Email",
+        form.email,
+        !!hasError("email"),
+            handleInputChange
+        ],
+        [hasError("password") ? 'inputInvalid' : '',
+            "password",
+            "password",
+            "Password",
+        form.password,
+        !!hasError("password"),
+            handleInputChange,
+        ],
+        [hasError("passwordAgain") ? 'inputInvalid' : '',
+            "passwordAgain",
+            "password",
+            "Password again",
+        form.passwordAgain,
+        !!hasError("passwordAgain"),
+            handleInputChange,
+        ],
+    ]
+
     return (
         <div className={styles.signup}>
             <div className={styles.signupWrapper}>
@@ -110,74 +146,29 @@ const Signup = () => {
                 <div className={styles.signupRight}>
                     <form className={styles.signupBox}
                         onSubmit={handleSubmit}>
-                        <label className={styles.fieldLabel}
-                            htmlFor="email">
-                            Username
-                        </label>
+                        {
+                            inputControls.map((navItem: any) => {
+                                return (
+                                    <>
+                                        <label className={styles.fieldLabel}
+                                            htmlFor={navItem[2]}>
+                                            {navItem[3]}
+                                        </label>
 
-                        <Input
-                            className={form.formErrors.username.length ?
-                                'inputInvalid'
-                                :
-                                ''}
-                            name="username"
-                            type="text"
-                            placeholder="Username"
-                            required
-                            value={form.username}
-                            invalid={!!form.formErrors.email.length}
-                            handleInputChange={handleInputChange} />
-                        <label className={styles.fieldLabel}
-                            htmlFor="email">
-                            Email
-                        </label>
+                                        <Input
+                                            className={navItem[0]}
+                                            name={navItem[1]}
+                                            type={navItem[2]}
+                                            placeholder={navItem[3]}
+                                            required
+                                            value={navItem[4]}
+                                            invalid={navItem[5]}
+                                            handleInputChange={navItem[6]} />
+                                    </>
+                                )
+                            })
+                        }
 
-                        <Input
-                            className={form.formErrors.email.length ?
-                                'inputInvalid'
-                                :
-                                ''}
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                            required
-                            value={form.email}
-                            invalid={!!form.formErrors.email.length}
-                            handleInputChange={handleInputChange} />
-                        <label className={styles.fieldLabel}
-                            htmlFor="email">
-                            Password
-                        </label>
-
-                        <Input
-                            className={form.formErrors.password.length
-                                ? 'inputInvalid'
-                                :
-                                ''}
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            required
-                            value={form.password}
-                            invalid={!!form.formErrors.email.length}
-                            handleInputChange={handleInputChange} />
-                        <label className={styles.fieldLabel}
-                            htmlFor="email">
-                            Password again
-                        </label>
-
-                        <Input
-                            className={form.formErrors.passwordAgain.length
-                                ? 'inputInvalid'
-                                :
-                                ''}
-                            name="passwordAgain"
-                            type="password"
-                            placeholder="Password again"
-                            required
-                            value={form.passwordAgain}
-                            invalid={!!form.formErrors.email.length}
-                            handleInputChange={handleInputChange} />
                         <div className="panel panel-default">
                             <FormErrors formErrors={form.formErrors} />
                         </div>
