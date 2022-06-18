@@ -34,13 +34,16 @@ expect.extend(toHaveNoViolations)
 
 describe('BotBar', () => {
   test('Should show BotBar like reaction', async () => {
-    const likeHandler = jest.fn()
     const likes = 5
     const comment = 5
+    const userId = "3a32071d-00f5-480e-bc93-b321299109ee"
+    const postId = "1"
 
     await act(async () => {
       render(
-        <BotBar likeHandler={likeHandler}
+        <BotBar
+          userId={userId}
+          postId={postId}
           likes={likes}
           comments={comment} />
       )
@@ -52,13 +55,16 @@ describe('BotBar', () => {
   })
 
   test('Should show BotBar heart reaction', async () => {
-    const likeHandler = jest.fn()
     const likes = 5
     const comment = 5
+    const userId = "3a32071d-00f5-480e-bc93-b321299109ee"
+    const postId = "1"
 
     await act(async () => {
       render(
-        <BotBar likeHandler={likeHandler}
+        <BotBar
+          userId={userId}
+          postId={postId}
           likes={likes}
           comments={comment} />
       )
@@ -70,13 +76,16 @@ describe('BotBar', () => {
   })
 
   test('Should show BotBar x people liked it', async () => {
-    const likeHandler = jest.fn()
     const likes = 5
     const comment = 5
+    const userId = "3a32071d-00f5-480e-bc93-b321299109ee"
+    const postId = "1"
 
     await act(async () => {
       render(
-        <BotBar likeHandler={likeHandler}
+        <BotBar
+          userId={userId}
+          postId={postId}
           likes={likes}
           comments={comment} />
       )
@@ -88,13 +97,16 @@ describe('BotBar', () => {
   })
 
   test('Should show BotBar x comments', async () => {
-    const likeHandler = jest.fn()
     const likes = 5
     const comment = 5
+    const userId = "3a32071d-00f5-480e-bc93-b321299109ee"
+    const postId = "1"
 
     await act(async () => {
       render(
-        <BotBar likeHandler={likeHandler}
+        <BotBar
+          userId={userId}
+          postId={postId}
           likes={likes}
           comments={comment} />
       )
@@ -104,13 +116,16 @@ describe('BotBar', () => {
   })
 
   test('Should be an acessible component', async () => {
-    const likeHandler = jest.fn()
     const likes = 5
     const comment = 5
+    const userId = "3a32071d-00f5-480e-bc93-b321299109ee"
+    const postId = "1"
 
     const { container }: any = act(() => {
       render(
-        <BotBar likeHandler={likeHandler}
+        <BotBar
+          userId={userId}
+          postId={postId}
           likes={likes}
           comments={comment} />
       )
