@@ -1,0 +1,33 @@
+
+.birthdayContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.birthdayImg {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.birthdayAd {
+    cursor: pointer;
+}
+
+.birthdayText {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.messagesBarAd {
+    display: flex;
+    border-radius: 10px;
+    margin: 30px auto 30px auto;
+}
+
+.messagesBarTitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
