@@ -16,6 +16,18 @@ import NavItem from "../NavItem"
 import styles from "./style.module.css"
 
 const NavList = () => {
+    const navList = [
+        ["Feed", <RssFeed />],
+        ["Chats", <Chat />],
+        ["Videos", <PlayCircleFilledOutlined />],
+        ["Groups", <Group />],
+        ["Bookmarks", <Bookmark />],
+        ["Questions", <HelpOutline />],
+        ["Jobs", <WorkOutline />],
+        ["Events", <Event />],
+        ["Courses", <School />]
+    ]
+
     return (
         <Container
             data-testid="navList"
@@ -33,7 +45,17 @@ const NavList = () => {
             }}
         >
             <ul className={styles.navList}>
-                <NavItem title="Feed">
+                {
+                    navList.map((navItem: any) => {
+                        return (
+                            <NavItem title={navItem[0]}>
+                                {navItem[1]}
+                            </NavItem>
+                        )
+                    })
+                }
+
+                {/* <NavItem title="Feed">
                     <RssFeed />
                 </NavItem>
                 <NavItem title="Chats">
@@ -59,7 +81,7 @@ const NavList = () => {
                 </NavItem>
                 <NavItem title="Courses">
                     <School />
-                </NavItem>
+                </NavItem> */}
             </ul>
         </Container>
     )
