@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect } from 'react'
+import React, { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Input from 'components/Input'
@@ -27,23 +27,6 @@ const Signup = () => {
 
     const navigate = useNavigate()
 
-    const validateFields = () => {
-        let usernameValid = form.username
-            .match(/^([\w]{5,15})$/i)
-        let emailValid = form.email
-            .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        let passwordValid = form.password
-            .length > 8
-        let passwordAgainValid = form.passwordAgain === form.password
-
-        return {
-            usernameValid,
-            emailValid,
-            passwordValid,
-            passwordAgainValid,
-        }
-    }
-
     const handleInputChange = (e: FormEvent) => {
         const target = e.target as HTMLInputElement
 
@@ -51,29 +34,42 @@ const Signup = () => {
         const value = target.value;
 
         onChange(value, name)
+        validatefields(value, name)
     }
 
-    useEffect(() => {
-        const validFields = validateFields()
+    const validatefields = (value: any, name: any) => {
+        let usernameValid = value
+            .match(/^([\w]{5,15})$/i)
+        let emailValid = value
+            .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        let passwordValid = value
+            .length > 8
+        let passwordAgainValid = value === form.password
 
-        const formErrors = {
-            username: '',
-            email: '',
-            password: '',
-            passwordAgain: '',
+        const formErrors = {...form.formErrors}
+
+        if (name === "username") {
+            formErrors.username = value === '' ||
+                usernameValid ? '' : ' is invalid';
         }
 
-        formErrors.username = form.username === '' ||
-            validFields.usernameValid ? '' : ' is invalid';
-        formErrors.email = form.email === '' ||
-            validFields.emailValid ? '' : ' is invalid';
-        formErrors.password = form.password === '' ||
-            validFields.passwordValid ? '' : ' is too short';
-        formErrors.passwordAgain = form.passwordAgain === '' ||
-            validFields.passwordAgainValid ? '' : ' passwords don\'t match';
+        if (name === "email") {
+            formErrors.email = value === '' ||
+                emailValid ? '' : ' is invalid';
+        }
+
+        if (name === "password") {
+            formErrors.password = value === '' ||
+                passwordValid ? '' : ' is too short';
+        }
+
+        if (name === "passwordAgain") {
+            formErrors.passwordAgain = value === '' ||
+                passwordAgainValid ? '' : ' passwords don\'t match';
+        }
 
         onChange(formErrors, "formErrors")
-    }, [form.username, form.email, form.password, form.passwordAgain])
+    }
 
     const handleLoginButton = () => {
         navigate("/login")
@@ -148,7 +144,7 @@ const Signup = () => {
                         onSubmit={handleSubmit}>
                         {
                             inputControls.map((navItem: any) => (
-                                <div key={navItem[0]}>
+                                <div className={styles.field} key={navItem[0]}>
                                     <label className={styles.fieldLabel}
                                         htmlFor={navItem[3]}>
                                         {navItem[4]}

@@ -5,6 +5,7 @@ export const signupRight: string
 export const signupLogo: string
 export const signupDesc: string
 export const signupBox: string
+export const field: string
 export const fieldLabel: string
 export const signupInput: string
 export const signupButton: string

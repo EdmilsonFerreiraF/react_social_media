@@ -54,24 +54,19 @@ const Login = () => {
         let emailValid = value
             .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
         let passwordValid = value.length >= 6
-        let isEmailValid = ''
-        let isPasswordValid = ''
+
+        const formErrors = {...form.formErrors}
 
         if (name === "email") {
-            isEmailValid = value === '' ||
+            formErrors.email = value === '' ||
                 emailValid ?
                 '' : ' is invalid'
         }
 
         if (name === "password") {
-            isPasswordValid = value === '' ||
+            formErrors.password = value === '' ||
                 passwordValid ?
                 '' : ' is too short'
-        }
-
-        const formErrors = {
-            email: isEmailValid,
-            password: isPasswordValid
         }
 
         onChange(formErrors, "formErrors")
@@ -119,7 +114,7 @@ const Login = () => {
                         onSubmit={handleSubmit}>
                         {
                             inputControls.map((navItem: any) => (
-                                <div key={navItem[0]}>
+                                <div className={styles.field} key={navItem[0]}>
                                     <label className={styles.fieldLabel}
                                         htmlFor={navItem[3]}>
                                         {navItem[2]}

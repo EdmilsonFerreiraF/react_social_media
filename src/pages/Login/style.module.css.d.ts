@@ -5,6 +5,7 @@ export const loginRight: string
 export const loginLogo: string
 export const loginDesc: string
 export const loginBox: string
+export const field: string
 export const fieldLabel: string
 export const loginInput: string
 export const loginButton: string

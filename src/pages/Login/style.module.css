@@ -18,7 +18,8 @@
     margin-right: 20px;
 }
 
-.loginLeft, .loginRight {
+.loginLeft,
+.loginRight {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -45,6 +46,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.field {
+    display: flex;
 }
 
 .fieldLabel {
@@ -115,7 +120,7 @@
         flex-direction: column;
         max-width: 500px;
     }
-    
+
     .loginLeft {
         margin-bottom: 40px;
     }
@@ -126,7 +131,7 @@
         width: 100%;
         padding: 20px;
     }
-    
+
     .loginLeft {
         margin-bottom: 25px;
     }
@@ -139,7 +144,8 @@
         font-size: 20px;
     }
 
-    .loginButton, .loginRegisterButton {
+    .loginButton,
+    .loginRegisterButton {
         font-size: 18px;
     }
 }
