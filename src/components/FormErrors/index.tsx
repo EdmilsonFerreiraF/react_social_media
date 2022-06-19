@@ -36,6 +36,7 @@ const FormErrors = (
                         ) {
                             return (
                                 <Error
+                                key={`${fieldName} ${formErrors[fieldName]}`}
                                     idx={i}
                                     error={
                                         `${fieldName} ${formErrors[fieldName]}`
