@@ -1,11 +1,14 @@
 import { INITIAL_STATE } from "./AuthContext";
 
 export type ACTIONTYPE =
-  | { type: "LOGIN_START"; payload?: number }
-  | { type: "LOGIN_SUCCESS"; payload?: string }
-  | { type: "LOGIN_FAILURE"; payload?: string }
+    | { type: "LOGIN_START"; payload?: number }
+    | { type: "LOGIN_SUCCESS"; payload?: string }
+    | { type: "LOGIN_FAILURE"; payload?: string }
 
-const AuthReducer = (state: typeof INITIAL_STATE, action: ACTIONTYPE) => {
+const AuthReducer = (
+    state: typeof INITIAL_STATE,
+    action: ACTIONTYPE
+) => {
     switch (action.type) {
         case "LOGIN_START":
             return {

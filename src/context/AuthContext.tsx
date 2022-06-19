@@ -1,4 +1,8 @@
-import React, { createContext, ReducerWithoutAction, useReducer } from "react"
+import React, {
+    createContext,
+    ReducerWithoutAction,
+    useReducer
+} from "react"
 
 import AuthReducer, { ACTIONTYPE } from "./AuthReducer"
 
@@ -25,7 +29,22 @@ export interface AuthContextInterface {
     dispatch: (type: ACTIONTYPE) => void
 }
 
-export const INITIAL_STATE = {
+type InitialState = {
+    user: {
+        id: null,
+        username: null,
+        email: null,
+        profilePicture: null,
+        coverPicture: null,
+        isAdmin: boolean,
+        followers: [],
+        followings: []
+    },
+    isFetching: boolean,
+    error: boolean
+}
+
+export const INITIAL_STATE: InitialState = {
     user: {
         id: null,
         username: null,
@@ -42,8 +61,13 @@ export const INITIAL_STATE = {
 
 export const AuthContext = createContext<AuthContextInterface | {}>({})
 
-export const AuthContextProvider = ({ children }: { children: JSX.Element }): JSX.Element => {
-    const [state, dispatch] = useReducer(AuthReducer as ReducerWithoutAction<any>, INITIAL_STATE)
+export const AuthContextProvider = (
+    { children }: { children: JSX.Element }
+): JSX.Element => {
+    const [state, dispatch] = useReducer(
+        AuthReducer as ReducerWithoutAction<any>,
+        INITIAL_STATE
+    )
 
     const authContext: AuthContextInterface = {
         user: state.user,
@@ -56,7 +80,7 @@ export const AuthContextProvider = ({ children }: { children: JSX.Element }): JS
         <AuthContext.Provider
             value={authContext}
         >
-        {children}
+            {children}
         </AuthContext.Provider>
     )
 }

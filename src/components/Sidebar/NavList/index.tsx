@@ -16,7 +16,9 @@ import NavItem from "../NavItem"
 import styles from "./style.module.css"
 
 const NavList = () => {
-    const navList = [
+    type NavList = [number, string, JSX.Element]
+    
+    const navList: NavList[] = [
         [0, "Feed", <RssFeed />],
         [1, "Chats", <Chat />],
         [2, "Videos", <PlayCircleFilledOutlined />],
@@ -46,7 +48,7 @@ const NavList = () => {
         >
             <ul className={styles.navList}>
                 {
-                    navList.map((navItem: any) => {
+                    navList.map((navItem: NavList) => {
                         return (
                             <NavItem
                             key={navItem[0]}
@@ -56,34 +58,6 @@ const NavList = () => {
                         )
                     })
                 }
-
-                {/* <NavItem title="Feed">
-                    <RssFeed />
-                </NavItem>
-                <NavItem title="Chats">
-                    <Chat />
-                </NavItem>
-                <NavItem title="Videos">
-                    <PlayCircleFilledOutlined />
-                </NavItem>
-                <NavItem title="Groups">
-                    <Group />
-                </NavItem>
-                <NavItem title="Bookmarks">
-                    <Bookmark />
-                </NavItem>
-                <NavItem title="Questions">
-                    <HelpOutline />
-                </NavItem>
-                <NavItem title="Jobs">
-                    <WorkOutline />
-                </NavItem>
-                <NavItem title="Events">
-                    <Event />
-                </NavItem>
-                <NavItem title="Courses">
-                    <School />
-                </NavItem> */}
             </ul>
         </Container>
     )

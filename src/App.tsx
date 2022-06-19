@@ -4,11 +4,7 @@ import {
   Route
 } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress'
-
 import { initializeApp } from "firebase/app"
-// import dotenv from 'dotenv'
-
-// dotenv.config()
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -18,7 +14,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-};
+}
 
 initializeApp(firebaseConfig)
 
@@ -28,28 +24,33 @@ const SignupPage = lazy(() => import('pages/Signup'))
 const LoginPage = lazy(() => import('pages/Login'))
 const ProfilePage = lazy(() => import('pages/Profile'))
 
-const routeList: any = [
-  ["*", <ErrorPage />],
-  ["/", <HomePage />],
-  ["/signup", <SignupPage />],
-  ["/login", <LoginPage />],
-  ["/profile/:username", <ProfilePage />],
+type RouteList = [
+  number, string, JSX.Element
+]
+
+const routeList: RouteList[] = [
+  [0, "*", <ErrorPage />],
+  [1, "/", <HomePage />],
+  [2, "/signup", <SignupPage />],
+  [3, "/login", <LoginPage />],
+  [4, "/profile/:username", <ProfilePage />],
 ]
 
 const App = () => {
   return (
     <Routes>
-      {routeList.map((route: any) => (
+      {routeList.map((route: RouteList) => (
         <Route
-          path={route[0]}
+        key={route[0]}
+          path={route[1]}
           element={
             <Suspense fallback={<CircularProgress />}>
-              {route[1]}
+              {route[2]}
             </Suspense>}
         />
       ))}
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App

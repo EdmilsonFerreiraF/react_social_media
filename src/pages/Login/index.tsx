@@ -3,14 +3,14 @@ import React, {
     useContext,
 } from "react"
 import { useNavigate } from "react-router-dom"
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress'
 
 import Input from 'components/Input'
-import FormErrors from "components/FormErrors";
+import FormErrors from "components/FormErrors"
 import { AuthContext, AuthContextInterface } from "context/AuthContext"
 import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useForm } from "hooks/useForm"
-import { goToSignup } from "routes/coordinator";
+import { goToSignup } from "routes/coordinator"
 import { loginCall } from "apiCalls"
 import styles from "./style.module.css"
 
@@ -50,12 +50,12 @@ const Login = () => {
         )
     }
 
-    const validateFields = (value: any, name: any) => {
+    const validateFields = (value: any, name: string) => {
         let emailValid = value
             .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
         let passwordValid = value.length >= 6
 
-        const formErrors = {...form.formErrors}
+        const formErrors = { ...form.formErrors }
 
         if (name === "email") {
             formErrors.email = value === '' ||
@@ -76,9 +76,19 @@ const Login = () => {
         goToSignup(navigate)
     }
 
-    const hasError = (entity: any) => form.formErrors[entity].length
+    const hasError = (entity: string) => form.formErrors[entity].length
 
-    const inputControls = [
+    type InputControls = [
+        number,
+        string,
+        string,
+        string,
+        string,
+        any,
+        boolean,
+        (e: FormEvent) => void]
+
+    const inputControls: InputControls[] = [
         [0, hasError("email") ? 'inputInvalid' : '',
             "email",
             "email",
@@ -163,7 +173,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Login;
+export default Login

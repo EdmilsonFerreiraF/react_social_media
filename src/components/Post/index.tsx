@@ -19,14 +19,14 @@ import Content from "./Content"
 import BotBar from "./BotBar"
 
 export interface IPost {
-    _id: string;
-    id: string;
-    userId: string;
-    description: string;
-    image: string;
-    likes: User["id"][];
-    createdAt: Date;
-    comment: number;
+    _id: string
+    id: string
+    userId: string
+    description: string
+    image: string
+    likes: User["id"][]
+    createdAt: Date
+    comment: number
 }
 
 const Post = ({ post }: { post: IPost }) => {

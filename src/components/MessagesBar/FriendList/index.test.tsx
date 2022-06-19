@@ -5,15 +5,16 @@
 import * as React from "react"
 
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app"
 
 import {
   render,
   screen,
-} from "components/CustomRender";
-import FriendList from '.';
+} from "components/CustomRender"
+import FriendList from '.'
+import { User } from "context/AuthContext"
 
 dotenv.config()
 
@@ -27,13 +28,13 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
-};
+}
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
 
 describe('FriendList', () => {
   test('Should show friends profile image', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -68,7 +69,7 @@ describe('FriendList', () => {
   })
 
   test('Should show friends name', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -103,7 +104,7 @@ describe('FriendList', () => {
   })
 
   test('Should show friends username', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -138,7 +139,7 @@ describe('FriendList', () => {
   })
 
   test('Should be an acessible component', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -169,8 +170,8 @@ describe('FriendList', () => {
       <FriendList friends={friends} />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

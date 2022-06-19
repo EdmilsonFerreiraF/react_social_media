@@ -1,5 +1,6 @@
-import { User } from "context/AuthContext"
 import React from "react"
+
+import { User } from "context/AuthContext"
 import FollowingItem from "../FollowingItem"
 import styles from "./style.module.css"
 

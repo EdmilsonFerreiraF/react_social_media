@@ -3,32 +3,33 @@
  */
 
 import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 import '@testing-library/jest-dom'
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app"
 import dotenv from 'dotenv'
 
 import {
+  act,
   render,
   screen,
-} from "components/CustomRender";
-import FriendItem from '.';
+} from "components/CustomRender"
+import FriendItem from '.'
 
 dotenv.config()
 
 expect.extend(toHaveNoViolations)
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   projectId: process.env.FIREBASE_PROJECT_ID,
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
-};
+}
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
 
 describe('FriendItem', () => {
   test('Should show friend profile image', async () => {
@@ -41,13 +42,15 @@ describe('FriendItem', () => {
       isAdmin: false
     }
 
-    render(
-      <ul>
-      <FriendItem
-        key={friend?.id}
-        friend={friend} />
+    await act(async () => {
+      render(
+        <ul>
+          <FriendItem
+            key={friend?.id}
+            friend={friend} />
         </ul>
-    )
+      )
+    })
 
     expect(screen.getByAltText(/Friend profile/i)).toBeInTheDocument()
   })
@@ -62,13 +65,15 @@ describe('FriendItem', () => {
       isAdmin: false
     }
 
-    render(
-      <ul>
-      <FriendItem
-        key={friend?.id}
-        friend={friend} />
+    await act(async () => {
+      render(
+        <ul>
+          <FriendItem
+            key={friend?.id}
+            friend={friend} />
         </ul>
-    )
+      )
+    })
 
     expect(screen.getByTestId(/friend name/i)).toBeInTheDocument()
   })
@@ -83,13 +88,15 @@ describe('FriendItem', () => {
       isAdmin: false
     }
 
-    render(
-      <ul>
-      <FriendItem
-        key={friend?.id}
-        friend={friend} />
+    await act(async () => {
+      render(
+        <ul>
+          <FriendItem
+            key={friend?.id}
+            friend={friend} />
         </ul>
-    )
+      )
+    })
 
     expect(screen.getByText(/user_username32/i)).toBeInTheDocument()
   })
@@ -104,16 +111,18 @@ describe('FriendItem', () => {
       isAdmin: false
     }
 
-    const { container } = render(
-      <ul>
-      <FriendItem
-        key={friend?.id}
-        friend={friend} />
+    const { container }: any = await act(async () => {
+      render(
+        <ul>
+          <FriendItem
+            key={friend?.id}
+            friend={friend} />
         </ul>
-    )
+      )
+    })
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

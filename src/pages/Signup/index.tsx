@@ -30,18 +30,18 @@ const Signup = () => {
     const handleInputChange = (e: FormEvent) => {
         const target = e.target as HTMLInputElement
 
-        const name = target.name;
-        const value = target.value;
+        const name = target.name
+        const value = target.value
 
         onChange(value, name)
         validatefields(value, name)
     }
 
-    const validatefields = (value: any, name: any) => {
+    const validatefields = (value: any, name: string) => {
         let usernameValid = value
             .match(/^([\w]{5,15})$/i)
         let emailValid = value
-            .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+            .match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
         let passwordValid = value
             .length > 8
         let passwordAgainValid = value === form.password
@@ -50,22 +50,22 @@ const Signup = () => {
 
         if (name === "username") {
             formErrors.username = value === '' ||
-                usernameValid ? '' : ' is invalid';
+                usernameValid ? '' : ' is invalid'
         }
 
         if (name === "email") {
             formErrors.email = value === '' ||
-                emailValid ? '' : ' is invalid';
+                emailValid ? '' : ' is invalid'
         }
 
         if (name === "password") {
             formErrors.password = value === '' ||
-                passwordValid ? '' : ' is too short';
+                passwordValid ? '' : ' is too short'
         }
 
         if (name === "passwordAgain") {
             formErrors.passwordAgain = value === '' ||
-                passwordAgainValid ? '' : ' passwords don\'t match';
+                passwordAgainValid ? '' : ' passwords don\'t match'
         }
 
         onChange(formErrors, "formErrors")
@@ -91,9 +91,20 @@ const Signup = () => {
         signup(url, data)
     }
 
-    const hasError = (entity: any) => form.formErrors[entity].length
+    const hasError = (entity: string) => form.formErrors[entity].length
 
-    const inputControls = [
+    type InputControls = [
+        number,
+        string,
+        string,
+        string,
+        string,
+        any,
+        boolean,
+        (e: FormEvent) => void
+    ]
+
+    const inputControls: InputControls[] = [
         [0, hasError("username") ? 'inputInvalid' : '',
             "username",
             "text",
@@ -143,22 +154,22 @@ const Signup = () => {
                     <form className={styles.signupBox}
                         onSubmit={handleSubmit}>
                         {
-                            inputControls.map((navItem: any) => (
-                                <div className={styles.field} key={navItem[0]}>
+                            inputControls.map((inputControl: InputControls) => (
+                                <div className={styles.field} key={inputControl[0]}>
                                     <label className={styles.fieldLabel}
-                                        htmlFor={navItem[3]}>
-                                        {navItem[4]}
+                                        htmlFor={inputControl[3]}>
+                                        {inputControl[4]}
                                     </label>
 
                                     <Input
-                                        className={navItem[1]}
-                                        name={navItem[2]}
-                                        type={navItem[3]}
-                                        placeholder={navItem[4]}
+                                        className={inputControl[1]}
+                                        name={inputControl[2]}
+                                        type={inputControl[3]}
+                                        placeholder={inputControl[4]}
                                         required
-                                        value={navItem[5]}
-                                        invalid={navItem[6]}
-                                        handleInputChange={navItem[7]} />
+                                        value={inputControl[5]}
+                                        invalid={inputControl[6]}
+                                        handleInputChange={inputControl[7]} />
                                 </div>
                             ))
                         }
@@ -178,7 +189,7 @@ const Signup = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Signup;
+export default Signup

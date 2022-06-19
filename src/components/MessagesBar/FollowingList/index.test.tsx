@@ -4,36 +4,37 @@
 
 import * as React from "react"
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
-import { initializeApp } from "firebase/app";
+import { axe, toHaveNoViolations } from 'jest-axe'
+import { initializeApp } from "firebase/app"
 import dotenv from 'dotenv'
 
-import FollowingList from '.';
+import FollowingList from '.'
 import {
+  act,
   render,
   screen,
-} from "components/CustomRender";
-
+} from "components/CustomRender"
+import { User } from "context/AuthContext"
 
 dotenv.config()
 
 expect.extend(toHaveNoViolations)
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   projectId: process.env.FIREBASE_PROJECT_ID,
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
-};
+}
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
 
 describe('FollowingList', () => {
   test('Should show error message when email is invalid', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -60,15 +61,17 @@ describe('FollowingList', () => {
       },
     ]
 
-    render(
-      <FollowingList friends={friends} />
-    )
+    await act(async () => {
+      render(
+        <FollowingList friends={friends} />
+      )
+    })
 
     expect(screen.getAllByAltText(/Friend profile/i)).toHaveLength(3)
   })
 
   test('Should show error message when email is indvalid', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -95,15 +98,17 @@ describe('FollowingList', () => {
       },
     ]
 
-    render(
-      <FollowingList friends={friends} />
-    )
+    await act(async () => {
+      render(
+        <FollowingList friends={friends} />
+      )
+    })
 
     expect(screen.getAllByTestId(/online friend name/i)).toHaveLength(3)
   })
 
   test('Should show friends profile image', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -130,15 +135,17 @@ describe('FollowingList', () => {
       },
     ]
 
-    render(
-      <FollowingList friends={friends} />
-    )
+    await act(async () => {
+      render(
+        <FollowingList friends={friends} />
+      )
+    })
 
     expect(screen.getAllByAltText(/Friend profile/i)).toHaveLength(3)
   })
 
   test('Should be an acessible component', async () => {
-    const friends = [
+    const friends: User[] = [
       {
         id: "1",
         profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
@@ -165,12 +172,14 @@ describe('FollowingList', () => {
       },
     ]
 
-    const { container } = render(
-      <FollowingList friends={friends} />
-    )
+    const { container }: any = await act(async () => {
+      render(
+        <FollowingList friends={friends} />
+      )
+    })
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

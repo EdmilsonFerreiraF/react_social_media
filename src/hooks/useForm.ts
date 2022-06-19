@@ -8,7 +8,7 @@ export const useForm = (initialValues: any) => {
   const onChange =
     (value: any, name: string) => {
       setForm((form: any) => {
-        return Object.assign(form, { [name]: value })
+        return { ...form, [name]: value }
       })
     }
 

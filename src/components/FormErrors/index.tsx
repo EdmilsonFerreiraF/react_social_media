@@ -1,18 +1,18 @@
 import React from 'react'
-import Error from './Error';
+import Error from './Error'
 
 import styles from './style.module.css'
 
 type LoginErrors = {
-    email: string;
-    password: string;
+    email: string
+    password: string
 }
 
 type SignupErrors = {
-    username: string;
-    email: string;
-    password: string;
-    passwordAgain: string;
+    username: string
+    email: string
+    password: string
+    passwordAgain: string
 }
 
 type IFormErrors = LoginErrors | SignupErrors
