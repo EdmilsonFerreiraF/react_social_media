@@ -1,12 +1,13 @@
 import React from "react"
+
 import styles from "./style.module.css"
 
-type IProps = {
+type Props = {
     children: JSX.Element
     badge: number
 }
 
-const SocialItem = (props: IProps) => {
+const SocialItem = (props: Props) => {
     return (
         <div data-testid="socialItem"
             className={styles.socialItem}

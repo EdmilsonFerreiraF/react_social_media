@@ -1,4 +1,5 @@
 .input {
+    width: 100%;
     height: 50px;
     border-radius: 10px;
     border: 1px solid gray;
@@ -13,6 +14,10 @@
 
 .inputInvalid:focus-visible {
     outline: #b30000 auto 1px;
+}
+
+.elementItemInput {
+    display: none;
 }
 
 @media (max-width: 540px) {

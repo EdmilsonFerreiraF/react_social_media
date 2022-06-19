@@ -5,11 +5,11 @@ import * as React from "react"
 import {
   render,
   screen,
-} from "components/CustomRender";
+} from "components/CustomRender"
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 
-import Social from '.';
+import Social from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -19,7 +19,7 @@ describe('FormErrors', () => {
       <Social />
     )
 
-    expect(screen.getAllByTestId(/socialItem/i)).toHaveLength(3);
+    expect(screen.getAllByTestId(/socialItem/i)).toHaveLength(3)
   })
 
   test('Should be an acessible component', async () => {
@@ -27,8 +27,8 @@ describe('FormErrors', () => {
         <Social />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

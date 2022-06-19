@@ -9,7 +9,7 @@ import MessagesBar from 'components/MessagesBar'
 import { baseUrl } from 'constants/baseUrl'
 import { useProtectPage } from 'hooks/useProtectPage'
 import { useRequestImage } from "hooks/useRequestImage"
-import { useRequestData } from 'hooks/useRequestData';
+import { useRequestData } from 'hooks/useRequestData'
 import { AuthContext, AuthContextInterface } from 'context/AuthContext'
 import { useGetUser } from 'apiCalls'
 import styles from "./style.module.css"

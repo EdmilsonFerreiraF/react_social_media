@@ -1,18 +1,18 @@
-import React, { FormEvent, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import Box from '@mui/material/Box';
+import React, { FormEvent, useContext } from "react"
+import { useNavigate } from "react-router-dom"
+import IconButton from '@mui/material/IconButton'
+import MoreIcon from '@mui/icons-material/MoreVert'
+import Box from '@mui/material/Box'
 
 import { useForm } from "hooks/useForm"
-import { AuthContext, AuthContextInterface } from "context/AuthContext";
-import { goToProfile } from "routes/coordinator";
+import { AuthContext, AuthContextInterface } from "context/AuthContext"
+import { goToProfile } from "routes/coordinator"
 import Navigation from "./Navigation"
 import Social from "./Social"
 import Profile from "./Profile"
 import styles from "./style.module.css"
-import MobileMenu from "./MobileMenu";
-import TabletMenu from "./TabletMenu";
+import MobileMenu from "./MobileMenu"
+import TabletMenu from "./TabletMenu"
 
 const Account = () => {
   const { form, onChange } = useForm({
@@ -33,15 +33,6 @@ const Account = () => {
     onChange(null, "mobileMoreAnchorEl")
   }
 
-  // const handleMenuClose = () => {
-  //   onChange(null, "anchorEl")
-  //   handleMobileMenuClose()
-  // }
-
-  // const handleMobileMenuOpen = (e: FormEvent) => {
-  //   onChange(e.currentTarget, "mobileMoreAnchorEl")
-  // };
-
   const handleMenuOpening = (value: null | FormEvent,
     anchor: string,
     closeMobileMenu: boolean = false
@@ -53,8 +44,8 @@ const Account = () => {
     }
   }
 
-  const tabletMenuId = 'primary-search-account-menu';
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const tabletMenuId = 'primary-search-account-menu'
+  const mobileMenuId = 'primary-search-account-menu-mobile'
 
   return (
     <div data-testid="account">

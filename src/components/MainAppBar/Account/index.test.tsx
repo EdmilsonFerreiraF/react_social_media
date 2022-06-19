@@ -4,13 +4,14 @@
 
 import * as React from "react"
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
+  act,
   render,
   screen
-} from "components/CustomRender";
-import Account from '.';
+} from "components/CustomRender"
+import Account from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -20,15 +21,17 @@ describe('Account', () => {
       writable: true,
       configurable: true,
       value: 150
-    });
+    })
 
     window.dispatchEvent(new Event('resize'))
 
-    render(
-      <Account />
-    )
+    await act(async () => {
+      render(
+        <Account />
+      )
+    })
 
-    expect(window.innerWidth).toBe(150);
+    expect(window.innerWidth).toBe(150)
     expect(screen.getAllByTestId(/accountmenubox/i)).toHaveLength(2)
   })
 
@@ -37,42 +40,49 @@ describe('Account', () => {
       writable: true,
       configurable: true,
       value: 150,
-    });
+    })
 
-    window.dispatchEvent(new Event('resize'));
+    window.dispatchEvent(new Event('resize'))
 
-    render(
-      <Account />
-    )
+    await act(async () => {
+      render(
+        <Account />
+      )
+    })
 
-    expect(window.innerWidth).toBe(150);
-    
-    expect(screen.getByTestId(/accountmobilemenu/i)).toBeInTheDocument();
+    expect(window.innerWidth).toBe(150)
+
+    expect(screen.getByTestId(/accountmobilemenu/i)).toBeInTheDocument()
   })
 
   test('Should show fixed menu part on desktop', async () => {
-    render(
-      <Account />
-    )
+    await act(async () => {
+      render(
+        <Account />
+      )
+    })
 
     expect(screen.getAllByTestId(/accountmenubox/i)).toHaveLength(2)
   })
 
   test('Should show desktop menu on desktop', async () => {
-    render(
-      <Account />
-    )
+    await act(async () => {
+      render(
+        <Account />
+      )
+    })
 
-    expect(screen.getByTestId(/accountdesktopmenu/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/accountdesktopmenu/i)).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
-    const { container } = render(
+    const { container } = 
+      render(
         <Account />
-    )
+      )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

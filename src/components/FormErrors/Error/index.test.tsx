@@ -3,14 +3,14 @@
  */
 
 import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 import '@testing-library/jest-dom'
 
 import {
   render,
   screen
-} from "components/CustomRender";
-import Error from '.';
+} from "components/CustomRender"
+import Error from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -23,7 +23,7 @@ describe('Error', () => {
       <Error idx={idx} error={error} />
     )
 
-    expect(screen.getByText(/email is invalid/i)).toBeInTheDocument();
+    expect(screen.getByText(/email is invalid/i)).toBeInTheDocument()
   })
 
   test('Should have correct id 1', async () => {
@@ -34,7 +34,7 @@ describe('Error', () => {
       <Error idx={idx} error={error} />
     )
 
-    expect(screen.getByTestId(/error line/i)).toHaveProperty('id', `error${idx + 1}`);
+    expect(screen.getByTestId(/error line/i)).toHaveProperty('id', `error${idx + 1}`)
   })
 
   test('Should have correct id 2', async () => {
@@ -45,7 +45,7 @@ describe('Error', () => {
       <Error idx={idx} error={error} />
     )
 
-    expect(screen.getByTestId(/error line/i)).toHaveProperty('id', `error${idx + 1}`);
+    expect(screen.getByTestId(/error line/i)).toHaveProperty('id', `error${idx + 1}`)
   })
 
   test('Should show error when password is too short', async () => {
@@ -56,7 +56,7 @@ describe('Error', () => {
       <Error idx={idx} error={error} />
     )
 
-    expect(screen.getByText(/password is too short/i)).toBeInTheDocument();
+    expect(screen.getByText(/password is too short/i)).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -67,8 +67,8 @@ describe('Error', () => {
       <Error idx={idx} error={error} />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

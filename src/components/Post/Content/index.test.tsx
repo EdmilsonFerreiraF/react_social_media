@@ -3,17 +3,17 @@
  */
 import * as React from "react"
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app";
-import userEvent from "@testing-library/user-event";
+import { initializeApp } from "firebase/app"
+import userEvent from "@testing-library/user-event"
 
 import {
   act,
   render,
   screen,
-} from "components/CustomRender";
-import Content from ".";
+} from "components/CustomRender"
+import Content from "."
 
 dotenv.config()
 
@@ -27,9 +27,9 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
-};
+}
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
 
 expect.extend(toHaveNoViolations)
 
@@ -113,7 +113,7 @@ describe('Content', () => {
       )
     })
 
-    expect(screen.getByAltText(/Content content/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/Content content/i)).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -133,8 +133,8 @@ describe('Content', () => {
       )
     })
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

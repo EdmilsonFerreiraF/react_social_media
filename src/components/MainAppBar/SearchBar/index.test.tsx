@@ -4,13 +4,13 @@
 
 import * as React from "react"
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
   render,
   screen,
-} from "components/CustomRender";
-import SearchBar from '.';
+} from "components/CustomRender"
+import SearchBar from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -20,7 +20,7 @@ describe('SearchBar', () => {
       <SearchBar />
     )
 
-    expect(screen.getByTestId(/searchicon/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/searchicon/i)).toBeInTheDocument()
   })
 
   test('Should show search when render', async () => {
@@ -28,7 +28,7 @@ describe('SearchBar', () => {
       <SearchBar />
     )
 
-    expect(screen.getByTestId("search")).toBeInTheDocument();
+    expect(screen.getByTestId("search")).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -36,8 +36,8 @@ describe('SearchBar', () => {
         <SearchBar />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

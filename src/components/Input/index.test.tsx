@@ -3,17 +3,17 @@
  */
 
 import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe';
-import userEvent from "@testing-library/user-event";
+import { axe, toHaveNoViolations } from 'jest-axe'
+import userEvent from "@testing-library/user-event"
 import '@testing-library/jest-dom'
 
 import {
   render,
   screen,
   waitFor
-} from "components/CustomRender";
-import Input from '.';
-import { useForm } from "hooks/useForm";
+} from "components/CustomRender"
+import Input from '.'
+import { useForm } from "hooks/useForm"
 
 expect.extend(toHaveNoViolations)
 
@@ -27,8 +27,8 @@ describe('Input', () => {
       const handleInputChange = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement
 
-        const name: string = target.name;
-        const value: string = target.value;
+        const name: string = target.name
+        const value: string = target.value
 
         onChange(value, name)
       }
@@ -64,8 +64,8 @@ describe('Input', () => {
       const handleInputChange = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement
 
-        const name: string = target.name;
-        const value: string = target.value;
+        const name: string = target.name
+        const value: string = target.value
 
         onChange(value, name)
       }
@@ -99,7 +99,7 @@ describe('Input', () => {
       password: ""
     }
 
-    const handleInputChange = jest.fn();
+    const handleInputChange = jest.fn()
 
     const { container } = render(
       <Input
@@ -113,7 +113,7 @@ describe('Input', () => {
         invalid={false}
       />)
 
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

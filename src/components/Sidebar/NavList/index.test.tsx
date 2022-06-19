@@ -9,8 +9,8 @@ import { axe, toHaveNoViolations } from 'jest-axe'
 import {
   render,
   screen
-} from "components/CustomRender";
-import NavList from ".";
+} from "components/CustomRender"
+import NavList from "."
 
 expect.extend(toHaveNoViolations)
 
@@ -20,8 +20,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Feed/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/FeedIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Feed/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/FeedIcon/i)).toBeInTheDocument()
   })
   
   test('Should have Chats NavItem', async () => {
@@ -29,8 +29,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Chats/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/ChatIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Chats/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/ChatIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Videos NavItem', async () => {
@@ -38,8 +38,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Videos/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/PlayCircleFilledOutlinedIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Videos/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/PlayCircleFilledOutlinedIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Groups NavItem', async () => {
@@ -47,8 +47,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Groups/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/GroupIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Groups/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/GroupIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Bookmarks NavItem', async () => {
@@ -56,8 +56,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Bookmarks/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/BookmarkIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Bookmarks/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/BookmarkIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Questions NavItem', async () => {
@@ -65,8 +65,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Questions/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/HelpOutlineIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Questions/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/HelpOutlineIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Jobs NavItem', async () => {
@@ -74,8 +74,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Jobs/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/WorkOutlineIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Jobs/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/WorkOutlineIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Events NavItem', async () => {
@@ -83,8 +83,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Events/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/EventIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Events/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/EventIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Courses NavItem', async () => {
@@ -92,8 +92,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    expect(screen.getByText(/Courses/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/SchoolIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Courses/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/SchoolIcon/i)).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -101,8 +101,8 @@ describe('NavList', () => {
       <NavList />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

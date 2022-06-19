@@ -11,12 +11,13 @@ import {
   screen,
 } from "components/CustomRender"
 import InfoList from '.'
+import { User } from "context/AuthContext"
 
 expect.extend(toHaveNoViolations)
 
 describe('InfoList', () => {
   test('Should show "info value"', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -36,7 +37,7 @@ describe('InfoList', () => {
   })
 
   test('Should show "info name"', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -56,7 +57,7 @@ describe('InfoList', () => {
   })
 
   test('Should show info city', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -76,7 +77,7 @@ describe('InfoList', () => {
   })
 
   test('Should show info from', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -96,7 +97,7 @@ describe('InfoList', () => {
   })
 
   test('Should show info value', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -116,7 +117,7 @@ describe('InfoList', () => {
   })
 
   test('Should show info salvador - ba', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -136,7 +137,7 @@ describe('InfoList', () => {
   })
 
   test('Should show info são paulo', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -156,7 +157,7 @@ describe('InfoList', () => {
   })
 
   test('Should show info single', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -176,7 +177,7 @@ describe('InfoList', () => {
   })
 
   test('Should be an acessible component', async () => {
-    const user = {
+    const user: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",

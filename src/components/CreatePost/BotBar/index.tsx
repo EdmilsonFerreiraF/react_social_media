@@ -4,12 +4,9 @@ import ElementList from "../ElementList"
 import styles from "./style.module.css"
 
 type Props = {
-    inputFileHandler?: (
-        (e: React.FormEvent<HTMLInputElement>)
-            => void
-    )
     inputHandler?: (
-        e: React.FormEvent<HTMLInputElement>)
+        e: React.FormEvent<HTMLInputElement>
+    )
         => void
     form: any
 }
@@ -20,7 +17,6 @@ const BotBar = (props: Props) => {
             className={styles.botBar}
         >
             <ElementList
-                inputFileHandler={props.inputFileHandler}
                 inputHandler={props.inputHandler} />
 
             <button className={styles.createButton}

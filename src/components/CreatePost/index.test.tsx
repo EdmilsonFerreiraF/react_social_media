@@ -3,32 +3,15 @@
  */
 
 import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 import '@testing-library/jest-dom'
-import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event'
 
 import {
   render,
   screen
-} from "components/CustomRender";
-import CreatePost from '.';
-import dotenv from 'dotenv'
-
-import { initializeApp } from "firebase/app";
-
-dotenv.config()
-
-const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-};
-
-initializeApp(firebaseConfig);
+} from "components/CustomRender"
+import CreatePost from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -38,7 +21,7 @@ describe('CreatePost', () => {
       <CreatePost />
     )
 
-    expect(screen.getByAltText(/CreatePost user profile/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/CreatePost user profile/i)).toBeInTheDocument()
   })
 
   test('Should have description field', async () => {
@@ -46,7 +29,7 @@ describe('CreatePost', () => {
       <CreatePost />
     )
 
-    expect(screen.getByPlaceholderText(/What's in your mind/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/What's in your mind/i)).toBeInTheDocument()
   })
 
   test('Should have Photo or Video ElementItem', async () => {
@@ -54,7 +37,7 @@ describe('CreatePost', () => {
       <CreatePost />
     )
 
-    expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument();
+    expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument()
   })
 
   test('Should have Tag ElementItem', async () => {
@@ -63,7 +46,7 @@ describe('CreatePost', () => {
     )
 
 
-    expect(screen.getByText(/Tag/i)).toBeInTheDocument();
+    expect(screen.getByText(/Tag/i)).toBeInTheDocument()
   })
 
   test('Should have Location ElementItem', async () => {
@@ -71,7 +54,7 @@ describe('CreatePost', () => {
       <CreatePost />
     )
 
-    expect(screen.getByText(/Location/i)).toBeInTheDocument();
+    expect(screen.getByText(/Location/i)).toBeInTheDocument()
   })
 
   test('Should have Feelings ElementItem', async () => {
@@ -79,7 +62,7 @@ describe('CreatePost', () => {
       <CreatePost />
     )
 
-    expect(screen.getByText(/Feelings/i)).toBeInTheDocument();
+    expect(screen.getByText(/Feelings/i)).toBeInTheDocument()
   })
 
   test('Should be able to change post description', async () => {
@@ -89,6 +72,7 @@ describe('CreatePost', () => {
 
     const postDescription = screen.getByPlaceholderText(/What's in your mind/i)
     userEvent.type(postDescription, "post_description")
+    
     expect(postDescription).toHaveDisplayValue("post_description")
   })
   
@@ -97,7 +81,7 @@ describe('CreatePost', () => {
       <CreatePost />
     )
 
-    expect(screen.getByText(/Create/i)).toBeInTheDocument();
+    expect(screen.getByText(/Create/i)).toBeInTheDocument()
   })
 
   test('Should be able to upload media file', async () => {
@@ -126,9 +110,12 @@ describe('CreatePost', () => {
 
     const postDescription = screen.getByPlaceholderText(/What's in your mind/i)
     userEvent.type(postDescription, "post_description")
+
     expect(postDescription).toHaveDisplayValue("post_description")
+
     const createPostBtn = screen.getByText(/Create/i)
     userEvent.click(createPostBtn)
+
     expect(postDescription).toHaveDisplayValue("post_description")
 
     const file = new File(['hello'], 'hello.png', { type: 'image/png' })
@@ -149,15 +136,14 @@ describe('CreatePost', () => {
     jest.mock('axios', () => ({
       __esModule: true,
       default: jest.fn(() => Promise.resolve({ data: 'data' })),
-    }));
+    }))
 
-  
     const { container } = render(
       <CreatePost />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

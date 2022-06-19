@@ -33,19 +33,14 @@ const CreatePost = () => {
         sendData(url, "post", newPost)
     }
 
-    const inputFileHandler = (e: FormEvent) => {
-        const target = e.target as HTMLInputElement
-        const file: File = (target.files as FileList)[0]
-
-        onChange(file, "file")
-    }
-
     const inputHandler = (e: FormEvent) => {
         const target = e.target as HTMLInputElement
         const value: string = target.value
+        const file: File = (target.files as FileList)[0]
+
         const name: string = target.name
 
-        onChange(value, name)
+        onChange(file || value, name)
     }
 
     return (
@@ -57,7 +52,7 @@ const CreatePost = () => {
                <Content inputHandler={inputHandler} />
                 <hr className={styles.createPostDivision} />
                 <BotBar form={form} inputHandler={inputHandler}
-                inputFileHandler={inputFileHandler} />
+                />
             </div>
         </form>
     )

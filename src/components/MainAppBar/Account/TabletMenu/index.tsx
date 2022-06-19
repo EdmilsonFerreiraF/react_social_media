@@ -1,10 +1,10 @@
-import React from "react";
-import Menu from '@mui/material/Menu';
+import React from "react"
+import Menu from '@mui/material/Menu'
 
 import Navigation from "../Navigation"
 import Social from "../Social"
 import Profile from "../Profile"
-import { handleMenuOpening } from "../MobileMenu";
+import { handleMenuOpening } from "../MobileMenu"
 
 type Props = {
     anchorEl: Element

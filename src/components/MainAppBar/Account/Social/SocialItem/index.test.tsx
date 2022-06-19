@@ -4,14 +4,14 @@
 
 import * as React from "react"
 import '@testing-library/jest-dom'
-import { Person } from '@mui/icons-material';
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { Person } from '@mui/icons-material'
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
   render,
   screen,
-} from "components/CustomRender";
-import SocialItem from '.';
+} from "components/CustomRender"
+import SocialItem from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -23,7 +23,7 @@ describe('SocialItem', () => {
       </SocialItem>
     )
 
-    expect(screen.getByTestId(/PersonIcon/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/PersonIcon/i)).toBeInTheDocument()
   })
 
   test('Should show badge on profile button', async () => {
@@ -33,7 +33,7 @@ describe('SocialItem', () => {
       </SocialItem>
     )
 
-    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("1")).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -46,8 +46,8 @@ describe('SocialItem', () => {
 
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

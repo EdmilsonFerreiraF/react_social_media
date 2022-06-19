@@ -3,14 +3,14 @@
  */
 
 import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 import '@testing-library/jest-dom'
 
 import {
   render,
   screen
-} from "components/CustomRender";
-import FormErrors from '.';
+} from "components/CustomRender"
+import FormErrors from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -25,7 +25,7 @@ describe('FormErrors', () => {
       <FormErrors formErrors={formErrors} />
     )
 
-    expect(screen.getByText(/is invalid/i)).toBeInTheDocument();
+    expect(screen.getByText(/is invalid/i)).toBeInTheDocument()
   })
 
   test('Should show error when password is too short', async () => {
@@ -38,7 +38,7 @@ describe('FormErrors', () => {
       <FormErrors formErrors={formErrors} />
     )
 
-    expect(screen.getByText(/ is too short/i)).toBeInTheDocument();
+    expect(screen.getByText(/ is too short/i)).toBeInTheDocument()
   })
 
   test('Should show error when both email and password are invalid', async () => {
@@ -51,8 +51,8 @@ describe('FormErrors', () => {
       <FormErrors formErrors={formErrors} />
     )
 
-    expect(screen.getByText(/is invalid/i)).toBeInTheDocument();
-    expect(screen.getByText(/ is too short/i)).toBeInTheDocument();
+    expect(screen.getByText(/is invalid/i)).toBeInTheDocument()
+    expect(screen.getByText(/ is too short/i)).toBeInTheDocument()
   })
 
   test('Should not show error when email is valid', async () => {
@@ -65,7 +65,7 @@ describe('FormErrors', () => {
       <FormErrors formErrors={formErrors} />
     )
 
-    expect(screen.queryByText(/is invalid/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/is invalid/i)).not.toBeInTheDocument()
   })
 
   test('Should not show error when password is valid', async () => {
@@ -78,7 +78,7 @@ describe('FormErrors', () => {
       <FormErrors formErrors={formErrors} />
     )
 
-    expect(screen.queryByText(/is too short/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/is too short/i)).not.toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -91,8 +91,8 @@ describe('FormErrors', () => {
       <FormErrors formErrors={formErrors} />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

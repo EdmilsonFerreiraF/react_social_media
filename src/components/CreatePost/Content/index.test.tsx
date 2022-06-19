@@ -43,8 +43,8 @@ describe('Content', () => {
       <Content inputHandler={inputHandler} />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

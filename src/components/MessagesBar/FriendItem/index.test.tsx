@@ -14,6 +14,7 @@ import {
   screen,
 } from "components/CustomRender"
 import FriendItem from '.'
+import { User } from "context/AuthContext"
 
 dotenv.config()
 
@@ -33,7 +34,7 @@ initializeApp(firebaseConfig)
 
 describe('FriendItem', () => {
   test('Should show friend profile image', async () => {
-    const friend = {
+    const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -56,7 +57,7 @@ describe('FriendItem', () => {
   })
 
   test('Should show friend name', async () => {
-    const friend = {
+    const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -79,7 +80,7 @@ describe('FriendItem', () => {
   })
 
   test('Should show username', async () => {
-    const friend = {
+    const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",
@@ -102,7 +103,7 @@ describe('FriendItem', () => {
   })
 
   test('Should be an acessible component', async () => {
-    const friend = {
+    const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
       username: "user_username32",

@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router"
-import React, { useContext } from "react";
+import React, { useContext } from "react"
 
 import { AuthContext, AuthContextInterface } from "context/AuthContext"
-import { useRequestImage } from "hooks/useRequestImage";
+import { useRequestImage } from "hooks/useRequestImage"
 
 import styles from "./style.module.css"
 
 const Profile = () => {
     const { user } = useContext(AuthContext) as AuthContextInterface
     
-    let navigate = useNavigate();
+    let navigate = useNavigate()
 
     const goToUserProfile = () => {
         navigate(`/profile/${user?.username}`)

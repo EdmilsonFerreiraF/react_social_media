@@ -9,8 +9,8 @@ import '@testing-library/jest-dom'
 import {
   render,
   screen
-} from "components/CustomRender";
-import ElementList from ".";
+} from "components/CustomRender"
+import ElementList from "."
 
 expect.extend(toHaveNoViolations)
 
@@ -20,8 +20,8 @@ describe('ElementList', () => {
       <ElementList />
     )
 
-    expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/PermMediaIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/PermMediaIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Tag ElementItem', async () => {
@@ -29,8 +29,8 @@ describe('ElementList', () => {
       <ElementList />
     )
 
-    expect(screen.getByText(/Tag/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/LabelIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Tag/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/LabelIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Location ElementItem', async () => {
@@ -38,8 +38,8 @@ describe('ElementList', () => {
       <ElementList />
     )
 
-    expect(screen.getByText(/Location/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/RoomIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Location/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/RoomIcon/i)).toBeInTheDocument()
   })
 
   test('Should have Feelings ElementItem', async () => {
@@ -47,8 +47,8 @@ describe('ElementList', () => {
       <ElementList />
     )
 
-    expect(screen.getByText(/Feelings/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/EmojiEmotionsIcon/i)).toBeInTheDocument();
+    expect(screen.getByText(/Feelings/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/EmojiEmotionsIcon/i)).toBeInTheDocument()
   })
 
   test('Should have ElementItem input', async () => {
@@ -64,8 +64,8 @@ describe('ElementList', () => {
       <ElementList />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

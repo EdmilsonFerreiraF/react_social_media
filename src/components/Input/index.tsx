@@ -3,23 +3,23 @@ import React, { ChangeEventHandler } from "react"
 import styles from "./style.module.css"
 
 type IProps = {
-  className: string;
-  name: string;
-  type: string;
-  handleInputChange: ChangeEventHandler<HTMLInputElement>;
-  value?: string;
-  placeholder: string;
-  invalid?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
-  required: boolean;
+  className: string
+  name: string
+  type: string
+  handleInputChange: ChangeEventHandler<HTMLInputElement>
+  value?: string
+  placeholder: string
+  invalid?: boolean | "false" | "true" | "grammar" | "spelling" | undefined
+  required: boolean
   accept?: string | undefined
 }
 
 const Input = (props: IProps): JSX.Element => {
   const className = props.className as keyof typeof styles
-  
+
   return (
     <input className={
-      `${styles.input} ${styles[className] ?? ''}`
+      `${styles.input} ${styles[className]}`
     }
       id={props.name.toLowerCase()}
       type={props.type}

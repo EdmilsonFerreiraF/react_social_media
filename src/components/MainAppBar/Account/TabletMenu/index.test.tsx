@@ -4,14 +4,14 @@
 
 import * as React from "react"
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
   act,
   render,
   screen
-} from "components/CustomRender";
-import TabletMenu from '.';
+} from "components/CustomRender"
+import TabletMenu from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -105,7 +105,7 @@ describe('TabletMenu', () => {
 
     expect(
       screen.getByAltText(/My Profile/i)
-    ).toBeInTheDocument();
+    ).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -125,8 +125,8 @@ describe('TabletMenu', () => {
           handleProfileClick={handleProfileClick} />
       )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })

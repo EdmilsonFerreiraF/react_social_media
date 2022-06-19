@@ -8,6 +8,7 @@ import { axe, toHaveNoViolations } from 'jest-axe'
 import '@testing-library/jest-dom'
 
 import {
+  act,
   render,
   screen
 } from "components/CustomRender";
@@ -17,41 +18,47 @@ expect.extend(toHaveNoViolations)
 
 describe('NavItem', () => {
   test('Should have a title', async () => {
-    render(
-      <ul>
-        <NavItem
-          title="Feed"
-        />
-      </ul>
-    )
+    await act(async () => {
+      render(
+        <ul>
+          <NavItem
+            title="Feed"
+          />
+        </ul>
+      )
+    })
 
     expect(screen.getByText(/Feed/i)).toBeInTheDocument();
   })
 
   test('Should have an icon', async () => {
-    render(
-      <ul>
-        <NavItem
-          title="Feed"
-        >
-          <Feed />
-        </NavItem >
-      </ul>
-    )
+    await act(async () => {
+      render(
+        <ul>
+          <NavItem
+            title="Feed"
+          >
+            <Feed />
+          </NavItem >
+        </ul>
+      )
+    })
 
     expect(screen.getByTestId(/FeedIcon/i)).toBeInTheDocument();
   })
 
   test('Should be an acessible component', async () => {
-    const { container } = render(
-      <ul>
-        <NavItem
-          title="Feed"
-        >
-          <Feed />
-        </NavItem >
-      </ul>
-    )
+    const { container }: any = act(() => {
+      render(
+        <ul>
+          <NavItem
+            title="Feed"
+          >
+            <Feed />
+          </NavItem >
+        </ul>
+      )
+    })
 
     const results = await axe(container);
 

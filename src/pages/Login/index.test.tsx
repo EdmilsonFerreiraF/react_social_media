@@ -3,15 +3,15 @@
  */
 
 import * as React from "react"
-import userEvent, { TargetElement } from '@testing-library/user-event';
+import userEvent, { TargetElement } from '@testing-library/user-event'
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
   render,
   screen
-} from "components/CustomRender";
-import Login from '.';
+} from "components/CustomRender"
+import Login from '.'
 
 expect.extend(toHaveNoViolations)
 
@@ -19,10 +19,10 @@ describe('Login', () => {
   test('Should show subtitle when render', async () => {
     render(
       <Login />
-    );
+    )
 
-    expect(screen.getByText(/connect with friends and the world around you on lamasocial/i)).toBeInTheDocument();
-  });
+    expect(screen.getByText(/connect with friends and the world around you on lamasocial/i)).toBeInTheDocument()
+  })
 
   test('Should show error message when email is invalid', async () => {
     render(
@@ -68,9 +68,9 @@ describe('Login', () => {
     userEvent.type(screen.getByPlaceholderText(/email/i), 'user_username33@email.com')
     userEvent.type(screen.getByPlaceholderText(/password/i), 'user_password')
 
-    userEvent.click(screen.queryByText(/login/i) as TargetElement);
+    userEvent.click(screen.queryByText(/login/i) as TargetElement)
 
-    expect(screen.getByTestId(/loginLogo/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/loginLogo/i)).toBeInTheDocument()
   })
 
   test('Should be an acessible component', async () => {
@@ -78,8 +78,8 @@ describe('Login', () => {
       <Login />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
-});
+})

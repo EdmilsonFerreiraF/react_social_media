@@ -29,7 +29,7 @@ const Content = (props: Props) => {
 
     const handleClickAway = () => {
         onChange(false, "isInputActive")
-    };
+    }
 
     const profilePicture = useRequestImage(
         "profile",

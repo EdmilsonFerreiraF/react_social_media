@@ -3,15 +3,15 @@
  */
 import * as React from "react"
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
   render,
   screen
-} from "components/CustomRender";
-import Home from '.';
+} from "components/CustomRender"
+import Home from '.'
 import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app"
 
 dotenv.config()
 
@@ -23,9 +23,9 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
-};
+}
 
-initializeApp(firebaseConfig);
+initializeApp(firebaseConfig)
 
 expect.extend(toHaveNoViolations)
 
@@ -67,8 +67,8 @@ describe('Home', () => {
       <Home />
     )
 
-    const results = await axe(container);
+    const results = await axe(container)
 
-    expect(results).toHaveNoViolations();
+    expect(results).toHaveNoViolations()
   })
 })
