@@ -1,11 +1,17 @@
-import { useState, useEffect } from "react"
+import {
+  useState,
+  useEffect
+} from "react"
 import axios from "axios"
-import { useErrorHandler } from 'react-error-boundary'
+import { useErrorHandler } from "react-error-boundary"
 
-export function useRequestData(url: string | null, initialState: any) {
+export function useRequestData(
+  url: string | null,
+  initialState: any,
+  ) {
+const handleError = useErrorHandler()
+
   const [data, setData] = useState(initialState)
-  const handleError = useErrorHandler()
-
   useEffect(() => {
     const token = localStorage.getItem("token")
 
@@ -23,14 +29,11 @@ export function useRequestData(url: string | null, initialState: any) {
         
         handleError(error)
       })
-
-      return function cleanup() {
-        setData(initialState)
-      }
     }
 
-    return
-  }, [url])
+  }, [url,
+    handleError
+  ])
 
   return data
 }

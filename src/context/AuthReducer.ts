@@ -1,4 +1,4 @@
-import { INITIAL_STATE } from "./AuthContext";
+import { INITIAL_STATE } from "./AuthContext"
 
 export type ACTIONTYPE =
     | { type: "LOGIN_START"; payload?: number }

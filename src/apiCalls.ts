@@ -1,10 +1,10 @@
 import { useEffect } from "react"
+import { NavigateFunction } from "react-router-dom"
 import axios from "axios"
 import { getStorage, ref, uploadBytes } from "firebase/storage"
 
 import { baseUrl } from 'constants/baseUrl'
 import { goToIndex } from 'routes/coordinator'
-import { NavigateFunction } from "react-router-dom"
 import { ACTIONTYPE } from "context/AuthReducer"
 import { User } from "context/AuthContext"
 
@@ -70,7 +70,7 @@ export const useGetUser = (
                 return res
             }
         })()
-    }, [user, token])
+    }, [user, token, dispatch, handleError])
 }
 
 export async function signup(

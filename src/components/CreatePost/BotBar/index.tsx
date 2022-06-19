@@ -6,8 +6,7 @@ import styles from "./style.module.css"
 type Props = {
     inputHandler?: (
         e: React.FormEvent<HTMLInputElement>
-    )
-        => void
+    ) => void
     form: any
 }
 

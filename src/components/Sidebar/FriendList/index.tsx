@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+// import { useErrorHandler } from 'react-error-boundary'
 
 import styles from "./style.module.css"
 import { baseUrl } from "constants/baseUrl"
@@ -12,7 +13,8 @@ const FriendList = () => {
     const friends = useRequestData(user &&
         user.id &&
         `${baseUrl}/user/${user.id}/friends`,
-        [])
+        []
+    )
 
     return (
         <ul className={styles.friendList} data-testid="friendList">

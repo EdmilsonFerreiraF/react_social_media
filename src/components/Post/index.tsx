@@ -1,5 +1,6 @@
-import React from "react"
-import { useContext, useEffect } from 'react'
+import React, {
+    useContext
+} from "react"
 
 import styles from "./style.module.css"
 import { baseUrl } from "constants/baseUrl"
@@ -12,8 +13,8 @@ import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from "hooks/useRequestData"
 import { useForm } from "hooks/useForm"
 
-import noProfilePicture from 'img/person/no_person.jpg'
-import noPostPicture from 'img/post/1.jpeg'
+import noProfilePicture from 'img/no_person.jpg'
+import noPostPicture from 'img/no_image.jpeg'
 import TopBar from "./TopBar"
 import Content from "./Content"
 import BotBar from "./BotBar"
@@ -39,17 +40,11 @@ const Post = ({ post }: { post: IPost }) => {
     const { user: currentUser } = useContext(AuthContext) as
         AuthContextInterface
 
-    useEffect(() => {
-        onChange(
-            post?.likes.includes(currentUser?.id),
-            "likes"
-        )
-    }, [currentUser?.id, post?.likes, onChange])
-
     const otherUser = useRequestData(post &&
         post.userId &&
         `${baseUrl}/user/${post.userId}`,
-        {})
+        {}
+    )
 
     const user = post && post.userId === currentUser.id ?
         currentUser :

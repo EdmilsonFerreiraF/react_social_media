@@ -1,4 +1,6 @@
-import React, { useContext } from 'react'
+import React, {
+  useContext,
+} from 'react'
 import { useParams } from 'react-router-dom'
 import { useErrorHandler } from 'react-error-boundary'
 
@@ -11,19 +13,21 @@ import { useProtectPage } from 'hooks/useProtectPage'
 import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from 'hooks/useRequestData'
 import { AuthContext, AuthContextInterface } from 'context/AuthContext'
-import { useGetUser } from 'apiCalls'
+import noCoverImg from 'img/no_cover.jpg'
+import noProfileImg from 'img/no_person.jpg'
 import styles from "./style.module.css"
-import noCoverImg from 'img/person/no_cover.jpg'
-import noProfileImg from 'img/person/no_person.jpg'
+import { useGetUser } from 'apiCalls'
 
 const Profile = () => {
   useProtectPage()
+
   const handleError = useErrorHandler()
 
-  const username = useParams().username
+  const { username } = useParams()
 
   const { user: currUser, dispatch } = useContext(AuthContext) as AuthContextInterface
-  const visitedUser = useRequestData(`${baseUrl}/user/${username}`, {})
+  const visitedUser = useRequestData(username ? `${baseUrl}/user/${username}` : null, {},
+  )
 
   const token = localStorage.getItem('token') as string
 

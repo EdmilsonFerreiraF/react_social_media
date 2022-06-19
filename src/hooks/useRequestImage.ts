@@ -18,7 +18,10 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig)
 
-export function useRequestImage(entity: "profile" | "cover" | "post", initialState: any) {
+export function useRequestImage(
+  entity: "profile" | "cover" | "post",
+  initialState: any
+) {
   const [data, setData] = useState(initialState)
   const handleError = useErrorHandler()
 
@@ -38,7 +41,7 @@ export function useRequestImage(entity: "profile" | "cover" | "post", initialSta
     if (initialState) {
       getData(initialState)
     }
-  }, [initialState, entity])
+  }, [initialState, entity, handleError])
 
   return data
 }

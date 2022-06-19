@@ -1,6 +1,6 @@
 import React from "react"
-import FriendList from "./FriendList"
 
+import FriendList from "./FriendList"
 import NavList from "./NavList"
 import styles from "./style.module.css"
 

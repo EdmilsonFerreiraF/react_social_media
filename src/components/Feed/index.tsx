@@ -19,9 +19,9 @@ const Feed = ({ otherUserId }: Props) => {
         (user && user.id && !otherUserId ?
             `${baseUrl}/post/timeline/${user.id}`
             :
-            `${baseUrl}/post/profile/${otherUserId}`)
-        , []
-    )
+            `${baseUrl}/post/profile/${otherUserId}`),
+            []
+        )
 
     const posts = getPosts.length
         ?

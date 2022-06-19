@@ -7,7 +7,7 @@ import styles from "./style.module.css"
 import ProfileMessagesBar from "./ProfileMessagesBar"
 import HomeMessagesBar from "./HomeMessagesBar"
 
-const MessagesBar = ({ user: visitedUser }: { user?: User}) => {
+const MessagesBar = ({ user: visitedUser }: { user?: User }) => {
     const { user: currUser } = useContext(AuthContext) as AuthContextInterface
 
     const user = visitedUser ?? currUser
@@ -24,15 +24,13 @@ const MessagesBar = ({ user: visitedUser }: { user?: User}) => {
                 {visitedUser
                     ?
                     <ProfileMessagesBar
-                    user={user}
-                    friends={friends}
-
-                     />
+                        user={user}
+                        friends={friends}
+                    />
                     :
                     <HomeMessagesBar
-                    friends={friends}
-
-                     />
+                        friends={friends}
+                    />
                 }
             </div>
         </div>

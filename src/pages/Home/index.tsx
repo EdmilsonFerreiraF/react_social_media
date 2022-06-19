@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { useGetUser } from 'apiCalls'
 import { useErrorHandler } from 'react-error-boundary'
+import { initializeApp } from "firebase/app"
+import dotenv from 'dotenv'
 
 import MainAppBar from 'components/MainAppBar'
 import Sidebar from 'components/Sidebar'
@@ -9,8 +10,7 @@ import MessagesBar from 'components/MessagesBar'
 import { useProtectPage } from 'hooks/useProtectPage'
 import { AuthContext, AuthContextInterface } from 'context/AuthContext'
 import styles from "./style.module.css"
-import { initializeApp } from "firebase/app"
-import dotenv from 'dotenv'
+import { useGetUser } from 'apiCalls'
 
 dotenv.config()
 
@@ -22,7 +22,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-};
+}
 
 initializeApp(firebaseConfig)
 

@@ -6,8 +6,8 @@ import FormErrors from 'components/FormErrors'
 import { baseUrl } from 'constants/baseUrl'
 import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useForm } from "hooks/useForm"
-import { signup } from 'apiCalls'
 import styles from "./style.module.css"
+import { signup } from 'apiCalls'
 
 const Signup = () => {
     useUnprotectPage()

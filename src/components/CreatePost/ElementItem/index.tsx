@@ -1,6 +1,6 @@
-import Input from "components/Input"
 import React, { ChangeEventHandler } from "react"
 
+import Input from "components/Input"
 import styles from "./style.module.css"
 
 type Props = {

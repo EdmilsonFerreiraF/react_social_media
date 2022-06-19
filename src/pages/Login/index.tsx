@@ -11,8 +11,8 @@ import { AuthContext, AuthContextInterface } from "context/AuthContext"
 import { useUnprotectPage } from 'hooks/useUnprotectPage'
 import { useForm } from "hooks/useForm"
 import { goToSignup } from "routes/coordinator"
-import { loginCall } from "apiCalls"
 import styles from "./style.module.css"
+import { loginCall } from "apiCalls"
 
 const Login = () => {
     useUnprotectPage()
