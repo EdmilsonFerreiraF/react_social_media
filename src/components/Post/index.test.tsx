@@ -13,7 +13,7 @@ import {
   render,
   screen,
 } from "components/CustomRender"
-import Post, { IPost } from "."
+import Post from "."
 
 dotenv.config()
 
@@ -33,7 +33,7 @@ initializeApp(firebaseConfig)
 
 expect.extend(toHaveNoViolations)
 
-type Post = {
+type IPost = {
   _id: string
   id: string
   createdAt: Date
@@ -46,7 +46,7 @@ type Post = {
 
 describe('Post', () => {
   test('Should show Post author profile', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -67,7 +67,7 @@ describe('Post', () => {
   })
 
   test('Should show Post author username', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -88,7 +88,7 @@ describe('Post', () => {
   })
 
   test('Should show Post date', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -109,7 +109,7 @@ describe('Post', () => {
   })
 
   test('Should show Post options', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -130,7 +130,7 @@ describe('Post', () => {
   })
 
   test('Should show Post content text', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -151,7 +151,7 @@ describe('Post', () => {
   })
 
   test('Should show read more button when showMore is false', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -172,7 +172,7 @@ describe('Post', () => {
   })
 
   test('Should show read less button when showMore is true', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -195,7 +195,7 @@ describe('Post', () => {
   })
 
   test('Should show Post content', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -216,7 +216,7 @@ describe('Post', () => {
   })
 
   test('Should show Post like reaction', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -237,7 +237,7 @@ describe('Post', () => {
   })
 
   test('Should show Post heart reaction', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -258,7 +258,7 @@ describe('Post', () => {
   })
 
   test('Should show Post x people liked it', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -279,7 +279,7 @@ describe('Post', () => {
   })
 
   test('Should show Post x comments', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),
@@ -300,7 +300,7 @@ describe('Post', () => {
   })
 
   test('Should be an acessible component', async () => {
-    const post: Post = {
+    const post: IPost = {
       _id: "1",
       id: "1",
       createdAt: new Date(),

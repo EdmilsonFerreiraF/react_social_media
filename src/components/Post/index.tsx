@@ -44,7 +44,7 @@ const Post = ({ post }: { post: IPost }) => {
             post?.likes.includes(currentUser?.id),
             "likes"
         )
-    }, [currentUser?.id, post?.likes])
+    }, [currentUser?.id, post?.likes, onChange])
 
     const otherUser = useRequestData(post &&
         post.userId &&

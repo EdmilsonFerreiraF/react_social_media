@@ -8803,6 +8803,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-memoize@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "fast-memoize@npm:2.5.2"
+  checksum: 79fa759719ba4eac7e8c22fb3b0eb3f18f4a31e218c00b1eb4a5b53c5781921133a6b84472d59ec5a6ea8f26ad57b43cd99a350c0547ccce51489bc9a5f0b28d
+  languageName: node
+  linkType: hard
+
 "fastq@npm:^1.6.0":
   version: 1.13.0
   resolution: "fastq@npm:1.13.0"
@@ -14833,6 +14840,7 @@ __metadata:
     babel-jest: 26.6.0
     dotenv: ^16.0.1
     eslint-config-react-app: 6
+    fast-memoize: ^2.5.2
     firebase: ^9.8.2
     identity-obj-proxy: ^3.0.0
     jest: 26.6.0
