@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
-  BrowserRouter as Router
+  BrowserRouter as Router,
 } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 
@@ -15,7 +15,16 @@ ReactDOM.render(
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
         onError={
-          (error, errorInfo) => console.log({ error, errorInfo })
+          (
+            error,
+            errorInfo
+          ) => {
+            const errorData = error as any
+            const { data: { message }, status } =
+              errorData.response
+
+            console.log({ status, message, errorInfo })
+          }
         }
       >
         <Router>

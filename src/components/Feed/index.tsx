@@ -25,19 +25,20 @@ const Feed = ({ otherUserId }: Props) => {
             []
         )
 
-    const posts = 
+    const posts = getPosts.length
+        ?
         getPosts.map((post: IPost) => (
             <Post key={post?.id}
                 post={post} />
         ))
-        // :
-        // (
-        //     <div className={styles.noPosts}>
-        //         <p>
-        //             No posts created yet
-        //         </p>
-        //     </div>
-        // )
+        :
+        (
+            <div className={styles.noPosts}>
+                <p>
+                    No posts created yet
+                </p>
+            </div>
+        )
 
     const createPost = !otherUserId && <CreatePost />
 

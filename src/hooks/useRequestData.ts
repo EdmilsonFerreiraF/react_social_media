@@ -4,12 +4,15 @@ import {
 } from "react"
 import axios from "axios"
 import { useErrorHandler } from "react-error-boundary"
+import { useNavigate } from "react-router-dom"
+import { goToLogin } from "routes/coordinator"
 
 export function useRequestData(
   url: string | null,
   initialState: any,
   ) {
 const handleError = useErrorHandler()
+const navigate = useNavigate()
 
   const [data, setData] = useState(initialState)
   useEffect(() => {
@@ -23,8 +26,14 @@ const handleError = useErrorHandler()
       }).then((response) => {
         setData(response.data);
       }).catch((error) => {
-        if (error.message.includes("401")) {
-          localStorage.removeItem("token")
+        const errorData = error as any
+        const { data: { message } } =
+          errorData.response
+
+        if (message === "jwt expired") {
+          localStorage.removeItem('token')
+
+          goToLogin(navigate)
         }
         
         handleError(error)
@@ -32,6 +41,7 @@ const handleError = useErrorHandler()
     }
 
   }, [url,
+    navigate,
     handleError
   ])
 

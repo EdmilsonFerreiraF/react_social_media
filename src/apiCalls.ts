@@ -1,10 +1,10 @@
 import { useEffect } from "react"
-import { NavigateFunction } from "react-router-dom"
+import { NavigateFunction, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { getStorage, ref, uploadBytes } from "firebase/storage"
 
 import { baseUrl } from 'constants/baseUrl'
-import { goToIndex } from 'routes/coordinator'
+import { goToIndex, goToLogin } from 'routes/coordinator'
 import { ACTIONTYPE } from "context/AuthReducer"
 import { User } from "context/AuthContext"
 
@@ -47,6 +47,8 @@ export const useGetUser = (
     dispatch: React.Dispatch<ACTIONTYPE>,
     handleError: (givenError?: Error) => void
 ) => {
+    const navigate = useNavigate()
+
     useEffect(() => {
         (async () => {
             if (!user?.id && token) {
@@ -59,10 +61,26 @@ export const useGetUser = (
                         }
                     })
                     .then(res => {
-                        dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+                        dispatch({
+                            type: "LOGIN_SUCCESS",
+                            payload: res.data
+                        })
                     })
                     .catch(err => {
-                        dispatch({ type: "LOGIN_FAILURE", payload: err })
+                        dispatch({
+                            type: "LOGIN_FAILURE",
+                            payload: err
+                        })
+
+                        const errorData = err as any
+                        const { data: { message } }
+                            = errorData.response
+
+                        if (message === "jwt expired") {
+                            localStorage.removeItem('token')
+
+                            goToLogin(navigate)
+                        }
 
                         handleError(err)
                     })
@@ -70,7 +88,7 @@ export const useGetUser = (
                 return res
             }
         })()
-    }, [user, token, dispatch, handleError])
+    }, [user, token, dispatch, navigate, handleError])
 }
 
 export async function signup(

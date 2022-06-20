@@ -38,7 +38,7 @@ const Home = () => {
 
   const LazyFeed = () => (
     <Suspense fallback={<Progress />}>
-      <Feed otherUserId={user?.id} />
+      <Feed />
     </Suspense>
   )
 
