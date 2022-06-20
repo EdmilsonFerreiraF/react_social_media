@@ -1,11 +1,15 @@
 import React, { FormEvent } from 'react'
-import IconButton from '@mui/material/IconButton'
-import AccountCircle from '@mui/icons-material/AccountCircle'
-import MailIcon from '@mui/icons-material/Mail'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import Badge from '@mui/material/Badge'
-import MenuItem from '@mui/material/MenuItem'
-import Menu from '@mui/material/Menu'
+import {
+    IconButton,
+    Badge,
+    Menu,
+    MenuItem
+} from '@mui/material'
+import {
+    AccountCircle,
+    Mail,
+    Notifications,
+} from '@mui/icons-material'
 import Navigation from "../Navigation"
 
 export type handleMenuOpening = (
@@ -78,7 +82,7 @@ const MobileMenu = (props: Props) => {
                     <Badge
                         badgeContent={4}
                         color="error">
-                        <MailIcon />
+                        <Mail />
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
@@ -93,7 +97,7 @@ const MobileMenu = (props: Props) => {
                     <Badge
                         badgeContent={17}
                         color="error">
-                        <NotificationsIcon />
+                        <Notifications />
                     </Badge>
                 </IconButton>
                 <p>Notifications</p>

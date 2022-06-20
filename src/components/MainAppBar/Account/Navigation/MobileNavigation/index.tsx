@@ -1,8 +1,12 @@
 import React, { MouseEventHandler } from 'react'
-import HomeIcon from '@mui/icons-material/Home'
-import ArticleIcon from '@mui/icons-material/Article'
-import MenuItem from '@mui/material/MenuItem'
-import IconButton from '@mui/material/IconButton'
+import {
+    Home,
+    Article
+ } from '@mui/icons-material'
+import {
+    MenuItem,
+    IconButton
+ } from '@mui/material'
 
 import NavigationItem from '../NavigationItem'
 import { handleMenuOpening } from '../../MobileMenu'
@@ -34,7 +38,7 @@ const MobileNavigation = ({
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <HomeIcon />
+                    <Home />
                 </IconButton>
                 <NavigationItem
                     dataTestId="mobileHomepageLink"
@@ -61,7 +65,7 @@ const MobileNavigation = ({
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <ArticleIcon />
+                    <Article />
                 </IconButton>
                 <NavigationItem
                     dataTestId="mobileTimelineLink"

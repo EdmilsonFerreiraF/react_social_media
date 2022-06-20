@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
 
+import { baseUrl } from 'constants/baseUrl'
+import {
+    AuthContext,
+    AuthContextInterface
+} from 'context/AuthContext'
+import { useRequestData } from 'hooks/useRequestData'
 import CreatePost from '../CreatePost'
 import Post, { IPost } from '../Post'
-
 import styles from "./style.module.css"
-import { baseUrl } from 'constants/baseUrl'
-import { AuthContext, AuthContextInterface } from 'context/AuthContext'
-import { useRequestData } from 'hooks/useRequestData'
 
 type Props = {
     otherUserId?: string
@@ -23,20 +25,19 @@ const Feed = ({ otherUserId }: Props) => {
             []
         )
 
-    const posts = getPosts.length
-        ?
+    const posts = 
         getPosts.map((post: IPost) => (
             <Post key={post?.id}
                 post={post} />
         ))
-        :
-        (
-            <div className={styles.noPosts}>
-                <p>
-                    No posts created yet
-                </p>
-            </div>
-        )
+        // :
+        // (
+        //     <div className={styles.noPosts}>
+        //         <p>
+        //             No posts created yet
+        //         </p>
+        //     </div>
+        // )
 
     const createPost = !otherUserId && <CreatePost />
 

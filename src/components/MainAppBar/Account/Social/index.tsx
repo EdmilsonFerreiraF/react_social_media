@@ -1,5 +1,9 @@
 import React from 'react'
-import { Person, Chat, Notifications } from "@mui/icons-material"
+import {
+    Person,
+    Chat,
+    Notifications
+} from "@mui/icons-material"
 
 import SocialItem from "./SocialItem"
 import styles from "./style.module.css"

@@ -1,7 +1,10 @@
 import React, { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 
-import { AuthContext, AuthContextInterface } from 'context/AuthContext'
+import {
+    AuthContext,
+    AuthContextInterface
+} from 'context/AuthContext'
 import { goToIndex, goToProfile } from "routes/coordinator"
 import styles from "./style.module.css"
 import NavigationItem from "../NavigationItem"

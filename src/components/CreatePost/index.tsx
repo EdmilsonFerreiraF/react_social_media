@@ -3,10 +3,10 @@ import { v4 } from 'uuid'
 
 import { baseUrl } from "constants/baseUrl"
 import { useForm } from "hooks/useForm"
-import { sendData, uploadPostPic } from 'apiCalls'
-import styles from "./style.module.css"
 import Content from "./Content"
 import BotBar from "./BotBar"
+import { sendData, uploadPostPic } from 'apiCalls'
+import styles from "./style.module.css"
 
 const CreatePost = () => {
     const { form, onChange } = useForm({

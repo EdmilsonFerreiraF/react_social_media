@@ -3,7 +3,7 @@ import React, {
     useContext,
 } from "react"
 import { useNavigate } from "react-router-dom"
-import CircularProgress from '@mui/material/CircularProgress'
+import { CircularProgress } from '@mui/material'
 
 import Input from 'components/Input'
 import FormErrors from "components/FormErrors"

@@ -1,5 +1,5 @@
 import React from "react"
-import Menu from '@mui/material/Menu'
+import { Menu } from '@mui/material'
 
 import Navigation from "../Navigation"
 import Social from "../Social"

@@ -1,8 +1,7 @@
 import React, { FormEvent, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import IconButton from '@mui/material/IconButton'
-import MoreIcon from '@mui/icons-material/MoreVert'
-import Box from '@mui/material/Box'
+import { IconButton, Box } from '@mui/material'
+import { MoreVert } from '@mui/icons-material'
 
 import { useForm } from "hooks/useForm"
 import { AuthContext, AuthContextInterface } from "context/AuthContext"
@@ -10,9 +9,9 @@ import { goToProfile } from "routes/coordinator"
 import Navigation from "./Navigation"
 import Social from "./Social"
 import Profile from "./Profile"
-import styles from "./style.module.css"
 import MobileMenu from "./MobileMenu"
 import TabletMenu from "./TabletMenu"
+import styles from "./style.module.css"
 
 const Account = () => {
   const { form, onChange } = useForm({
@@ -74,7 +73,7 @@ const Account = () => {
           }
           color="inherit"
         >
-          <MoreIcon />
+          <MoreVert />
         </IconButton>
       </Box>
 

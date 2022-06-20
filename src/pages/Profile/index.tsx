@@ -1,4 +1,6 @@
 import React, {
+  lazy,
+  Suspense,
   useContext,
 } from 'react'
 import { useParams } from 'react-router-dom'
@@ -6,8 +8,8 @@ import { useErrorHandler } from 'react-error-boundary'
 
 import MainAppBar from 'components/MainAppBar'
 import Sidebar from 'components/Sidebar'
-import Feed from 'components/Feed'
 import MessagesBar from 'components/MessagesBar'
+import Progress from 'components/Progress'
 import { baseUrl } from 'constants/baseUrl'
 import { useProtectPage } from 'hooks/useProtectPage'
 import { useRequestImage } from "hooks/useRequestImage"
@@ -17,6 +19,8 @@ import noCoverImg from 'img/no_cover.jpg'
 import noProfileImg from 'img/no_person.jpg'
 import styles from "./style.module.css"
 import { useGetUser } from 'apiCalls'
+
+const Feed = lazy(() => import('components/Feed'))
 
 const Profile = () => {
   useProtectPage()
@@ -37,7 +41,13 @@ const Profile = () => {
 
   const profilePicture = useRequestImage("profile", user?.profilePicture)
   const coverPicture = useRequestImage("cover", user?.coverPicture)
-
+  
+  const LazyFeed = () => (
+    <Suspense fallback={<Progress />}>
+      <Feed otherUserId={user?.id} />
+    </Suspense>
+  )
+  
   return (
     <>
       <MainAppBar />
@@ -70,7 +80,7 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.profileRightBottom}>
-            <Feed otherUserId={user?.id} />
+          <LazyFeed />
           </div>
         </div>
         <MessagesBar user={user} />

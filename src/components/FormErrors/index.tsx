@@ -1,6 +1,6 @@
 import React from 'react'
-import Error from './Error'
 
+import Error from './Error'
 import styles from './style.module.css'
 
 type LoginErrors = {

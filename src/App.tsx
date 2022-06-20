@@ -4,7 +4,6 @@ import {
   Route
 } from 'react-router-dom'
 import { initializeApp } from "firebase/app"
-
 import Progress from 'components/Progress'
 
 const firebaseConfig = {

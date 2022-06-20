@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React, { lazy, Suspense, useContext } from "react";
 import { useErrorHandler } from 'react-error-boundary'
 import { initializeApp } from "firebase/app"
 import dotenv from 'dotenv'
 
 import MainAppBar from 'components/MainAppBar'
 import Sidebar from 'components/Sidebar'
-import Feed from 'components/Feed'
 import MessagesBar from 'components/MessagesBar'
+import Progress from "components/Progress";
 import { useProtectPage } from 'hooks/useProtectPage'
 import { AuthContext, AuthContextInterface } from 'context/AuthContext'
 import styles from "./style.module.css"
 import { useGetUser } from 'apiCalls'
+
+const Feed = lazy(() => import('components/Feed'))
 
 dotenv.config()
 
@@ -34,12 +36,18 @@ const Home = () => {
   const token = localStorage.getItem('token') as string
   useGetUser(user, token, dispatch, handleError)
 
+  const LazyFeed = () => (
+    <Suspense fallback={<Progress />}>
+      <Feed otherUserId={user?.id} />
+    </Suspense>
+  )
+
   return (
     <>
       <MainAppBar />
       <div className={styles.homeContainer}>
         <Sidebar />
-        <Feed />
+        <LazyFeed />
         <MessagesBar />
       </div>
     </>
