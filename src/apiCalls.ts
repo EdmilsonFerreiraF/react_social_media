@@ -82,6 +82,12 @@ export const useGetUser = (
                             goToLogin(navigate)
                         }
 
+                        if (message === "invalid token") {
+                            localStorage.removeItem('token')
+
+                            goToLogin(navigate)
+                        }
+
                         handleError(err)
                     })
 

@@ -10,9 +10,9 @@ import { goToLogin } from "routes/coordinator"
 export function useRequestData(
   url: string | null,
   initialState: any,
-  ) {
-const handleError = useErrorHandler()
-const navigate = useNavigate()
+) {
+  const handleError = useErrorHandler()
+  const navigate = useNavigate()
 
   const [data, setData] = useState(initialState)
   useEffect(() => {
@@ -35,7 +35,13 @@ const navigate = useNavigate()
 
           goToLogin(navigate)
         }
-        
+
+        if (message === "invalid token") {
+          localStorage.removeItem('token')
+
+          goToLogin(navigate)
+        }
+
         handleError(error)
       })
     }
