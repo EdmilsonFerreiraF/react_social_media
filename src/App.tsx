@@ -3,8 +3,9 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-import CircularProgress from '@mui/material/CircularProgress'
 import { initializeApp } from "firebase/app"
+
+import Progress from 'components/Progress'
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -44,7 +45,8 @@ const App = () => {
         key={route[0]}
           path={route[1]}
           element={
-            <Suspense fallback={<CircularProgress />}>
+            <Suspense fallback={
+            <Progress />}>
               {route[2]}
             </Suspense>}
         />
