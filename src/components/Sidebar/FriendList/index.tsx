@@ -19,7 +19,7 @@ const FriendList = () => {
     return (
         <ul className={styles.friendList} data-testid="friendList">
             {
-                friends.length ?
+                friends && friends.length ?
                     friends.map((friend: User) => (
                         <FriendItem
                             key={friend?.id}

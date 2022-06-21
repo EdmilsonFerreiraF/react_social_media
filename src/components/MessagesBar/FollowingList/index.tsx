@@ -7,12 +7,13 @@ import styles from "./style.module.css"
 const FollowingList = ({ friends }: { friends: User[] }) => {
     return (
         <div className={styles.followingList}>
-            {friends.length ? friends.map(friend => (
-                <FollowingItem
-                    key={friend?.id}
-                    friend={friend}
-                />
-            )) : null}
+            {friends && friends.length ?
+                friends.map(friend => (
+                    <FollowingItem
+                        key={friend?.id}
+                        friend={friend}
+                    />
+                )) : null}
         </div>
     )
 }

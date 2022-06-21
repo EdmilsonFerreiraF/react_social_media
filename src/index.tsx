@@ -4,10 +4,13 @@ import {
   BrowserRouter as Router,
 } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import App from 'App'
 import { AuthContextProvider } from "context/AuthContext"
 import ErrorFallback from 'components/ErrorFallback'
+
+const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,17 +22,17 @@ ReactDOM.render(
             error,
             errorInfo
           ) => {
-            const errorData = error as any
-            const { data: { message }, status } =
-              errorData.response
 
-            console.log({ status, message, errorInfo })
+            console.log(error, errorInfo)
           }
         }
       >
-        <Router>
-          <App />
-        </Router>
+        <QueryClientProvider client={queryClient}>
+
+          <Router>
+            <App />
+          </Router>
+        </QueryClientProvider>
       </ErrorBoundary>
     </AuthContextProvider>
   </React.StrictMode>,

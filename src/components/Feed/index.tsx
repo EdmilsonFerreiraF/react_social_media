@@ -1,10 +1,7 @@
 import React, { useContext } from 'react'
 
+import { AuthContext, AuthContextInterface } from 'context/AuthContext'
 import { baseUrl } from 'constants/baseUrl'
-import {
-    AuthContext,
-    AuthContextInterface
-} from 'context/AuthContext'
 import { useRequestData } from 'hooks/useRequestData'
 import CreatePost from '../CreatePost'
 import Post, { IPost } from '../Post'
@@ -25,7 +22,7 @@ const Feed = ({ otherUserId }: Props) => {
             []
         )
 
-    const posts = getPosts.length
+    const posts = getPosts && getPosts.length
         ?
         getPosts.map((post: IPost) => (
             <Post key={post?.id}
