@@ -37,7 +37,7 @@ describe('FollowingList', () => {
     const friends: User[] = [
       {
         id: "1",
-        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
@@ -45,7 +45,7 @@ describe('FollowingList', () => {
       },
       {
         id: "2",
-        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.jpeg",
+        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.webp",
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
@@ -53,7 +53,7 @@ describe('FollowingList', () => {
       },
       {
         id: "3",
-        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.jpeg",
+        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.webp",
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",
@@ -74,7 +74,7 @@ describe('FollowingList', () => {
     const friends: User[] = [
       {
         id: "1",
-        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
@@ -82,7 +82,7 @@ describe('FollowingList', () => {
       },
       {
         id: "2",
-        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.jpeg",
+        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.webp",
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
@@ -90,7 +90,7 @@ describe('FollowingList', () => {
       },
       {
         id: "3",
-        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.jpeg",
+        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.webp",
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",
@@ -111,7 +111,7 @@ describe('FollowingList', () => {
     const friends: User[] = [
       {
         id: "1",
-        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
@@ -119,7 +119,7 @@ describe('FollowingList', () => {
       },
       {
         id: "2",
-        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.jpeg",
+        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.webp",
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
@@ -127,7 +127,7 @@ describe('FollowingList', () => {
       },
       {
         id: "3",
-        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.jpeg",
+        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.webp",
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",
@@ -148,7 +148,7 @@ describe('FollowingList', () => {
     const friends: User[] = [
       {
         id: "1",
-        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+        profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
@@ -156,7 +156,7 @@ describe('FollowingList', () => {
       },
       {
         id: "2",
-        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.jpeg",
+        profilePicture: "4e891f5b-96aa-4450-ba98-cf909beb9cf0.webp",
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
@@ -164,7 +164,7 @@ describe('FollowingList', () => {
       },
       {
         id: "3",
-        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.jpeg",
+        profilePicture: "362e2e29-ed17-4a47-8129-131c2fc882f6.webp",
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",

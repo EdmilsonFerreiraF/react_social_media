@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext } from 'react'
 import { ClickAwayListener } from "@mui/material"
 
-import noProfilePicture from 'img/no_person.jpg'
+import noProfilePicture from 'img/no_person.webp'
 import { useForm } from "hooks/useForm"
 import { useRequestImage } from 'hooks/useRequestImage'
 import {

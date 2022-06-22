@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { goToIndex } from 'routes/coordinator'
 import styles from './style.module.css'
-import error404Img from 'img/error404.png'
+import error404Img from 'img/error404.webp'
 
 const Error = () => {
   const navigate = useNavigate()

@@ -13,8 +13,8 @@ import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from "hooks/useRequestData"
 import { useForm } from "hooks/useForm"
 
-import noProfilePicture from 'img/no_person.jpg'
-import noPostPicture from 'img/no_image.jpeg'
+import noProfilePicture from 'img/no_person.webp'
+import noPostPicture from 'img/no_image.webp'
 import TopBar from "./TopBar"
 import Content from "./Content"
 import BotBar from "./BotBar"

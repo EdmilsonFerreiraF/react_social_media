@@ -1,8 +1,8 @@
 import React from 'react'
 
 import styles from "./style.module.css"
-import likeImg from 'img/like.png'
-import heartImg from 'img/heart.png'
+import likeImg from 'img/like.webp'
+import heartImg from 'img/heart.webp'
 import { baseUrl } from 'constants/baseUrl'
 import { sendData } from 'apiCalls'
 import { useForm } from "hooks/useForm"

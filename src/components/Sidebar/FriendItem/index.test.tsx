@@ -41,7 +41,7 @@ describe('FriendItem', () => {
       coverPicture: "",
       isAdmin: false,
       following: [],
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
     }
 
@@ -66,7 +66,7 @@ describe('FriendItem', () => {
       coverPicture: "",
       isAdmin: false,
       following: [],
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
     }
 
@@ -91,7 +91,7 @@ describe('FriendItem', () => {
       coverPicture: "",
       isAdmin: false,
       following: [],
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
     }
 
@@ -116,7 +116,7 @@ describe('FriendItem', () => {
       coverPicture: "",
       isAdmin: false,
       following: [],
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
     }
 

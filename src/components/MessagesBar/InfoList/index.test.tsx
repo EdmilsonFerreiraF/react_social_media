@@ -19,7 +19,7 @@ describe('InfoList', () => {
   test('Should show "info value"', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -39,7 +39,7 @@ describe('InfoList', () => {
   test('Should show "info name"', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -59,7 +59,7 @@ describe('InfoList', () => {
   test('Should show info city', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -79,7 +79,7 @@ describe('InfoList', () => {
   test('Should show info from', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -99,7 +99,7 @@ describe('InfoList', () => {
   test('Should show info value', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -119,7 +119,7 @@ describe('InfoList', () => {
   test('Should show info salvador - ba', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -139,7 +139,7 @@ describe('InfoList', () => {
   test('Should show info são paulo', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -159,7 +159,7 @@ describe('InfoList', () => {
   test('Should show info single', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -179,7 +179,7 @@ describe('InfoList', () => {
   test('Should be an acessible component', async () => {
     const user: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",

@@ -36,7 +36,7 @@ describe('FriendItem', () => {
   test('Should show friend profile image', async () => {
     const friend: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -59,7 +59,7 @@ describe('FriendItem', () => {
   test('Should show friend name', async () => {
     const friend: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -82,7 +82,7 @@ describe('FriendItem', () => {
   test('Should show username', async () => {
     const friend: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
@@ -105,7 +105,7 @@ describe('FriendItem', () => {
   test('Should be an acessible component', async () => {
     const friend: User = {
       id: "1",
-      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",

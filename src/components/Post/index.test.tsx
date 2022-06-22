@@ -52,7 +52,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     } 
@@ -73,7 +73,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -94,7 +94,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -115,7 +115,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -136,7 +136,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -157,7 +157,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -178,7 +178,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -201,7 +201,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -222,7 +222,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -243,7 +243,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -264,7 +264,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -285,7 +285,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }
@@ -306,7 +306,7 @@ describe('Post', () => {
       createdAt: new Date(),
       userId: "bdb9322d-5868-4091-a305-d8cd9e4f62f4",
       description: "user  -post description",
-      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.jpeg",
+      image: "0bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       likes: ["bdb9322d-5868-4091-a305-d8cd9e4f62f5"],
       comment: 5
     }

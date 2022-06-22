@@ -3,8 +3,8 @@ import React from "react"
 import FollowingList from "../FollowingList"
 import { User } from "context/AuthContext"
 import styles from "./style.module.css"
-import giftImg from 'img/gift.png'
-import adImg from 'img/ad.png'
+import giftImg from 'img/gift.webp'
+import adImg from 'img/ad.webp'
 
 type Props = {
     friends: User[]

@@ -1,11 +1,13 @@
 .messagesBarContainer {
-    flex: 3.5;
     overflow-y: scroll;
-
+    padding: 20px 10px;
+    height: calc(100vh - 90px);
+    position: sticky;
+    top: 50px;
 }
 
 .messagesBar {
-    padding: 20px;
+    min-width: 150px;
 }
 
 .followButton {
@@ -25,10 +27,4 @@
 
 .followButton:focus {
     outline: none;
-}
-
-@media (max-width: 535px) {
-    .messagesBarContainer {
-        flex: 1;
-    }
 }

@@ -51,7 +51,7 @@ describe('MessagesBar', () => {
       username: "user_username33",
       email: "user_email@email.com",
       password: "user_password",
-      profilePicture: "2d57d3b6-7a00-457b-9d3b-7b642cbdaf49.jpeg",
+      profilePicture: "2d57d3b6-7a00-457b-9d3b-7b642cbdaf49.webp",
       coverPicture: "",
       isAdmin: false,
       following: []

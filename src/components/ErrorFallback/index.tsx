@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './style.module.css'
-import errorImg from 'img/error.png'
+import errorImg from 'img/error.webp'
 
 type Props = {
   error: any,

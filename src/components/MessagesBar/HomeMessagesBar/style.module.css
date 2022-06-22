@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    min-width: 150px;
 }
 
 .birthdayImg {
@@ -13,6 +14,7 @@
 
 .birthdayAd {
     cursor: pointer;
+    width: 100%;
 }
 
 .birthdayText {
@@ -24,6 +26,7 @@
     display: flex;
     border-radius: 10px;
     margin: 30px auto 30px auto;
+    width: 100%;
 }
 
 .messagesBarTitle {

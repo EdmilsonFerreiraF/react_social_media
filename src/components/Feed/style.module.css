@@ -1,9 +1,5 @@
-.feedContainer {
-    flex: 5.5;
-}
-
 .feed {
-    padding: 20px;
+    padding: 20px 10px;
 }
 
 .noPosts {

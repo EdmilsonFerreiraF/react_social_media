@@ -15,8 +15,8 @@ import { useProtectPage } from 'hooks/useProtectPage'
 import { useRequestImage } from "hooks/useRequestImage"
 import { useRequestData } from 'hooks/useRequestData'
 import { AuthContext, AuthContextInterface } from 'context/AuthContext'
-import noCoverImg from 'img/no_cover.jpg'
-import noProfileImg from 'img/no_person.jpg'
+import noCoverImg from 'img/no_cover.webp'
+import noProfileImg from 'img/no_person.webp'
 import styles from "./style.module.css"
 import { useGetUser } from 'apiCalls'
 
