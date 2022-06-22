@@ -7,7 +7,7 @@ import styles from "./style.module.css"
 import noProfilePicture from 'img/no_person.webp'
 
 const FollowingItem = ({ friend }: { friend: User }) => {
-    const profilePicture = useRequestImage("profile", friend?.profilePicture)
+    const profilePicture = useRequestImage("profile_small", friend?.profilePicture)
 
     const navigate = useNavigate()
 
