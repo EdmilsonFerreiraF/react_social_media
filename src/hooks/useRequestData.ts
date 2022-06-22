@@ -5,19 +5,8 @@ import {
 import axios from "axios"
 import { useErrorHandler } from "react-error-boundary"
 import { useNavigate } from "react-router-dom"
-import { useQuery } from "react-query"
 
 import { goToLogin } from "routes/coordinator"
-
-export const useData = (
-  data: any
-) => {
-  const { data: res }: { data: any } = useQuery(
-    "posts", () => data
-  )
-
-  return res
-}
 
 export function useRequestData(
   url: string | null,

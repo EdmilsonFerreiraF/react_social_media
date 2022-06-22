@@ -32,7 +32,7 @@ export interface IPost {
 
 const Post = ({ post }: { post: IPost }) => {
     const { form, onChange } = useForm({
-        likes: post?.likes.length,
+        likes: post?.likes?.length,
         isLiked: false,
         readMore: false
     })

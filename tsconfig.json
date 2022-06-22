@@ -11,6 +11,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "src",
+    "outDir": "dist",
     "allowJs": true,
     "lib": [
       "dom",
