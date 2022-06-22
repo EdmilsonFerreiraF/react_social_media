@@ -3,6 +3,7 @@ import { getStorage, getDownloadURL, ref } from "firebase/storage"
 import { useErrorHandler } from 'react-error-boundary'
 import { initializeApp } from "firebase/app"
 import dotenv from 'dotenv'
+import { useData } from "./useRequestData";
 
 dotenv.config()
 
@@ -19,9 +20,9 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 
 export function useRequestImage(
-  entity: "profile" | "cover" | "post",
+  entity: "profile" | "profile_small" | "cover" | "post",
   initialState: any
-) {
+): any {
   const [data, setData] = useState(initialState)
   const handleError = useErrorHandler()
 
@@ -43,5 +44,5 @@ export function useRequestImage(
     }
   }, [initialState, entity, handleError])
 
-  return data
+  useData(data)
 }

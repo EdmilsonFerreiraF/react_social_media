@@ -1,5 +1,6 @@
 .profile {
-    display: flex;
+    display: grid;
+    grid: auto/1fr 65% 1fr;
 }
 
 .profileRight {
