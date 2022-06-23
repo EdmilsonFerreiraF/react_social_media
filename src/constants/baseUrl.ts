@@ -1,1 +1,1 @@
-export const baseUrl = "lama-social.herokuapp.com"
+export const baseUrl = "https://dapper-taiyaki-447748.netlify.app"
