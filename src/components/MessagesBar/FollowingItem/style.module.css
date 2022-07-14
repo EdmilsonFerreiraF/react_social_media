@@ -1,20 +1,20 @@
 .followingItem {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .followingImg {
-    max-width: 65px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
+  max-width: 65px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 @media (max-width: 660px) {
-    .followingImg {
-        max-width: 55px;
-        height: 90px;
-    }
+  .followingImg {
+    max-width: 55px;
+    height: 90px;
+  }
 }

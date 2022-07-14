@@ -1,19 +1,19 @@
 .elementList {
-    display: flex;
-    padding: 0 0 0 22px;
+  display: flex;
+  padding: 0 0 0 22px;
 }
 
 .elementItemInput {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 600px) {
-    .elementList {
-        width: 100%;
-        flex-wrap: wrap;
-        margin: 0 0 15px 8px;
-        padding: 0 10px;
-        justify-content: center;
-        font-size: 14px;
-    }
+  .elementList {
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 0 0 15px 8px;
+    padding: 0 10px;
+    justify-content: center;
+    font-size: 14px;
+  }
 }

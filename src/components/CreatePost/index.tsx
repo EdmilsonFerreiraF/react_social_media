@@ -1,11 +1,11 @@
 import React, { FormEvent } from "react"
 import { v4 } from 'uuid'
 
+import { sendData, uploadPostPic } from 'apiCalls'
 import { baseUrl } from "constants/baseUrl"
 import { useForm } from "hooks/useForm"
-import Content from "./Content"
 import BotBar from "./BotBar"
-import { sendData, uploadPostPic } from 'apiCalls'
+import Content from "./Content"
 import styles from "./style.module.css"
 
 const CreatePost = () => {

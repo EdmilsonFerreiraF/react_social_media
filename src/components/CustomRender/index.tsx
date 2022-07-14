@@ -1,26 +1,21 @@
-import React, { FC, ReactElement } from "react"
-import { render, RenderOptions } from "@testing-library/react"
-import { MemoryRouter } from "react-router-dom"
+import { render, RenderOptions } from "@testing-library/react";
+import React, { FC, ReactElement } from "react";
+import { MemoryRouter } from "react-router-dom";
 
-import { AuthContextProvider } from "context/AuthContext"
+import { AuthContextProvider } from "context/AuthContext";
 
-const Wrapper:
-FC<{ children: React.ReactNode }> = ({ children }) => {
+const Wrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <AuthContextProvider>
-      <MemoryRouter>
-        {children}
-      </MemoryRouter>
+      <MemoryRouter>{children}</MemoryRouter>
     </AuthContextProvider>
-  )
-}
+  );
+};
 
 const customRender = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
-) =>
-  render(ui, { wrapper: Wrapper, ...options })
+  options?: Omit<RenderOptions, "wrapper">
+) => render(ui, { wrapper: Wrapper, ...options });
 
-export * from "@testing-library/react"
-
-export { customRender as render }
+export * from "@testing-library/react";
+export { customRender as render };

@@ -1,31 +1,31 @@
 .createPost {
-    width: 100%;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, .68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, .68);
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
 }
 
 .createPostContainer {
-    padding: 10px;
+  padding: 10px;
 }
 
 .createPostDivision {
-    margin: 20px;
+  margin: 20px;
 }
 
 @media (max-width: 600px) {
-    .createPost {
-        margin: 20px 0 12px;
-        height: auto;
-    }
+  .createPost {
+    margin: 20px 0 12px;
+    height: auto;
+  }
 
-    .createPostDivision {
-        margin: 20px 20px 10px 20px;
-    }
+  .createPostDivision {
+    margin: 20px 20px 10px 20px;
+  }
 }
 
 @media (min-width: 1350px) {
-    .createPostContainer {
-        padding: 20px;
-    }
+  .createPostContainer {
+    padding: 20px;
+  }
 }

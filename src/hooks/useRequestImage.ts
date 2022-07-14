@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { getStorage, getDownloadURL, ref } from "firebase/storage"
-import { useErrorHandler } from 'react-error-boundary'
-import { initializeApp } from "firebase/app"
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
+import { initializeApp } from "firebase/app";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { useEffect, useState } from "react";
+import { useErrorHandler } from 'react-error-boundary';
 
 dotenv.config()
 

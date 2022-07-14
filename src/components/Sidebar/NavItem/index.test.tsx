@@ -2,66 +2,56 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
 import { Feed } from "@mui/icons-material";
-import { axe, toHaveNoViolations } from 'jest-axe'
-import '@testing-library/jest-dom'
+import "@testing-library/jest-dom";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  act,
-  render,
-  screen
-} from "components/CustomRender";
-import NavItem from '.';
+import { act, render, screen } from "components/CustomRender";
+import NavItem from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('NavItem', () => {
-  test('Should have a title', async () => {
+describe("NavItem", () => {
+  test("Should have a title", async () => {
     await act(async () => {
       render(
         <ul>
-          <NavItem
-            title="Feed"
-          />
+          <NavItem title="Feed" />
         </ul>
-      )
-    })
+      );
+    });
 
     expect(screen.getByText(/Feed/i)).toBeInTheDocument();
-  })
+  });
 
-  test('Should have an icon', async () => {
+  test("Should have an icon", async () => {
     await act(async () => {
       render(
         <ul>
-          <NavItem
-            title="Feed"
-          >
+          <NavItem title="Feed">
             <Feed />
-          </NavItem >
+          </NavItem>
         </ul>
-      )
-    })
+      );
+    });
 
     expect(screen.getByTestId(/FeedIcon/i)).toBeInTheDocument();
-  })
+  });
 
-  test('Should be an acessible component', async () => {
+  test("Should be an acessible component", async () => {
     const { container }: any = act(() => {
       render(
         <ul>
-          <NavItem
-            title="Feed"
-          >
+          <NavItem title="Feed">
             <Feed />
-          </NavItem >
+          </NavItem>
         </ul>
-      )
-    })
+      );
+    });
 
     const results = await axe(container);
 
     expect(results).toHaveNoViolations();
-  })
-})
+  });
+});

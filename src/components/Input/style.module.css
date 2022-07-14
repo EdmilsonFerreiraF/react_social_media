@@ -1,27 +1,27 @@
 .input {
-    width: 100%;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid gray;
-    font-size: 18px;
-    padding-left: 20px;
-    margin: 0 0 10px 0;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  font-size: 18px;
+  padding-left: 20px;
+  margin: 0 0 10px 0;
 }
 
 .inputInvalid {
-    border: 1px solid #b30000;
+  border: 1px solid #b30000;
 }
 
 .inputInvalid:focus-visible {
-    outline: #b30000 auto 1px;
+  outline: #b30000 auto 1px;
 }
 
 .elementItemInput {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 540px) {
-    .input {
-        font-size: 17px;
-    }
+  .input {
+    font-size: 17px;
+  }
 }

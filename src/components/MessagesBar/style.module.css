@@ -1,30 +1,30 @@
 .messagesBarContainer {
-    overflow-y: scroll;
-    padding: 20px 10px;
-    height: calc(100vh - 90px);
-    position: sticky;
-    top: 50px;
+  overflow-y: scroll;
+  padding: 20px 10px;
+  height: calc(100vh - 90px);
+  position: sticky;
+  top: 50px;
 }
 
 .messagesBar {
-    min-width: 150px;
+  min-width: 150px;
 }
 
 .followButton {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    border: none;
-    background-color: #1872f2;
-    color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #1872f2;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .followButton:focus {
-    outline: none;
+  outline: none;
 }

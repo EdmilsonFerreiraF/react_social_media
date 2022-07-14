@@ -2,24 +2,23 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import { useParams } from "react-router-dom"
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
-import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app"
+import "@testing-library/jest-dom";
+import dotenv from "dotenv";
+import { initializeApp } from "firebase/app";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
+import { useParams } from "react-router-dom";
 
 import {
   render,
   screen,
-  waitForElementToBeRemoved
-}
-  from "components/CustomRender"
-import Profile from "."
+  waitForElementToBeRemoved,
+} from "components/CustomRender";
+import Profile from ".";
 
-dotenv.config()
+dotenv.config();
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -28,122 +27,104 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-}
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+};
 
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
-describe('Profile', () => {
-  test('Should show MainAppBar when render', async () => {
-    useParams()
+describe("Profile", () => {
+  test("Should show MainAppBar when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByTestId(/mainappbar/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/mainappbar/i)).toBeInTheDocument();
+  });
 
-  test('Should show Sidebar when render', async () => {
-    useParams()
+  test("Should show Sidebar when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByTestId(/sidebar/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/sidebar/i)).toBeInTheDocument();
+  });
 
-  test('Should show Feed when render', async () => {
-    useParams()
+  test("Should show Feed when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByTestId(/user profile username/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/user profile username/i)).toBeInTheDocument();
+  });
 
-  test('Should show CreatePost when render', async () => {
-    useParams()
+  test("Should show CreatePost when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByTestId(/createPost/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/createPost/i)).toBeInTheDocument();
+  });
 
-  test('Should show Post when render', async () => {
-    useParams()
+  test("Should show Post when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    await waitForElementToBeRemoved(() => screen.queryByText(/No posts created yet/i))
-    expect(screen.getAllByTestId(/post/i)).toHaveLength(16)
-  })
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText(/No posts created yet/i)
+    );
+    expect(screen.getAllByTestId(/post/i)).toHaveLength(16);
+  });
 
-  test('Should show Profile MessagesBar when render', async () => {
-    useParams()
+  test("Should show Profile MessagesBar when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByTestId(/profileMessagesBar/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/profileMessagesBar/i)).toBeInTheDocument();
+  });
 
-  test('Should show user Cover Image when render', async () => {
-    useParams()
+  test("Should show user Cover Image when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByAltText(/User cover/i)).toBeInTheDocument()
-  })
+    expect(screen.getByAltText(/User cover/i)).toBeInTheDocument();
+  });
 
-  test('Should show user profile image when render', async () => {
-    useParams()
+  test("Should show user profile image when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByAltText('User profile')).toBeInTheDocument()
-  })
+    expect(screen.getByAltText("User profile")).toBeInTheDocument();
+  });
 
-  test('Should show user profile username when render', async () => {
-    useParams()
+  test("Should show user profile username when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByTestId(/user profile username/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/user profile username/i)).toBeInTheDocument();
+  });
 
-  test('Should show user profile description when render', async () => {
-    useParams()
+  test("Should show user profile description when render", async () => {
+    useParams();
 
-    render(
-      <Profile />
-    )
+    render(<Profile />);
 
-    expect(screen.getByTestId(/user profile description/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/user profile description/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
-    const { container } = render(
-      <Profile />
-    )
+  test("Should be an acessible component", async () => {
+    const { container } = render(<Profile />);
 
-    await waitForElementToBeRemoved(() => screen.queryByText(/No posts created yet/i))
-    expect(screen.getAllByTestId("post")).toHaveLength(2)
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText(/No posts created yet/i)
+    );
+    expect(screen.getAllByTestId("post")).toHaveLength(2);
 
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-})
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});

@@ -2,21 +2,18 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import '@testing-library/jest-dom'
-import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app"
-import { axe, toHaveNoViolations } from 'jest-axe'
+import "@testing-library/jest-dom";
+import dotenv from "dotenv";
+import { initializeApp } from "firebase/app";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  render,
-  screen
-} from "components/CustomRender"
-import Sidebar from '.'
+import { render, screen } from "components/CustomRender";
+import Sidebar from ".";
 
-dotenv.config()
+dotenv.config();
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -25,51 +22,41 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-}
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+};
 
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
-describe('Sidebar', () => {
-  test('Should show NavList when render', async () => {
-    render(
-      <Sidebar />
-    )
+describe("Sidebar", () => {
+  test("Should show NavList when render", async () => {
+    render(<Sidebar />);
 
-    expect(screen.getByTestId(/navList/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/navList/i)).toBeInTheDocument();
+  });
 
-  test('Should show Show More when render', async () => {
-    render(
-      <Sidebar />
-    )
+  test("Should show Show More when render", async () => {
+    render(<Sidebar />);
 
-    expect(screen.getByText(/Show more/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/Show more/i)).toBeInTheDocument();
+  });
 
-  test('Should show Show More divison when render', async () => {
-    render(
-      <Sidebar />
-    )
+  test("Should show Show More divison when render", async () => {
+    render(<Sidebar />);
 
-    expect(screen.getByTestId(/showMoreDivision/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/showMoreDivision/i)).toBeInTheDocument();
+  });
 
-  test('Should show FriendList when render', async () => {
-    render(
-      <Sidebar />
-    )
+  test("Should show FriendList when render", async () => {
+    render(<Sidebar />);
 
-    expect(screen.getByTestId(/friendList/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/friendList/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
-    const { container } = render(
-      <Sidebar />
-    )
+  test("Should be an acessible component", async () => {
+    const { container } = render(<Sidebar />);
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

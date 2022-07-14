@@ -2,34 +2,29 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import "@testing-library/jest-dom";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  render,
-  screen,
-} from "components/CustomRender"
-import NavigationItem from '.'
+import { render, screen } from "components/CustomRender";
+import NavigationItem from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('NavigationItem', () => {
-  test('Should show title text', async () => {
-    render(
-      <NavigationItem dataTestId="homepageLink" title="Homepage" />
-    )
+describe("NavigationItem", () => {
+  test("Should show title text", async () => {
+    render(<NavigationItem dataTestId="homepageLink" title="Homepage" />);
 
-    expect(screen.getByTestId(/homepageLink/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/homepageLink/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
+  test("Should be an acessible component", async () => {
     const { container } = render(
       <NavigationItem dataTestId="homepageLink" title="Homepage" />
-    )
+    );
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

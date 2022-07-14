@@ -2,86 +2,67 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import "@testing-library/jest-dom";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  render,
-  screen
-} from "components/CustomRender"
-import MobileNavigation from '.'
+import { render, screen } from "components/CustomRender";
+import MobileNavigation from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('MobileNavigation', () => {
-  test('Should show navigation mobile menu', async () => {
-    const handleProfileMenuOpen = jest.fn()
+describe("MobileNavigation", () => {
+  test("Should show navigation mobile menu", async () => {
+    const handleProfileMenuOpen = jest.fn();
 
-    render(
-      <MobileNavigation
-        handleProfileMenuOpen={handleProfileMenuOpen} />
-    )
+    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
 
-    expect(screen.getByTestId(/navigation mobile menu/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/navigation mobile menu/i)).toBeInTheDocument();
+  });
 
-  test('Should show navigationMenuItem', async () => {
-    const handleProfileMenuOpen = jest.fn()
+  test("Should show navigationMenuItem", async () => {
+    const handleProfileMenuOpen = jest.fn();
 
-    render(
-      <MobileNavigation
-        handleProfileMenuOpen={handleProfileMenuOpen} />
-    )
+    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
 
-    expect(screen.getAllByTestId(/navigationMenuItem/i)).toHaveLength(2)
-  })
+    expect(screen.getAllByTestId(/navigationMenuItem/i)).toHaveLength(2);
+  });
 
-  test('Should show navigationIconButton', async () => {
-    const handleProfileMenuOpen = jest.fn()
+  test("Should show navigationIconButton", async () => {
+    const handleProfileMenuOpen = jest.fn();
 
-    render(
-      <MobileNavigation
-        handleProfileMenuOpen={handleProfileMenuOpen} />
-    )
+    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
 
-    expect(screen.getAllByTestId(/navigationIconButton/i)).toHaveLength(2)
-  })
+    expect(screen.getAllByTestId(/navigationIconButton/i)).toHaveLength(2);
+  });
 
-  test('Should show mobileHomepageLink', async () => {
-    const handleProfileMenuOpen = jest.fn()
+  test("Should show mobileHomepageLink", async () => {
+    const handleProfileMenuOpen = jest.fn();
 
-    render(
-      <MobileNavigation
-        handleProfileMenuOpen={handleProfileMenuOpen} />
-    )
+    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
 
-    expect(screen.getAllByTestId(/mobileHomepageLink/i)).toHaveLength(2)
-  })
+    expect(screen.getAllByTestId(/mobileHomepageLink/i)).toHaveLength(2);
+  });
 
-  test('Should show mobileTimelineLink', async () => {
-    const handleProfileMenuOpen = jest.fn()
+  test("Should show mobileTimelineLink", async () => {
+    const handleProfileMenuOpen = jest.fn();
 
-    render(
-      <MobileNavigation
-        handleProfileMenuOpen={handleProfileMenuOpen} />
-    )
+    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
 
-    expect(screen.getAllByTestId(/mobileTimelineLink/i)).toHaveLength(2)
-  })
+    expect(screen.getAllByTestId(/mobileTimelineLink/i)).toHaveLength(2);
+  });
 
-  test('Should be an acessible component', async () => {
-    const handleProfileMenuOpen = jest.fn()
+  test("Should be an acessible component", async () => {
+    const handleProfileMenuOpen = jest.fn();
 
     const { container } = render(
       <div role="menu" id="primary-search-account-menu">
-        <MobileNavigation
-          handleProfileMenuOpen={handleProfileMenuOpen} />
+        <MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />
       </div>
-    )
+    );
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

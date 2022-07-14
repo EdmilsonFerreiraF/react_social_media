@@ -1,35 +1,34 @@
 .elementItem {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .elementItemTitle {
-    cursor: pointer;
-    display: flex;
+  cursor: pointer;
+  display: flex;
 }
 
 .elementItemIcon {
-    font-size: 18px;
-    align-items: center;
-    display: flex;
-    margin: 0 5px 0 10px;
+  font-size: 18px;
+  align-items: center;
+  display: flex;
+  margin: 0 5px 0 10px;
 }
 
 .elementItemText {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .elementItemInput {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 600px) {
-    .elementItem {
-        padding: 10px 0;
-        margin-right: 12px;
-
-    }
+  .elementItem {
+    padding: 10px 0;
+    margin-right: 12px;
+  }
 }

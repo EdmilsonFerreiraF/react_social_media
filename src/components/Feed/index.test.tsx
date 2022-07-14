@@ -2,25 +2,25 @@
  * @jest-environment jsdom
  */
 
-import React from "react"
-import axios from 'axios'
-import dotenv from 'dotenv'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import axios from "axios";
+import dotenv from "dotenv";
+import { axe, toHaveNoViolations } from "jest-axe";
+import React from "react";
 
+import "@testing-library/jest-dom";
 import {
   act,
   render,
   screen,
-  waitForElementToBeRemoved
-} from "components/CustomRender"
-import '@testing-library/jest-dom'
-import Feed from '.'
+  waitForElementToBeRemoved,
+} from "components/CustomRender";
+import Feed from ".";
 
-const firebase = require('firebase/app')
+const firebase = require("firebase/app");
 
-dotenv.config()
+dotenv.config();
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -29,73 +29,71 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-}
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+};
 
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig);
 
-describe('Feed', () => {
-  test('Should other user profile when user is not current user', async () => {
-    const otherUserId = "6198494ec6ece6cbe6cdae4e"
+describe("Feed", () => {
+  test("Should other user profile when user is not current user", async () => {
+    const otherUserId = "6198494ec6ece6cbe6cdae4e";
 
     act(() => {
-      render(
-        <Feed otherUserId={otherUserId} />
-      )
-    })
+      render(<Feed otherUserId={otherUserId} />);
+    });
 
-    await waitForElementToBeRemoved(() => screen.queryByText(/No posts created yet/i), { timeout: 5000 })
-    expect(screen.getAllByTestId("post")).toHaveLength(2)
+    await waitForElementToBeRemoved(
+      () => screen.queryByText(/No posts created yet/i),
+      { timeout: 5000 }
+    );
+    expect(screen.getAllByTestId("post")).toHaveLength(2);
 
-    expect(axios.get).toHaveBeenCalledTimes(3)
-  })
+    expect(axios.get).toHaveBeenCalledTimes(3);
+  });
 
-  test('Should show user posts when user is current user', async () => {
+  test("Should show user posts when user is current user", async () => {
     act(() => {
-      render(
-        <Feed />
-      )
-    })
+      render(<Feed />);
+    });
 
-    expect(screen.getByTestId(/createPost/i)).toBeInTheDocument()
+    expect(screen.getByTestId(/createPost/i)).toBeInTheDocument();
 
-    await waitForElementToBeRemoved(() => screen.queryByText(/No posts created yet/i), { timeout: 5000 })
-    expect(screen.getAllByTestId("post")).toHaveLength(2)
+    await waitForElementToBeRemoved(
+      () => screen.queryByText(/No posts created yet/i),
+      { timeout: 5000 }
+    );
+    expect(screen.getAllByTestId("post")).toHaveLength(2);
 
-    expect(axios.get).toHaveBeenCalledTimes(3)
-  })
+    expect(axios.get).toHaveBeenCalledTimes(3);
+  });
 
-  test('Should show createPost when user is current user', async () => {
+  test("Should show createPost when user is current user", async () => {
     act(() => {
-      render(
-        <Feed />
-      )
-    })
+      render(<Feed />);
+    });
 
-    await waitForElementToBeRemoved(() => screen.queryByText(/No posts created yet/i), { timeout: 5000 })
-    expect(screen.getAllByTestId("post")).toHaveLength(2)
+    await waitForElementToBeRemoved(
+      () => screen.queryByText(/No posts created yet/i),
+      { timeout: 5000 }
+    );
+    expect(screen.getAllByTestId("post")).toHaveLength(2);
 
-    expect(axios.get).toHaveBeenCalledTimes(3)
-  })
+    expect(axios.get).toHaveBeenCalledTimes(3);
+  });
 
-  test('Should show No posts created yet when there aren\'t any posts', async () => {
+  test("Should show No posts created yet when there aren't any posts", async () => {
     act(() => {
-      render(
-        <Feed />
-      )
-    })
+      render(<Feed />);
+    });
 
-    expect(screen.getByText(/No posts created yet/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/No posts created yet/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
-    const { container } =
-      render(
-        <Feed />
-      )
+  test("Should be an acessible component", async () => {
+    const { container } = render(<Feed />);
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

@@ -1,24 +1,19 @@
-import React from "react"
+import React from "react";
 
-import styles from "./style.module.css"
+import styles from "./style.module.css";
 
 type Props = {
-    children: JSX.Element
-    badge: number
-}
+  children: JSX.Element;
+  badge: number;
+};
 
 const SocialItem = (props: Props) => {
-    return (
-        <div data-testid="socialItem"
-            className={styles.socialItem}
-            role="menuitem"
-        >
-            {props.children}
-            <span className={styles.socialItemBadge}>
-                {props.badge}
-            </span>
-        </div>
-    )
-}
+  return (
+    <div data-testid="socialItem" className={styles.socialItem} role="menuitem">
+      {props.children}
+      <span className={styles.socialItemBadge}>{props.badge}</span>
+    </div>
+  );
+};
 
-export default SocialItem
+export default SocialItem;

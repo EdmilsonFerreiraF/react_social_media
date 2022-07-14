@@ -2,40 +2,32 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe'
-import '@testing-library/jest-dom'
+import "@testing-library/jest-dom";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  act,
-  render,
-  screen,
-} from "components/CustomRender"
+import { act, render, screen } from "components/CustomRender";
 
-import Profile from '.'
+import Profile from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('Profile', () => {
-  test('Should show user profile image', async () => {
+describe("Profile", () => {
+  test("Should show user profile image", async () => {
     await act(async () => {
-      render(
-        <Profile />
-      )
-    })
+      render(<Profile />);
+    });
 
-    expect(screen.getByAltText(/My profile/i)).toBeInTheDocument()
-  })
+    expect(screen.getByAltText(/My profile/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
+  test("Should be an acessible component", async () => {
     const { container }: any = await act(async () => {
-      render(
-        <Profile />
-      )
-    })
+      render(<Profile />);
+    });
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

@@ -1,22 +1,18 @@
 /**
  * @jest-environment jsdom
  */
-import * as React from "react"
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
-import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app"
+import "@testing-library/jest-dom";
+import dotenv from "dotenv";
+import { initializeApp } from "firebase/app";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  act,
-  render,
-  screen,
-} from "components/CustomRender"
-import TopBar from "."
+import { act, render, screen } from "components/CustomRender";
+import TopBar from ".";
 
-dotenv.config()
+dotenv.config();
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -25,127 +21,133 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-}
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+};
 
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('TopBar', () => {
-  test('Should show Post author profile', async () => {
-    const profilePicture = "profile_picture"
-    const noProfilePicture = "no_profile_picture"
-    const username = "username"
-    const createdAt = new Date()
+describe("TopBar", () => {
+  test("Should show Post author profile", async () => {
+    const profilePicture = "profile_picture";
+    const noProfilePicture = "no_profile_picture";
+    const username = "username";
+    const createdAt = new Date();
 
     await act(async () => {
       render(
-        <TopBar profilePicture={profilePicture}
+        <TopBar
+          profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
         />
-      )
-    })
+      );
+    });
 
-    expect(screen.getByAltText(/Post user profile/i)).toBeInTheDocument()
-  })
+    expect(screen.getByAltText(/Post user profile/i)).toBeInTheDocument();
+  });
 
-  test('Should show Post author username', async () => {
-    const profilePicture = "profile_picture"
-    const noProfilePicture = "no_profile_picture"
-    const username = "username"
-    const createdAt = new Date()
+  test("Should show Post author username", async () => {
+    const profilePicture = "profile_picture";
+    const noProfilePicture = "no_profile_picture";
+    const username = "username";
+    const createdAt = new Date();
 
     await act(async () => {
       render(
-        <TopBar profilePicture={profilePicture}
+        <TopBar
+          profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
         />
-      )
-    })
+      );
+    });
 
-    expect(screen.getByTestId("post username")).toBeInTheDocument()
-  })
+    expect(screen.getByTestId("post username")).toBeInTheDocument();
+  });
 
-  test('Should show Post date', async () => {
-    const profilePicture = "profile_picture"
-    const noProfilePicture = "no_profile_picture"
-    const username = "username"
-    const createdAt = new Date()
+  test("Should show Post date", async () => {
+    const profilePicture = "profile_picture";
+    const noProfilePicture = "no_profile_picture";
+    const username = "username";
+    const createdAt = new Date();
 
     await act(async () => {
       render(
-        <TopBar profilePicture={profilePicture}
+        <TopBar
+          profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
         />
-      )
-    })
+      );
+    });
 
-    expect(screen.getByTestId("post date")).toBeInTheDocument()
-  })
+    expect(screen.getByTestId("post date")).toBeInTheDocument();
+  });
 
-  test('Should show Post options', async () => {
-    const profilePicture = "profile_picture"
-    const noProfilePicture = "no_profile_picture"
-    const username = "username"
-    const createdAt = new Date()
+  test("Should show Post options", async () => {
+    const profilePicture = "profile_picture";
+    const noProfilePicture = "no_profile_picture";
+    const username = "username";
+    const createdAt = new Date();
 
     await act(async () => {
       render(
-        <TopBar profilePicture={profilePicture}
+        <TopBar
+          profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
         />
-      )
-    })
+      );
+    });
 
-    expect(screen.getByTestId("post options")).toBeInTheDocument()
-  })
+    expect(screen.getByTestId("post options")).toBeInTheDocument();
+  });
 
-  test('Should show Post content text', async () => {
-    const profilePicture = "profile_picture"
-    const noProfilePicture = "no_profile_picture"
-    const username = "username"
-    const createdAt = new Date()
+  test("Should show Post content text", async () => {
+    const profilePicture = "profile_picture";
+    const noProfilePicture = "no_profile_picture";
+    const username = "username";
+    const createdAt = new Date();
 
     await act(async () => {
       render(
-        <TopBar profilePicture={profilePicture}
+        <TopBar
+          profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
         />
-      )
-    })
+      );
+    });
 
-    expect(screen.getByTestId(/post content text/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/post content text/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
-    const profilePicture = "profile_picture"
-    const noProfilePicture = "no_profile_picture"
-    const username = "username"
-    const createdAt = new Date()
+  test("Should be an acessible component", async () => {
+    const profilePicture = "profile_picture";
+    const noProfilePicture = "no_profile_picture";
+    const username = "username";
+    const createdAt = new Date();
 
     const { container }: any = act(() => {
       render(
-        <TopBar profilePicture={profilePicture}
+        <TopBar
+          profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
         />
-      )
-    })
+      );
+    });
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

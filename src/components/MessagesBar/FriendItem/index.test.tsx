@@ -2,23 +2,19 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe'
-import '@testing-library/jest-dom'
-import { initializeApp } from "firebase/app"
-import dotenv from 'dotenv'
+import "@testing-library/jest-dom";
+import dotenv from "dotenv";
+import { initializeApp } from "firebase/app";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  act,
-  render,
-  screen,
-} from "components/CustomRender"
-import FriendItem from '.'
-import { User } from "context/AuthContext"
+import { act, render, screen } from "components/CustomRender";
+import { User } from "context/AuthContext";
+import FriendItem from ".";
 
-dotenv.config()
+dotenv.config();
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -27,103 +23,95 @@ const firebaseConfig = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-}
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+};
 
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
-describe('FriendItem', () => {
-  test('Should show friend profile image', async () => {
+describe("FriendItem", () => {
+  test("Should show friend profile image", async () => {
     const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
-      isAdmin: false
-    }
+      isAdmin: false,
+    };
 
     await act(async () => {
       render(
         <ul>
-          <FriendItem
-            key={friend?.id}
-            friend={friend} />
+          <FriendItem key={friend?.id} friend={friend} />
         </ul>
-      )
-    })
+      );
+    });
 
-    expect(screen.getByAltText(/Friend profile/i)).toBeInTheDocument()
-  })
+    expect(screen.getByAltText(/Friend profile/i)).toBeInTheDocument();
+  });
 
-  test('Should show friend name', async () => {
+  test("Should show friend name", async () => {
     const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
-      isAdmin: false
-    }
+      isAdmin: false,
+    };
 
     await act(async () => {
       render(
         <ul>
-          <FriendItem
-            key={friend?.id}
-            friend={friend} />
+          <FriendItem key={friend?.id} friend={friend} />
         </ul>
-      )
-    })
+      );
+    });
 
-    expect(screen.getByTestId(/friend name/i)).toBeInTheDocument()
-  })
+    expect(screen.getByTestId(/friend name/i)).toBeInTheDocument();
+  });
 
-  test('Should show username', async () => {
+  test("Should show username", async () => {
     const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
-      isAdmin: false
-    }
+      isAdmin: false,
+    };
 
     await act(async () => {
       render(
         <ul>
-          <FriendItem
-            key={friend?.id}
-            friend={friend} />
+          <FriendItem key={friend?.id} friend={friend} />
         </ul>
-      )
-    })
+      );
+    });
 
-    expect(screen.getByText(/user_username32/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/user_username32/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
+  test("Should be an acessible component", async () => {
     const friend: User = {
       id: "1",
       profilePicture: "bf9c99f-a4cf-47eb-a856-7e79208d56b1.webp",
       username: "user_username32",
       email: "user_email@email.com",
       password: "user_password",
-      isAdmin: false
-    }
+      isAdmin: false,
+    };
 
     const { container }: any = await act(async () => {
       render(
         <ul>
-          <FriendItem
-            key={friend?.id}
-            friend={friend} />
+          <FriendItem key={friend?.id} friend={friend} />
         </ul>
-      )
-    })
+      );
+    });
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

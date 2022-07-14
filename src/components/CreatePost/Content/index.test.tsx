@@ -2,49 +2,41 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe'
-import '@testing-library/jest-dom'
+import "@testing-library/jest-dom";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  render,
-  screen,
-} from "components/CustomRender"
-import Content from '.'
+import { render, screen } from "components/CustomRender";
+import Content from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('Content', () => {
+describe("Content", () => {
+  test("Should have user profile image", async () => {
+    const inputHandler = jest.fn();
 
-  test('Should have user profile image', async () => {
-    const inputHandler = jest.fn()
+    render(<Content inputHandler={inputHandler} />);
 
-    render(
-      <Content inputHandler={inputHandler} />
-    )
+    expect(screen.getByAltText(/CreatePost user profile/i)).toBeInTheDocument();
+  });
 
-    expect(screen.getByAltText(/CreatePost user profile/i)).toBeInTheDocument()
-  })
+  test("Should have description field", async () => {
+    const inputHandler = jest.fn();
 
-  test('Should have description field', async () => {
-    const inputHandler = jest.fn()
+    render(<Content inputHandler={inputHandler} />);
 
-    render(
-      <Content inputHandler={inputHandler} />
-    )
+    expect(
+      screen.getByPlaceholderText(/What's in your mind/i)
+    ).toBeInTheDocument();
+  });
 
-    expect(screen.getByPlaceholderText(/What's in your mind/i)).toBeInTheDocument()
-  })
+  test("Should be an acessible component", async () => {
+    const inputHandler = jest.fn();
 
-  test('Should be an acessible component', async () => {
-    const inputHandler = jest.fn()
+    const { container } = render(<Content inputHandler={inputHandler} />);
 
-    const { container } = render(
-      <Content inputHandler={inputHandler} />
-    )
+    const results = await axe(container);
 
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

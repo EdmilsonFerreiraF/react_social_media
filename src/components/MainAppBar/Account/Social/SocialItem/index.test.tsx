@@ -2,14 +2,14 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import '@testing-library/jest-dom'
 import { Person } from '@mui/icons-material'
+import '@testing-library/jest-dom'
 import { axe, toHaveNoViolations } from 'jest-axe'
+import * as React from "react"
 
 import {
   render,
-  screen,
+  screen
 } from "components/CustomRender"
 import SocialItem from '.'
 

@@ -1,23 +1,23 @@
-import React from 'react'
+import React from "react";
 
-import Logo from './Logo'
-import SearchBar from "./SearchBar"
-import Account from "./Account"
+import Account from "./Account";
+import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 
-import styles from "./style.module.css"
+import styles from "./style.module.css";
 
 const MainAppBar = () => {
-    return (
-        <nav
-            data-testid="mainappbar"
-            aria-label="navigation"
-            className={styles.mainAppBar}
-        >
-            <Logo />
-            <SearchBar />
-            <Account />
-        </nav>
-    )
-}
+  return (
+    <nav
+      data-testid="mainappbar"
+      aria-label="navigation"
+      className={styles.mainAppBar}
+    >
+      <Logo />
+      <SearchBar />
+      <Account />
+    </nav>
+  );
+};
 
-export default MainAppBar
+export default MainAppBar;

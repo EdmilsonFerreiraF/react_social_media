@@ -1,34 +1,27 @@
 /**
  * @jest-environment jsdom
  */
-import * as React from "react"
-import {
-  render,
-  screen,
-} from "components/CustomRender"
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import "@testing-library/jest-dom";
+import { render, screen } from "components/CustomRender";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import Social from '.'
+import Social from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('FormErrors', () => {
-  test('Should show all Social Items', async () => {
-    render(
-      <Social />
-    )
+describe("FormErrors", () => {
+  test("Should show all Social Items", async () => {
+    render(<Social />);
 
-    expect(screen.getAllByTestId(/socialItem/i)).toHaveLength(3)
-  })
+    expect(screen.getAllByTestId(/socialItem/i)).toHaveLength(3);
+  });
 
-  test('Should be an acessible component', async () => {
-    const { container } = render(
-        <Social />
-    )
+  test("Should be an acessible component", async () => {
+    const { container } = render(<Social />);
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

@@ -1,7 +1,7 @@
 .navigation {
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-around;
-    width: 160px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  width: 160px;
 }

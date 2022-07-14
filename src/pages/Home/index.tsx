@@ -1,20 +1,20 @@
+import dotenv from "dotenv";
+import { initializeApp } from "firebase/app";
 import React, { lazy, Suspense, useContext } from "react";
-import { useErrorHandler } from 'react-error-boundary'
-import { initializeApp } from "firebase/app"
-import dotenv from 'dotenv'
+import { useErrorHandler } from "react-error-boundary";
 
-import MainAppBar from 'components/MainAppBar'
-import Sidebar from 'components/Sidebar'
-import MessagesBar from 'components/MessagesBar'
+import { useGetUser } from "apiCalls";
+import MainAppBar from "components/MainAppBar";
+import MessagesBar from "components/MessagesBar";
 import Progress from "components/Progress";
-import { useProtectPage } from 'hooks/useProtectPage'
-import { AuthContext, AuthContextInterface } from 'context/AuthContext'
-import styles from "./style.module.css"
-import { useGetUser } from 'apiCalls'
+import Sidebar from "components/Sidebar";
+import { AuthContext, AuthContextInterface } from "context/AuthContext";
+import { useProtectPage } from "hooks/useProtectPage";
+import styles from "./style.module.css";
 
-const Feed = lazy(() => import('components/Feed'))
+const Feed = lazy(() => import("components/Feed"));
 
-dotenv.config()
+dotenv.config();
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -24,23 +24,23 @@ const firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-}
+};
 
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
 const Home = () => {
-  useProtectPage()
-  const handleError = useErrorHandler()
+  useProtectPage();
+  const handleError = useErrorHandler();
 
-  const { user, dispatch } = useContext(AuthContext) as AuthContextInterface
-  const token = localStorage.getItem('token') as string
-  useGetUser(user, token, dispatch, handleError)
+  const { user, dispatch } = useContext(AuthContext) as AuthContextInterface;
+  const token = localStorage.getItem("token") as string;
+  useGetUser(user, token, dispatch, handleError);
 
   const LazyFeed = () => (
     <Suspense fallback={<Progress />}>
       <Feed />
     </Suspense>
-  )
+  );
 
   return (
     <>
@@ -51,7 +51,7 @@ const Home = () => {
         <MessagesBar />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

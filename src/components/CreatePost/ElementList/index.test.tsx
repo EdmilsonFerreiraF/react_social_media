@@ -2,70 +2,55 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe'
-import '@testing-library/jest-dom'
+import "@testing-library/jest-dom";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  render,
-  screen
-} from "components/CustomRender"
-import ElementList from "."
+import { render, screen } from "components/CustomRender";
+import ElementList from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('ElementList', () => {
-  test('Should have Photo or Video ElementItem', async () => {
-    render(
-      <ElementList />
-    )
+describe("ElementList", () => {
+  test("Should have Photo or Video ElementItem", async () => {
+    render(<ElementList />);
 
-    expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/PermMediaIcon/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/PermMediaIcon/i)).toBeInTheDocument();
+  });
 
-  test('Should have Tag ElementItem', async () => {
-    render(
-      <ElementList />
-    )
+  test("Should have Tag ElementItem", async () => {
+    render(<ElementList />);
 
-    expect(screen.getByText(/Tag/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/LabelIcon/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/Tag/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/LabelIcon/i)).toBeInTheDocument();
+  });
 
-  test('Should have Location ElementItem', async () => {
-    render(
-      <ElementList />
-    )
+  test("Should have Location ElementItem", async () => {
+    render(<ElementList />);
 
-    expect(screen.getByText(/Location/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/RoomIcon/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/Location/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/RoomIcon/i)).toBeInTheDocument();
+  });
 
-  test('Should have Feelings ElementItem', async () => {
-    render(
-      <ElementList />
-    )
+  test("Should have Feelings ElementItem", async () => {
+    render(<ElementList />);
 
-    expect(screen.getByText(/Feelings/i)).toBeInTheDocument()
-    expect(screen.getByTestId(/EmojiEmotionsIcon/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/Feelings/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/EmojiEmotionsIcon/i)).toBeInTheDocument();
+  });
 
-  test('Should have ElementItem input', async () => {
-    render(
-      <ElementList />
-    )
+  test("Should have ElementItem input", async () => {
+    render(<ElementList />);
 
-    expect(screen.getAllByTestId(/elementItem input/i)).toHaveLength(4)
-  })
+    expect(screen.getAllByTestId(/elementItem input/i)).toHaveLength(4);
+  });
 
-  test('Should be an acessible component', async () => {
-    const { container } = render(
-      <ElementList />
-    )
+  test("Should be an acessible component", async () => {
+    const { container } = render(<ElementList />);
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});

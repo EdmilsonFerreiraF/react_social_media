@@ -1,12 +1,12 @@
-import { useEffect } from "react"
-import { NavigateFunction, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { getStorage, ref, uploadBytes } from "firebase/storage"
+import { useEffect } from "react"
+import { NavigateFunction, useNavigate } from "react-router-dom"
 
 import { baseUrl } from 'constants/baseUrl'
-import { goToIndex, goToLogin } from 'routes/coordinator'
-import { ACTIONTYPE } from "context/AuthReducer"
 import { User } from "context/AuthContext"
+import { ACTIONTYPE } from "context/AuthReducer"
+import { goToIndex, goToLogin } from 'routes/coordinator'
 
 type UserData = {
     username: string

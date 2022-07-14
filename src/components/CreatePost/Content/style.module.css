@@ -1,40 +1,40 @@
 .profileImg {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-    cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .content {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .activeInput {
-    margin: 20px 0 0;
+  margin: 20px 0 0;
 }
 
 .descriptionInput {
-    border: none;
-    width: 80%;
-    font-size: 15px;
-    font-weight: 300;
+  border: none;
+  width: 80%;
+  font-size: 15px;
+  font-weight: 300;
 }
 
 .descriptionInput:focus {
-    outline: none;
+  outline: none;
 }
 
 @media (max-width: 600px) {
-    .profileImg {
-        margin-right: 9px;
-        width: 50px;
-        height: 45px;
-    }
+  .profileImg {
+    margin-right: 9px;
+    width: 50px;
+    height: 45px;
+  }
 
-    .descriptionInput {
-        font-size: 13px;
-    }
+  .descriptionInput {
+    font-size: 13px;
+  }
 }

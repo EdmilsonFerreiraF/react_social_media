@@ -5,9 +5,9 @@
 import * as React from "react"
 
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
 import dotenv from 'dotenv'
 import { initializeApp } from "firebase/app"
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 import {
   act,

@@ -1,5 +1,5 @@
 .homeContainer {
-    display: grid;
-    grid: auto/1fr 65% 1fr;
-    width: 100%;
+  display: grid;
+  grid: auto/1fr 65% 1fr;
+  width: 100%;
 }

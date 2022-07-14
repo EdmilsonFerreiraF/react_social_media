@@ -2,19 +2,19 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe'
-import { initializeApp } from "firebase/app"
-import dotenv from 'dotenv'
 import '@testing-library/jest-dom'
+import dotenv from 'dotenv'
+import { initializeApp } from "firebase/app"
+import { axe, toHaveNoViolations } from 'jest-axe'
+import * as React from "react"
 
 import {
   act,
   render,
-  screen,
+  screen
 } from "components/CustomRender"
-import FollowingItem from '.'
 import { User } from "context/AuthContext"
+import FollowingItem from '.'
 
 dotenv.config()
 

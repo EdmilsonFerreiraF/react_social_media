@@ -1,28 +1,30 @@
-import { useNavigate } from "react-router"
-import React, { useContext } from "react"
+import React, { useContext } from "react";
+import { useNavigate } from "react-router";
 
-import { AuthContext, AuthContextInterface } from "context/AuthContext"
-import { useRequestImage } from "hooks/useRequestImage"
+import { AuthContext, AuthContextInterface } from "context/AuthContext";
+import { useRequestImage } from "hooks/useRequestImage";
 
-import styles from "./style.module.css"
+import styles from "./style.module.css";
 
 const Profile = () => {
-    const { user } = useContext(AuthContext) as AuthContextInterface
-    
-    let navigate = useNavigate()
+  const { user } = useContext(AuthContext) as AuthContextInterface;
 
-    const goToUserProfile = () => {
-        navigate(`/profile/${user?.username}`)
-    }
+  let navigate = useNavigate();
 
-    const profilePicture = useRequestImage("profile", user?.profilePicture)
+  const goToUserProfile = () => {
+    navigate(`/profile/${user?.username}`);
+  };
 
-    return (
-        <img className={styles.profileImg}
-            src={profilePicture}
-            alt="My profile"
-            onClick={goToUserProfile}/>
-    )
-}
+  const profilePicture = useRequestImage("profile", user?.profilePicture);
 
-export default Profile
+  return (
+    <img
+      className={styles.profileImg}
+      src={profilePicture}
+      alt="My profile"
+      onClick={goToUserProfile}
+    />
+  );
+};
+
+export default Profile;

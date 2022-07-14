@@ -2,36 +2,32 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
-import { axe, toHaveNoViolations } from 'jest-axe'
-import userEvent from "@testing-library/user-event"
-import '@testing-library/jest-dom'
+import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
+import { axe, toHaveNoViolations } from "jest-axe";
+import * as React from "react";
 
-import {
-  render,
-  screen,
-  waitFor
-} from "components/CustomRender"
-import Input from '.'
-import { useForm } from "hooks/useForm"
+import { render, screen, waitFor } from "components/CustomRender";
+import { useForm } from "hooks/useForm";
+import Input from ".";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-describe('Input', () => {
-  test('Should change email value when type', async () => {
+describe("Input", () => {
+  test("Should change email value when type", async () => {
     const Container = () => {
       const { form, onChange } = useForm({
-        email: ''
-      })
+        email: "",
+      });
 
       const handleInputChange = (e: React.FormEvent) => {
-        const target = e.target as HTMLInputElement
+        const target = e.target as HTMLInputElement;
 
-        const name: string = target.name
-        const value: string = target.value
+        const name: string = target.name;
+        const value: string = target.value;
 
-        onChange(value, name)
-      }
+        onChange(value, name);
+      };
 
       return (
         <Input
@@ -44,31 +40,29 @@ describe('Input', () => {
           invalid={false}
           handleInputChange={handleInputChange}
         />
-      )
-    }
+      );
+    };
 
-    render(
-      <Container />
-    )
+    render(<Container />);
 
-    userEvent.type(screen.getByPlaceholderText(/Email/i), 'user@email.com')
-    expect(screen.getByPlaceholderText(/Email/i)).toHaveValue('user@email.com')
-  })
+    userEvent.type(screen.getByPlaceholderText(/Email/i), "user@email.com");
+    expect(screen.getByPlaceholderText(/Email/i)).toHaveValue("user@email.com");
+  });
 
-  test('Should change password value when type', async () => {
+  test("Should change password value when type", async () => {
     const Container = () => {
       const { form, onChange } = useForm({
-        password: ''
-      })
+        password: "",
+      });
 
       const handleInputChange = (e: React.FormEvent) => {
-        const target = e.target as HTMLInputElement
+        const target = e.target as HTMLInputElement;
 
-        const name: string = target.name
-        const value: string = target.value
+        const name: string = target.name;
+        const value: string = target.value;
 
-        onChange(value, name)
-      }
+        onChange(value, name);
+      };
 
       return (
         <Input
@@ -81,25 +75,27 @@ describe('Input', () => {
           invalid={false}
           handleInputChange={handleInputChange}
         />
+      );
+    };
+
+    render(<Container />);
+
+    userEvent.type(screen.getByPlaceholderText(/Password/i), "user_password");
+
+    await waitFor(() =>
+      expect(screen.getByPlaceholderText(/Password/i)).toHaveValue(
+        "user_password"
       )
-    }
+    );
+  });
 
-    render(
-      <Container />
-    )
-
-    userEvent.type(screen.getByPlaceholderText(/Password/i), 'user_password')
-
-    await waitFor(() => expect(screen.getByPlaceholderText(/Password/i)).toHaveValue('user_password'))
-  })
-
-  test('Should be an acessible component', async () => {
+  test("Should be an acessible component", async () => {
     const form = {
       name: "",
-      password: ""
-    }
+      password: "",
+    };
 
-    const handleInputChange = jest.fn()
+    const handleInputChange = jest.fn();
 
     const { container } = render(
       <Input
@@ -111,9 +107,10 @@ describe('Input', () => {
         value={form.password}
         handleInputChange={handleInputChange}
         invalid={false}
-      />)
+      />
+    );
 
-    const results = await axe(container)
-    expect(results).toHaveNoViolations()
-  })
-})
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});
