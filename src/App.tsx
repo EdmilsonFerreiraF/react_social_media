@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import React, { lazy, Suspense } from "react";
+import React, { lazy, ReactNode, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Progress from "components/Progress";
@@ -22,24 +22,24 @@ const SignupPage = lazy(() => import("pages/Signup"));
 const LoginPage = lazy(() => import("pages/Login"));
 const ProfilePage = lazy(() => import("pages/Profile"));
 
-type RouteList = [number, string, JSX.Element];
-
-const routeList: RouteList[] = [
-  [0, "*", <ErrorPage />],
-  [1, "/", <HomePage />],
-  [2, "/signup", <SignupPage />],
-  [3, "/login", <LoginPage />],
-  [4, "/profile/:username", <ProfilePage />],
+const routeList = [
+  [0, "*", { ErrorPage }],
+  [1, "/", { HomePage }],
+  [2, "/signup", { SignupPage }],
+  [3, "/login", { LoginPage }],
+  [4, "/profile/:username", { ProfilePage }],
 ];
 
 const App = () => {
   return (
     <Routes>
-      {routeList.map((route: RouteList) => (
+      {routeList.map((route) => (
         <Route
-          key={route[0]}
-          path={route[1]}
-          element={<Suspense fallback={<Progress />}>{route[2]}</Suspense>}
+          key={route[0] as number}
+          path={route[1] as string}
+          element={
+            <Suspense fallback={<Progress />}>{route[2] as ReactNode}</Suspense>
+          }
         />
       ))}
     </Routes>
