@@ -1,5 +1,4 @@
 import errorImg from "img/error.webp";
-import React from "react";
 import styles from "./style.module.css";
 
 type Props = {
