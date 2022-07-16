@@ -3,14 +3,10 @@
  */
 import "@testing-library/jest-dom";
 import { axe, toHaveNoViolations } from "jest-axe";
-import * as React from "react";
 
 import { render, screen } from "components/CustomRender";
-import dotenv from "dotenv";
 import { initializeApp } from "firebase/app";
 import Home from ".";
-
-dotenv.config();
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,

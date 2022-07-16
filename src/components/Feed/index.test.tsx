@@ -3,9 +3,7 @@
  */
 
 import axios from "axios";
-import dotenv from "dotenv";
 import { axe, toHaveNoViolations } from "jest-axe";
-import React from "react";
 
 import "@testing-library/jest-dom";
 import {
@@ -17,8 +15,6 @@ import {
 import Feed from ".";
 
 const firebase = require("firebase/app");
-
-dotenv.config();
 
 expect.extend(toHaveNoViolations);
 

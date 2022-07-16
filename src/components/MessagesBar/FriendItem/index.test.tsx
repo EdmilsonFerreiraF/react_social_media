@@ -3,16 +3,12 @@
  */
 
 import "@testing-library/jest-dom";
-import dotenv from "dotenv";
 import { initializeApp } from "firebase/app";
 import { axe, toHaveNoViolations } from "jest-axe";
-import * as React from "react";
 
 import { act, render, screen } from "components/CustomRender";
 import { User } from "context/AuthContext";
 import FriendItem from ".";
-
-dotenv.config();
 
 expect.extend(toHaveNoViolations);
 

@@ -3,15 +3,11 @@
  */
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import dotenv from "dotenv";
 import { initializeApp } from "firebase/app";
 import { axe, toHaveNoViolations } from "jest-axe";
-import * as React from "react";
 
 import { act, render, screen } from "components/CustomRender";
 import Content from ".";
-
-dotenv.config();
 
 expect.extend(toHaveNoViolations);
 

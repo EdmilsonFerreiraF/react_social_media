@@ -3,10 +3,8 @@
  */
 
 import "@testing-library/jest-dom";
-import dotenv from "dotenv";
 import { initializeApp } from "firebase/app";
 import { axe, toHaveNoViolations } from "jest-axe";
-import * as React from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -15,8 +13,6 @@ import {
   waitForElementToBeRemoved,
 } from "components/CustomRender";
 import Profile from ".";
-
-dotenv.config();
 
 expect.extend(toHaveNoViolations);
 

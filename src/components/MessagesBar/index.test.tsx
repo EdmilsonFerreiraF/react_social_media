@@ -3,16 +3,12 @@
  */
 import "@testing-library/jest-dom";
 import { axe, toHaveNoViolations } from "jest-axe";
-import * as React from "react";
 
 import { act, render, screen } from "components/CustomRender";
 import { User } from "context/AuthContext";
-import dotenv from "dotenv";
 import MessagesBar from ".";
 
 const firebase = require("firebase/app");
-
-dotenv.config();
 
 expect.extend(toHaveNoViolations);
 
