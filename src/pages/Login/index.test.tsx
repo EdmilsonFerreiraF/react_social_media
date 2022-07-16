@@ -3,7 +3,7 @@
  */
 
 import "@testing-library/jest-dom";
-import userEvent, { TargetElement } from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import { axe, toHaveNoViolations } from "jest-axe";
 import * as React from "react";
 
@@ -65,7 +65,7 @@ describe("Login", () => {
     );
     userEvent.type(screen.getByPlaceholderText(/password/i), "user_password");
 
-    userEvent.click(screen.queryByText(/login/i) as TargetElement);
+    userEvent.click(screen.queryByText(/login/i) as HTMLElement);
 
     expect(screen.getByTestId(/loginLogo/i)).toBeInTheDocument();
   });

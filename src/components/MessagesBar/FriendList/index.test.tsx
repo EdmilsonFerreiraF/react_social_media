@@ -2,38 +2,30 @@
  * @jest-environment jsdom
  */
 
-import * as React from "react"
+import "@testing-library/jest-dom";
+import { initializeApp } from "firebase/app";
+import { axe, toHaveNoViolations } from "jest-axe";
 
-import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
-import dotenv from 'dotenv'
-import { initializeApp } from "firebase/app"
+import { render, screen } from "components/CustomRender";
+import { User } from "context/AuthContext";
+import FriendList from ".";
 
-import {
-  render,
-  screen,
-} from "components/CustomRender"
-import FriendList from '.'
-import { User } from "context/AuthContext"
-
-dotenv.config()
-
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
-}
+  apiKey: import.meta.env.FIREBASE_API_KEY,
+  authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.FIREBASE_APP_ID,
+  measurementId: import.meta.env.FIREBASE_MEASUREMENT_ID,
+};
 
-initializeApp(firebaseConfig)
+initializeApp(firebaseConfig);
 
-describe('FriendList', () => {
-  test('Should show friends profile image', async () => {
+describe("FriendList", () => {
+  test("Should show friends profile image", async () => {
     const friends: User[] = [
       {
         id: "1",
@@ -41,7 +33,7 @@ describe('FriendList', () => {
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "2",
@@ -49,7 +41,7 @@ describe('FriendList', () => {
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "3",
@@ -57,18 +49,16 @@ describe('FriendList', () => {
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
-    ]
+    ];
 
-    render(
-      <FriendList friends={friends} />
-    )
+    render(<FriendList friends={friends} />);
 
-    expect(screen.getAllByAltText(/Friend profile/i)).toHaveLength(3)
-  })
+    expect(screen.getAllByAltText(/Friend profile/i)).toHaveLength(3);
+  });
 
-  test('Should show friends name', async () => {
+  test("Should show friends name", async () => {
     const friends: User[] = [
       {
         id: "1",
@@ -76,7 +66,7 @@ describe('FriendList', () => {
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "2",
@@ -84,7 +74,7 @@ describe('FriendList', () => {
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "3",
@@ -92,18 +82,16 @@ describe('FriendList', () => {
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
-    ]
+    ];
 
-    render(
-      <FriendList friends={friends} />
-    )
+    render(<FriendList friends={friends} />);
 
-    expect(screen.getAllByTestId(/friend name/i)).toHaveLength(3)
-  })
+    expect(screen.getAllByTestId(/friend name/i)).toHaveLength(3);
+  });
 
-  test('Should show friends username', async () => {
+  test("Should show friends username", async () => {
     const friends: User[] = [
       {
         id: "1",
@@ -111,7 +99,7 @@ describe('FriendList', () => {
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "2",
@@ -119,7 +107,7 @@ describe('FriendList', () => {
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "3",
@@ -127,18 +115,16 @@ describe('FriendList', () => {
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
-    ]
+    ];
 
-    render(
-      <FriendList friends={friends} />
-    )
+    render(<FriendList friends={friends} />);
 
-    expect(screen.getByText(/user_username32/i)).toBeInTheDocument()
-  })
+    expect(screen.getByText(/user_username32/i)).toBeInTheDocument();
+  });
 
-  test('Should be an acessible component', async () => {
+  test("Should be an acessible component", async () => {
     const friends: User[] = [
       {
         id: "1",
@@ -146,7 +132,7 @@ describe('FriendList', () => {
         username: "user_username32",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "2",
@@ -154,7 +140,7 @@ describe('FriendList', () => {
         username: "user_username",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
       {
         id: "3",
@@ -162,16 +148,14 @@ describe('FriendList', () => {
         username: "user_username2",
         email: "user_email@email.com",
         password: "user_password",
-        isAdmin: false
+        isAdmin: false,
       },
-    ]
+    ];
 
-    const { container } = render(
-      <FriendList friends={friends} />
-    )
+    const { container } = render(<FriendList friends={friends} />);
 
-    const results = await axe(container)
+    const results = await axe(container);
 
-    expect(results).toHaveNoViolations()
-  })
-})
+    expect(results).toHaveNoViolations();
+  });
+});
