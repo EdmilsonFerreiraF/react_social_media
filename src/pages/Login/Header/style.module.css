@@ -1,0 +1,43 @@
+.loginLeft {
+  margin-right: 20px;
+}
+
+.loginLeft
+{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.loginLogo {
+  font-size: 50px;
+  font-weight: 800;
+  color: #1775ee;
+  margin-bottom: 10px;
+}
+
+.loginDesc {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+@media (max-width: 1100px) {
+  .loginLeft {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .loginLeft {
+    margin: 0 0 20px;
+  }
+  .loginLogo {
+    margin: -18px 0 0;
+    font-size: 42px;
+  }
+  .loginDesc {
+    font-size: 20px;
+  }
+}

@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import React, { FormEvent, useContext } from "react";
+import { FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { loginCall } from "apiCalls";
@@ -9,6 +9,7 @@ import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
 import { useUnprotectPage } from "hooks/useUnprotectPage";
 import { goToSignup } from "routes/coordinator";
+import Header from "./Header";
 import styles from "./style.module.css";
 
 const Login = () => {
@@ -74,7 +75,7 @@ const Login = () => {
 
   const hasError = (entity: string) => form.formErrors[entity].length;
 
-  type InputControls = [
+  type inputFields = [
     number,
     string,
     string,
@@ -85,7 +86,7 @@ const Login = () => {
     (e: FormEvent) => void
   ];
 
-  const inputControls: InputControls[] = [
+  const inputFields: inputFields[] = [
     [
       0,
       hasError("email") ? "inputInvalid" : "",
@@ -111,17 +112,10 @@ const Login = () => {
   return (
     <div className={styles.login}>
       <div className={styles.loginWrapper}>
-        <div className={styles.loginLeft}>
-          <h3 data-testid="loginLogo" className={styles.loginLogo}>
-            Lamasocial
-          </h3>
-          <h2 className={styles.loginDesc}>
-            Connect with friends and the world around you on Lamasocial
-          </h2>
-        </div>
+        <Header />
         <div className={styles.loginRight}>
           <form className={styles.loginBox} onSubmit={handleSubmit}>
-            {inputControls.map((navItem: any) => (
+            {inputFields.map((navItem: any) => (
               <div className={styles.field} key={navItem[0]}>
                 <label className={styles.fieldLabel} htmlFor={navItem[3]}>
                   {navItem[2]}
