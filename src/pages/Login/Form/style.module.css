@@ -61,32 +61,6 @@
   outline: none;
 }
 
-.loginButton {
-  height: 55px;
-  border-radius: 10px;
-  border: none;
-  background-color: #1775ee;
-  color: white;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
-.loginButton:focus {
-  outline: none;
-}
-
-.loginButton:disabled {
-  cursor: not-allowed;
-}
-
-.loginForgot {
-  text-align: center;
-  color: #1775ee;
-  margin: 10px 0 20px;
-}
-
 .loginRegisterButton {
   width: 60%;
   align-self: center;
@@ -130,22 +104,13 @@
     font-size: 42px;
   }
 
-  .loginForgot {
-    font-size: 15px;
-  }
-
   .loginDesc {
     font-size: 20px;
   }
 
-  .loginButton,
   .loginRegisterButton {
     height: 50px;
     font-size: 17px;
     margin: 0;
-  }
-
-  .loginRegisterButton {
-    font-size: 16px;
   }
 }

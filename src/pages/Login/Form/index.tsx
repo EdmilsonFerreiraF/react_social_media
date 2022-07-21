@@ -1,4 +1,3 @@
-import { CircularProgress } from "@mui/material";
 import { FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,16 +5,14 @@ import { loginCall } from "apiCalls";
 import FormErrors from "components/FormErrors";
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
-import { goToSignup } from "routes/coordinator";
+import Buttons from "./Buttons";
 import Fields from "./Fields";
 import styles from "./style.module.css";
 
 const Form = () => {
   const navigate = useNavigate();
 
-  const { isFetching, dispatch } = useContext(
-    AuthContext
-  ) as AuthContextInterface;
+  const { dispatch } = useContext(AuthContext) as AuthContextInterface;
 
   const { form, onChange } = useForm({
     email: "",
@@ -39,10 +36,6 @@ const Form = () => {
     );
   };
 
-  const handleRegisterButton = () => {
-    goToSignup(navigate);
-  };
-
   return (
     <div className={styles.loginRight}>
       <form className={styles.loginBox} onSubmit={handleSubmit}>
@@ -51,20 +44,7 @@ const Form = () => {
         <div className="panel panel-default">
           <FormErrors formErrors={form.formErrors} />
         </div>
-        <button
-          className={styles.loginButton}
-          type="submit"
-          disabled={isFetching}
-        >
-          {isFetching ? <CircularProgress size="20" /> : "Login"}
-        </button>
-        <span className={styles.loginForgot}>Forgot password?</span>
-        <button
-          onClick={handleRegisterButton}
-          className={styles.loginRegisterButton}
-        >
-          {isFetching ? <CircularProgress size="20" /> : "Create a new account"}
-        </button>
+        <Buttons />
       </form>
     </div>
   );
