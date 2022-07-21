@@ -126,17 +126,26 @@
 }
 
 @media (max-width: 550px) {
+  .loginBox {
+    padding: 15px;
+  }
+
   .loginWrapper {
     width: 100%;
     padding: 20px;
   }
 
   .loginLeft {
-    margin-bottom: 25px;
+    margin: 0 0 20px;
   }
 
   .loginLogo {
-    font-size: 44px;
+    margin: -18px 0 0;
+    font-size: 42px;
+  }
+
+  .loginForgot {
+    font-size: 15px;
   }
 
   .loginDesc {
@@ -145,6 +154,11 @@
 
   .loginButton,
   .loginRegisterButton {
-    font-size: 18px;
+    font-size: 17px;
+    margin: 0;
+  }
+
+  .loginRegisterButton {
+    font-size: 16px;
   }
 }
