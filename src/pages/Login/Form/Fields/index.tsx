@@ -1,8 +1,9 @@
 import Input from "components/Input";
+import { hasError } from "helpers/hasError";
 import { FormEvent } from "react";
 import styles from "./style.module.css";
 
-type Form = {
+export type Form = {
   email: string;
   password: string;
   formErrors: {
@@ -44,9 +45,6 @@ const Fields = ({ form, onChange }: Props) => {
     onChange(formErrors, "formErrors");
   };
 
-  const hasError = (entity: keyof Form["formErrors"]) =>
-    form.formErrors[entity].length;
-
   type inputFields = [
     number,
     string,
@@ -61,22 +59,22 @@ const Fields = ({ form, onChange }: Props) => {
   const inputFields: inputFields[] = [
     [
       0,
-      hasError("email") ? "inputInvalid" : "",
+      hasError("email", form.formErrors) ? "inputInvalid" : "",
       "email",
       "email",
       "Email",
       form.email,
-      !!hasError("email"),
+      !!hasError("email", form.formErrors),
       handleInputChange,
     ],
     [
       1,
-      hasError("password") ? "inputInvalid" : "",
+      hasError("password", form.formErrors) ? "inputInvalid" : "",
       "password",
       "password",
       "Password",
       form.password,
-      !!hasError("password"),
+      !!hasError("password", form.formErrors),
       handleInputChange,
     ],
   ];

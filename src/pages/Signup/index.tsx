@@ -1,10 +1,11 @@
-import React, { FormEvent } from "react";
+import { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { signup } from "apiCalls";
 import FormErrors from "components/FormErrors";
 import Input from "components/Input";
 import { baseUrl } from "constants/baseUrl";
+import { hasError } from "helpers/hasError";
 import { useForm } from "hooks/useForm";
 import { useUnprotectPage } from "hooks/useUnprotectPage";
 import styles from "./style.module.css";
@@ -86,8 +87,6 @@ const Signup = () => {
     signup(url, data);
   };
 
-  const hasError = (entity: string) => form.formErrors[entity].length;
-
   type InputControls = [
     number,
     string,
@@ -102,42 +101,42 @@ const Signup = () => {
   const inputControls: InputControls[] = [
     [
       0,
-      hasError("username") ? "inputInvalid" : "",
+      hasError("username", form.formErrors) ? "inputInvalid" : "",
       "username",
       "text",
       "Username",
       form.username,
-      !!hasError("username"),
+      !!hasError("username", form.formErrors),
       handleInputChange,
     ],
     [
       1,
-      hasError("email") ? "inputInvalid" : "",
+      hasError("email", form.formErrors) ? "inputInvalid" : "",
       "email",
       "email",
       "Email",
       form.email,
-      !!hasError("email"),
+      !!hasError("email", form.formErrors),
       handleInputChange,
     ],
     [
       2,
-      hasError("password") ? "inputInvalid" : "",
+      hasError("password", form.formErrors) ? "inputInvalid" : "",
       "password",
       "password",
       "Password",
       form.password,
-      !!hasError("password"),
+      !!hasError("password", form.formErrors),
       handleInputChange,
     ],
     [
       3,
-      hasError("passwordAgain") ? "inputInvalid" : "",
+      hasError("passwordAgain", form.formErrors) ? "inputInvalid" : "",
       "passwordAgain",
       "password",
       "Password again",
       form.passwordAgain,
-      !!hasError("passwordAgain"),
+      !!hasError("passwordAgain", form.formErrors),
       handleInputChange,
     ],
   ];
