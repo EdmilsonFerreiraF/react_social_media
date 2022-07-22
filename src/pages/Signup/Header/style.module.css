@@ -1,0 +1,42 @@
+.signupLeft {
+  margin-right: 20px;
+}
+
+.signupLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+}
+
+.signupLogo {
+  font-size: 50px;
+  font-weight: 800;
+  color: #1775ee;
+  margin-bottom: 10px;
+}
+
+.signupDesc {
+  font-size: 24px;
+}
+
+@media (max-width: 1100px) {
+  .signupLeft {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 550px) {
+  .signupLeft {
+    margin-bottom: 20px;
+  }
+
+  .signupLogo {
+    font-size: 44px;
+  }
+
+  .signupDesc {
+    font-size: 20px;
+  }
+}
