@@ -1,5 +1,5 @@
 import Input from "components/Input";
-import { hasError } from "helpers/hasError";
+import { hasError, SignupFields } from "helpers/hasError";
 import { FormEvent } from "react";
 import styles from "./style.module.css";
 
@@ -56,25 +56,27 @@ const Fields = ({ form, onChange }: Props) => {
     (e: FormEvent) => void
   ];
 
+  const checkError = (entity: keyof SignupFields) => hasError(entity, form.formErrors)
+
   const inputFields: inputFields[] = [
     [
       0,
-      hasError("email", form.formErrors) ? "inputInvalid" : "",
+      checkError("email") ? "inputInvalid" : "",
       "email",
       "email",
       "Email",
       form.email,
-      !!hasError("email", form.formErrors),
+      !!checkError("email"),
       handleInputChange,
     ],
     [
       1,
-      hasError("password", form.formErrors) ? "inputInvalid" : "",
+      checkError("password") ? "inputInvalid" : "",
       "password",
       "password",
       "Password",
       form.password,
-      !!hasError("password", form.formErrors),
+      !!checkError("password"),
       handleInputChange,
     ],
   ];

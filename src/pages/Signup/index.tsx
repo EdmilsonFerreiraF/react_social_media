@@ -5,7 +5,7 @@ import { signup } from "apiCalls";
 import FormErrors from "components/FormErrors";
 import Input from "components/Input";
 import { baseUrl } from "constants/baseUrl";
-import { hasError } from "helpers/hasError";
+import { hasError, SignupFields } from "helpers/hasError";
 import { useForm } from "hooks/useForm";
 import { useUnprotectPage } from "hooks/useUnprotectPage";
 import styles from "./style.module.css";
@@ -98,45 +98,48 @@ const Signup = () => {
     (e: FormEvent) => void
   ];
 
+  const checkError = (entity: keyof SignupFields) =>
+    hasError(entity, form.formErrors);
+
   const inputControls: InputControls[] = [
     [
       0,
-      hasError("username", form.formErrors) ? "inputInvalid" : "",
+      checkError("username") ? "inputInvalid" : "",
       "username",
       "text",
       "Username",
       form.username,
-      !!hasError("username", form.formErrors),
+      !!checkError("username"),
       handleInputChange,
     ],
     [
       1,
-      hasError("email", form.formErrors) ? "inputInvalid" : "",
+      checkError("email") ? "inputInvalid" : "",
       "email",
       "email",
       "Email",
       form.email,
-      !!hasError("email", form.formErrors),
+      !!checkError("email"),
       handleInputChange,
     ],
     [
       2,
-      hasError("password", form.formErrors) ? "inputInvalid" : "",
+      checkError("password") ? "inputInvalid" : "",
       "password",
       "password",
       "Password",
       form.password,
-      !!hasError("password", form.formErrors),
+      !!checkError("password"),
       handleInputChange,
     ],
     [
       3,
-      hasError("passwordAgain", form.formErrors) ? "inputInvalid" : "",
+      checkError("passwordAgain") ? "inputInvalid" : "",
       "passwordAgain",
       "password",
       "Password again",
       form.passwordAgain,
-      !!hasError("passwordAgain", form.formErrors),
+      !!checkError("passwordAgain"),
       handleInputChange,
     ],
   ];

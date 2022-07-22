@@ -1,6 +1,6 @@
 import { Form } from "pages/Login/Form/Fields";
 
-type SignupErrors = { email: string, password: string, username?: string, passwordAgain?: string }
+export type SignupFields = { username?: string, email: string, password: string, passwordAgain?: string }
 
-export const hasError = (entity: keyof SignupErrors, formErrors: SignupErrors) =>
+export const hasError = (entity: keyof SignupFields, formErrors: SignupFields) =>
     formErrors[entity]?.length;
