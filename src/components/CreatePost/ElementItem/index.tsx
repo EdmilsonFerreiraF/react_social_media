@@ -4,7 +4,6 @@ import Input from "components/Input";
 import styles from "./style.module.css";
 
 type Props = {
-  className: string;
   title: string;
   inputType?: string;
   inputAccept?: string;
@@ -13,6 +12,15 @@ type Props = {
 };
 
 const ElementItem = (props: Props): JSX.Element => {
+  const inputProps = {
+    className: "elementItemInput",
+    name: props.title,
+    type: props.inputType as string,
+    placeholder: "Email",
+    accept: props.inputAccept,
+    handleInputChange: props.onChange as ChangeEventHandler<HTMLInputElement>,
+  };
+
   return (
     <li className={styles.elementItem}>
       <label className={styles.elementItemTitle} htmlFor={props.title}>
@@ -20,17 +28,7 @@ const ElementItem = (props: Props): JSX.Element => {
         <div className={styles.elementItemIcon}>{props.children}</div>
       </label>
 
-      <Input
-        className="elementItemInput"
-        name={props.title}
-        type={props.inputType as string}
-        placeholder="Email"
-        required
-        accept={props.inputAccept}
-        handleInputChange={
-          props.onChange as ChangeEventHandler<HTMLInputElement>
-        }
-      />
+      <Input {...inputProps} />
     </li>
   );
 };

@@ -49,22 +49,23 @@ const Fields = ({ form, onChange }: Props) => {
     number,
     string,
     string,
-    string,
-    string,
+    string | undefined,
+    string | undefined,
     any,
     boolean,
     (e: FormEvent) => void
   ];
 
-  const checkError = (entity: keyof SignupFields) => hasError(entity, form.formErrors)
+  const checkError = (entity: keyof SignupFields) =>
+    hasError(entity, form.formErrors);
 
   const inputFields: inputFields[] = [
     [
       0,
       checkError("email") ? "inputInvalid" : "",
       "email",
-      "email",
-      "Email",
+      ,
+      ,
       form.email,
       !!checkError("email"),
       handleInputChange,
@@ -73,8 +74,8 @@ const Fields = ({ form, onChange }: Props) => {
       1,
       checkError("password") ? "inputInvalid" : "",
       "password",
-      "password",
-      "Password",
+      ,
+      ,
       form.password,
       !!checkError("password"),
       handleInputChange,
@@ -83,24 +84,27 @@ const Fields = ({ form, onChange }: Props) => {
 
   return (
     <>
-      {inputFields.map((navItem: any) => (
-        <div className={styles.field} key={navItem[0]}>
-          <label className={styles.fieldLabel} htmlFor={navItem[3]}>
-            {navItem[2]}
-          </label>
+      {inputFields.map((navItem: any) => {
+        const inputProps = {
+          className: navItem[1],
+          name: navItem[2],
+          type: navItem[3],
+          placeholder: navItem[4],
+          value: navItem[5],
+          invalid: navItem[6],
+          handleInputChange: navItem[7],
+        };
 
-          <Input
-            className={navItem[1]}
-            name={navItem[2]}
-            type={navItem[3]}
-            placeholder={navItem[4]}
-            required
-            value={navItem[5]}
-            invalid={navItem[6]}
-            handleInputChange={navItem[7]}
-          />
-        </div>
-      ))}
+        return (
+          <div className={styles.field} key={navItem[0]}>
+            <label className={styles.fieldLabel} htmlFor={navItem[3]}>
+              {navItem[2]}
+            </label>
+
+            <Input {...inputProps} />
+          </div>
+        );
+      })}
     </>
   );
 };

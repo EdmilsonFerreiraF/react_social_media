@@ -9,14 +9,14 @@ type Props = {
   inputHandler?: (e: React.FormEvent<HTMLInputElement>) => void;
 };
 
-type Element = [number, string, string, string | null, JSX.Element];
+type Element = [number, string, string | undefined, string | undefined, JSX.Element];
 
 const ElementList = (props: Props): JSX.Element => {
   const elementList: Element[] = [
     [0, "Photo or Video", "file", "image/*", <PermMedia htmlColor="tomato" />],
-    [1, "Tag", "text", null, <Label htmlColor="blue" />],
-    [2, "Location", "text", null, <Room htmlColor="green" />],
-    [3, "Feelings", "text", null, <EmojiEmotions htmlColor="goldenrod" />],
+    [1, "Tag", , , <Label htmlColor="blue" />],
+    [2, "Location", , , <Room htmlColor="green" />],
+    [3, "Feelings", , , <EmojiEmotions htmlColor="goldenrod" />],
   ];
 
   return (
@@ -24,7 +24,6 @@ const ElementList = (props: Props): JSX.Element => {
       {elementList.map((element: Element) => (
         <ElementItem
           key={element[0]}
-          className="elementItemInput"
           title={element[1]}
           inputType={element[2]}
           inputAccept={element[3] as string}

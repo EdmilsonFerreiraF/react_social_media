@@ -91,8 +91,8 @@ const Signup = () => {
     number,
     string,
     string,
-    string,
-    string,
+    string | undefined,
+    string | undefined,
     any,
     boolean,
     (e: FormEvent) => void
@@ -107,7 +107,7 @@ const Signup = () => {
       checkError("username") ? "inputInvalid" : "",
       "username",
       "text",
-      "Username",
+      ,
       form.username,
       !!checkError("username"),
       handleInputChange,
@@ -116,8 +116,8 @@ const Signup = () => {
       1,
       checkError("email") ? "inputInvalid" : "",
       "email",
-      "email",
-      "Email",
+      ,
+      ,
       form.email,
       !!checkError("email"),
       handleInputChange,
@@ -126,8 +126,8 @@ const Signup = () => {
       2,
       checkError("password") ? "inputInvalid" : "",
       "password",
-      "password",
-      "Password",
+      ,
+      ,
       form.password,
       !!checkError("password"),
       handleInputChange,
@@ -157,24 +157,31 @@ const Signup = () => {
         </div>
         <div className={styles.signupRight}>
           <form className={styles.signupBox} onSubmit={handleSubmit}>
-            {inputControls.map((inputControl: InputControls) => (
+            {inputControls.map((inputControl: InputControls) => {
+
+              const inputProps = {
+                className: inputControl[1],
+                  name: inputControl[2],
+                  type: inputControl[3] as string,
+                  placeholder: inputControl[4] as string,
+                  value: inputControl[5],
+                  invalid: inputControl[6],
+                  handleInputChange: inputControl[7],
+              }
+
+            return (
               <div className={styles.field} key={inputControl[0]}>
                 <label className={styles.fieldLabel} htmlFor={inputControl[3]}>
                   {inputControl[4]}
                 </label>
 
                 <Input
-                  className={inputControl[1]}
-                  name={inputControl[2]}
-                  type={inputControl[3]}
-                  placeholder={inputControl[4]}
-                  required
-                  value={inputControl[5]}
-                  invalid={inputControl[6]}
-                  handleInputChange={inputControl[7]}
+                  {...inputProps}
                 />
               </div>
-            ))}
+            )
+})
+          }
 
             <div className="panel panel-default">
               <FormErrors formErrors={form.formErrors} />

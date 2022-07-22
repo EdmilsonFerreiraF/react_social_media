@@ -29,18 +29,16 @@ describe("Input", () => {
         onChange(value, name);
       };
 
-      return (
-        <Input
-          className=""
-          name="email"
-          type="email"
-          placeholder="email"
-          required
-          value={form.email}
-          invalid={false}
-          handleInputChange={handleInputChange}
-        />
-      );
+      const inputProps = {
+        name: "email",
+        type: "email",
+        placeholder: "Email",
+        value: form.email,
+        invalid: false,
+        handleInputChange: handleInputChange,
+      };
+
+      return <Input {...inputProps} />;
     };
 
     render(<Container />);
@@ -64,18 +62,16 @@ describe("Input", () => {
         onChange(value, name);
       };
 
-      return (
-        <Input
-          className=""
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-          value={form.password}
-          invalid={false}
-          handleInputChange={handleInputChange}
-        />
-      );
+      const inputProps = {
+        name: "password",
+        type: "password",
+        placeholder: "Password",
+        value: form.password,
+        invalid: false,
+        handleInputChange: handleInputChange,
+      };
+
+      return <Input {...inputProps} />;
     };
 
     render(<Container />);
@@ -97,16 +93,18 @@ describe("Input", () => {
 
     const handleInputChange = jest.fn();
 
+    const inputProps = {
+      name: "password",
+        type: "password",
+        placeholder: "Password",
+        value: form.password,
+        handleInputChange: handleInputChange,
+        invalid: false,
+    }
+
     const { container } = render(
       <Input
-        className=""
-        name="password"
-        type="password"
-        placeholder="Password"
-        required
-        value={form.password}
-        handleInputChange={handleInputChange}
-        invalid={false}
+        {...inputProps}
       />
     );
 
