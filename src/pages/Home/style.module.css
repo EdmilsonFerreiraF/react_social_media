@@ -1,6 +1,6 @@
 .homeContainer {
   display: grid;
-  grid: auto/1fr 65% 1fr;
+  grid: auto/minmax(min-content, 400px) 61% minmax(min-content, 400px);
   width: 100%;
 }
 
