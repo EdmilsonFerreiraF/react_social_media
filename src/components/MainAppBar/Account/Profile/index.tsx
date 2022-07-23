@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
 import { goToLogin, goToProfile } from "routes/coordinator";
+import noProfilePicture from "img/no_person.webp";
 
 import styles from "./style.module.css";
 import { handleMenuOpening } from "../MobileMenu";
@@ -92,7 +93,7 @@ const Profile = (props: Props) => {
       >
         <img
           className={styles.profileImg}
-          src={profilePicture}
+          src={profilePicture ?? noProfilePicture}
           alt="My profile"
         />
       </IconButton>
