@@ -1,26 +1,24 @@
-
 .content {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .readMore,
 .readLess {
-    font-weight: 500;
-    cursor: pointer;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .contentImg {
-    margin-top: 20px;
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
-    border: 1px solid #e5e5e5;
-    border-radius: 5px;
-    cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  object-fit: contain;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 @media (max-width: 535px) {
-    .content {
-        font-size: 15px;
-    }
+  .content {
+    font-size: 15px;
+  }
 }
