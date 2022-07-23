@@ -1,4 +1,5 @@
 .sidebar {
+  overflow-y: scroll;
   height: calc(100vh - 90px);
   position: sticky;
   top: 50px;

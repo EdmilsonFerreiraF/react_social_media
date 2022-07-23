@@ -12,7 +12,7 @@ import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useProtectPage } from "hooks/useProtectPage";
 import { useRequestData } from "hooks/useRequestData";
 import { useRequestImage } from "hooks/useRequestImage";
-import noCoverImg from "img/no_cover.webp";
+import noCoverImg from "img/no_image.webp";
 import noProfileImg from "img/no_person.webp";
 import styles from "./style.module.css";
 
