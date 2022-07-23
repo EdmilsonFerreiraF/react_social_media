@@ -15,6 +15,7 @@ import { useRequestImage } from "hooks/useRequestImage";
 import noCoverImg from "img/no_image.webp";
 import noProfileImg from "img/no_person.webp";
 import styles from "./style.module.css";
+import feedStyles from "../../components/Feed/style.module.css";
 
 const Feed = lazy(() => import("components/Feed"));
 
@@ -43,7 +44,13 @@ const Profile = () => {
   const coverPicture = useRequestImage("cover", user?.coverPicture);
 
   const LazyFeed = () => (
-    <Suspense fallback={<Progress />}>
+    <Suspense
+      fallback={
+        <main data-testid="feed" className={feedStyles.feedContainer}>
+          <Progress />
+        </main>
+      }
+    >
       <Feed otherUserId={user?.id} />
     </Suspense>
   );

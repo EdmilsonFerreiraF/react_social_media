@@ -10,6 +10,7 @@ import Sidebar from "components/Sidebar";
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useProtectPage } from "hooks/useProtectPage";
 import styles from "./style.module.css";
+import feedStyles from "../../components/Feed/style.module.css";
 
 const Feed = lazy(() => import("components/Feed"));
 
@@ -34,7 +35,13 @@ const Home = () => {
   useGetUser(user, token, dispatch, handleError);
 
   const LazyFeed = () => (
-    <Suspense fallback={<Progress />}>
+    <Suspense
+      fallback={
+        <main data-testid="feed" className={feedStyles.feedContainer}>
+          <Progress />
+        </main>
+      }
+    >
       <Feed />
     </Suspense>
   );
