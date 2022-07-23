@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
-import { goToProfile } from "routes/coordinator";
+import { goToLogin, goToProfile } from "routes/coordinator";
 
 import styles from "./style.module.css";
 import { handleMenuOpening } from "../MobileMenu";
@@ -29,6 +29,12 @@ const Profile = (props: Props) => {
   const isMenuOpen = Boolean(props.profileAnchorEl);
   const { user } = useContext(AuthContext) as AuthContextInterface;
   const profilePicture = useRequestImage("profile", user?.profilePicture);
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("token");
+    goToLogin(navigate);
+  };
 
   const menu = (
     <Menu
@@ -43,7 +49,6 @@ const Profile = (props: Props) => {
         vertical: 100,
         horizontal: "right",
       }}
-      sx={{}}
       open={isMenuOpen}
       onClose={() =>
         props.handleMenuOpening(null, "profileAnchorEl") as
@@ -64,7 +69,7 @@ const Profile = (props: Props) => {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
-      <MenuItem>
+      <MenuItem onClick={handleLogoutClick}>
         <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <Logout />
