@@ -8,6 +8,7 @@
 .elementItemTitle {
   cursor: pointer;
   display: flex;
+  align-items: center;
 }
 
 .elementItemIcon {
