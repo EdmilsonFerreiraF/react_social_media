@@ -17,6 +17,7 @@ const Account = () => {
   const { form, onChange } = useForm({
     anchorEl: null,
     mobileMoreAnchorEl: null,
+    profileAnchorEl: null,
   });
 
   const { user } = useContext(AuthContext) as AuthContextInterface;
@@ -46,6 +47,7 @@ const Account = () => {
 
   const tabletMenuId = "primary-search-account-menu";
   const mobileMenuId = "primary-search-account-menu-mobile";
+  const profileMenuId = "primary-search-profile-menu";
 
   return (
     <div data-testid="account">
@@ -56,7 +58,12 @@ const Account = () => {
       >
         <Navigation />
         <Social />
-        <Profile />
+        <Profile
+          profileAnchorEl={form.profileAnchorEl}
+          profileMenuId={profileMenuId}
+          handleMenuOpening={handleMenuOpening}
+          handleProfileClick={handleProfileClick}
+        />
       </Box>
       <Box
         data-testid="accountmenubox"
