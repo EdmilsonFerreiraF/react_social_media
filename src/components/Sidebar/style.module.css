@@ -1,6 +1,5 @@
 .sidebar {
   height: calc(100vh - 90px);
-  overflow-y: scroll;
   position: sticky;
   top: 50px;
   padding: 20px 10px;
@@ -38,5 +37,12 @@
 @media (max-width: 535px) {
   .sidebarContainer {
     padding: 20px 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    height: auto;
+    padding: 0;
   }
 }

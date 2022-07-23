@@ -1,5 +1,5 @@
 .feed {
-  padding: 20px 10px;
+  padding: 20px;
 }
 
 .noPosts {
@@ -12,5 +12,11 @@
 @media (max-width: 550px) {
   .noPosts {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feed {
+    padding: 10px;
   }
 }
