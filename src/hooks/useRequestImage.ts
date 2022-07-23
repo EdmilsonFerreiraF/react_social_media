@@ -6,7 +6,7 @@ export function useRequestImage(
   entity: "profile" | "profile_small" | "cover" | "post",
   initialState: any
 ) {
-  const [data, setData] = useState(initialState)
+  const [data, setData] = useState("")
   const handleError = useErrorHandler()
 
   useEffect(() => {
@@ -27,5 +27,7 @@ export function useRequestImage(
     }
   }, [initialState, entity, handleError])
 
-  return data
+  if (data) return data
+
+  return
 }
