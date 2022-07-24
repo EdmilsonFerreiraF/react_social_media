@@ -17,10 +17,11 @@ const Input = (props: IProps): JSX.Element => {
   const className = props.className as keyof typeof styles;
   const nameCapitalized =
     props.name.charAt(0).toUpperCase() + props.name.slice(1);
+  const nameLoweredSnaked = props.name.split(" ").join("_").toLowerCase();
 
   const inputProps = {
     className: `${styles.input} ${styles[className]}`,
-    id: props.name.toLowerCase(),
+    id: nameLoweredSnaked,
     type: props.type ?? props.name,
     name: props.name,
     onChange: props.handleInputChange,

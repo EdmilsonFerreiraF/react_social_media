@@ -21,9 +21,11 @@ const ElementItem = (props: Props): JSX.Element => {
     handleInputChange: props.onChange as ChangeEventHandler<HTMLInputElement>,
   };
 
+  const nameLoweredSnaked = props.title.split(" ").join("_").toLowerCase();
+
   return (
     <li className={styles.elementItem}>
-      <label className={styles.elementItemTitle} htmlFor={props.title}>
+      <label className={styles.elementItemTitle} htmlFor={nameLoweredSnaked}>
         {props.title}
         <div className={styles.elementItemIcon}>{props.children}</div>
       </label>

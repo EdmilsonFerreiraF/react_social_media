@@ -36,7 +36,8 @@ const CreatePost = () => {
   const inputHandler = (e: FormEvent) => {
     const target = e.target as HTMLInputElement;
     const value: string = target.value;
-    const file: File = (target.files as FileList)[0];
+    let file: File | null;
+    file = target.files && (target.files as FileList)[0];
 
     const name: string = target.name;
 
