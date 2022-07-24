@@ -1,18 +1,16 @@
-import React from "react";
-
 import { handleMenuOpening } from "../MobileMenu";
 import MobileNavigation from "./MobileNavigation";
 import TabletNavigation from "./TabletNavigation";
 
 type IProps = {
-  handleProfileMenuOpen?: handleMenuOpening;
-  isMobileMenuOpen?: boolean;
+  handleMenuOpening?: handleMenuOpening;
+  isMobile?: boolean;
 };
 
 const Navigation = (props: IProps) => {
-  return props.isMobileMenuOpen ? (
+  return props.isMobile ? (
     <MobileNavigation
-      handleProfileMenuOpen={props.handleProfileMenuOpen as handleMenuOpening}
+      handleMenuOpening={props.handleMenuOpening as handleMenuOpening}
     />
   ) : (
     <TabletNavigation />

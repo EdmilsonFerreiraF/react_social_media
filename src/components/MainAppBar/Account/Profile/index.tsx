@@ -12,10 +12,10 @@ import { handleMenuOpening } from "../MobileMenu";
 import styles from "./style.module.css";
 
 type Props = {
-  profileAnchorEl: Element;
-  profileMenuId: string;
-  handleMenuOpening: handleMenuOpening;
-  handleProfileClick: () => void;
+  profileAnchorEl?: Element;
+  profileMenuId?: string;
+  handleMenuOpening?: handleMenuOpening;
+  handleProfileClick?: () => void;
 };
 
 const Profile = (props: Props) => {
@@ -44,9 +44,10 @@ const Profile = (props: Props) => {
       }}
       open={isMenuOpen}
       onClose={() =>
-        props.handleMenuOpening(null, "profileAnchorEl") as
+        props.handleMenuOpening &&
+        (props.handleMenuOpening(null, "profileAnchorEl") as
           | ((event: {}, reason: "backdropClick" | "escapeKeyDown") => void)
-          | undefined
+          | undefined)
       }
       data-testid="accountmobilemenu"
     >
@@ -80,7 +81,10 @@ const Profile = (props: Props) => {
         aria-label="show more"
         aria-controls={props.profileMenuId}
         aria-haspopup="true"
-        onClick={(e) => props.handleMenuOpening(e, "profileAnchorEl")}
+        onClick={(e) =>
+          props.handleMenuOpening &&
+          props.handleMenuOpening(e, "profileAnchorEl")
+        }
         color="inherit"
       >
         <img

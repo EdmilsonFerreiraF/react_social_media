@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react"
+import { MouseEventHandler } from "react"
 import styles from "./style.module.css"
 
 type IProps = {

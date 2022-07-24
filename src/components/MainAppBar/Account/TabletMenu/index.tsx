@@ -1,5 +1,4 @@
 import { Menu } from "@mui/material";
-import React from "react";
 
 import { handleMenuOpening } from "../MobileMenu";
 import Navigation from "../Navigation";

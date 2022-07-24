@@ -1,6 +1,6 @@
 import { MoreVert } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
-import React, { FormEvent, useContext } from "react";
+import { FormEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
