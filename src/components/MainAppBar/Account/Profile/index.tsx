@@ -1,23 +1,15 @@
+import { AccountCircle, Logout } from "@mui/icons-material";
+import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
 import { useRequestImage } from "hooks/useRequestImage";
-import {
-  AccountCircle,
-  Logout,
-  Mail,
-  MoreVert,
-  Navigation,
-  Notifications,
-} from "@mui/icons-material";
-import { Badge, Box, IconButton, Menu, MenuItem } from "@mui/material";
-import React, { FormEvent, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
-import { useForm } from "hooks/useForm";
-import { goToLogin, goToProfile } from "routes/coordinator";
 import noProfilePicture from "img/no_person.webp";
+import { goToLogin } from "routes/coordinator";
 
-import styles from "./style.module.css";
 import { handleMenuOpening } from "../MobileMenu";
+import styles from "./style.module.css";
 
 type Props = {
   profileAnchorEl: Element;

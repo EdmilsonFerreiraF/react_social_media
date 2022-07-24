@@ -1,5 +1,3 @@
-import React from "react";
-
 import { User } from "context/AuthContext";
 import adImg from "img/ad.webp";
 import giftImg from "img/gift.webp";
@@ -16,7 +14,7 @@ const HomeMessagesBar = ({ friends }: Props) => {
       <div className={styles.birthdayContainer}>
         <img className={styles.birthdayImg} src={giftImg} alt="Birthday gift" />
         <span className={styles.birthdayText}>
-          <b>Pola Foster</b>
+          <b>Pola Foster </b>
           and <b> 3 other friends </b>
           have a birthday today.
         </span>
