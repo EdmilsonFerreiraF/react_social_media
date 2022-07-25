@@ -10,6 +10,7 @@ import { goToLogin } from "routes/coordinator";
 
 import { handleMenuOpening } from "../MobileMenu";
 import styles from "./style.module.css";
+import "menu.css";
 
 type Props = {
   profileAnchorEl?: Element;
@@ -50,6 +51,9 @@ const Profile = (props: Props) => {
           | undefined)
       }
       data-testid="accountmobilemenu"
+      classes={{
+        paper: "menu-paper",
+      }}
     >
       <MenuItem onClick={props.handleProfileClick}>
         <IconButton

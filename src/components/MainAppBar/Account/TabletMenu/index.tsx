@@ -4,6 +4,7 @@ import { handleMenuOpening } from "../MobileMenu";
 import Navigation from "../Navigation";
 import Profile from "../Profile";
 import Social from "../Social";
+import "menu.css";
 
 type Props = {
   anchorEl: Element;
@@ -34,6 +35,9 @@ const TabletMenu = (props: Props) => {
           | undefined
       }
       data-testid="accountdesktopmenu"
+      classes={{
+        paper: "menu-paper",
+      }}
     >
       <Navigation />
       <Social />

@@ -2,6 +2,7 @@ import { AccountCircle, Mail, Notifications } from "@mui/icons-material";
 import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
 import { FormEvent } from "react";
 import Navigation from "../Navigation";
+import "menu.css";
 
 export type handleMenuOpening = (
   value: null | FormEvent,
@@ -39,6 +40,9 @@ const MobileMenu = (props: Props) => {
           | undefined
       }
       data-testid="accountmobilemenu"
+      classes={{
+        paper: "menu-paper",
+      }}
     >
       <Navigation isMobile handleMenuOpening={props.handleMenuOpening} />
 

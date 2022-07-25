@@ -1,7 +1,6 @@
 // import { initializeApp } from "firebase/app";
 import { lazy, ReactNode, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import styles from "App.module.css";
 import Progress from "components/Progress";
 
 // const firebaseConfig = {
@@ -39,9 +38,7 @@ const App = () => {
           path={route[1] as string}
           element={
             <Suspense fallback={<Progress />}>
-              <div className={styles.fontFamilyRoboto}>
-                {route[2] as ReactNode}
-              </div>
+              <div>{route[2] as ReactNode}</div>
             </Suspense>
           }
         />
