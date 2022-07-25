@@ -6,7 +6,7 @@ type IProps = {
   className?: string;
   name: string;
   type: string;
-  handleInputChange: ChangeEventHandler<HTMLInputElement>;
+  inputChangeHandler: ChangeEventHandler<HTMLInputElement>;
   value?: string;
   placeholder?: string;
   invalid?: boolean | "false" | "true" | "grammar" | "spelling" | undefined;
@@ -24,7 +24,7 @@ const Input = (props: IProps): JSX.Element => {
     id: nameLoweredSnaked,
     type: props.type ?? props.name,
     name: props.name,
-    onChange: props.handleInputChange,
+    onChange: props.inputChangeHandler,
     value: props.value,
     placeholder: props.placeholder ?? nameCapitalized,
     "aria-invalid": props.invalid,

@@ -4,14 +4,14 @@ import ElementList from "../ElementList";
 import styles from "./style.module.css";
 
 type Props = {
-  inputHandler?: (e: React.FormEvent<HTMLInputElement>) => void;
+  inputChangeHandler?: (e: React.FormEvent<HTMLInputElement>) => void;
   form: any;
 };
 
 const BotBar = (props: Props) => {
   return (
     <div aria-labelledby="create-post" className={styles.botBar}>
-      <ElementList inputHandler={props.inputHandler} />
+      <ElementList inputChangeHandler={props.inputChangeHandler} />
 
       <button
         className={styles.createButton}

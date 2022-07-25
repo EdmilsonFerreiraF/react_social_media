@@ -5,7 +5,7 @@ import ElementItem from "../ElementItem";
 import styles from "./style.module.css";
 
 type Props = {
-  handleInputChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  inputChangeHandler?: (e: React.FormEvent<HTMLInputElement>) => void;
 };
 
 type Element = [
@@ -38,7 +38,7 @@ const ElementList = (props: Props): JSX.Element => {
           title={element[1]}
           inputType={element[2]}
           inputAccept={element[3] as string}
-          onChange={props.handleInputChange}
+          onChange={props.inputChangeHandler}
         >
           {element[4]}
         </ElementItem>

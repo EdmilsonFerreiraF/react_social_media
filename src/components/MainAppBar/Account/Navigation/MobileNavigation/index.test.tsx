@@ -13,51 +13,51 @@ expect.extend(toHaveNoViolations);
 
 describe("MobileNavigation", () => {
   test("Should show navigation mobile menu", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
-    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
+    render(<MobileNavigation handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getByTestId(/navigation mobile menu/i)).toBeInTheDocument();
   });
 
   test("Should show navigationMenuItem", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
-    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
+    render(<MobileNavigation handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getAllByTestId(/navigationMenuItem/i)).toHaveLength(2);
   });
 
   test("Should show navigationIconButton", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
-    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
+    render(<MobileNavigation handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getAllByTestId(/navigationIconButton/i)).toHaveLength(2);
   });
 
   test("Should show mobileHomepageLink", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
-    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
+    render(<MobileNavigation handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getAllByTestId(/mobileHomepageLink/i)).toHaveLength(2);
   });
 
   test("Should show mobileTimelineLink", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
-    render(<MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />);
+    render(<MobileNavigation handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getAllByTestId(/mobileTimelineLink/i)).toHaveLength(2);
   });
 
   test("Should be an acessible component", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
     const { container } = render(
       <div role="menu" id="primary-search-account-menu">
-        <MobileNavigation handleProfileMenuOpen={handleProfileMenuOpen} />
+        <MobileNavigation handleMenuOpening={handleMenuOpening} />
       </div>
     );
 

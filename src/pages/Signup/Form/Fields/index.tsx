@@ -22,7 +22,7 @@ type Props = {
 };
 
 const Fields = ({ form, onChange }: Props) => {
-  const handleInputChange = (e: FormEvent) => {
+  const inputChangeHandler = (e: FormEvent) => {
     const target = e.target as HTMLInputElement;
 
     const name = target.name;
@@ -84,7 +84,7 @@ const Fields = ({ form, onChange }: Props) => {
       ,
       form.username,
       !!checkError("username"),
-      handleInputChange,
+      inputChangeHandler,
     ],
     [
       1,
@@ -94,7 +94,7 @@ const Fields = ({ form, onChange }: Props) => {
       ,
       form.email,
       !!checkError("email"),
-      handleInputChange,
+      inputChangeHandler,
     ],
     [
       2,
@@ -104,7 +104,7 @@ const Fields = ({ form, onChange }: Props) => {
       ,
       form.password,
       !!checkError("password"),
-      handleInputChange,
+      inputChangeHandler,
     ],
     [
       3,
@@ -114,7 +114,7 @@ const Fields = ({ form, onChange }: Props) => {
       "Password again",
       form.passwordAgain,
       !!checkError("passwordAgain"),
-      handleInputChange,
+      inputChangeHandler,
     ],
   ];
 
@@ -128,7 +128,7 @@ const Fields = ({ form, onChange }: Props) => {
           placeholder: inputControl[4] as string,
           value: inputControl[5],
           invalid: inputControl[6],
-          handleInputChange: inputControl[7],
+          inputChangeHandler: inputControl[7],
         };
 
         return (

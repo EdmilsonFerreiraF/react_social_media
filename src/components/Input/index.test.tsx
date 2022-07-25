@@ -20,7 +20,7 @@ describe("Input", () => {
         email: "",
       });
 
-      const handleInputChange = (e: React.FormEvent) => {
+      const inputChangeHandler = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement;
 
         const name: string = target.name;
@@ -35,7 +35,7 @@ describe("Input", () => {
         placeholder: "Email",
         value: form.email,
         invalid: false,
-        handleInputChange: handleInputChange,
+        inputChangeHandler: inputChangeHandler,
       };
 
       return <Input {...inputProps} />;
@@ -53,7 +53,7 @@ describe("Input", () => {
         password: "",
       });
 
-      const handleInputChange = (e: React.FormEvent) => {
+      const inputChangeHandler = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement;
 
         const name: string = target.name;
@@ -68,7 +68,7 @@ describe("Input", () => {
         placeholder: "Password",
         value: form.password,
         invalid: false,
-        handleInputChange: handleInputChange,
+        inputChangeHandler: inputChangeHandler,
       };
 
       return <Input {...inputProps} />;
@@ -91,22 +91,18 @@ describe("Input", () => {
       password: "",
     };
 
-    const handleInputChange = jest.fn();
+    const inputChangeHandler = jest.fn();
 
     const inputProps = {
       name: "password",
-        type: "password",
-        placeholder: "Password",
-        value: form.password,
-        handleInputChange: handleInputChange,
-        invalid: false,
-    }
+      type: "password",
+      placeholder: "Password",
+      value: form.password,
+      inputChangeHandler: inputChangeHandler,
+      invalid: false,
+    };
 
-    const { container } = render(
-      <Input
-        {...inputProps}
-      />
-    );
+    const { container } = render(<Input {...inputProps} />);
 
     const results = await axe(container);
     expect(results).toHaveNoViolations();

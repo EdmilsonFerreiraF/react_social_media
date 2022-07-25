@@ -29,53 +29,33 @@ describe("Navigation", () => {
   });
 
   test("Should show navigation menu item when screen is large", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
-    render(
-      <Navigation
-        isMobileMenuOpen={true}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-      />
-    );
+    render(<Navigation isMobile handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getAllByTestId(/navigationMenuItem/i)).toHaveLength(2);
   });
 
-  test("Should show navigation icon button when isMobileMenuOpen is true", async () => {
-    const handleProfileMenuOpen = jest.fn();
+  test("Should show navigation icon button when isMobile is true", async () => {
+    const handleMenuOpening = jest.fn();
 
-    render(
-      <Navigation
-        isMobileMenuOpen={true}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-      />
-    );
+    render(<Navigation isMobile handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getAllByTestId(/navigationIconButton/i)).toHaveLength(2);
   });
 
-  test("Should show home icon when isMobileMenuOpen is true", async () => {
-    const handleProfileMenuOpen = jest.fn();
+  test("Should show home icon when isMobile is true", async () => {
+    const handleMenuOpening = jest.fn();
 
-    render(
-      <Navigation
-        isMobileMenuOpen={true}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-      />
-    );
+    render(<Navigation isMobile handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getByTestId(/HomeIcon/i)).toBeInTheDocument();
   });
 
-  test("Should show mobile timeline link when isMobileMenuOpen is true", async () => {
-    const handleProfileMenuOpen = jest.fn();
+  test("Should show mobile timeline link when isMobile is true", async () => {
+    const handleMenuOpening = jest.fn();
 
-    render(
-      <Navigation
-        isMobileMenuOpen={true}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-      />
-    );
+    render(<Navigation isMobile handleMenuOpening={handleMenuOpening} />);
 
     expect(screen.getByTestId(/mobileTimelineLink/i)).toBeInTheDocument();
   });
@@ -111,14 +91,11 @@ describe("Navigation", () => {
   });
 
   test("Should be an acessible component", async () => {
-    const handleProfileMenuOpen = jest.fn();
+    const handleMenuOpening = jest.fn();
 
     const { container } = render(
       <div role="menu" id="primary-search-account-menu">
-        <Navigation
-          isMobileMenuOpen={true}
-          handleProfileMenuOpen={handleProfileMenuOpen}
-        />
+        <Navigation isMobile handleMenuOpening={handleMenuOpening} />
       </div>
     );
 

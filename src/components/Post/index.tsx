@@ -51,7 +51,7 @@ const Post = ({ post }: { post: IPost }) => {
     <div data-testid="post" className={styles.post}>
       <div className={styles.postContainer}>
         <TopBar
-          profilePicture={profilePicture}
+          profilePicture={profilePicture as string}
           noProfilePicture={noProfilePicture}
           username={user?.username}
           createdAt={post?.createdAt}
@@ -59,7 +59,7 @@ const Post = ({ post }: { post: IPost }) => {
         <Content
           readMore={form.readMore}
           handleReadMore={handleReadMore}
-          postPicture={postPicture}
+          postPicture={postPicture as string}
           noPostPicture={noPostPicture}
           description={post?.description}
         />

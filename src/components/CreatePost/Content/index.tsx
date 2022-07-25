@@ -1,5 +1,5 @@
 import { ClickAwayListener } from "@mui/material";
-import React, { FormEvent, useContext } from "react";
+import { FormEvent, useContext } from "react";
 
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
@@ -8,7 +8,7 @@ import noProfilePicture from "img/no_person.webp";
 import styles from "./style.module.css";
 
 type Props = {
-  inputHandler: (e: FormEvent) => void;
+  inputChangeHandler: (e: FormEvent) => void;
 };
 
 const Content = (props: Props) => {
@@ -48,7 +48,7 @@ const Content = (props: Props) => {
             form.isInputActive ? styles.activeInput : ""
           }`}
           value={form.description}
-          onChange={props.inputHandler}
+          onChange={props.inputChangeHandler}
         />
       </ClickAwayListener>
     </div>

@@ -4,7 +4,6 @@
 
 import "@testing-library/jest-dom";
 import { axe, toHaveNoViolations } from "jest-axe";
-import * as React from "react";
 
 import { render, screen } from "components/CustomRender";
 import Content from ".";
@@ -13,17 +12,17 @@ expect.extend(toHaveNoViolations);
 
 describe("Content", () => {
   test("Should have user profile image", async () => {
-    const inputHandler = jest.fn();
+    const inputChangeHandler = jest.fn();
 
-    render(<Content inputHandler={inputHandler} />);
+    render(<Content inputChangeHandler={inputChangeHandler} />);
 
     expect(screen.getByAltText(/CreatePost user profile/i)).toBeInTheDocument();
   });
 
   test("Should have description field", async () => {
-    const inputHandler = jest.fn();
+    const inputChangeHandler = jest.fn();
 
-    render(<Content inputHandler={inputHandler} />);
+    render(<Content inputChangeHandler={inputChangeHandler} />);
 
     expect(
       screen.getByPlaceholderText(/What's in your mind/i)
@@ -31,9 +30,11 @@ describe("Content", () => {
   });
 
   test("Should be an acessible component", async () => {
-    const inputHandler = jest.fn();
+    const inputChangeHandler = jest.fn();
 
-    const { container } = render(<Content inputHandler={inputHandler} />);
+    const { container } = render(
+      <Content inputChangeHandler={inputChangeHandler} />
+    );
 
     const results = await axe(container);
 

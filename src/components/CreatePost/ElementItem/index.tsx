@@ -18,7 +18,7 @@ const ElementItem = (props: Props): JSX.Element => {
     type: props.inputType as string,
     placeholder: "Email",
     accept: props.inputAccept,
-    handleInputChange: props.onChange as ChangeEventHandler<HTMLInputElement>,
+    inputChangeHandler: props.onChange as ChangeEventHandler<HTMLInputElement>,
   };
 
   const nameLoweredSnaked = props.title.split(" ").join("_").toLowerCase();

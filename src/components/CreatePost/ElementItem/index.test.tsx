@@ -15,19 +15,13 @@ expect.extend(toHaveNoViolations);
 
 describe("ElementItem", () => {
   test("Should have a title", async () => {
-    render(<ElementItem className="elementItemInput" title="Photo or Video" />);
+    render(<ElementItem title="Photo or Video" />);
 
     expect(screen.getByText(/Photo or Video/i)).toBeInTheDocument();
   });
 
   test("Should have an input", async () => {
-    render(
-      <ElementItem
-        className="elementItemInput"
-        title="Photo or Video"
-        inputType="file"
-      />
-    );
+    render(<ElementItem title="Photo or Video" inputType="file" />);
 
     expect(screen.getByTestId("elementItem input")).toBeInTheDocument();
   });
@@ -37,7 +31,6 @@ describe("ElementItem", () => {
 
     render(
       <ElementItem
-        className="elementItemInput"
         title="Photo or Video"
         inputType="text"
         onChange={onChangeHandler}
@@ -56,7 +49,6 @@ describe("ElementItem", () => {
 
     render(
       <ElementItem
-        className="elementItemInput"
         title="Photo or Video"
         inputType="text"
         onChange={onChangeHandler}
@@ -75,7 +67,6 @@ describe("ElementItem", () => {
     const { container } = render(
       <ul>
         <ElementItem
-          className="elementItemInput"
           title="Photo or Video"
           inputType="text"
           onChange={onChangeHandler}

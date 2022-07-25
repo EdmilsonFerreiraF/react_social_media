@@ -33,7 +33,7 @@ const CreatePost = () => {
     sendData(url, "post", newPost);
   };
 
-  const inputHandler = (e: FormEvent) => {
+  const inputChangeHandler = (e: FormEvent) => {
     const target = e.target as HTMLInputElement;
     const value: string = target.value;
     let file: File | null;
@@ -51,9 +51,9 @@ const CreatePost = () => {
       onSubmit={submitHandler}
     >
       <div className={styles.createPostContainer}>
-        <Content inputHandler={inputHandler} />
+        <Content inputChangeHandler={inputChangeHandler} />
         <hr className={styles.createPostDivision} />
-        <BotBar form={form} inputHandler={inputHandler} />
+        <BotBar form={form} inputChangeHandler={inputChangeHandler} />
       </div>
     </form>
   );
