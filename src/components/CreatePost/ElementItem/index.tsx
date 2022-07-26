@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler } from "react";
 
+import { Button } from "@mui/material";
 import Input from "components/Input";
 import styles from "./style.module.css";
 
@@ -24,14 +25,21 @@ const ElementItem = (props: Props): JSX.Element => {
   const nameLoweredSnaked = props.title.split(" ").join("_").toLowerCase();
 
   return (
-    <li className={styles.elementItem}>
-      <label className={styles.elementItemTitle} htmlFor={nameLoweredSnaked}>
-        {props.title}
-        <div className={styles.elementItemIcon}>{props.children}</div>
-      </label>
+    <Button
+      type="submit"
+      sx={{
+        padding: "0 8px",
+      }}
+    >
+      <li className={styles.elementItem}>
+        <label className={styles.elementItemTitle} htmlFor={nameLoweredSnaked}>
+          {props.title}
+          <div className={styles.elementItemIcon}>{props.children}</div>
+        </label>
 
-      <Input {...inputProps} />
-    </li>
+        <Input {...inputProps} />
+      </li>
+    </Button>
   );
 };
 
