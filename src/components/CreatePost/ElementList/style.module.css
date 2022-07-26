@@ -17,3 +17,9 @@
     font-size: 14px;
   }
 }
+
+@media (max-width: 1000px) {
+  .elementList {
+    padding: 0;
+  }
+}
