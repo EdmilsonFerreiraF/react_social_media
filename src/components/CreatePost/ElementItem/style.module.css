@@ -1,8 +1,10 @@
 .elementItem {
   display: flex;
   align-items: center;
-  margin-right: 15px;
+  /* margin-right: 15px; */
   cursor: pointer;
+  text-transform: none;
+  color: #1e1e1e;
 }
 
 .elementItemTitle {
@@ -31,5 +33,18 @@
   .elementItem {
     padding: 10px 0;
     margin-right: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .elementItem {
+    margin-right: 15px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 950px) {
+  .elementItem {
+    margin-right: 6px;
   }
 }
