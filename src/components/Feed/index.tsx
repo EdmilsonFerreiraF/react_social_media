@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 
+import { CircularProgress } from "@mui/material";
 import { baseUrl } from "constants/baseUrl";
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useRequestData } from "hooks/useRequestData";
@@ -21,14 +22,21 @@ const Feed = ({ otherUserId }: Props) => {
     []
   );
 
-  const posts =
-    getPosts && getPosts.length ? (
-      getPosts.map((post: IPost) => <Post key={post?.id} post={post} />)
-    ) : (
-      <div className={styles.noPosts}>
-        <p>No posts created yet</p>
-      </div>
-    );
+  const posts = !getPosts ? (
+    <div className={styles.noPosts}>
+      <p>No posts created yet</p>
+    </div>
+  ) : getPosts.length ? (
+    getPosts.map((post: IPost) => <Post key={post?.id} post={post} />)
+  ) : (
+    <CircularProgress
+      sx={{
+        position: "relative",
+        left: "50%",
+        marginTop: "20%",
+      }}
+    />
+  );
 
   const createPost = !otherUserId && <CreatePost />;
 
