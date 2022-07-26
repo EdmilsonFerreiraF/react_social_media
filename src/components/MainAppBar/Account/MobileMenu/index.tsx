@@ -5,7 +5,7 @@ import Navigation from "../Navigation";
 import "menu.css";
 
 export type handleMenuOpening = (
-  value: null | FormEvent,
+  value: (EventTarget & HTMLButtonElement) | null,
   anchor: string,
   closeMobileMenu?: boolean
 ) => void;
@@ -46,21 +46,40 @@ const MobileMenu = (props: Props) => {
     >
       <Navigation isMobile handleMenuOpening={props.handleMenuOpening} />
 
-      <MenuItem onClick={props.handleProfileClick}>
+      <MenuItem
+        onClick={props.handleProfileClick}
+        sx={{
+          padding: "5px 15px",
+        }}
+      >
         <IconButton
           size="medium"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
+          aria-haspop="true"
           color="inherit"
+          sx={{
+            padding: "10px 12px 10px 0px",
+          }}
         >
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
 
-      <MenuItem>
-        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
+      <MenuItem
+        sx={{
+          padding: "5px 15px",
+        }}
+      >
+        <IconButton
+          size="medium"
+          aria-label="show 4 new mails"
+          color="inherit"
+          sx={{
+            padding: "10px 12px 10px 0px",
+          }}
+        >
           <Badge badgeContent={4} color="error">
             <Mail />
           </Badge>
@@ -73,6 +92,9 @@ const MobileMenu = (props: Props) => {
           size="medium"
           aria-label="show 17 new notifications"
           color="inherit"
+          sx={{
+            padding: "10px 12px 10px 0px",
+          }}
         >
           <Badge badgeContent={17} color="error">
             <Notifications />

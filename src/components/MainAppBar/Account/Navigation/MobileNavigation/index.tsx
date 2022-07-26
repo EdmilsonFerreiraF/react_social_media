@@ -19,6 +19,9 @@ const MobileNavigation = ({ handleMenuOpening }: Props) => {
             | MouseEventHandler<HTMLLIElement>
             | undefined
         }
+        sx={{
+          padding: "5px 15px",
+        }}
       >
         <IconButton
           data-testid="navigationIconButton"
@@ -27,6 +30,9 @@ const MobileNavigation = ({ handleMenuOpening }: Props) => {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
+          sx={{
+            padding: "10px 12px 10px 0px",
+          }}
         >
           <Article />
         </IconButton>

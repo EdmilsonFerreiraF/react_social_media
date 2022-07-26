@@ -55,20 +55,40 @@ const Profile = (props: Props) => {
         paper: "menu-paper",
       }}
     >
-      <MenuItem onClick={props.handleProfileClick}>
+      <MenuItem
+        sx={{
+          padding: "5px 15px",
+        }}
+        onClick={props.handleProfileClick}
+      >
         <IconButton
           size="medium"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
+          sx={{
+            padding: "10px 12px 10px 0px",
+          }}
         >
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
-      <MenuItem onClick={handleLogoutClick}>
-        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
+      <MenuItem
+        sx={{
+          padding: "5px 15px",
+        }}
+        onClick={handleLogoutClick}
+      >
+        <IconButton
+          size="medium"
+          aria-label="show 4 new mails"
+          color="inherit"
+          sx={{
+            padding: "10px 12px 10px 0px",
+          }}
+        >
           <Badge badgeContent={4} color="error">
             <Logout />
           </Badge>
@@ -87,9 +107,12 @@ const Profile = (props: Props) => {
         aria-haspopup="true"
         onClick={(e) =>
           props.handleMenuOpening &&
-          props.handleMenuOpening(e, "profileAnchorEl")
+          props.handleMenuOpening(e.currentTarget, "profileAnchorEl")
         }
         color="inherit"
+        sx={{
+          padding: "10px 12px 10px 0px",
+        }}
       >
         <img
           className={styles.profileImg}
