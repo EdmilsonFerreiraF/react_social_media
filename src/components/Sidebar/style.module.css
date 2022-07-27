@@ -1,9 +1,13 @@
 .sidebar {
   overflow-y: scroll;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 70px);
   position: sticky;
   top: 50px;
+}
+
+.sidebarContainer {
   padding: 20px 10px;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -19,27 +23,46 @@
 }
 
 .sidebarButton {
-  width: 150px;
   border: none;
-  padding: 10px;
   border-radius: 5px;
   font-weight: 500;
   cursor: pointer;
+  padding: 10px 32px;
+  width: fit-content;
+  justify-content: center;
+  display: flex;
+  margin: 10px auto 0 auto;
 }
 
 .sidebarDivision {
-  margin: 20px 0;
+  margin: 25px 0px;
 }
 
-@media (max-width: 535px) {
+@media (max-width: 1000px) {
   .sidebarContainer {
-    padding: 20px 10px;
+    padding: 20px 15px 0 0;
   }
 }
 
 @media (max-width: 900px) {
   .sidebar {
     height: auto;
-    padding: 0;
+  }
+
+  .sidebarContainer {
+    width: 220px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebarMobile {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 550px) {
+  .sidebarContainer {
+    width: 190px;
   }
 }

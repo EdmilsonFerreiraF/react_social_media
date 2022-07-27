@@ -32,7 +32,9 @@ const Sidebar = () => {
         onOpen={toggleDrawer(true)}
         sx={{
           display: { xm: "flex", md: "none" },
+          width: 100,
         }}
+        className={styles.sidebarMobile}
       >
         <div className={styles.sidebarContainer}>
           <NavList />
@@ -54,6 +56,7 @@ const Sidebar = () => {
         display: { xs: "none", md: "flex" },
       }}
       disableGutters={true}
+      className={styles.sidebarDesktop}
     >
       <div className={styles.sidebarContainer}>
         <NavList />
