@@ -104,6 +104,22 @@ export async function signup(
     }
 }
 
+export async function savePost(
+    postId: string,
+) {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/bookmark`;
+    const data = { postId }
+
+    await axios.post(url, data, {
+        headers: {
+            Authorization: token as string
+        }
+    }).catch((error) => {
+        console.log(error.message)
+    })
+}
+
 export async function deletePost(
     userId: string
 ) {

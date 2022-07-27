@@ -1,7 +1,8 @@
 import { Bookmark, Delete, Edit, ManageAccounts } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem } from "@mui/material";
-import { deletePost } from "apiCalls";
-import { MouseEventHandler } from "react";
+import { deletePost, savePost } from "apiCalls";
+import { AuthContext, AuthContextInterface } from "context/AuthContext";
+import { MouseEventHandler, useContext } from "react";
 // import "menu.css";
 
 export type handleMenuOpening = (
@@ -20,6 +21,7 @@ type Props = {
 
 const Options = (props: Props) => {
   const isOptionsMenuOpen = Boolean(props.optionsMenuAnchorEl);
+  const { user } = useContext(AuthContext) as AuthContextInterface;
 
   const handleDeletePost = async () => {
     console.log("handleDeletePost");
@@ -27,6 +29,14 @@ const Options = (props: Props) => {
       | MouseEventHandler<HTMLLIElement>
       | undefined;
     await deletePost(props.postId);
+  };
+
+  const handleSavePost = async () => {
+    props.handleMenuOpening(null, "anchorEl", true) as
+      | MouseEventHandler<HTMLLIElement>
+      | undefined;
+
+    await savePost(props.postId);
   };
 
   return (
@@ -58,11 +68,7 @@ const Options = (props: Props) => {
       //   }}
     >
       <MenuItem
-        onClick={() =>
-          props.handleMenuOpening(null, "anchorEl", true) as
-            | MouseEventHandler<HTMLLIElement>
-            | undefined
-        }
+        onClick={() => handleSavePost()}
         sx={{
           padding: "5px 15px",
         }}
