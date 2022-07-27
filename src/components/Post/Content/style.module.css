@@ -5,7 +5,10 @@
 
 .readMore,
 .readLess {
-  font-weight: 500;
+  color: #595959;
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 6px;
   cursor: pointer;
 }
 
@@ -18,7 +21,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 535px) {
+@media (max-width: 900px) {
   .content {
     font-size: 15px;
   }
