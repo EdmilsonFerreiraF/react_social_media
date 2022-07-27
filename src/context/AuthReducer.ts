@@ -1,9 +1,9 @@
-import { INITIAL_STATE } from "./AuthContext";
+import { INITIAL_STATE, User } from "./AuthContext";
 
 export type ACTIONTYPE =
     | { type: "LOGIN_START"; payload?: number }
-    | { type: "LOGIN_SUCCESS"; payload?: string }
-    | { type: "LOGIN_FAILURE"; payload?: string }
+    | { type: "LOGIN_SUCCESS"; payload?: User }
+    | { type: "LOGIN_FAILURE"; payload?: any }
 
 const AuthReducer = (
     state: typeof INITIAL_STATE,
