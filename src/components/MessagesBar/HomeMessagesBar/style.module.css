@@ -1,3 +1,7 @@
+.messagesBarContainer {
+  padding: 30px 15px 0 0;
+}
+
 .birthdayContainer {
   display: flex;
   align-items: center;
@@ -24,11 +28,18 @@
 .messagesBarAd {
   display: flex;
   border-radius: 10px;
-  margin: 30px auto 30px auto;
   width: 100%;
+  margin: 20px auto;
 }
 
 .messagesBarTitle {
   font-size: 18px;
   font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .messagesBarContainer {
+    padding: 20px;
+    max-width: 300px;
+  }
 }

@@ -1,4 +1,3 @@
-export const messagesBarContainer: string
 export const messagesBar: string
 export const birthdayContainer: string
 export const birthdayImg: string

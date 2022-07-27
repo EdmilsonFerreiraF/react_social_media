@@ -1,3 +1,4 @@
+export const messagesBarContainer: string
 export const birthdayContainer: string
 export const birthdayImg: string
 export const birthdayAd: string

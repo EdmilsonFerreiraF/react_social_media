@@ -43,26 +43,21 @@ const MessagesBar = ({ user: visitedUser }: { user?: User }) => {
         open={isOpen}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
-        SwipeAreaProps={{
-          sx: {
-            display: { xs: "flex", md: "none" },
-          },
+        sx={{
+          display: { xs: "flex", md: "none" },
         }}
       >
-        <div className={styles.messagesBar}>
-          {visitedUser ? (
-            <ProfileMessagesBar user={user} friends={friends} />
-          ) : (
-            <HomeMessagesBar friends={friends} />
-          )}
-        </div>
+        {visitedUser ? (
+          <ProfileMessagesBar user={user} friends={friends} />
+        ) : (
+          <HomeMessagesBar friends={friends} />
+        )}
       </SwipeableDrawer>
     </>
   );
 
   const desktop = (
     <Container
-      className={styles.messagesBar}
       sx={{
         display: { xs: "none", md: "flex" },
       }}
@@ -77,7 +72,7 @@ const MessagesBar = ({ user: visitedUser }: { user?: User }) => {
   );
 
   return (
-    <div className={styles.messagesBarContainer}>
+    <div className={styles.messagesBar}>
       {mobile}
       {desktop}
     </div>

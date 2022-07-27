@@ -10,7 +10,11 @@ type Props = {
 
 const HomeMessagesBar = ({ friends }: Props) => {
   return (
-    <aside data-testid="homeMessagesBar" aria-labelledby="messages-bar">
+    <aside
+      className={styles.messagesBarContainer}
+      data-testid="homeMessagesBar"
+      aria-labelledby="messages-bar"
+    >
       <div className={styles.birthdayContainer}>
         <img className={styles.birthdayImg} src={giftImg} alt="Birthday gift" />
         <span className={styles.birthdayText}>
