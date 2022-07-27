@@ -69,17 +69,15 @@ const Options = (props: Props) => {
       >
         <IconButton
           size="medium"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspop="true"
+          aria-label="show 4 new mails"
           color="inherit"
           sx={{
             padding: "10px 12px 10px 0px",
           }}
         >
-          <Edit />
+          <Bookmark />
         </IconButton>
-        <p>Edit</p>
+        <p>Save</p>
       </MenuItem>
 
       <MenuItem
@@ -94,15 +92,17 @@ const Options = (props: Props) => {
       >
         <IconButton
           size="medium"
-          aria-label="show 4 new mails"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspop="true"
           color="inherit"
           sx={{
             padding: "10px 12px 10px 0px",
           }}
         >
-          <Bookmark />
+          <Edit />
         </IconButton>
-        <p>Save</p>
+        <p>Edit</p>
       </MenuItem>
 
       <MenuItem
