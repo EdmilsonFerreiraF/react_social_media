@@ -7,6 +7,7 @@ import { baseUrl } from 'constants/baseUrl'
 import { User } from "context/AuthContext"
 import { ACTIONTYPE } from "context/AuthReducer"
 import { goToIndex, goToLogin } from 'routes/coordinator'
+import { LoginFailure, LoginStart, LoginSuccess } from "context/AuthActions"
 
 type UserData = {
     username: string
@@ -37,7 +38,7 @@ export const loginCall = async (
         .catch(err => {
             console.log(err)
 
-            dispatch({ type: "LOGIN_FAILURE", payload: err })
+            dispatch(LoginFailure(err))
         })
 }
 
@@ -52,7 +53,7 @@ export const useGetUser = (
     useEffect(() => {
         (async () => {
             if (!user?.id && token) {
-                dispatch({ type: "LOGIN_START" })
+                dispatch(LoginStart())
 
                 const res = await axios
                     .get(`${baseUrl}/user`, {
@@ -61,16 +62,10 @@ export const useGetUser = (
                         }
                     })
                     .then(res => {
-                        dispatch({
-                            type: "LOGIN_SUCCESS",
-                            payload: res.data
-                        })
+                        dispatch(LoginSuccess(res.data) as ACTIONTYPE)
                     })
                     .catch(err => {
-                        dispatch({
-                            type: "LOGIN_FAILURE",
-                            payload: err
-                        })
+                        dispatch(LoginFailure(err) as ACTIONTYPE)
 
                         const errorData = err as any
                         const { data: { message } }
@@ -107,6 +102,22 @@ export async function signup(
                 console.log(error.message)
             })
     }
+}
+
+export async function deletePost(
+    userId: string
+) {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/post/${userId}`;
+
+    console.log('userId', userId)
+    await axios.delete(url, {
+        headers: {
+            Authorization: token as string
+        }
+    }).catch((error) => {
+        console.log(error.message)
+    })
 }
 
 export async function sendData(

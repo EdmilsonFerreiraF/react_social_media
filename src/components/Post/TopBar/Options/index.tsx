@@ -1,5 +1,7 @@
 import { Bookmark, Delete, Edit, ManageAccounts } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem } from "@mui/material";
+import { deletePost } from "apiCalls";
+import { MouseEventHandler } from "react";
 // import "menu.css";
 
 export type handleMenuOpening = (
@@ -18,6 +20,14 @@ type Props = {
 
 const Options = (props: Props) => {
   const isOptionsMenuOpen = Boolean(props.optionsMenuAnchorEl);
+
+  const handleDeletePost = async () => {
+    console.log("handleDeletePost");
+    props.handleMenuOpening(null, "anchorEl", true) as
+      | MouseEventHandler<HTMLLIElement>
+      | undefined;
+    await deletePost(props.postId);
+  };
 
   return (
     <Menu
@@ -48,6 +58,11 @@ const Options = (props: Props) => {
       //   }}
     >
       <MenuItem
+        onClick={() =>
+          props.handleMenuOpening(null, "anchorEl", true) as
+            | MouseEventHandler<HTMLLIElement>
+            | undefined
+        }
         sx={{
           padding: "5px 15px",
         }}
@@ -68,6 +83,11 @@ const Options = (props: Props) => {
       </MenuItem>
 
       <MenuItem
+        onClick={() =>
+          props.handleMenuOpening(null, "anchorEl", true) as
+            | MouseEventHandler<HTMLLIElement>
+            | undefined
+        }
         sx={{
           padding: "5px 15px",
         }}
@@ -86,6 +106,11 @@ const Options = (props: Props) => {
       </MenuItem>
 
       <MenuItem
+        onClick={() =>
+          props.handleMenuOpening(null, "anchorEl", true) as
+            | MouseEventHandler<HTMLLIElement>
+            | undefined
+        }
         sx={{
           padding: "5px 15px",
         }}
@@ -103,7 +128,7 @@ const Options = (props: Props) => {
         <p>Change public</p>
       </MenuItem>
 
-      <MenuItem>
+      <MenuItem onClick={() => handleDeletePost()}>
         <IconButton
           size="medium"
           aria-label="show 17 new notifications"
