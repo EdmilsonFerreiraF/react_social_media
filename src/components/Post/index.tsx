@@ -53,6 +53,7 @@ const Post = ({ post }: { post: IPost }) => {
         <TopBar
           profilePicture={profilePicture as string}
           noProfilePicture={noProfilePicture}
+          postId={post?.id}
           username={user?.username}
           createdAt={post?.createdAt}
         />

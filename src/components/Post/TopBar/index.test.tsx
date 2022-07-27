@@ -30,6 +30,7 @@ describe("TopBar", () => {
     const noProfilePicture = "no_profile_picture";
     const username = "username";
     const createdAt = new Date();
+    const postId = "post1";
 
     await act(async () => {
       render(
@@ -38,6 +39,7 @@ describe("TopBar", () => {
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
+          postId={postId}
         />
       );
     });
@@ -50,6 +52,7 @@ describe("TopBar", () => {
     const noProfilePicture = "no_profile_picture";
     const username = "username";
     const createdAt = new Date();
+    const postId = "post1";
 
     await act(async () => {
       render(
@@ -58,6 +61,7 @@ describe("TopBar", () => {
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
+          postId={postId}
         />
       );
     });
@@ -70,6 +74,7 @@ describe("TopBar", () => {
     const noProfilePicture = "no_profile_picture";
     const username = "username";
     const createdAt = new Date();
+    const postId = "post1";
 
     await act(async () => {
       render(
@@ -78,6 +83,7 @@ describe("TopBar", () => {
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
+          postId={postId}
         />
       );
     });
@@ -90,6 +96,7 @@ describe("TopBar", () => {
     const noProfilePicture = "no_profile_picture";
     const username = "username";
     const createdAt = new Date();
+    const postId = "post1";
 
     await act(async () => {
       render(
@@ -98,6 +105,7 @@ describe("TopBar", () => {
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
+          postId={postId}
         />
       );
     });
@@ -110,6 +118,7 @@ describe("TopBar", () => {
     const noProfilePicture = "no_profile_picture";
     const username = "username";
     const createdAt = new Date();
+    const postId = "post1";
 
     await act(async () => {
       render(
@@ -118,6 +127,7 @@ describe("TopBar", () => {
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
+          postId={postId}
         />
       );
     });
@@ -130,6 +140,7 @@ describe("TopBar", () => {
     const noProfilePicture = "no_profile_picture";
     const username = "username";
     const createdAt = new Date();
+    const postId = "post1";
 
     const { container }: any = act(() => {
       render(
@@ -138,6 +149,7 @@ describe("TopBar", () => {
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
+          postId={postId}
         />
       );
     });
