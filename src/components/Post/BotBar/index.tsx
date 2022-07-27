@@ -1,7 +1,8 @@
-import React from "react";
+import { useContext, useEffect } from "react";
 
 import { sendData } from "apiCalls";
 import { baseUrl } from "constants/baseUrl";
+import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
 import heartImg from "img/heart.webp";
 import likeImg from "img/like.webp";
@@ -16,15 +17,24 @@ type Props = {
 
 const BotBar = (props: Props) => {
   const { form, onChange } = useForm({
-    isLiked: false,
+    likes: 0,
   });
 
-  const likeHandler = async () => {
-    const url = `${baseUrl}/post/${props.postId}/like`;
-    const data = { userId: props.userId };
+  useEffect(() => {
+    onChange(props.likes, "likes");
+  }, []);
 
-    sendData(url, "put", data).catch(() => {
-      onChange(form.isLiked ? form.likes - 1 : form.likes + 1, "isLiked");
+  const { user } = useContext(AuthContext) as AuthContextInterface;
+
+  const reactionHandler = async () => {
+    const url = `${baseUrl}/post/${props.postId}/like`;
+    const data = { userId: user.id };
+
+    sendData(url, "put", data).then(() => {
+      onChange(
+        form.likes > props.likes ? form.likes - 1 : form.likes + 1,
+        "likes"
+      );
     });
   };
 
@@ -34,17 +44,17 @@ const BotBar = (props: Props) => {
         <img
           className={styles.postReactionItem}
           src={likeImg}
-          onClick={likeHandler}
+          onClick={reactionHandler}
           alt="Post like reaction"
         />
         <img
           className={styles.postReactionItem}
           src={heartImg}
-          onClick={likeHandler}
+          onClick={reactionHandler}
           alt="Post heart reaction"
         />
         <span data-testid="post likes" className={styles.postLikeCounter}>
-          {props.likes} people liked it
+          {form.likes} people liked it
         </span>
       </div>
       <div data-testid="post comments" className={styles.postComments}>
