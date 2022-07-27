@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 
 import ElementList from "../ElementList";
@@ -13,16 +14,17 @@ const BotBar = (props: Props) => {
     <div aria-labelledby="create-post" className={styles.botBar}>
       <ElementList inputChangeHandler={props.inputChangeHandler} />
 
-      <button
+      <Button
         className={styles.createButton}
         type="submit"
+        variant="contained"
         disabled={
           (!props.form.description || props.form.description === "") &&
           !props.form.file
         }
       >
         Create
-      </button>
+      </Button>
     </div>
   );
 };

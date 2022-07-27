@@ -2,6 +2,13 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 16px;
+  color: #1e1e1e;
+  text-transform: none;
+}
+
+.navTitle {
+  padding-right: 15px;
 }
 
 .navItemIcon {
@@ -11,11 +18,13 @@
 }
 
 @media (max-width: 535px) {
-  .navItem {
-    font-size: 15px;
-  }
-
   .navItemIcon {
     margin: 17px 16px 17px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navItem {
+    font-size: 15px;
   }
 }
