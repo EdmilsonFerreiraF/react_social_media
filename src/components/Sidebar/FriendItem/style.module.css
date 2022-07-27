@@ -1,7 +1,7 @@
 .friend {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin: 0 0 20px 5px;
   cursor: pointer;
 }
 
