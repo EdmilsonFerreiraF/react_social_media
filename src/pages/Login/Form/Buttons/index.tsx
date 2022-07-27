@@ -24,14 +24,14 @@ const Buttons = () => {
         type="submit"
         disabled={isFetching}
       >
-        {isFetching ? <CircularProgress size="20" /> : "Login"}
+        {isFetching ? <CircularProgress color="warning" size={20} /> : "Login"}
       </button>
       <span className={styles.loginForgot}>Forgot password?</span>
       <button
         onClick={handleRegisterButton}
         className={styles.loginRegisterButton}
       >
-        {isFetching ? <CircularProgress size="20" /> : "Create a new account"}
+        {isFetching ? <CircularProgress size={20} /> : "Create a new account"}
       </button>
     </>
   );
