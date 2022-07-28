@@ -4,10 +4,10 @@ import { useEffect } from "react"
 import { NavigateFunction, useNavigate } from "react-router-dom"
 
 import { baseUrl } from 'constants/baseUrl'
+import { LoginFailure, LoginStart, LoginSuccess } from "context/AuthActions"
 import { User } from "context/AuthContext"
 import { ACTIONTYPE } from "context/AuthReducer"
 import { goToIndex, goToLogin } from 'routes/coordinator'
-import { LoginFailure, LoginStart, LoginSuccess } from "context/AuthActions"
 
 type UserData = {
     username: string
@@ -104,7 +104,22 @@ export async function signup(
     }
 }
 
-export async function savePost(
+export async function deletePostBookmark(
+    postId: string,
+) {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/bookmark/${postId}`;
+
+    await axios.delete(url, {
+        headers: {
+            Authorization: token as string
+        }
+    }).catch((error) => {
+        console.log(error.message)
+    })
+}
+
+export async function savePostBookmark(
     postId: string,
 ) {
     const token = localStorage.getItem("token")
@@ -120,13 +135,28 @@ export async function savePost(
     })
 }
 
+export async function getUserBookmarks() {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/bookmark`;
+
+    const bookmarks = await axios.get(url, {
+        headers: {
+            Authorization: token as string
+        }
+    }).then(res => res.data)
+        .catch((error) => {
+            console.log(error.message)
+        })
+
+    return bookmarks
+}
+
 export async function deletePost(
-    userId: string
+    postId: string
 ) {
     const token = localStorage.getItem("token")
-    const url = `${baseUrl}/post/${userId}`;
+    const url = `${baseUrl}/post/${postId}`;
 
-    console.log('userId', userId)
     await axios.delete(url, {
         headers: {
             Authorization: token as string
