@@ -14,7 +14,7 @@ import { MouseEventHandler, useContext, useEffect } from "react";
 export type handleMenuOpening = (
   value: (EventTarget & HTMLButtonElement) | null,
   anchor: string,
-  closeOptionsMenu?: boolean
+  closeMenu?: boolean
 ) => void;
 
 type Props = {
@@ -23,6 +23,7 @@ type Props = {
   handleMenuOpening: handleMenuOpening;
   optionsButton: string;
   postId: string;
+  handlePostEditing: () => void;
 };
 
 const Options = (props: Props) => {
@@ -61,6 +62,7 @@ const Options = (props: Props) => {
       await deletePostBookmark(props.postId);
       return;
     }
+
     await savePostBookmark(props.postId);
   };
 
@@ -119,11 +121,7 @@ const Options = (props: Props) => {
       </MenuItem>
 
       <MenuItem
-        onClick={() =>
-          props.handleMenuOpening(null, "anchorEl", true) as
-            | MouseEventHandler<HTMLLIElement>
-            | undefined
-        }
+        onClick={() => props.handlePostEditing()}
         sx={{
           padding: "5px 15px",
         }}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { baseUrl } from "constants/baseUrl";
 import { AuthContext, AuthContextInterface, User } from "context/AuthContext";
@@ -12,6 +12,7 @@ import noProfilePicture from "img/no_person.webp";
 import BotBar from "./BotBar";
 import Content from "./Content";
 import TopBar from "./TopBar";
+import { handleMenuOpening } from "./TopBar/Options";
 
 export interface IPost {
   _id: string;
@@ -29,7 +30,11 @@ const Post = ({ post }: { post: IPost }) => {
     likes: post?.likes?.length,
     isLiked: false,
     readMore: false,
+    optionsMenuAnchorEl: null,
   });
+
+  console.log("optionsMenuAnchorEl", form.optionsMenuAnchorEl);
+  const [isEditing, setIsEditing] = useState(false);
 
   const { user: currentUser } = useContext(AuthContext) as AuthContextInterface;
 
@@ -47,6 +52,30 @@ const Post = ({ post }: { post: IPost }) => {
     onChange(!form.readMore, "readMore");
   };
 
+  const handleOptionsMenuClose = () => {
+    onChange(null, "optionsMenuAnchorEl");
+  };
+
+  const handlePostEditing = () => {
+    setIsEditing((prevState) => !prevState);
+    handleMenuOpening(null, "optionsMenuAnchorEl") as
+      | ((event: {}, reason: "backdropClick" | "escapeKeyDown") => void)
+      | undefined;
+  };
+
+  const handleMenuOpening: handleMenuOpening = (
+    value,
+    anchor,
+    closeMenu = false
+  ) => {
+    console.log("value", value);
+    onChange(value, anchor);
+
+    if (closeMenu) {
+      handleOptionsMenuClose();
+    }
+  };
+
   return (
     <div data-testid="post" className={styles.post}>
       <div className={styles.postContainer}>
@@ -56,6 +85,10 @@ const Post = ({ post }: { post: IPost }) => {
           postId={post?.id}
           username={user?.username}
           createdAt={post?.createdAt}
+          handlePostEditing={handlePostEditing}
+          isEditing={isEditing}
+          handleMenuOpening={handleMenuOpening}
+          optionsMenuAnchorEl={form.optionsMenuAnchorEl}
         />
         <Content
           readMore={form.readMore}
@@ -63,6 +96,10 @@ const Post = ({ post }: { post: IPost }) => {
           postPicture={postPicture as string}
           noPostPicture={noPostPicture}
           description={post?.description}
+          isEditing={isEditing}
+          handlePostEditing={handlePostEditing}
+          handleMenuOpening={handleMenuOpening}
+          optionsMenuAnchorEl={form.optionsMenuAnchorEl}
         />
         <BotBar
           userId={currentUser?.id}

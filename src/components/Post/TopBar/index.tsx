@@ -9,6 +9,7 @@ import { useForm } from "hooks/useForm";
 import styles from "./style.module.css";
 import { Box, IconButton } from "@mui/material";
 import Options from "./Options";
+import { handleMenuOpening } from "components/MainAppBar/Account/MobileMenu";
 
 type Props = {
   postId: string;
@@ -16,31 +17,14 @@ type Props = {
   profilePicture: string;
   noProfilePicture: string;
   createdAt: Date;
+  isEditing: boolean;
+  handlePostEditing: () => void;
+  handleMenuOpening: handleMenuOpening;
+  optionsMenuAnchorEl: Element;
 };
 
 const TopBar = (props: Props) => {
-  const { form, onChange } = useForm({
-    optionsMenuAnchorEl: null,
-  });
-
-  const isOptionsMenuOpen = Boolean(form.optionsMenuAnchorEl);
-
-  const handleOptionsMenuClose = () => {
-    onChange(null, "optionsMenuAnchorEl");
-  };
-
-  const handleMenuOpening = (
-    value: (EventTarget & HTMLButtonElement) | null,
-    anchor: string,
-    closeOptionsMenu: boolean = false
-  ) => {
-    console.log("value", value);
-    onChange(value, anchor);
-
-    if (closeOptionsMenu) {
-      handleOptionsMenuClose();
-    }
-  };
+  const isOptionsMenuOpen = Boolean(props.optionsMenuAnchorEl);
 
   const optionsMenuId = "options-menu";
   const optionsButton = "options-button";
@@ -80,7 +64,7 @@ const TopBar = (props: Props) => {
             size="large"
             aria-label="post options"
             onClick={(e) =>
-              handleMenuOpening(e.currentTarget, "optionsMenuAnchorEl")
+              props.handleMenuOpening(e.currentTarget, "optionsMenuAnchorEl")
             }
             color="inherit"
           >
@@ -88,11 +72,12 @@ const TopBar = (props: Props) => {
           </IconButton>
         </Box>
         <Options
-          optionsMenuAnchorEl={form.optionsMenuAnchorEl}
+          optionsMenuAnchorEl={props.optionsMenuAnchorEl}
           optionsMenuId={optionsMenuId}
           postId={props.postId}
-          handleMenuOpening={handleMenuOpening}
+          handleMenuOpening={props.handleMenuOpening}
           optionsButton={optionsButton}
+          handlePostEditing={props.handlePostEditing}
         />
       </div>
     </div>

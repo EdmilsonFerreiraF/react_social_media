@@ -7,6 +7,7 @@ import { axe, toHaveNoViolations } from "jest-axe";
 
 import { act, render, screen } from "components/CustomRender";
 import TopBar from ".";
+import { forwardRef, LegacyRef, ReactNode, Ref, useRef } from "react";
 
 expect.extend(toHaveNoViolations);
 
@@ -31,16 +32,32 @@ describe("TopBar", () => {
     const username = "username";
     const createdAt = new Date();
     const postId = "post1";
+    const handleMenuOpening = jest.fn();
+    const isEditing = true;
+    const handlePostEditing = jest.fn();
+    const optionsMenuAnchorEl = useRef();
+    const OptionsButton = forwardRef((props, ref) => (
+      <button ref={ref as LegacyRef<HTMLButtonElement>} id="options-menu">
+        {props.children}
+      </button>
+    ));
 
     await act(async () => {
       render(
-        <TopBar
-          profilePicture={profilePicture}
-          noProfilePicture={noProfilePicture}
-          username={username}
-          createdAt={createdAt}
-          postId={postId}
-        />
+        <>
+          <TopBar
+            handleMenuOpening={handleMenuOpening}
+            profilePicture={profilePicture}
+            noProfilePicture={noProfilePicture}
+            username={username}
+            createdAt={createdAt}
+            postId={postId}
+            isEditing={isEditing}
+            handlePostEditing={handlePostEditing}
+            optionsMenuAnchorEl={optionsMenuAnchorEl?.current?.target}
+          />
+          <OptionsButton ref={optionsMenuAnchorEl} />
+        </>
       );
     });
 
@@ -53,16 +70,41 @@ describe("TopBar", () => {
     const username = "username";
     const createdAt = new Date();
     const postId = "post1";
+    const handleMenuOpening = jest.fn();
+    const isEditing = true;
+    const handlePostEditing = jest.fn();
+    interface Props {
+      children?: ReactNode;
+      type: "submit" | "button";
+    }
+    type Ref = HTMLButtonElement;
+    const optionsRef = useRef();
+    const OptionsButton = forwardRef<Ref, Props>(
+      (props, ref: Ref<HTMLButtonElement>) => (
+        <button ref={ref} id="options-menu">
+          {props.children}
+        </button>
+      )
+    );
+    const optionsAnchorCurrent = optionsRef?.current;
+    const optionsAnchorCurrentTarget = optionsAnchorCurrent;
 
     await act(async () => {
       render(
-        <TopBar
-          profilePicture={profilePicture}
-          noProfilePicture={noProfilePicture}
-          username={username}
-          createdAt={createdAt}
-          postId={postId}
-        />
+        <>
+          <TopBar
+            handleMenuOpening={handleMenuOpening}
+            profilePicture={profilePicture}
+            noProfilePicture={noProfilePicture}
+            username={username}
+            createdAt={createdAt}
+            postId={postId}
+            isEditing={isEditing}
+            handlePostEditing={handlePostEditing}
+            optionsMenuAnchorEl={optionsAnchorCurrent}
+          />
+          <OptionsButton ref={optionsRef} />
+        </>
       );
     });
 
@@ -75,16 +117,37 @@ describe("TopBar", () => {
     const username = "username";
     const createdAt = new Date();
     const postId = "post1";
+    const handleMenuOpening = jest.fn();
+    const isEditing = true;
+    const handlePostEditing = jest.fn();
+    let optionsButtonTarget = (e: React.FormEvent<HTMLElement>) => {
+      return e.target;
+    };
+    const OptionsButton = () => {
+      return (
+        <button onChange={optionsButtonTarget} id="options-menu">
+          Options
+        </button>
+      );
+    };
+    const optionsMenuAnchorEl;
 
     await act(async () => {
       render(
-        <TopBar
-          profilePicture={profilePicture}
-          noProfilePicture={noProfilePicture}
-          username={username}
-          createdAt={createdAt}
-          postId={postId}
-        />
+        <>
+          <TopBar
+            handleMenuOpening={handleMenuOpening}
+            profilePicture={profilePicture}
+            noProfilePicture={noProfilePicture}
+            username={username}
+            createdAt={createdAt}
+            postId={postId}
+            isEditing={isEditing}
+            handlePostEditing={handlePostEditing}
+            optionsMenuAnchorEl={optionsMenuAnchorEl}
+          />
+          <OptionsButton />
+        </>
       );
     });
 
@@ -97,15 +160,25 @@ describe("TopBar", () => {
     const username = "username";
     const createdAt = new Date();
     const postId = "post1";
+    const handleMenuOpening = jest.fn();
+    const isEditing = true;
+    const handlePostEditing = jest.fn();
+    const optionsMenuAnchorEl = () => (
+      <button id="options-menu">Options</button>
+    );
 
     await act(async () => {
       render(
         <TopBar
+          handleMenuOpening={handleMenuOpening}
           profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
           postId={postId}
+          isEditing={isEditing}
+          handlePostEditing={handlePostEditing}
+          optionsMenuAnchorEl={optionsMenuAnchorEl}
         />
       );
     });
@@ -119,15 +192,25 @@ describe("TopBar", () => {
     const username = "username";
     const createdAt = new Date();
     const postId = "post1";
+    const handleMenuOpening = jest.fn();
+    const isEditing = true;
+    const handlePostEditing = jest.fn();
+    const optionsMenuAnchorEl = () => (
+      <button id="options-menu">Options</button>
+    );
 
     await act(async () => {
       render(
         <TopBar
+          handleMenuOpening={handleMenuOpening}
           profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
           postId={postId}
+          isEditing={isEditing}
+          handlePostEditing={handlePostEditing}
+          optionsMenuAnchorEl={optionsMenuAnchorEl}
         />
       );
     });
@@ -141,15 +224,25 @@ describe("TopBar", () => {
     const username = "username";
     const createdAt = new Date();
     const postId = "post1";
+    const handleMenuOpening = jest.fn();
+    const isEditing = true;
+    const handlePostEditing = jest.fn();
+    const optionsMenuAnchorEl = () => (
+      <button id="options-menu">Options</button>
+    );
 
     const { container }: any = act(() => {
       render(
         <TopBar
+          handleMenuOpening={handleMenuOpening}
           profilePicture={profilePicture}
           noProfilePicture={noProfilePicture}
           username={username}
           createdAt={createdAt}
           postId={postId}
+          isEditing={isEditing}
+          handlePostEditing={handlePostEditing}
+          optionsMenuAnchorEl={optionsMenuAnchorEl}
         />
       );
     });
