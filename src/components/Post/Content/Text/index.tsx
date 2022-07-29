@@ -1,6 +1,7 @@
-import { ClickAwayListener } from "@mui/material";
+import { Button, ClickAwayListener, ButtonGroup } from "@mui/material";
+import { handleMenuOpening } from "components/Post/TopBar/Options";
 import { useForm } from "hooks/useForm";
-import { FormEvent, useEffect } from "react";
+import { FormEvent, MouseEventHandler, useEffect } from "react";
 import styles from "./style.module.css";
 
 type Props = {
@@ -8,10 +9,12 @@ type Props = {
   isEditing: boolean;
   children: JSX.Element;
   handlePostEditing: () => void;
+  handleMenuOpening: handleMenuOpening;
 };
 
 const Text = (props: Props) => {
   const { form, onChange } = useForm({
+    initialDescription: "",
     description: "",
   });
 
@@ -25,24 +28,59 @@ const Text = (props: Props) => {
     onChange(value, name);
   };
 
+  const handleCancelButton = () => {
+    onChange(form.initialDescription, "description");
+    props.handlePostEditing();
+  };
+
   console.log("Text - description", form.description);
 
   useEffect(() => {
+    onChange(props.description, "initialDescription");
     onChange(props.description, "description");
   }, []);
 
   console.log("props.isEditing", props.isEditing);
+  console.log(
+    "form.description === form.initialDescription",
+    form.description === form.initialDescription
+  );
+  console.log("form.description", form.description);
+  console.log("form.initialDescription", form.initialDescription);
   return (
     <>
       {props.isEditing ? (
         <ClickAwayListener onClickAway={() => props.handlePostEditing()}>
-          <textarea
-            name="description"
-            onChange={handleDescriptionChange}
-            rows={10}
-            className={styles.textInput}
-            value={form.description}
-          ></textarea>
+          <>
+            <textarea
+              name="description"
+              onChange={handleDescriptionChange}
+              rows={10}
+              className={styles.textInput}
+              value={form.description}
+            ></textarea>
+            <ButtonGroup className={styles.buttons}>
+              <Button
+                className={styles.cancelButton}
+                onClick={() => handleCancelButton()}
+                variant="contained"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="success"
+                disabled={
+                  !form.description ||
+                  form.description === "" ||
+                  form.description === form.initialDescription
+                }
+              >
+                Save
+              </Button>
+            </ButtonGroup>
+          </>
         </ClickAwayListener>
       ) : (
         props.children

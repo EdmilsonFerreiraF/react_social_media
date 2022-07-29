@@ -24,6 +24,7 @@ const Content = (props: Props) => {
           handlePostEditing={props.handlePostEditing}
           isEditing={props.isEditing}
           description={props.description}
+          handleMenuOpening={props.handleMenuOpening}
         >
           {!props.readMore ? (
             <>
