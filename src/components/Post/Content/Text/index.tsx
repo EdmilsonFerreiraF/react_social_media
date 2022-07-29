@@ -1,3 +1,4 @@
+import { ClickAwayListener } from "@mui/material";
 import { useForm } from "hooks/useForm";
 import { FormEvent, useEffect } from "react";
 import styles from "./style.module.css";
@@ -34,13 +35,15 @@ const Text = (props: Props) => {
   return (
     <>
       {props.isEditing ? (
-        <textarea
-          name="description"
-          onChange={handleDescriptionChange}
-          rows={10}
-          className={styles.textInput}
-          value={form.description}
-        ></textarea>
+        <ClickAwayListener onClickAway={() => props.handlePostEditing()}>
+          <textarea
+            name="description"
+            onChange={handleDescriptionChange}
+            rows={10}
+            className={styles.textInput}
+            value={form.description}
+          ></textarea>
+        </ClickAwayListener>
       ) : (
         props.children
       )}
