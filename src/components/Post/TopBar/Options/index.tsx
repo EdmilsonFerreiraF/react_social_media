@@ -17,7 +17,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import AudienceList from "./Audience";
+import AudienceList from "./AudienceList";
 // import "menu.css";
 
 export type handleMenuOpening = (
@@ -44,7 +44,7 @@ const Options = (props: Props) => {
 
   const options = ["Public", "Friends", "Friend of friends", "Only me"];
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
 
   type AudienceType = keyof typeof Audience;
@@ -65,6 +65,7 @@ const Options = (props: Props) => {
   };
 
   const handleClose = () => {
+    handlePostAudience();
     setAnchorEl(null);
   };
 
@@ -102,10 +103,9 @@ const Options = (props: Props) => {
   };
 
   const handlePostAudience = async () => {
-    props.handleMenuOpening(null, "anchorEl", true) as
-      | MouseEventHandler<HTMLLIElement>
-      | undefined;
-    await changePostAudience(props.postId, selectedOptionToAudience());
+    const selectedAudience = selectedOptionToAudience();
+
+    await changePostAudience(props.postId, selectedAudience);
   };
 
   return (
@@ -209,7 +209,15 @@ const Options = (props: Props) => {
         id="lock-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={() => handleClose()}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
         MenuListProps={{
           "aria-labelledby": "lock-button",
           role: "listbox",
