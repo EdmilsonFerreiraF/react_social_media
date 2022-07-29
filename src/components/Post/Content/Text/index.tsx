@@ -51,7 +51,7 @@ const Text = (props: Props) => {
     <>
       {props.isEditing ? (
         <ClickAwayListener onClickAway={() => props.handlePostEditing()}>
-          <>
+          <div>
             <textarea
               name="description"
               onChange={handleDescriptionChange}
@@ -80,7 +80,7 @@ const Text = (props: Props) => {
                 Save
               </Button>
             </ButtonGroup>
-          </>
+          </div>
         </ClickAwayListener>
       ) : (
         props.children
