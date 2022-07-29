@@ -1,6 +1,8 @@
 import { Bookmark, Delete, Edit, ManageAccounts } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import {
+  Audience,
+  changePostAudience,
   deletePost,
   deletePostBookmark,
   getUserBookmarks,
@@ -8,7 +10,14 @@ import {
 } from "apiCalls";
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
-import { MouseEventHandler, useContext, useEffect } from "react";
+import {
+  FormEvent,
+  MouseEventHandler,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import AudienceList from "./Audience";
 // import "menu.css";
 
 export type handleMenuOpening = (
@@ -32,6 +41,32 @@ const Options = (props: Props) => {
   const { form, onChange } = useForm({
     bookmarks: [],
   });
+
+  const options = ["Public", "Friends", "Friend of friends", "Only me"];
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = useState(1);
+  const open = Boolean(anchorEl);
+
+  type AudienceType = keyof typeof Audience;
+
+  const selectedOptionToAudience = () => {
+    const upperSnakedOption = options[selectedIndex]
+      .split(" ")
+      .join("_")
+      .toUpperCase() as AudienceType;
+
+    console.log("upperSnakedOption", upperSnakedOption);
+    return Audience[upperSnakedOption];
+  };
+
+  const handleMenuItemClick = (event: FormEvent, index: number) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     (async () => {
@@ -64,6 +99,13 @@ const Options = (props: Props) => {
     }
 
     await savePostBookmark(props.postId);
+  };
+
+  const handlePostAudience = async () => {
+    props.handleMenuOpening(null, "anchorEl", true) as
+      | MouseEventHandler<HTMLLIElement>
+      | undefined;
+    await changePostAudience(props.postId, selectedOptionToAudience());
   };
 
   return (
@@ -140,7 +182,7 @@ const Options = (props: Props) => {
         </IconButton>
         <p>Edit</p>
       </MenuItem>
-
+      {/* 
       <MenuItem
         onClick={() =>
           props.handleMenuOpening(null, "anchorEl", true) as
@@ -161,8 +203,34 @@ const Options = (props: Props) => {
         >
           <ManageAccounts />
         </IconButton>
-        <p>Change public</p>
-      </MenuItem>
+        <p>Change audience</p>
+      </MenuItem> */}
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "lock-button",
+          role: "listbox",
+        }}
+      >
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+      <AudienceList
+        options={options}
+        setAnchorEl={setAnchorEl}
+        selectedIndex={selectedIndex}
+        open={open}
+      />
 
       <MenuItem onClick={() => handleDeletePost()}>
         <IconButton
