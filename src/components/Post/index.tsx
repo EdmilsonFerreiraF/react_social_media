@@ -100,6 +100,7 @@ const Post = ({ post }: { post: IPost }) => {
           handlePostEditing={handlePostEditing}
           handleMenuOpening={handleMenuOpening}
           optionsMenuAnchorEl={form.optionsMenuAnchorEl}
+          postId={post?.id}
         />
         <BotBar
           userId={currentUser?.id}

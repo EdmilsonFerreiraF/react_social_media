@@ -1,4 +1,5 @@
 import { Button, ClickAwayListener, ButtonGroup } from "@mui/material";
+import { savePostEditing } from "apiCalls";
 import { handleMenuOpening } from "components/Post/TopBar/Options";
 import { useForm } from "hooks/useForm";
 import { FormEvent, MouseEventHandler, useEffect } from "react";
@@ -10,6 +11,7 @@ type Props = {
   children: JSX.Element;
   handlePostEditing: () => void;
   handleMenuOpening: handleMenuOpening;
+  postId: string;
 };
 
 const Text = (props: Props) => {
@@ -28,25 +30,21 @@ const Text = (props: Props) => {
     onChange(value, name);
   };
 
-  const handleCancelButton = () => {
+  const handleCancelEditing = () => {
     onChange(form.initialDescription, "description");
     props.handlePostEditing();
   };
 
-  console.log("Text - description", form.description);
+  const handleSaveEditing = () => {
+    savePostEditing(props.postId, form.description);
+    props.handlePostEditing();
+  };
 
   useEffect(() => {
     onChange(props.description, "initialDescription");
     onChange(props.description, "description");
   }, []);
 
-  console.log("props.isEditing", props.isEditing);
-  console.log(
-    "form.description === form.initialDescription",
-    form.description === form.initialDescription
-  );
-  console.log("form.description", form.description);
-  console.log("form.initialDescription", form.initialDescription);
   return (
     <>
       {props.isEditing ? (
@@ -62,7 +60,7 @@ const Text = (props: Props) => {
             <ButtonGroup className={styles.buttons}>
               <Button
                 className={styles.cancelButton}
-                onClick={() => handleCancelButton()}
+                onClick={() => handleCancelEditing()}
                 variant="contained"
               >
                 Cancel
@@ -71,6 +69,7 @@ const Text = (props: Props) => {
                 type="submit"
                 variant="contained"
                 color="success"
+                onClick={() => handleSaveEditing()}
                 disabled={
                   !form.description ||
                   form.description === "" ||

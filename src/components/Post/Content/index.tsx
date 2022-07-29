@@ -14,6 +14,7 @@ type Props = {
   handlePostEditing: () => void;
   optionsMenuAnchorEl: string | null;
   handleMenuOpening: handleMenuOpening;
+  postId: string;
 };
 
 const Content = (props: Props) => {
@@ -25,6 +26,7 @@ const Content = (props: Props) => {
           isEditing={props.isEditing}
           description={props.description}
           handleMenuOpening={props.handleMenuOpening}
+          postId={props.postId}
         >
           {!props.readMore ? (
             <>
