@@ -7,6 +7,7 @@ import Menu from "@mui/material/Menu";
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import { IconButton } from "@mui/material";
 import { ChevronRight, ManageAccounts } from "@mui/icons-material";
+import styles from "./style.module.css";
 
 type Props = {
   setAnchorEl: Dispatch<SetStateAction<HTMLElement | null>>;
@@ -48,6 +49,7 @@ const AudienceList = (props: Props) => {
           </IconButton>
           <ListItemText
             primary="Audience"
+            className={styles.selectedAudience}
             secondary={props.options[props.selectedIndex]}
           />
           <ChevronRight />

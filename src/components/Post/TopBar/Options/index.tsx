@@ -32,6 +32,7 @@ type Props = {
   handleMenuOpening: handleMenuOpening;
   optionsButton: string;
   postId: string;
+  postAudience: Audience;
   handlePostEditing: () => void;
 };
 
@@ -47,6 +48,10 @@ const Options = (props: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
 
+  useEffect(() => {
+    // setSelectedIndex(Audience[props.postAudience]);
+  }, []);
+
   type AudienceType = keyof typeof Audience;
 
   const selectedOptionToAudience = () => {
@@ -58,6 +63,20 @@ const Options = (props: Props) => {
     console.log("upperSnakedOption", upperSnakedOption);
     return Audience[upperSnakedOption];
   };
+
+  const audienceToSelectedOption = (postAudience: "PUBLIC") => {
+    let normalizedAudience = postAudience.split("_").join(" ").toLowerCase();
+    normalizedAudience = normalizedAudience[0].toUpperCase();
+
+    console.log("here normalizedAudience", normalizedAudience);
+    console.log(
+      "options.indexOf(normalizedAudience)",
+      options.indexOf(normalizedAudience)
+    );
+    return options.indexOf(normalizedAudience);
+  };
+
+  audienceToSelectedOption("PUBLIC");
 
   const handleMenuItemClick = (event: FormEvent, index: number) => {
     setSelectedIndex(index);

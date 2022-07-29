@@ -13,6 +13,7 @@ import BotBar from "./BotBar";
 import Content from "./Content";
 import TopBar from "./TopBar";
 import { handleMenuOpening } from "./TopBar/Options";
+import { Audience } from "apiCalls";
 
 export interface IPost {
   _id: string;
@@ -20,6 +21,7 @@ export interface IPost {
   userId: string;
   description: string;
   image: string;
+  audience: Audience;
   likes: User["id"][];
   createdAt: Date;
   comment: number;
@@ -89,6 +91,7 @@ const Post = ({ post }: { post: IPost }) => {
           isEditing={isEditing}
           handleMenuOpening={handleMenuOpening}
           optionsMenuAnchorEl={form.optionsMenuAnchorEl}
+          postAudience={post?.audience}
         />
         <Content
           readMore={form.readMore}

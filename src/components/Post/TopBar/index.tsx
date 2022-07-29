@@ -10,6 +10,7 @@ import styles from "./style.module.css";
 import { Box, IconButton } from "@mui/material";
 import Options from "./Options";
 import { handleMenuOpening } from "components/MainAppBar/Account/MobileMenu";
+import { Audience } from "apiCalls";
 
 type Props = {
   postId: string;
@@ -21,6 +22,7 @@ type Props = {
   handlePostEditing: () => void;
   handleMenuOpening: handleMenuOpening;
   optionsMenuAnchorEl: Element;
+  postAudience: Audience;
 };
 
 const TopBar = (props: Props) => {
@@ -78,6 +80,7 @@ const TopBar = (props: Props) => {
           handleMenuOpening={props.handleMenuOpening}
           optionsButton={optionsButton}
           handlePostEditing={props.handlePostEditing}
+          postAudience={props.postAudience}
         />
       </div>
     </div>
