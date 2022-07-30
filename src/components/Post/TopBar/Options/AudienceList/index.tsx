@@ -1,9 +1,6 @@
-import * as React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import { IconButton } from "@mui/material";
 import { ChevronRight, ManageAccounts } from "@mui/icons-material";
@@ -42,17 +39,17 @@ const AudienceList = (props: Props) => {
             aria-label="change audience"
             color="inherit"
             sx={{
-              padding: "10px 12px 10px 0px",
+              padding: 0,
             }}
           >
             <ManageAccounts />
+            <ListItemText
+              primary="Audience"
+              className={styles.selectedAudience}
+              secondary={props.options[props.selectedIndex]}
+            />
+            <ChevronRight />
           </IconButton>
-          <ListItemText
-            primary="Audience"
-            className={styles.selectedAudience}
-            secondary={props.options[props.selectedIndex]}
-          />
-          <ChevronRight />
         </ListItem>
       </List>
     </div>
