@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 
 import { baseUrl } from "constants/baseUrl";
 import { AuthContext, AuthContextInterface, User } from "context/AuthContext";
@@ -35,7 +35,6 @@ const Post = ({ post }: { post: IPost }) => {
     optionsMenuAnchorEl: null,
   });
 
-  console.log("optionsMenuAnchorEl", form.optionsMenuAnchorEl);
   const [isEditing, setIsEditing] = useState(false);
 
   const { user: currentUser } = useContext(AuthContext) as AuthContextInterface;

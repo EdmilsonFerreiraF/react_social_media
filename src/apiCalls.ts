@@ -166,6 +166,47 @@ export async function deletePost(
     })
 }
 
+export async function savePostEditing(
+    postId: string,
+    description: string
+) {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/post/${postId}`;
+    const data = { description }
+
+    await axios.put(url, data, {
+        headers: {
+            Authorization: token as string
+        }
+    }).catch((error) => {
+        console.log(error.message)
+    })
+}
+
+export enum Audience {
+    PUBLIC = "PUBLIC",
+    FRIENDS = "FRIENDS",
+    FRIEND_OF_FRIENDS = "FRIEND_OF_FRIENDS",
+    ONLY_ME = "ONLY_ME"
+}
+
+export async function changePostAudience(
+    postId: string,
+    audience: Audience,
+) {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/post/${postId}`;
+    const data = { audience }
+
+    await axios.put(url, data, {
+        headers: {
+            Authorization: token as string
+        }
+    }).catch((error) => {
+        console.log(error.message)
+    })
+}
+
 export async function sendData(
     url: string,
     method: "post" | "put",

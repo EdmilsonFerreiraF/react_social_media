@@ -43,13 +43,13 @@ const AudienceList = (props: Props) => {
             }}
           >
             <ManageAccounts />
-            <ListItemText
-              primary="Audience"
-              className={styles.selectedAudience}
-              secondary={props.options[props.selectedIndex]}
-            />
-            <ChevronRight />
           </IconButton>
+          <ListItemText
+            primary="Audience"
+            className={styles.selectedAudience}
+            secondary={props.options[props.selectedIndex]}
+          />
+          <ChevronRight />
         </ListItem>
       </List>
     </div>

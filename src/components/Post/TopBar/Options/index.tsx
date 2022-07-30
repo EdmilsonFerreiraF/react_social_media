@@ -8,17 +8,14 @@ import {
   getUserBookmarks,
   savePostBookmark,
 } from "apiCalls";
-import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
 import {
   FormEvent,
   MouseEventHandler,
-  useContext,
   useEffect,
   useState,
 } from "react";
 import AudienceList from "./AudienceList";
-// import "menu.css";
 
 export type handleMenuOpening = (
   value: (EventTarget & HTMLButtonElement) | null,
@@ -38,67 +35,64 @@ type Props = {
 
 const Options = (props: Props) => {
   const isOptionsMenuOpen = Boolean(props.optionsMenuAnchorEl);
-  const { user } = useContext(AuthContext) as AuthContextInterface;
   const { form, onChange } = useForm({
     bookmarks: [],
   });
 
   const options = ["Public", "Friends", "Friend of friends", "Only me"];
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const open = Boolean(anchorEl);
 
   useEffect(() => {
-    // setSelectedIndex(Audience[props.postAudience]);
+    setSelectedIndex(audienceToSelectedOption());
   }, []);
+
+  useEffect(() => {
+    changePostAudience(props.postId, selectedOptionToAudience());
+  }, [selectedIndex]);
 
   type AudienceType = keyof typeof Audience;
 
   const selectedOptionToAudience = () => {
-    const upperSnakedOption = options[selectedIndex]
+    const upperSnakedOption = options[selectedIndex as number]
       .split(" ")
       .join("_")
       .toUpperCase() as AudienceType;
 
-    console.log("upperSnakedOption", upperSnakedOption);
     return Audience[upperSnakedOption];
   };
 
-  const audienceToSelectedOption = (postAudience: "PUBLIC") => {
-    let normalizedAudience = postAudience.split("_").join(" ").toLowerCase();
-    normalizedAudience = normalizedAudience[0].toUpperCase();
+  const audienceToSelectedOption = () => {
+    let normalizedAudience = props.postAudience
+      .split("_")
+      .join(" ")
+      .toLowerCase();
+    normalizedAudience = `${normalizedAudience[0].toUpperCase()}${normalizedAudience.slice(
+      1
+    )}`;
 
-    console.log("here normalizedAudience", normalizedAudience);
-    console.log(
-      "options.indexOf(normalizedAudience)",
-      options.indexOf(normalizedAudience)
-    );
     return options.indexOf(normalizedAudience);
   };
 
-  audienceToSelectedOption("PUBLIC");
-
   const handleMenuItemClick = (event: FormEvent, index: number) => {
     setSelectedIndex(index);
+
     setAnchorEl(null);
   };
 
   const handleClose = () => {
-    handlePostAudience();
     setAnchorEl(null);
   };
 
   useEffect(() => {
     (async () => {
       const bookmarks = await getUserBookmarks();
-      console.log("bookmarks", bookmarks);
       onChange(bookmarks, "bookmarks");
     })();
   }, []);
-  console.log("form.bookmarks", form.bookmarks);
 
   const handleDeletePost = async () => {
-    console.log("handleDeletePost");
     props.handleMenuOpening(null, "anchorEl", true) as
       | MouseEventHandler<HTMLLIElement>
       | undefined;
@@ -121,12 +115,6 @@ const Options = (props: Props) => {
     await savePostBookmark(props.postId);
   };
 
-  const handlePostAudience = async () => {
-    const selectedAudience = selectedOptionToAudience();
-
-    await changePostAudience(props.postId, selectedAudience);
-  };
-
   return (
     <Menu
       anchorEl={props.optionsMenuAnchorEl}
@@ -139,7 +127,7 @@ const Options = (props: Props) => {
         horizontal: "right",
       }}
       id={props.optionsMenuId}
-      //   keepMounted
+      keepMounted
       MenuListProps={{
         "aria-labelledby": props.optionsButton,
       }}
@@ -151,9 +139,6 @@ const Options = (props: Props) => {
           | undefined
       }
       data-testid="accountoptionsmenu"
-      //   classes={{
-      //     paper: "menu-paper",
-      //   }}
     >
       <MenuItem
         onClick={() => handleBookmarkPost()}
@@ -201,29 +186,6 @@ const Options = (props: Props) => {
         </IconButton>
         <p>Edit</p>
       </MenuItem>
-      {/* 
-      <MenuItem
-        onClick={() =>
-          props.handleMenuOpening(null, "anchorEl", true) as
-            | MouseEventHandler<HTMLLIElement>
-            | undefined
-        }
-        sx={{
-          padding: "5px 15px",
-        }}
-      >
-        <IconButton
-          size="medium"
-          aria-label="show 4 new mails"
-          color="inherit"
-          sx={{
-            padding: "10px 12px 10px 0px",
-          }}
-        >
-          <ManageAccounts />
-        </IconButton>
-        <p>Change audience</p>
-      </MenuItem> */}
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}
