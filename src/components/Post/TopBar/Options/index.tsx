@@ -9,13 +9,8 @@ import {
   savePostBookmark,
 } from "apiCalls";
 import { useForm } from "hooks/useForm";
-import {
-  FormEvent,
-  MouseEventHandler,
-  useEffect,
-  useState,
-} from "react";
-import AudienceList from "./AudienceList";
+import { FormEvent, MouseEventHandler, useEffect, useState } from "react";
+import AudienceList from "./AudienceButton";
 
 export type handleMenuOpening = (
   value: (EventTarget & HTMLButtonElement) | null,
