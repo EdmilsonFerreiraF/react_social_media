@@ -109,7 +109,6 @@ const Post = ({ post }: { post: IPost }) => {
           postId={post?.id}
         />
         <BotBar
-          userId={currentUser?.id}
           postId={post?.id}
           comments={post?.comment}
           likes={post?.likes.length + 1}

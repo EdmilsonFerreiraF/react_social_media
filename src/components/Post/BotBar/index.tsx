@@ -10,7 +10,6 @@ import styles from "./style.module.css";
 import CreateComment from "./CreateComment/CreateComment";
 
 type Props = {
-  userId: string;
   postId: string;
   likes: number;
   comments: number;
@@ -26,17 +25,6 @@ const BotBar = (props: Props) => {
   useEffect(() => {
     onChange(props.likes, "likes");
   }, []);
-
-  const inputChangeHandler = (e: FormEvent) => {
-    const target = e.target as HTMLInputElement;
-    const value: string = target.value;
-    let file: File | null;
-    file = target.files && (target.files as FileList)[0];
-
-    const name: string = target.name;
-
-    onChange(file || value, name);
-  };
 
   const { user } = useContext(AuthContext) as AuthContextInterface;
   const { username } = user;
@@ -83,7 +71,7 @@ const BotBar = (props: Props) => {
         username={username}
         profilePicture={props.profilePicture}
         noProfilePicture={props.noProfilePicture}
-        inputChangeHandler={inputChangeHandler}
+        postId={props.postId}
       />
     </>
   );

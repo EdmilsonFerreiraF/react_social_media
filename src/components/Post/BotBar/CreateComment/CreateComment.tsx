@@ -1,7 +1,13 @@
 import { ClickAwayListener } from "@mui/material";
+import { createComment } from "apiCalls";
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
-import React, { FormEvent, useContext } from "react";
+import React, {
+  FormEvent,
+  KeyboardEventHandler,
+  SyntheticEvent,
+  useContext,
+} from "react";
 import { Link } from "react-router-dom";
 import styles from "./style.module.css";
 
@@ -9,7 +15,7 @@ type Props = {
   username: string;
   profilePicture: string;
   noProfilePicture: string;
-  inputChangeHandler: (e: FormEvent) => void;
+  postId: string;
 };
 
 const CreateComment = (props: Props) => {
@@ -17,7 +23,17 @@ const CreateComment = (props: Props) => {
 
   const { form, onChange } = useForm({
     isInputActive: false,
+    content: "",
   });
+
+  const inputChangeHandler = (e: FormEvent) => {
+    const target = e.target as HTMLInputElement;
+    const value: string = target.value;
+
+    const name: string = target.name;
+
+    onChange(value, name);
+  };
 
   const activeCreationHandler = () => {
     onChange(!form.isInputActive, "isInputActive");
@@ -27,8 +43,18 @@ const CreateComment = (props: Props) => {
     onChange(false, "isInputActive");
   };
 
+  const handleKeyPress = (
+    e: SyntheticEvent & { key: string } & { shiftKey: boolean }
+  ) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+
+      createComment(props.postId, form.content);
+    }
+  };
+
   return (
-    <div className={styles.comment}>
+    <form className={styles.comment}>
       <Link to={`profile/${props.username}`} className={styles.profile}>
         <img
           src={props.profilePicture ?? props.noProfilePicture}
@@ -38,20 +64,21 @@ const CreateComment = (props: Props) => {
       </Link>
       <ClickAwayListener onClickAway={handleClickAway}>
         <textarea
+          onKeyPress={handleKeyPress}
           placeholder={
             form.isInputActive
               ? ""
               : `What's in your mind ${user?.username ?? ""}?`
           }
-          name="createComment"
+          name="content"
           rows={form.isInputActive ? 4 : 1}
           onFocus={activeCreationHandler}
           className={`${styles.descriptionInput}`}
-          value={form.description}
-          onChange={props.inputChangeHandler}
+          value={form.content}
+          onChange={inputChangeHandler}
         />
       </ClickAwayListener>
-    </div>
+    </form>
   );
 };
 
