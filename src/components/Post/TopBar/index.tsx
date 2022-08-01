@@ -23,6 +23,7 @@ type Props = {
   handleMenuOpening: handleMenuOpening;
   optionsMenuAnchorEl: Element;
   postAudience: Audience;
+  hasAuthorization: boolean;
 };
 
 const TopBar = (props: Props) => {
@@ -81,6 +82,7 @@ const TopBar = (props: Props) => {
           optionsButton={optionsButton}
           handlePostEditing={props.handlePostEditing}
           postAudience={props.postAudience}
+          hasAuthorization={props.hasAuthorization}
         />
       </div>
     </div>

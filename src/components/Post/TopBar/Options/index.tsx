@@ -26,6 +26,7 @@ type Props = {
   postId: string;
   postAudience: Audience;
   handlePostEditing: () => void;
+  hasAuthorization: boolean;
 };
 
 const Options = (props: Props) => {
@@ -161,74 +162,78 @@ const Options = (props: Props) => {
         </p>
       </MenuItem>
 
-      <MenuItem
-        onClick={() => props.handlePostEditing()}
-        sx={{
-          padding: "5px 15px",
-        }}
-      >
-        <IconButton
-          size="medium"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspop="true"
-          color="inherit"
-          sx={{
-            padding: "10px 12px 10px 0px",
-          }}
-        >
-          <Edit />
-        </IconButton>
-        <p>Edit</p>
-      </MenuItem>
-      <Menu
-        id="lock-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={() => handleClose()}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        MenuListProps={{
-          "aria-labelledby": "lock-button",
-          role: "listbox",
-        }}
-      >
-        {options.map((option, index) => (
+      {props.hasAuthorization && (
+        <>
           <MenuItem
-            key={option}
-            selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
+            onClick={() => props.handlePostEditing()}
+            sx={{
+              padding: "5px 15px",
+            }}
           >
-            {option}
+            <IconButton
+              size="medium"
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspop="true"
+              color="inherit"
+              sx={{
+                padding: "10px 12px 10px 0px",
+              }}
+            >
+              <Edit />
+            </IconButton>
+            <p>Edit</p>
           </MenuItem>
-        ))}
-      </Menu>
-      <AudienceList
-        options={options}
-        setAnchorEl={setAnchorEl}
-        selectedIndex={selectedIndex}
-        open={open}
-      />
+          <Menu
+            id="lock-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={() => handleClose()}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            MenuListProps={{
+              "aria-labelledby": "lock-button",
+              role: "listbox",
+            }}
+          >
+            {options.map((option, index) => (
+              <MenuItem
+                key={option}
+                selected={index === selectedIndex}
+                onClick={(event) => handleMenuItemClick(event, index)}
+              >
+                {option}
+              </MenuItem>
+            ))}
+          </Menu>
+          <AudienceList
+            options={options}
+            setAnchorEl={setAnchorEl}
+            selectedIndex={selectedIndex}
+            open={open}
+          />
 
-      <MenuItem onClick={() => handleDeletePost()}>
-        <IconButton
-          size="medium"
-          aria-label="show 17 new notifications"
-          color="inherit"
-          sx={{
-            padding: "10px 12px 10px 0px",
-          }}
-        >
-          <Delete />
-        </IconButton>
-        <p>Delete</p>
-      </MenuItem>
+          <MenuItem onClick={() => handleDeletePost()}>
+            <IconButton
+              size="medium"
+              aria-label="show 17 new notifications"
+              color="inherit"
+              sx={{
+                padding: "10px 12px 10px 0px",
+              }}
+            >
+              <Delete />
+            </IconButton>
+            <p>Delete</p>
+          </MenuItem>
+        </>
+      )}
     </Menu>
   );
 };

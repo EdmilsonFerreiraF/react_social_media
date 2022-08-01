@@ -91,6 +91,7 @@ const Post = ({ post }: { post: IPost }) => {
           handleMenuOpening={handleMenuOpening}
           optionsMenuAnchorEl={form.optionsMenuAnchorEl}
           postAudience={post?.audience}
+          hasAuthorization={post?.userId === user?.id || user?.isAdmin}
         />
         <Content
           readMore={form.readMore}
