@@ -7,13 +7,13 @@ import { useRequestData } from "hooks/useRequestData";
 import { useRequestImage } from "hooks/useRequestImage";
 import styles from "./style.module.css";
 
+import { Audience } from "apiCalls";
 import noPostPicture from "img/no_image.webp";
 import noProfilePicture from "img/no_person.webp";
 import BotBar from "./BotBar";
 import Content from "./Content";
 import TopBar from "./TopBar";
 import { handleMenuOpening } from "./TopBar/Options";
-import { Audience } from "apiCalls";
 
 export interface IPost {
   _id: string;
@@ -34,6 +34,7 @@ const Post = ({ post }: { post: IPost }) => {
     readMore: false,
     optionsMenuAnchorEl: null,
   });
+  console.log("post", post);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -77,6 +78,8 @@ const Post = ({ post }: { post: IPost }) => {
     }
   };
 
+  console.log("post?.createdAt", post?.createdAt);
+
   return (
     <div data-testid="post" className={styles.post}>
       <div className={styles.postContainer}>
@@ -110,6 +113,8 @@ const Post = ({ post }: { post: IPost }) => {
           postId={post?.id}
           comments={post?.comment}
           likes={post?.likes.length + 1}
+          profilePicture={profilePicture as string}
+          noProfilePicture={noProfilePicture}
         />
       </div>
     </div>
