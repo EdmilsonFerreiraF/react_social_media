@@ -7,7 +7,7 @@ import "menu.css";
 export type handleMenuOpening = (
   value: (EventTarget & HTMLButtonElement) | null,
   anchor: string,
-  closeMobileMenu?: boolean
+  closeMenu?: boolean
 ) => void;
 
 type Props = {
