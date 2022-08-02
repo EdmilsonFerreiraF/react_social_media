@@ -34,7 +34,7 @@ const Account = () => {
   };
 
   const handleMenuOpening = (
-    value: null | FormEvent,
+    value: (EventTarget & HTMLButtonElement) | null,
     anchor: string,
     closeMobileMenu: boolean = false
   ) => {
@@ -78,7 +78,9 @@ const Account = () => {
           aria-label="show more"
           aria-controls={mobileMenuId}
           aria-haspopup="true"
-          onClick={(e) => handleMenuOpening(e, "mobileMoreAnchorEl")}
+          onClick={(e) =>
+            handleMenuOpening(e.currentTarget, "mobileMoreAnchorEl")
+          }
           color="inherit"
         >
           <MoreVert />
