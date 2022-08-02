@@ -7,7 +7,8 @@ import { useForm } from "hooks/useForm";
 import heartImg from "img/heart.webp";
 import likeImg from "img/like.webp";
 import styles from "./style.module.css";
-import CreateComment from "./CreateComment/CreateComment";
+import CreateComment from "./CreateComment";
+import Comments from "./Comments";
 
 type Props = {
   postId: string;
@@ -73,6 +74,7 @@ const BotBar = (props: Props) => {
         noProfilePicture={props.noProfilePicture}
         postId={props.postId}
       />
+      <Comments postId={props.postId} />
     </>
   );
 };
