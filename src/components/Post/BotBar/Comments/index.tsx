@@ -8,18 +8,13 @@ import { Link } from "react-router-dom";
 
 type Props = {
   postId: string;
+  comments: any
 };
 
 const Comments = (props: Props) => {
-  const comments = useRequestData(
-    props.postId ? `${baseUrl}/comment/${props.postId}` : null,
-    []
-  );
-  console.log("comments", comments);
-
   return (
     <ul className={styles.comments}>
-      {comments.map((comment: any) => (
+      {props.comments.map((comment: any) => (
         <CommentItem comment={comment} />
       ))}
     </ul>
@@ -34,12 +29,14 @@ type ItemProps = {
 
 export const CommentItem = (props: ItemProps) => {
   const user = useRequestData(
-    props.comment?.username ? `${baseUrl}/user/${props.comment?.username}` : null,
+    props.comment?.username
+      ? `${baseUrl}/user/${props.comment?.username}`
+      : null,
     {}
   );
-  console.log("user", user);
+
   const profilePicture = useRequestImage("profile", user?.profilePicture);
-  console.log("profilePicture", profilePicture);
+
   return (
     <li className={styles.commentItem}>
       <Link to={user?.username ? `profile/${user?.username}` : ""}>

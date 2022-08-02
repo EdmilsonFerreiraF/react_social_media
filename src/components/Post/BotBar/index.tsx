@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 
 import { sendData } from "apiCalls";
 import { baseUrl } from "constants/baseUrl";
@@ -9,6 +9,7 @@ import likeImg from "img/like.webp";
 import styles from "./style.module.css";
 import CreateComment from "./CreateComment";
 import Comments from "./Comments";
+import { useRequestData } from "hooks/useRequestData";
 
 type Props = {
   postId: string;
@@ -18,14 +19,34 @@ type Props = {
   noProfilePicture: string;
 };
 
+export type Comment = {
+  id: string;
+  postId: string;
+  userId: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 const BotBar = (props: Props) => {
   const { form, onChange } = useForm({
     likes: 0,
   });
 
+  const [comments, setComments] = useState<Comment[]>([]);
+
+  const initialComments = useRequestData(
+    props.postId ? `${baseUrl}/comment/${props.postId}` : null,
+    []
+  );
+
   useEffect(() => {
     onChange(props.likes, "likes");
   }, []);
+
+  useEffect(() => {
+    setComments(initialComments);
+  }, [initialComments]);
 
   const { user } = useContext(AuthContext) as AuthContextInterface;
   const { username } = user;
@@ -73,8 +94,9 @@ const BotBar = (props: Props) => {
         profilePicture={props.profilePicture}
         noProfilePicture={props.noProfilePicture}
         postId={props.postId}
+        setComments={setComments}
       />
-      <Comments postId={props.postId} />
+      <Comments comments={comments} postId={props.postId} />
     </>
   );
 };

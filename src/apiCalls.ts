@@ -210,18 +210,20 @@ export async function changePostAudience(
 export async function createComment(
     postId: string,
     content: string
-) {
+): Promise<any> {
     const token = localStorage.getItem("token")
     const url = `${baseUrl}/comment`;
     const data = { postId, content }
 
-    await axios.post(url, data, {
+    const result = await axios.post(url, data, {
         headers: {
             Authorization: token as string
         }
     }).catch((error) => {
         console.log(error.message)
     })
+
+    return result?.data
 }
 
 export async function sendData(

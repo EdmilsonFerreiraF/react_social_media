@@ -3,12 +3,15 @@ import { createComment } from "apiCalls";
 import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useForm } from "hooks/useForm";
 import React, {
+  Dispatch,
   FormEvent,
   KeyboardEventHandler,
+  SetStateAction,
   SyntheticEvent,
   useContext,
 } from "react";
 import { Link } from "react-router-dom";
+import { Comment } from "..";
 import styles from "./style.module.css";
 
 type Props = {
@@ -16,6 +19,7 @@ type Props = {
   profilePicture: string;
   noProfilePicture: string;
   postId: string;
+  setComments: Dispatch<SetStateAction<Comment[]>>;
 };
 
 const CreateComment = (props: Props) => {
@@ -43,13 +47,15 @@ const CreateComment = (props: Props) => {
     onChange(false, "isInputActive");
   };
 
-  const handleKeyPress = (
+  const handleKeyPress = async (
     e: SyntheticEvent & { key: string } & { shiftKey: boolean }
   ) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
 
-      createComment(props.postId, form.content);
+      const newComment = await createComment(props.postId, form.content);
+
+      props.setComments((comments: Comment[]) => [...comments, newComment]);
     }
   };
 
