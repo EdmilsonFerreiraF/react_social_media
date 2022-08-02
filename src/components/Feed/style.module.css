@@ -11,12 +11,6 @@
   justify-content: center;
 }
 
-@media (max-width: 1000px) {
-  .feed {
-    padding: 20px 5px;
-  }
-}
-
 @media (max-width: 900px) {
   .feed {
     padding: 15px;

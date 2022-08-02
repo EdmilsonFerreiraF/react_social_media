@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { v4 } from "uuid";
 
 import { Audience, sendData, uploadPostPic } from "apiCalls";
@@ -7,8 +7,13 @@ import { useForm } from "hooks/useForm";
 import BotBar from "./BotBar";
 import Content from "./Content";
 import styles from "./style.module.css";
+import { IPost } from "components/Post";
 
-const CreatePost = () => {
+type Props = {
+  setPosts: Dispatch<SetStateAction<IPost[]>>;
+};
+
+const CreatePost = (props: Props) => {
   const { form, onChange } = useForm({
     description: "",
     audience: "PUBLIC",
@@ -31,8 +36,6 @@ const CreatePost = () => {
 
     return Audience[upperSnakedOption];
   };
-
-  console.log("selectedOptionToAudience", selectedOptionToAudience());
 
   const handleMenuItemClick = (event: FormEvent, index: number) => {
     setSelectedIndex(index);
@@ -60,7 +63,10 @@ const CreatePost = () => {
     };
 
     uploadPostPic(form.file, newPost.image);
-    sendData(url, "post", newPost);
+
+    const newPostReturn = await sendData(url, "post", newPost);
+
+    props.setPosts((posts) => [...posts, newPostReturn]);
   };
 
   const inputChangeHandler = (e: FormEvent) => {

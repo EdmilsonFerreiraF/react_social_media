@@ -207,21 +207,40 @@ export async function changePostAudience(
     })
 }
 
+export async function createComment(
+    postId: string,
+    content: string
+) {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/comment`;
+    const data = { postId, content }
+
+    await axios.post(url, data, {
+        headers: {
+            Authorization: token as string
+        }
+    }).catch((error) => {
+        console.log(error.message)
+    })
+}
+
 export async function sendData(
     url: string,
     method: "post" | "put",
     data: Data | { userId: string }
-) {
+): Promise<any> {
     const token = localStorage.getItem("token")
 
     if (url) {
-        await axios[method](url, data, {
+        const result = await axios[method](url, data, {
             headers: {
                 Authorization: token as string
             }
         }).catch((error) => {
             console.log(error.message)
         })
+
+        return result?.data
     }
 }
 
