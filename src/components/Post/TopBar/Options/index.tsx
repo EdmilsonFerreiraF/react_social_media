@@ -163,7 +163,7 @@ const Options = (props: Props) => {
       </MenuItem>
 
       {props.hasAuthorization && (
-        <>
+        <div>
           <MenuItem
             onClick={() => props.handlePostEditing()}
             sx={{
@@ -232,7 +232,7 @@ const Options = (props: Props) => {
             </IconButton>
             <p>Delete</p>
           </MenuItem>
-        </>
+        </div>
       )}
     </Menu>
   );
