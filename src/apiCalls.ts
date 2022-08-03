@@ -121,18 +121,20 @@ export async function deletePostBookmark(
 
 export async function savePostBookmark(
     postId: string,
-) {
+): Promise<any> {
     const token = localStorage.getItem("token")
     const url = `${baseUrl}/bookmark`;
     const data = { postId }
 
-    await axios.post(url, data, {
+    const newBookmark = await axios.post(url, data, {
         headers: {
             Authorization: token as string
         }
     }).catch((error) => {
         console.log(error.message)
     })
+
+    return newBookmark
 }
 
 export async function getUserBookmarks() {

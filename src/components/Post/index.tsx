@@ -34,7 +34,6 @@ const Post = ({ post }: { post: IPost }) => {
     readMore: false,
     optionsMenuAnchorEl: null,
   });
-  console.log("post", post);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -70,15 +69,12 @@ const Post = ({ post }: { post: IPost }) => {
     anchor,
     closeMenu = false
   ) => {
-    console.log("value", value);
     onChange(value, anchor);
 
     if (closeMenu) {
       handleOptionsMenuClose();
     }
   };
-
-  console.log("post?.createdAt", post?.createdAt);
 
   return (
     <div data-testid="post" className={styles.post}>

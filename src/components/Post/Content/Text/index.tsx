@@ -25,8 +25,6 @@ const Text = (props: Props) => {
     const value: string = target.value;
     const name: string = target.name;
 
-    console.log("Text - value", value);
-    console.log("Text - name", name);
     onChange(value, name);
   };
 

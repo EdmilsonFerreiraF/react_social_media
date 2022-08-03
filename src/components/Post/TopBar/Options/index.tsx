@@ -31,12 +31,10 @@ type Props = {
 
 const Options = (props: Props) => {
   const isOptionsMenuOpen = Boolean(props.optionsMenuAnchorEl);
-  const { form, onChange } = useForm({
-    bookmarks: [],
-  });
 
   const options = ["Public", "Friends", "Friend of friends", "Only me"];
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [bookmarks, setBookmarks] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const open = Boolean(anchorEl);
 
@@ -84,7 +82,8 @@ const Options = (props: Props) => {
   useEffect(() => {
     (async () => {
       const bookmarks = await getUserBookmarks();
-      onChange(bookmarks, "bookmarks");
+
+      setBookmarks(bookmarks);
     })();
   }, []);
 
@@ -95,20 +94,22 @@ const Options = (props: Props) => {
     await deletePost(props.postId);
   };
 
-  const handleBookmarkPost = async () => {
+  const handleCreateBookmark = async () => {
     props.handleMenuOpening(null, "anchorEl", true) as
       | MouseEventHandler<HTMLLIElement>
       | undefined;
 
     if (
-      form.bookmarks.length &&
-      form.bookmarks.find((bookmark: any) => bookmark.postId === props.postId)
+      bookmarks.length &&
+      bookmarks.find((bookmark: any) => bookmark.postId === props.postId)
     ) {
       await deletePostBookmark(props.postId);
       return;
     }
 
-    await savePostBookmark(props.postId);
+    const newBookmark = await savePostBookmark(props.postId);
+
+    setBookmarks(newBookmark);
   };
 
   return (
@@ -137,7 +138,7 @@ const Options = (props: Props) => {
       data-testid="accountoptionsmenu"
     >
       <MenuItem
-        onClick={() => handleBookmarkPost()}
+        onClick={() => handleCreateBookmark()}
         sx={{
           padding: "5px 15px",
         }}
@@ -153,10 +154,8 @@ const Options = (props: Props) => {
           <Bookmark />
         </IconButton>
         <p>
-          {form.bookmarks.length &&
-          form.bookmarks.find(
-            (bookmark: any) => bookmark.postId === props.postId
-          )
+          {bookmarks.length &&
+          bookmarks.find((bookmark: any) => bookmark.postId === props.postId)
             ? "Remove"
             : "Save"}
         </p>
