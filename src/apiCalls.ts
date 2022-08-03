@@ -199,13 +199,15 @@ export async function addFriend(
     const url = `${baseUrl}/user/${id}/add`;
     const data = { id }
 
-    await axios.put(url, data, {
+    const result = await axios.put(url, data, {
         headers: {
             Authorization: token as string
         }
     }).catch((error) => {
         console.log(error.message)
     })
+
+    return result
 }
 
 export async function changePostAudience(

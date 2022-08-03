@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext } from "react";
+import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 import { useParams } from "react-router-dom";
 
@@ -41,6 +41,7 @@ const Profile = () => {
 
   const handleError = useErrorHandler();
 
+  const [friends, setFriends] = useState<[] | any>([]);
   const { username } = useParams();
 
   const { user: currUser, dispatch } = useContext(
@@ -51,12 +52,16 @@ const Profile = () => {
     {}
   );
 
-  const friends = useRequestData(
+  const initialFriends = useRequestData(
     visitedUser &&
       visitedUser.id &&
       `${baseUrl}/user/${visitedUser.id}/friends`,
     []
   );
+
+  useEffect(() => {
+    setFriends(initialFriends);
+  }, [friends]);
 
   const token = localStorage.getItem("token") as string;
 
@@ -69,6 +74,8 @@ const Profile = () => {
 
   const handleAddFriend = async () => {
     const newFriend = await addFriend(visitedUser.id);
+
+    setFriends((friends: any) => [...friends, newFriend]);
   };
 
   const LazyFeed = () => (
