@@ -20,6 +20,7 @@ import feedStyles from "../../components/Feed/style.module.css";
 import { initializeApp } from "firebase/app";
 import { IconButton, MenuItem } from "@mui/material";
 import { Delete, PersonAdd } from "@mui/icons-material";
+import { addFriend } from "apiCalls";
 
 const firebaseConfig = {
   apiKey: import.meta.env.FIREBASE_API_KEY,
@@ -50,6 +51,13 @@ const Profile = () => {
     {}
   );
 
+  const friends = useRequestData(
+    visitedUser &&
+      visitedUser.id &&
+      `${baseUrl}/user/${visitedUser.id}/friends`,
+    []
+  );
+
   const token = localStorage.getItem("token") as string;
 
   useGetUser(currUser, token, dispatch, handleError);
@@ -58,6 +66,10 @@ const Profile = () => {
 
   const profilePicture = useRequestImage("profile", user?.profilePicture);
   const coverPicture = useRequestImage("cover", user?.coverPicture);
+
+  const handleAddFriend = async () => {
+    const newFriend = await addFriend(visitedUser.id);
+  };
 
   const LazyFeed = () => (
     <Suspense
@@ -91,7 +103,7 @@ const Profile = () => {
               />
             </div>
             <div className={styles.profileButtons}>
-              <MenuItem className={styles.addFriend}>
+              <MenuItem className={styles.addFriend} onClick={handleAddFriend}>
                 <IconButton
                   size="medium"
                   aria-label="show 17 new notifications"
@@ -102,7 +114,11 @@ const Profile = () => {
                 >
                   <PersonAdd />
                 </IconButton>
-                <p className={styles.addFriendText}>Add friend</p>
+                <p className={styles.addFriendText}>
+                  {friends.find((friend: any) => friend.id === visitedUser.id)
+                    ? "Remove friend"
+                    : "Add friend"}
+                </p>
               </MenuItem>
               <MenuItem className={styles.addFriend}>
                 <IconButton
@@ -115,7 +131,11 @@ const Profile = () => {
                 >
                   <PersonAdd />
                 </IconButton>
-                <p className={styles.addFriendText}>Add friend</p>
+                <p className={styles.addFriendText}>
+                  {friends.find((friend: any) => friend.id === visitedUser.id)
+                    ? "Remove friend"
+                    : "Add friend"}
+                </p>
               </MenuItem>
             </div>
             <div className={styles.profileInfo}>

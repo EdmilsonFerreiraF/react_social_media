@@ -192,6 +192,22 @@ export enum Audience {
     ONLY_ME = "ONLY_ME"
 }
 
+export async function addFriend(
+    id: string
+) {
+    const token = localStorage.getItem("token")
+    const url = `${baseUrl}/user/${id}/add`;
+    const data = { id }
+
+    await axios.put(url, data, {
+        headers: {
+            Authorization: token as string
+        }
+    }).catch((error) => {
+        console.log(error.message)
+    })
+}
+
 export async function changePostAudience(
     postId: string,
     audience: Audience,
