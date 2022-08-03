@@ -115,7 +115,7 @@ const Profile = () => {
                   <PersonAdd />
                 </IconButton>
                 <p className={styles.addFriendText}>
-                  {friends.find((friend: any) => friend.id === visitedUser.id)
+                  {friends.find((friend: any) => friend.id === currUser.id)
                     ? "Remove friend"
                     : "Add friend"}
                 </p>
