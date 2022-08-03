@@ -18,6 +18,8 @@ import styles from "./style.module.css";
 import feedStyles from "../../components/Feed/style.module.css";
 
 import { initializeApp } from "firebase/app";
+import { IconButton, MenuItem } from "@mui/material";
+import { Delete, PersonAdd } from "@mui/icons-material";
 
 const firebaseConfig = {
   apiKey: import.meta.env.FIREBASE_API_KEY,
@@ -75,7 +77,7 @@ const Profile = () => {
       <div className={styles.profile}>
         <Sidebar />
         <div className={styles.profileRight}>
-          <div>
+          <div className={styles.profileHeader}>
             <div className={styles.profileCover}>
               <img
                 src={coverPicture ?? noCoverImg}
@@ -87,6 +89,34 @@ const Profile = () => {
                 src={profilePicture ?? noProfileImg}
                 alt="User profile"
               />
+            </div>
+            <div className={styles.profileButtons}>
+              <MenuItem className={styles.addFriend}>
+                <IconButton
+                  size="medium"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                  sx={{
+                    padding: "10px 12px 10px 0px",
+                  }}
+                >
+                  <PersonAdd />
+                </IconButton>
+                <p className={styles.addFriendText}>Add friend</p>
+              </MenuItem>
+              <MenuItem className={styles.addFriend}>
+                <IconButton
+                  size="medium"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                  sx={{
+                    padding: "10px 12px 10px 0px",
+                  }}
+                >
+                  <PersonAdd />
+                </IconButton>
+                <p className={styles.addFriendText}>Add friend</p>
+              </MenuItem>
             </div>
             <div className={styles.profileInfo}>
               <h4

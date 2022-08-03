@@ -39,6 +39,13 @@
   justify-content: center;
 }
 
+.profileButtons {
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  display: flex;
+}
+
 .profileInfoName {
   font-size: 24px;
 }
@@ -55,4 +62,16 @@
   .profile {
     grid: initial;
   }
+}
+
+.addFriend {
+  padding: 0 8px;
+}
+
+.addFriendText {
+  margin: 5px;
+}
+
+.profileHeader {
+  position: relative;
 }

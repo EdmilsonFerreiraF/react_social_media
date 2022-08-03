@@ -7,3 +7,7 @@ export const profileInfo: string
 export const profileInfoName: string
 export const profileInfoDesc: string
 export const profileRightBottom: string
+export const addFriend: string
+export const addFriendText: string
+export const profileHeader: string
+export const profileButtons: string
