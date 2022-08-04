@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 import { useParams } from "react-router-dom";
 
-import { useGetUser } from "apiCalls";
+import { removeFriend, useGetUser } from "apiCalls";
 import MainAppBar from "components/MainAppBar";
 import MessagesBar from "components/MessagesBar";
 import Progress from "components/Progress";
@@ -78,6 +78,14 @@ const Profile = () => {
     setFriends((friends: any) => [...friends, newFriend]);
   };
 
+  const handleRemoveFriend = async () => {
+    const newFriend = await removeFriend(visitedUser.id);
+
+    setFriends((friends: any) => [
+      ...friends.filter((friendId: any) => friendId !== newFriend),
+    ]);
+  };
+
   const LazyFeed = () => (
     <Suspense
       fallback={
@@ -110,7 +118,14 @@ const Profile = () => {
               />
             </div>
             <div className={styles.profileButtons}>
-              <MenuItem className={styles.addFriend} onClick={handleAddFriend}>
+              <MenuItem
+                className={styles.addFriend}
+                onClick={
+                  friends.find((friend: any) => friend.id === currUser.id)
+                    ? handleRemoveFriend
+                    : handleAddFriend
+                }
+              >
                 <IconButton
                   size="medium"
                   aria-label="show 17 new notifications"
