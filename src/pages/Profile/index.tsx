@@ -19,7 +19,7 @@ import feedStyles from "../../components/Feed/style.module.css";
 
 import { initializeApp } from "firebase/app";
 import { IconButton, MenuItem } from "@mui/material";
-import { Delete, PersonAdd } from "@mui/icons-material";
+import { CoPresentOutlined, Delete, PersonAdd } from "@mui/icons-material";
 import { addFriend } from "apiCalls";
 
 const firebaseConfig = {
@@ -42,6 +42,7 @@ const Profile = () => {
   const handleError = useErrorHandler();
 
   const [friends, setFriends] = useState<[] | any>([]);
+  const [initialFriends, setInitialFriends] = useState<[] | any>([]);
   const { username } = useParams();
 
   const { user: currUser, dispatch } = useContext(
@@ -52,10 +53,8 @@ const Profile = () => {
     {}
   );
 
-  const initialFriends = useRequestData(
-    visitedUser &&
-      visitedUser.id &&
-      `${baseUrl}/user/${visitedUser.id}/friends`,
+  const friendList = useRequestData(
+    visitedUser?.id ? `${baseUrl}/user/${visitedUser.id}/friends` : null,
     []
   );
 
@@ -63,14 +62,24 @@ const Profile = () => {
     setFriends(initialFriends);
   }, [initialFriends]);
 
+  useEffect(() => {
+    setInitialFriends(friendList);
+  }, [friendList]);
+
   const token = localStorage.getItem("token") as string;
 
   useGetUser(currUser, token, dispatch, handleError);
 
-  const user = visitedUser ?? currUser;
+  // const user = visitedUser ?? currUser;
 
-  const profilePicture = useRequestImage("profile", user?.profilePicture);
-  const coverPicture = useRequestImage("cover", user?.coverPicture);
+  const profilePicture = useRequestImage(
+    "profile",
+    visitedUser?.profilePicture ?? currUser?.profilePicture
+  );
+  const coverPicture = useRequestImage(
+    "cover",
+    visitedUser?.coverPicture ?? currUser?.coverPicture
+  );
 
   const handleAddFriend = async () => {
     const newFriend = await addFriend(visitedUser.id);
@@ -82,8 +91,10 @@ const Profile = () => {
     const newFriend = await removeFriend(visitedUser.id);
 
     setFriends((friends: any) => [
-      ...friends.filter((friendId: any) => friendId !== newFriend),
+      ...friends.filter((friend: any) => friend.id !== newFriend),
     ]);
+
+    console.log("friends", friends);
   };
 
   console.log(
@@ -101,7 +112,7 @@ const Profile = () => {
         </main>
       }
     >
-      <Feed otherUserId={user?.id} />
+      <Feed otherUserId={visitedUser?.id ?? currUser?.id} />
     </Suspense>
   );
 
@@ -172,13 +183,13 @@ const Profile = () => {
                 data-testid="user profile username"
                 className={styles.profileInfoName}
               >
-                {user?.username}
+                {visitedUser?.username ?? currUser?.username}
               </h4>
               <span
                 data-testid="user profile description"
                 className={styles.profileInfoDesc}
               >
-                {user?.description}
+                {visitedUser?.description ?? currUser?.description}
               </span>
             </div>
           </div>
@@ -186,7 +197,7 @@ const Profile = () => {
             <LazyFeed />
           </div>
         </div>
-        <MessagesBar user={user} />
+        <MessagesBar user={visitedUser ?? currUser} friends={friends} />
       </div>
     </>
   );

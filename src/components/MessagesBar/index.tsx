@@ -10,21 +10,16 @@ import { Container } from "@mui/material";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import styles from "./style.module.css";
 
-const MessagesBar = ({ user: visitedUser }: { user?: User }) => {
-  const [friends, setFriends] = useState([])
-  
+const MessagesBar = ({
+  user: visitedUser,
+  friends,
+}: {
+  user?: User;
+  friends: any;
+}) => {
   const { user: currUser } = useContext(AuthContext) as AuthContextInterface;
 
   const user = visitedUser ?? currUser;
-
-  const initialFriends = useRequestData(
-    user && user.id && `${baseUrl}/user/${user.id}/friends`,
-    []
-  );
-  
-  useEffect(() => {
-    setFriends(initialFriends);
-  }, [initialFriends]);
 
   const [isOpen, setIsOpen] = React.useState(false);
 

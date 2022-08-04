@@ -11,6 +11,8 @@ import { AuthContext, AuthContextInterface } from "context/AuthContext";
 import { useProtectPage } from "hooks/useProtectPage";
 import styles from "./style.module.css";
 import feedStyles from "../../components/Feed/style.module.css";
+import { useRequestData } from "hooks/useRequestData";
+import { baseUrl } from "constants/baseUrl";
 
 const Feed = lazy(() => import("components/Feed"));
 
@@ -34,6 +36,11 @@ const Home = () => {
   const token = localStorage.getItem("token") as string;
   useGetUser(user, token, dispatch, handleError);
 
+  const friends = useRequestData(
+    user?.id ? `${baseUrl}/user/${user.id}/friends` : null,
+    []
+  );
+
   const LazyFeed = () => (
     <Suspense
       fallback={
@@ -52,7 +59,7 @@ const Home = () => {
       <div className={styles.homeContainer}>
         <Sidebar />
         <LazyFeed />
-        <MessagesBar />
+        <MessagesBar friends={friends} />
       </div>
     </>
   );
