@@ -196,10 +196,9 @@ export async function addFriend(
     id: string
 ) {
     const token = localStorage.getItem("token")
-    const url = `${baseUrl}/user/${id}/add`;
-    const data = { id }
+    const url = `${baseUrl}/friendrequest/${id}`;
 
-    const result = await axios.put(url, data, {
+    const result = await axios.post(url, {}, {
         headers: {
             Authorization: token as string
         }
