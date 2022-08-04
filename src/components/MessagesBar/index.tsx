@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { baseUrl } from "constants/baseUrl";
 import { AuthContext, AuthContextInterface, User } from "context/AuthContext";
@@ -11,14 +11,20 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import styles from "./style.module.css";
 
 const MessagesBar = ({ user: visitedUser }: { user?: User }) => {
+  const [friends, setFriends] = useState([])
+  
   const { user: currUser } = useContext(AuthContext) as AuthContextInterface;
 
   const user = visitedUser ?? currUser;
 
-  const friends = useRequestData(
+  const initialFriends = useRequestData(
     user && user.id && `${baseUrl}/user/${user.id}/friends`,
     []
   );
+  
+  useEffect(() => {
+    setFriends(initialFriends);
+  }, [initialFriends]);
 
   const [isOpen, setIsOpen] = React.useState(false);
 

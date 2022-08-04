@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { useErrorHandler } from 'react-error-boundary'
 
 import { baseUrl } from "constants/baseUrl";
@@ -10,10 +10,16 @@ import styles from "./style.module.css";
 const FriendList = () => {
   const { user } = useContext(AuthContext) as AuthContextInterface;
 
-  const friends = useRequestData(
+  const [friends, setFriends] = useState<[] | any>([]);
+
+  const initialFriends = useRequestData(
     user && user.id && `${baseUrl}/user/${user.id}/friends`,
     []
   );
+  
+  useEffect(() => {
+    setFriends(initialFriends);
+  }, [initialFriends]);
 
   return (
     <ul className={styles.friendList} data-testid="friendList">

@@ -216,13 +216,15 @@ export async function removeFriend(
     const token = localStorage.getItem("token")
     const url = `${baseUrl}/user/${id}/remove`;
 
-    await axios.delete(url, {
+    const result = await axios.delete(url, {
         headers: {
             Authorization: token as string
         }
     }).catch((error: any) => {
         console.log(error.message)
     })
+
+    return result
 }
 
 export async function changePostAudience(

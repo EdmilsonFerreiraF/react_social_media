@@ -61,7 +61,7 @@ const Profile = () => {
 
   useEffect(() => {
     setFriends(initialFriends);
-  }, [friends]);
+  }, [initialFriends]);
 
   const token = localStorage.getItem("token") as string;
 
@@ -85,6 +85,13 @@ const Profile = () => {
       ...friends.filter((friendId: any) => friendId !== newFriend),
     ]);
   };
+
+  console.log(
+    "friends.find((friend: any) => friend.id === currUser.id)",
+    friends.find((friend: any) => friend.id === currUser.id)
+  );
+
+  console.log("friends", friends);
 
   const LazyFeed = () => (
     <Suspense
